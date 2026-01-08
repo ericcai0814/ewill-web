@@ -84,22 +84,17 @@ function sanitizeToAscii(str: string): string {
 }
 
 function loadMetaYml(assetPath: string): AssetMeta | null {
-  // 優先讀取 .yml（整合格式），若不存在則嘗試 .meta.yml（舊格式）
   const ymlPath = assetPath + '.yml'
-  const metaPath = assetPath + '.meta.yml'
   
-  const targetPath = fs.existsSync(ymlPath) ? ymlPath : 
-                     fs.existsSync(metaPath) ? metaPath : null
-  
-  if (!targetPath) {
+  if (!fs.existsSync(ymlPath)) {
     return null
   }
   
   try {
-    const content = fs.readFileSync(targetPath, 'utf-8')
+    const content = fs.readFileSync(ymlPath, 'utf-8')
     return parseYaml(content) as AssetMeta
   } catch (e) {
-    console.warn(`⚠️  Failed to parse ${targetPath}:`, e)
+    console.warn(`⚠️  Failed to parse ${ymlPath}:`, e)
     return null
   }
 }
