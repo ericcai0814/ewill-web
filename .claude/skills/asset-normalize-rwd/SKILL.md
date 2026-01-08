@@ -24,8 +24,8 @@ npx tsx scripts/normalize-assets.ts
 ```
 
 ### 輸入
-- `modules/*/assets/*` - 原始圖片
-- `modules/*/assets/*.meta.yml` - 圖片中繼資料（可選）
+- `pages/*/assets/*` - 原始圖片
+- `pages/*/assets/*.meta.yml` - 圖片中繼資料（可選）
 
 ### 輸出
 - `dist/assets/` - 正規化後的圖片
@@ -42,7 +42,7 @@ npx tsx scripts/normalize-assets.ts
 ### meta.yml 格式
 
 ```yaml
-# modules/home/assets/首頁橫幅.meta.yml
+# pages/home/assets/首頁橫幅.meta.yml
 id: hero_banner
 alt: 首頁主視覺橫幅
 variants:
@@ -57,7 +57,7 @@ variants:
   "assets": [
     {
       "id": "hero_banner",
-      "original_path": "modules/home/assets/首頁橫幅.jpg",
+      "original_path": "pages/home/assets/首頁橫幅.jpg",
       "normalized_path": "dist/assets/hero_banner_a1b2c3.jpg",
       "variants": {
         "desktop": "dist/assets/hero_banner_a1b2c3_desktop.jpg",
@@ -87,7 +87,7 @@ npx tsx scripts/audit-content.ts
 ### 輸出
 
 ```
-❌ modules/home/index.md:15 - 禁止直接引用 assets/首頁橫幅.jpg
+❌ pages/home/index.md:15 - 禁止直接引用 assets/首頁橫幅.jpg
    建議：移至 index.yml 使用 image_id: hero_banner
 
 ✅ All 12 modules passed audit
@@ -102,14 +102,14 @@ npx tsx scripts/build-content.ts
 ```
 
 ### 輸入
-- `modules/*/index.md` - 內容 markdown
-- `modules/*/index.yml` - 頁面配置
+- `pages/*/index.md` - 內容 markdown
+- `pages/*/index.yml` - 頁面配置
 - `dist/asset-manifest.json` - 資源對應表
 
 ### index.yml layout 結構
 
 ```yaml
-# modules/home/index.yml
+# pages/home/index.yml
 seo:
   title: 首頁
   description: 網站首頁描述
@@ -178,8 +178,8 @@ jq '.layout.hero.image.desktop' dist/content/pages/home.json
 
 ```
 專案根目錄/
-├── modules/
-│   └── {module}/
+├── pages/
+│   └── {page}/
 │       ├── index.md
 │       ├── index.yml
 │       └── assets/

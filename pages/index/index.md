@@ -1,6 +1,6 @@
-![首頁主視覺 Banner](assets/首頁Banner1209.png)
+![首頁主視覺 Banner](assets/home-banner-1209.png)
 
-![首頁主視覺 Banner 手機版](assets/BN-Home-M.jpg)
+![首頁主視覺 Banner 手機版](assets/bn-home-m.jpg)
 
 ##### About Us
 
@@ -84,4 +84,4 @@
 
 [了解更多](/solutions/#security_enhancement)
 
-![LOGSEC 廣告彈窗](assets/LOGSEC廣告彈窗_829.png)
+![LOGSEC 廣告彈窗](assets/logsec-popup-829.png)

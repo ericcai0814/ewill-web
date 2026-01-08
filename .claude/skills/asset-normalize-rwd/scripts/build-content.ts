@@ -111,7 +111,7 @@ interface ContentManifest {
 // ============================================================================
 
 const CONFIG = {
-  modulesDir: 'modules',
+  modulesDir: 'pages',  // 改為 pages 以符合專案結構
   manifestPath: 'dist/asset-manifest.json',
   contentDir: 'dist/content',
   pagesDir: 'dist/content/pages',

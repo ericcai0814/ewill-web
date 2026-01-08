@@ -144,7 +144,7 @@ function initNavbarScroll() {
 }
 
 // ============================================================
-// 廣告彈窗控制
+// 廣告彈窗控制 - 首訪彈窗
 // ============================================================
 
 function initPopupBanner() {
@@ -153,14 +153,26 @@ function initPopupBanner() {
   
   if (!popup) return;
   
-  // 3 秒後顯示彈窗
-  setTimeout(() => {
-    popup.style.display = 'block';
-  }, 3000);
+  const POPUP_KEY = 'ewill_logsec_popup_shown';
+  const hasShown = localStorage.getItem(POPUP_KEY);
   
-  // 關閉按鈕
+  // 只在首次訪問時顯示
+  if (!hasShown) {
+    setTimeout(() => {
+      popup.style.display = 'block';
+      popup.style.animation = 'fadeInUp 0.3s ease';
+    }, 2000);
+  }
+  
+  // 關閉按鈕 - 記錄已顯示
   closeBtn?.addEventListener('click', () => {
     popup.style.display = 'none';
+    localStorage.setItem(POPUP_KEY, 'true');
+  });
+  
+  // 點擊廣告連結也記錄已顯示
+  popup.querySelector('a')?.addEventListener('click', () => {
+    localStorage.setItem(POPUP_KEY, 'true');
   });
 }
 
@@ -202,4 +214,5 @@ document.addEventListener('DOMContentLoaded', () => {
   
   console.log('🚀 鎰威科技首頁已載入');
 });
+
 

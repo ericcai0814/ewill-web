@@ -46,7 +46,7 @@ interface AssetManifest {
 // ============================================================================
 
 const CONFIG = {
-  modulesDir: 'modules',
+  modulesDir: 'pages',  // 改為 pages 以符合專案結構
   distAssetsDir: 'dist/assets',
   manifestPath: 'dist/asset-manifest.json',
   imageExtensions: ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'],

@@ -175,16 +175,22 @@ img {
 .hero img {
   width: 100%;
   height: auto;
+}
+
+/* Desktop Banner - 預設顯示 */
+.hero-desktop {
   display: block;
 }
 
+/* Mobile Banner - 預設隱藏 */
 .hero-mobile {
   display: none;
 }
 
+/* RWD: 768px 以下切換 */
 @media (max-width: 768px) {
-  .hero-desktop { display: none; }
-  .hero-mobile { display: block; }
+  .hero-desktop { display: none !important; }
+  .hero-mobile { display: block !important; }
 }
 
 /* Section */
@@ -213,6 +219,31 @@ img {
   max-width: 800px;
   margin: 0 auto;
   color: var(--color-gray-700);
+}
+
+/* Solutions 區塊背景 */
+#solutions {
+  position: relative;
+  overflow: hidden;
+}
+
+#solutions::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  height: 300px;
+  background: url('assets/home-bg.png') no-repeat right bottom;
+  background-size: contain;
+  pointer-events: none;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+#solutions .container {
+  position: relative;
+  z-index: 1;
 }
 
 /* Cards Grid */
@@ -419,4 +450,5 @@ img {
     display: none; /* Mobile menu would need JS */
   }
 }
+
 
