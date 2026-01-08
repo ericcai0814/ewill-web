@@ -132,19 +132,19 @@ sop_audit:
 
 **檢查項目**：
 
-| 項目         | 驗證內容                         |
-| ------------ | -------------------------------- |
-| 圖片路徑格式 | 是否使用 `assets/` 子目錄格式    |
-| 目錄結構說明 | 是否符合 `Tasks/System/SOP` 結構 |
-| 相對路徑引用 | 引用其他文件的路徑是否正確       |
-| 範例程式碼   | 腳本中的路徑是否正確             |
-| 約束條件     | 描述是否與 GUIDELINES.md 一致    |
+| 項目             | 驗證內容                                    |
+| ---------------- | ------------------------------------------- |
+| 圖片路徑格式     | 是否使用 `assets/` 子目錄格式               |
+| 目錄結構說明     | 是否符合 `Tasks/System/SOP` 結構            |
+| 相對路徑引用     | 引用其他文件的路徑是否正確                  |
+| 範例程式碼       | 腳本中的路徑是否正確                        |
+| 約束條件         | 描述是否與 GUIDELINES.md 一致               |
 
 **執行步驟**：
 
 1. 讀取 `GUIDELINES.md` 了解當前規範
 2. 讀取 `System/changelog.md` 了解最近結構變更
-3. 逐一檢查 `.agent/SOP/` 下所有 SOP 檔案
+3. 逐一檢查 `.agent/sop/` 下所有 SOP 檔案
 4. 輸出檢查報告，列出需要更新的 SOP
 5. 詢問是否執行更新
 
@@ -154,7 +154,7 @@ sop_audit:
 請執行 SOP 一致性檢查：
 
 1. 讀取 GUIDELINES.md 和 System/changelog.md
-2. 掃描 .agent/SOP/ 下所有 SOP
+2. 掃描 .agent/sop/ 下所有 SOP
 3. 針對每個 SOP 檢查：
    - 圖片路徑是否使用 assets/ 格式
    - .agent/ 結構是否為 Tasks/System/SOP
@@ -204,13 +204,13 @@ sop_audit:
 
 ### 變更類型與影響範圍
 
-| 變更類型              | 需檢查的文件                                               |
-| --------------------- | ---------------------------------------------------------- |
-| **圖片路徑/結構變更** | `learnings.md`、所有 SOP、`GUIDELINES.md`                  |
-| **目錄結構重構**      | `decisions.md`、所有 SOP、`README.md`                      |
-| **新增 Command**      | `changelog.md`、`CONTEXT.md`、`.claude/commands/README.md` |
-| **新增/修改 SOP**     | `changelog.md`、`.agent/README.md`                         |
-| **規範變更**          | `GUIDELINES.md`、`learnings.md`、相關 SOP                  |
+| 變更類型 | 需檢查的文件 |
+|----------|--------------|
+| **圖片路徑/結構變更** | `learnings.md`、所有 SOP、`GUIDELINES.md` |
+| **目錄結構重構** | `decisions.md`、所有 SOP、`README.md` |
+| **新增 Command** | `changelog.md`、`CONTEXT.md`、`.claude/commands/README.md` |
+| **新增/修改 SOP** | `changelog.md`、`.agent/README.md` |
+| **規範變更** | `GUIDELINES.md`、`learnings.md`、相關 SOP |
 
 ### 檢查流程
 
@@ -341,6 +341,6 @@ sop_audit:
 ## 相關文件
 
 - [.agent/README.md](../README.md) - AI Agent 文件索引
-- [System/system_prompt.md](../System/system_prompt.md) - AI 系統提示詞
-- [System/decisions.md](../System/decisions.md) - 決策記錄
-- [System/learnings.md](../System/learnings.md) - 專案特性
+- [system/system_prompt.md](../system/system_prompt.md) - AI 系統提示詞
+- [system/decisions.md](../system/decisions.md) - 決策記錄
+- [system/learnings.md](../system/learnings.md) - 專案特性
