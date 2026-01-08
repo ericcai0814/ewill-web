@@ -24,18 +24,18 @@ description: |
 npx tsx .claude/skills/content-build/scripts/build.ts
 
 # 明確指定目標
-npx tsx .claude/skills/content-build/scripts/build.ts --target=next
-npx tsx .claude/skills/content-build/scripts/build.ts --target=nuxt
-npx tsx .claude/skills/content-build/scripts/build.ts --target=static
+npx tsx .claude/skills/content-build/scripts/build.ts --target=next   # → next-app/public/
+npx tsx .claude/skills/content-build/scripts/build.ts --target=nuxt   # → nuxt-app/public/
+npx tsx .claude/skills/content-build/scripts/build.ts --target=static # → static-app/
 ```
 
 ## 輸出目標
 
 | 目標 | 偵測條件 | 輸出目錄 |
 |------|----------|----------|
-| Next.js | `next.config.ts` 或 `next.config.js` 存在 | `{project}/public/` |
-| Nuxt | `nuxt.config.ts` 或 `nuxt.config.js` 存在 | `{project}/public/` |
-| Static | 預設（無框架時） | `dist/` |
+| Next.js | `next.config.ts` 或 `next.config.js` 存在 | `{project}/public/` 或 `next-app/public/` |
+| Nuxt | `nuxt.config.ts` 或 `nuxt.config.js` 存在 | `{project}/public/` 或 `nuxt-app/public/` |
+| Static | 預設（無框架時） | `static-app/` |
 
 ## 工作流程概覽
 

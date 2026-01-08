@@ -91,21 +91,21 @@ export function getConfig(target: OutputTarget, rootDir: string = process.cwd())
     next: {
       target: 'next',
       contentDir: 'pages',
-      outputDir: projectDir ? join(projectDir, 'public') : join(rootDir, 'dist'),
+      outputDir: projectDir ? join(projectDir, 'public') : join(rootDir, 'next-app', 'public'),
       assetsDir: 'assets',
       contentSubDir: 'content',
     },
     nuxt: {
       target: 'nuxt',
       contentDir: 'pages',
-      outputDir: projectDir ? join(projectDir, 'public') : join(rootDir, 'dist'),
+      outputDir: projectDir ? join(projectDir, 'public') : join(rootDir, 'nuxt-app', 'public'),
       assetsDir: 'assets',
       contentSubDir: 'content',
     },
     static: {
       target: 'static',
       contentDir: 'pages',
-      outputDir: join(rootDir, 'dist'),
+      outputDir: join(rootDir, 'static-app'),
       assetsDir: 'assets',
       contentSubDir: 'content',
     },
@@ -150,9 +150,9 @@ Options:
 
 Examples:
   npx tsx build.ts                 # 自動偵測（有 Next/Nuxt 專案則使用，否則 static）
-  npx tsx build.ts --target=next   # 輸出到 Next.js 專案 public/
-  npx tsx build.ts --target=nuxt   # 輸出到 Nuxt 專案 public/
-  npx tsx build.ts --target=static # 輸出到 dist/
+  npx tsx build.ts --target=next   # 輸出到 next-app/public/
+  npx tsx build.ts --target=nuxt   # 輸出到 nuxt-app/public/
+  npx tsx build.ts --target=static # 輸出到 static-app/
 `)
 }
 
