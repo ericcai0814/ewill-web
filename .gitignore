@@ -30,6 +30,7 @@ node_modules/
 static-app/
 next-app/
 nuxt-app/
+ewill-next/
 
 # ====================
 # Logs
