@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- SEO Meta Tags (from index.yml) -->
+  <!-- SEO Meta Tags (from index.json) -->
   <title>鎰威科技 | 企業資安與智慧製造數位轉型專家</title>
   <meta name="description" content="鎰威科技專注於企業數位轉型，整合資訊安全、AI 智慧製造與大數據應用。提供從規劃到導入的一站式解決方案，攜手國際品牌打造安全高效的數位企業。">
   <meta name="keywords" content="鎰威科技, Ewill, 數位轉型, 企業資安, 資訊安全服務, 智慧製造, AI 應用, 大數據分析, 企業數位轉型顧問, 資安解決方案台灣, 智慧工廠導入">
@@ -14,7 +14,7 @@
   <meta property="og:title" content="鎰威科技 | 企業資安與智慧製造數位轉型專家">
   <meta property="og:description" content="鎰威科技專注於企業數位轉型，整合資訊安全、AI 智慧製造與大數據應用。">
   <meta property="og:url" content="https://www.ewill.com.tw/">
-  <meta property="og:image" content="https://www.ewill.com.tw/assets/home_banner.jpg">
+  <meta property="og:image" content="https://www.ewill.com.tw/assets/hero_banner_037e3807.png">
   <meta property="og:site_name" content="鎰威科技官方網站">
   <meta property="og:locale" content="zh_TW">
   
@@ -22,7 +22,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="鎰威科技 | 企業資安與智慧製造數位轉型專家">
   <meta name="twitter:description" content="鎰威科技專注於企業數位轉型，整合資訊安全、AI 智慧製造與大數據應用。">
-  <meta name="twitter:image" content="https://www.ewill.com.tw/assets/home_banner.jpg">
+  <meta name="twitter:image" content="https://www.ewill.com.tw/assets/hero_banner_037e3807.png">
   
   <!-- Canonical URL -->
   <link rel="canonical" href="https://www.ewill.com.tw/">
@@ -51,10 +51,14 @@
     </div>
   </header>
 
-  <!-- Hero Banner -->
+  <!-- Hero Banner (from layout.hero) -->
   <section class="hero">
-    <img src="assets/home-banner-1209.png" alt="鎰威科技首頁主視覺 Banner" class="hero-desktop">
-    <img src="assets/bn-home-m.jpg" alt="鎰威科技首頁主視覺 Banner 手機版" class="hero-mobile">
+    <picture class="hero-desktop">
+      <img src="assets/hero_banner_037e3807_desktop.png" alt="首頁主視覺橫幅，深藍色科技背景搭配專業標語">
+    </picture>
+    <picture class="hero-mobile">
+      <img src="assets/bn-home-m_4d7d0ff0.jpg" alt="首頁主視覺橫幅手機版">
+    </picture>
   </section>
 
   <!-- About Us Section -->
@@ -68,7 +72,7 @@
     </div>
   </section>
 
-  <!-- Services Section -->
+  <!-- Services Section (from layout.sections[0]) -->
   <section class="section" id="services">
     <div class="container">
       <div class="section-header">
@@ -80,7 +84,10 @@
       <div class="cards-grid">
         <!-- 軟體開發服務 -->
         <article class="card">
-          <img src="assets/whatweoffer_card_1.png" alt="軟體開發服務" class="card-image">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/service_software_60b7faeb_mobile.png">
+            <img src="assets/service_software_60b7faeb_desktop.png" alt="軟體開發服務圖示" class="card-image">
+          </picture>
           <div class="card-content">
             <h4>軟體開發服務</h4>
             <p>結合 SSDLC 和 V-model 流程，從需求到部署貫穿安全測試，確保系統高穩定性和可靠性，實現高效、安全的數位轉型。</p>
@@ -90,7 +97,10 @@
         
         <!-- 資訊安全服務 -->
         <article class="card">
-          <img src="assets/whatweoffer_card_2.png" alt="資訊安全服務" class="card-image">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/service_security_ae964f12_mobile.png">
+            <img src="assets/service_security_ae964f12_desktop.png" alt="資訊安全服務圖示" class="card-image">
+          </picture>
           <div class="card-content">
             <h4>資訊安全服務</h4>
             <p>透過多項資安工具進行評級檢測、弱點掃描和日誌管理，提供端點安全、網路防護，確保企業系統穩定與數據安全。</p>
@@ -100,7 +110,10 @@
         
         <!-- 系統規劃服務 -->
         <article class="card">
-          <img src="assets/whatweoffer_card_3.png" alt="系統規劃服務" class="card-image">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/service_system_f749eed0_mobile.png">
+            <img src="assets/service_system_f749eed0_desktop.png" alt="系統規劃服務圖示" class="card-image">
+          </picture>
           <div class="card-content">
             <h4>系統規劃服務</h4>
             <p>提供 Ubuntu、VMware 和 Proxmox VE 三大虛擬化方案，具備靈活性、安全性與高效資源管理，滿足企業多樣需求。</p>
@@ -111,7 +124,7 @@
     </div>
   </section>
 
-  <!-- Solutions Section -->
+  <!-- Solutions Section (from layout.sections[1]) -->
   <section class="section" id="solutions">
     <div class="container">
       <div class="section-header">
@@ -123,7 +136,10 @@
       <div class="cards-grid">
         <!-- 智慧管理 -->
         <article class="card">
-          <img src="assets/solutions_card_1.png" alt="智慧管理" class="card-image">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/solution_smart_37666420_mobile.png">
+            <img src="assets/solution_smart_37666420_desktop.png" alt="智慧管理解決方案圖示" class="card-image">
+          </picture>
           <div class="card-content">
             <h4>智慧管理</h4>
             <p>提供 3D 數位戰情儀表板、承商管理系統及環境監測系統，實現數據集中、視覺化管理，提升管理效率與安全性。</p>
@@ -133,7 +149,10 @@
         
         <!-- 資安評估 -->
         <article class="card">
-          <img src="assets/solutions_card_2.png" alt="資安評估" class="card-image">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/solution_assess_a9d33506_mobile.png">
+            <img src="assets/solution_assess_a9d33506_desktop.png" alt="資安評估解決方案圖示" class="card-image">
+          </picture>
           <div class="card-content">
             <h4>資安評估</h4>
             <p>全面盤點企業資訊環境，找出潛在風險與漏洞，掌握現有防護狀況，量化資安成熟度，作為後續強化與改善的依據，建立穩固的資安管理基礎。</p>
@@ -143,7 +162,10 @@
         
         <!-- 資安檢測 -->
         <article class="card">
-          <img src="assets/whatweoffer_card_1.png" alt="資安檢測" class="card-image">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/service_software_60b7faeb_mobile.png">
+            <img src="assets/service_software_60b7faeb_desktop.png" alt="軟體開發服務圖示" class="card-image">
+          </picture>
           <div class="card-content">
             <h4>資安檢測</h4>
             <p>模擬真實攻擊情境，針對系統與應用進行滲透測試與弱點掃描，揭露防線弱點，協助企業主動修補風險、降低駭侵風險。</p>
@@ -153,7 +175,10 @@
         
         <!-- 資安防護 -->
         <article class="card">
-          <img src="assets/whatweoffer_card_2.png" alt="資安防護" class="card-image">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/service_security_ae964f12_mobile.png">
+            <img src="assets/service_security_ae964f12_desktop.png" alt="資訊安全服務圖示" class="card-image">
+          </picture>
           <div class="card-content">
             <h4>資安防護</h4>
             <p>導入先進防禦技術，整合端點防護、行為分析、威脅偵測與即時防禦機制，強化資安韌性，快速攔截各類攻擊行為，確保營運持續穩定。</p>
@@ -163,7 +188,10 @@
         
         <!-- 資安強化 -->
         <article class="card">
-          <img src="assets/whatweoffer_card_3.png" alt="資安強化" class="card-image">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/service_system_f749eed0_mobile.png">
+            <img src="assets/service_system_f749eed0_desktop.png" alt="系統規劃服務圖示" class="card-image">
+          </picture>
           <div class="card-content">
             <h4>資安強化</h4>
             <p>依評估與檢測結果，制定資安強化計畫，推動弱點修補、教育訓練與自動化防護，強化防禦深度，確保合規與營運安全。</p>
@@ -209,17 +237,17 @@
     </div>
   </footer>
 
-  <!-- Popup Banner -->
-  <div class="popup-banner">
-    <button class="close" aria-label="關閉">&times;</button>
-    <a href="/logsec">
-      <img src="assets/logsec-popup-829.png" alt="LOGSEC 廣告">
-    </a>
+  <!-- Popup Banner (from layout.popup) - 全屏置中彈窗 -->
+  <div class="popup-overlay">
+    <div class="popup-banner">
+      <button class="close" aria-label="關閉">&times;</button>
+      <a href="/logsec">
+        <img src="assets/popup_logsec_cb16a9c4.png" alt="LOGSEC 產品推廣廣告">
+      </a>
+    </div>
   </div>
 
   <!-- JavaScript -->
   <script src="main.js"></script>
 </body>
 </html>
-
-

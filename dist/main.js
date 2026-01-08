@@ -144,14 +144,15 @@ function initNavbarScroll() {
 }
 
 // ============================================================
-// 廣告彈窗控制 - 首訪彈窗
+// 廣告彈窗控制 - 首訪彈窗（全屏置中）
 // ============================================================
 
 function initPopupBanner() {
-  const popup = document.querySelector('.popup-banner');
+  const overlay = document.querySelector('.popup-overlay');
+  const popup = overlay?.querySelector('.popup-banner');
   const closeBtn = popup?.querySelector('.close');
   
-  if (!popup) return;
+  if (!overlay || !popup) return;
   
   const POPUP_KEY = 'ewill_logsec_popup_shown';
   const hasShown = localStorage.getItem(POPUP_KEY);
@@ -159,15 +160,31 @@ function initPopupBanner() {
   // 只在首次訪問時顯示
   if (!hasShown) {
     setTimeout(() => {
-      popup.style.display = 'block';
-      popup.style.animation = 'fadeInUp 0.3s ease';
+      overlay.classList.add('active');
     }, 2000);
   }
   
-  // 關閉按鈕 - 記錄已顯示
-  closeBtn?.addEventListener('click', () => {
-    popup.style.display = 'none';
+  // 關閉彈窗函數
+  const closePopup = () => {
+    overlay.classList.remove('active');
     localStorage.setItem(POPUP_KEY, 'true');
+  };
+  
+  // 關閉按鈕
+  closeBtn?.addEventListener('click', closePopup);
+  
+  // 點擊遮罩關閉
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      closePopup();
+    }
+  });
+  
+  // ESC 鍵關閉
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('active')) {
+      closePopup();
+    }
   });
   
   // 點擊廣告連結也記錄已顯示
