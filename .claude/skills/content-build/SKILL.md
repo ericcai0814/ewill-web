@@ -209,6 +209,34 @@ layout:
 
 ---
 
+## 輔助工具腳本
+
+### fix-yml-metadata.py
+
+批次補齊 `.yml` 檔案的 `id` 和 `alt` 欄位。
+
+```bash
+# 掃描所有 pages/*/assets/*.yml 並補齊欄位
+python3 scripts/fix-yml-metadata.py
+```
+
+- 從 `description` 自動生成 `alt`（取前 50 字）
+- 從檔名自動生成 `id`（ASCII 小寫）
+
+### migrate-image-refs.py
+
+遷移圖片引用：從 `index.md` 移至 `index.yml` layout。
+
+```bash
+python3 scripts/migrate-image-refs.py
+```
+
+- 提取 `index.md` 中的 `![](assets/...)` 引用
+- 生成 `index.yml` 的 `layout.hero` 和 `layout.content_images`
+- 移除 `index.md` 中的圖片引用
+
+---
+
 ## 驗收標準
 
 ```bash

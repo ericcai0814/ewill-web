@@ -96,16 +96,25 @@ pages/{page_name}/
 
 位於 `scripts/` 目錄：
 
-| 腳本                  | 用途                                   |
-| --------------------- | -------------------------------------- |
+| 腳本 | 用途 |
+| ---- | ---- |
 | `find_undescribed.py` | 掃描目錄，找出缺少 `.yml` 描述檔的圖片 |
+| `fix-yml-metadata.py` | 批次補齊 `.yml` 的 `id` 和 `alt` 欄位 |
+| `migrate-image-refs.py` | 遷移圖片引用從 `index.md` 至 `index.yml` |
+| `analyze_website_design.py` | 分析網站設計結構與元素 |
 
 ```bash
-# 掃描所有頁面
-python scripts/find_undescribed.py pages/
+# 檢查缺少描述檔的圖片
+python3 scripts/find_undescribed.py pages/
 
-# 掃描指定頁面
-python scripts/find_undescribed.py pages/logsec/
+# 補齊 .yml 欄位
+python3 scripts/fix-yml-metadata.py
+
+# 遷移圖片引用
+python3 scripts/migrate-image-refs.py
+
+# 分析網站設計
+python3 scripts/analyze_website_design.py
 ```
 
 ## URL 結構
