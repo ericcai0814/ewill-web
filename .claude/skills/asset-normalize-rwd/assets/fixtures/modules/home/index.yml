@@ -1,0 +1,24 @@
+seo:
+  title: 首頁
+  description: 網站首頁描述
+  keywords:
+    - 關鍵字一
+    - 關鍵字二
+
+url_mapping:
+  current_url: https://www.example.com/
+  new_url: /
+
+layout:
+  hero:
+    image:
+      id: hero_banner
+      desktop: hero_banner_desktop
+      mobile: hero_banner_mobile
+  
+  sections:
+    - type: feature_cards
+      title: 特色功能
+      image_ids:
+        - feature_01
+        - feature_02

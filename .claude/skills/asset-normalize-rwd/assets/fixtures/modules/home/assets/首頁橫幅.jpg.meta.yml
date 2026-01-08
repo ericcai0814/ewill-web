@@ -1,0 +1,5 @@
+id: hero_banner
+alt: 首頁主視覺橫幅
+variants:
+  desktop: 首頁橫幅_1920x600.jpg
+  mobile: 首頁橫幅_750x400.jpg
