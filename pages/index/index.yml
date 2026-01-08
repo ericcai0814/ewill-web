@@ -28,6 +28,43 @@ url_mapping:
   redirect: false
 
 # ============================================================
+# Layout 配置 - RWD 圖片引用
+# 圖片 ID 對應 assets/*.meta.yml
+# ============================================================
+
+layout:
+  hero:
+    image:
+      id: hero_banner
+      desktop: hero_banner  # 使用 meta.yml 定義的 variants
+      mobile: hero_banner
+  
+  sections:
+    - type: services
+      title: "服務項目"
+      label: "What We Offer"
+      image_ids:
+        - service_software
+        - service_security
+        - service_system
+    
+    - type: solutions
+      title: "產品解決方案"
+      label: "Solutions"
+      background_id: bg_home
+      image_ids:
+        - solution_smart
+        - solution_assess
+        - service_software   # 資安檢測（重複使用）
+        - service_security   # 資安防護（重複使用）
+        - service_system     # 資安強化（重複使用）
+  
+  popup:
+    image_id: popup_logsec
+    link: "/logsec"
+    trigger: "first_visit"
+
+# ============================================================
 # AIO (AI Optimization) 結構化資料
 # 符合 Google AI Overview 與 LLM 搜尋最佳化
 # ============================================================

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-08T03:46:25.632Z",
+  "generated_at": "2026-01-08T03:49:35.090Z",
   "assets": [
     {
       "id": "img_5acc057a",
@@ -1022,84 +1022,84 @@
       "alt": ""
     },
     {
-      "id": "home-banner-1209",
+      "id": "hero_banner",
       "original_path": "pages/index/assets/home-banner-1209.png",
-      "normalized_path": "dist/assets/home-banner-1209_037e3807.png",
+      "normalized_path": "dist/assets/hero_banner_037e3807.png",
       "variants": {
-        "desktop": "dist/assets/home-banner-1209_037e3807_desktop.png",
-        "mobile": "dist/assets/home-banner-1209_037e3807_mobile.png"
+        "desktop": "dist/assets/hero_banner_037e3807_desktop.png",
+        "mobile": "dist/assets/hero_banner_037e3807_mobile.png"
       },
-      "alt": ""
+      "alt": "首頁主視覺橫幅，深藍色科技背景搭配專業標語"
     },
     {
-      "id": "home-bg",
+      "id": "bg_home",
       "original_path": "pages/index/assets/home-bg.png",
-      "normalized_path": "dist/assets/home-bg_f2dcff28.png",
+      "normalized_path": "dist/assets/bg_home_f2dcff28.png",
       "variants": {
-        "desktop": "dist/assets/home-bg_f2dcff28_desktop.png",
-        "mobile": "dist/assets/home-bg_f2dcff28_mobile.png"
+        "desktop": "dist/assets/bg_home_f2dcff28_desktop.png",
+        "mobile": "dist/assets/bg_home_f2dcff28_mobile.png"
       },
-      "alt": ""
+      "alt": "首頁裝飾背景圖"
     },
     {
-      "id": "logsec-popup-829",
+      "id": "popup_logsec",
       "original_path": "pages/index/assets/logsec-popup-829.png",
-      "normalized_path": "dist/assets/logsec-popup-829_cb16a9c4.png",
+      "normalized_path": "dist/assets/popup_logsec_cb16a9c4.png",
       "variants": {
-        "desktop": "dist/assets/logsec-popup-829_cb16a9c4_desktop.png",
-        "mobile": "dist/assets/logsec-popup-829_cb16a9c4_mobile.png"
+        "desktop": "dist/assets/popup_logsec_cb16a9c4_desktop.png",
+        "mobile": "dist/assets/popup_logsec_cb16a9c4_mobile.png"
       },
-      "alt": ""
+      "alt": "LOGSEC 產品推廣廣告"
     },
     {
-      "id": "solutions_card_1",
+      "id": "solution_smart",
       "original_path": "pages/index/assets/solutions_card_1.png",
-      "normalized_path": "dist/assets/solutions_card_1_37666420.png",
+      "normalized_path": "dist/assets/solution_smart_37666420.png",
       "variants": {
-        "desktop": "dist/assets/solutions_card_1_37666420_desktop.png",
-        "mobile": "dist/assets/solutions_card_1_37666420_mobile.png"
+        "desktop": "dist/assets/solution_smart_37666420_desktop.png",
+        "mobile": "dist/assets/solution_smart_37666420_mobile.png"
       },
-      "alt": ""
+      "alt": "智慧管理解決方案圖示"
     },
     {
-      "id": "solutions_card_2",
+      "id": "solution_assess",
       "original_path": "pages/index/assets/solutions_card_2.png",
-      "normalized_path": "dist/assets/solutions_card_2_a9d33506.png",
+      "normalized_path": "dist/assets/solution_assess_a9d33506.png",
       "variants": {
-        "desktop": "dist/assets/solutions_card_2_a9d33506_desktop.png",
-        "mobile": "dist/assets/solutions_card_2_a9d33506_mobile.png"
+        "desktop": "dist/assets/solution_assess_a9d33506_desktop.png",
+        "mobile": "dist/assets/solution_assess_a9d33506_mobile.png"
       },
-      "alt": ""
+      "alt": "資安評估解決方案圖示"
     },
     {
-      "id": "whatweoffer_card_1",
+      "id": "service_software",
       "original_path": "pages/index/assets/whatweoffer_card_1.png",
-      "normalized_path": "dist/assets/whatweoffer_card_1_60b7faeb.png",
+      "normalized_path": "dist/assets/service_software_60b7faeb.png",
       "variants": {
-        "desktop": "dist/assets/whatweoffer_card_1_60b7faeb_desktop.png",
-        "mobile": "dist/assets/whatweoffer_card_1_60b7faeb_mobile.png"
+        "desktop": "dist/assets/service_software_60b7faeb_desktop.png",
+        "mobile": "dist/assets/service_software_60b7faeb_mobile.png"
       },
-      "alt": ""
+      "alt": "軟體開發服務圖示"
     },
     {
-      "id": "whatweoffer_card_2",
+      "id": "service_security",
       "original_path": "pages/index/assets/whatweoffer_card_2.png",
-      "normalized_path": "dist/assets/whatweoffer_card_2_ae964f12.png",
+      "normalized_path": "dist/assets/service_security_ae964f12.png",
       "variants": {
-        "desktop": "dist/assets/whatweoffer_card_2_ae964f12_desktop.png",
-        "mobile": "dist/assets/whatweoffer_card_2_ae964f12_mobile.png"
+        "desktop": "dist/assets/service_security_ae964f12_desktop.png",
+        "mobile": "dist/assets/service_security_ae964f12_mobile.png"
       },
-      "alt": ""
+      "alt": "資訊安全服務圖示"
     },
     {
-      "id": "whatweoffer_card_3",
+      "id": "service_system",
       "original_path": "pages/index/assets/whatweoffer_card_3.png",
-      "normalized_path": "dist/assets/whatweoffer_card_3_f749eed0.png",
+      "normalized_path": "dist/assets/service_system_f749eed0.png",
       "variants": {
-        "desktop": "dist/assets/whatweoffer_card_3_f749eed0_desktop.png",
-        "mobile": "dist/assets/whatweoffer_card_3_f749eed0_mobile.png"
+        "desktop": "dist/assets/service_system_f749eed0_desktop.png",
+        "mobile": "dist/assets/service_system_f749eed0_mobile.png"
       },
-      "alt": ""
+      "alt": "系統規劃服務圖示"
     },
     {
       "id": "img_1446f743",
@@ -1872,7 +1872,7 @@
       "alt": ""
     },
     {
-      "id": "solutions_card_1_1",
+      "id": "solutions_card_1",
       "original_path": "pages/smartmanufacturing_ai/assets/solutions_card_1.png",
       "normalized_path": "dist/assets/solutions_card_1_37666420.png",
       "variants": {
@@ -1882,7 +1882,7 @@
       "alt": ""
     },
     {
-      "id": "solutions_card_2_1",
+      "id": "solutions_card_2",
       "original_path": "pages/smartmanufacturing_ai/assets/solutions_card_2.png",
       "normalized_path": "dist/assets/solutions_card_2_a9d33506.png",
       "variants": {
@@ -1892,7 +1892,7 @@
       "alt": ""
     },
     {
-      "id": "whatweoffer_card_1_1",
+      "id": "whatweoffer_card_1",
       "original_path": "pages/smartmanufacturing_ai/assets/whatweoffer_card_1.png",
       "normalized_path": "dist/assets/whatweoffer_card_1_60b7faeb.png",
       "variants": {
@@ -1902,7 +1902,7 @@
       "alt": ""
     },
     {
-      "id": "whatweoffer_card_3_1",
+      "id": "whatweoffer_card_3",
       "original_path": "pages/smartmanufacturing_ai/assets/whatweoffer_card_3.png",
       "normalized_path": "dist/assets/whatweoffer_card_3_f749eed0.png",
       "variants": {
