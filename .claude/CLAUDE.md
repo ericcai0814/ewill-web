@@ -32,6 +32,25 @@
 - [ ] 路徑引用是否正確
 - [ ] 與 `GUIDELINES.md` 的規範是否一致
 
+## 自動 Commit 規則
+
+**每次完成任務後，必須自動執行 git commit**：
+
+1. 使用 `git add -A` 暫存所有變更
+2. 依照 `GUIDELINES.md` 第 10 章的 Commit Message 規範撰寫訊息
+3. 執行 `git commit`
+4. 回報 commit hash 與變更摘要
+
+### Commit 時機
+
+| 情境 | 是否 Commit |
+|------|:-----------:|
+| 完成用戶請求的任務 | ✓ |
+| 完成文件更新 | ✓ |
+| 完成結構重構 | ✓ |
+| 僅回答問題（無檔案變更） | ✗ |
+| 用戶明確要求不要 commit | ✗ |
+
 ## 參考文件
 
 - [變更影響檢查清單](../.agent/SOP/05_agent_refactor.md#變更影響檢查清單)
