@@ -93,3 +93,10 @@ content_summary:
     - "設備整合 (PLC, CNC, IoT)"
     - "SCADA 整合"
     - "WMS 倉儲整合"
+
+layout:
+  hero:
+    image:
+      id: mes_banner_2
+  content_images:
+    - id: mes_banner_2

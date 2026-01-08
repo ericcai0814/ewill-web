@@ -87,3 +87,13 @@ content_summary:
     - "SIEM 整合"
     - "Ticketing 系統整合"
     - "API 整合"
+
+layout:
+  hero:
+    image:
+      id: vicariusvrx_banner
+  content_images:
+    - id: vicariusvrx_banner_m
+    - id: vicariusvrx
+    - id: vicariusvrx_1_fix
+    - id: vicariusvrx_2_fix

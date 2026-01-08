@@ -90,3 +90,10 @@ content_summary:
     - "IT 主管"
     - "生產管理人員"
     - "數位轉型決策者"
+
+layout:
+  hero:
+    image:
+      id: 01_scaled
+  content_images:
+    - id: 01_scaled

@@ -108,3 +108,24 @@ content_summary:
     - "政府機關"
     - "醫療業"
     - "零售業"
+
+layout:
+  hero:
+    image:
+      id: bn1209_scaled
+  content_images:
+    - id: bn_solutions_m
+    - id: img
+    - id: m
+    - id: securityscorecard_card
+    - id: tenablenessus_card
+    - id: sonarqube_card
+    - id: acunetix_card
+    - id: paloalto_card
+    - id: fortinet_card
+    - id: deepinstinct_card
+    - id: bitdefender_card
+    - id: ist_card
+    - id: array_card
+    - id: logsec_card
+    - id: vicariusvrx_card

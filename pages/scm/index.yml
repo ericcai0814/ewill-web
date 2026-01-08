@@ -91,3 +91,11 @@ content_summary:
     - "WMS 倉儲整合"
     - "供應商 Portal"
     - "EDI 電子資料交換"
+
+layout:
+  hero:
+    image:
+      id: scm_banner_2
+  content_images:
+    - id: scm_banner_2
+    - id: scm

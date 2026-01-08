@@ -90,3 +90,18 @@ content_summary:
     - "HIPAA"
     - "GDPR"
     - "ISO 27001"
+
+layout:
+  hero:
+    image:
+      id: bn_acu_1209_scaled
+  content_images:
+    - id: bn_acunetix_m_fix
+    - id: acunetix_1
+    - id: acunetix_p1_scaled
+    - id: acunetix_2
+    - id: acunetix_p2_fix
+    - id: acunetix_3
+    - id: acunetix_p3_fix
+    - id: acunetix_4
+    - id: acunetix_p4_fix

@@ -96,3 +96,17 @@ content_summary:
     - "架構設計與建置"
     - "升級與遷移"
     - "技術支援"
+
+layout:
+  hero:
+    image:
+      id: bn_vmware_1209_scaled
+  content_images:
+    - id: bn_vmware_m_fix
+    - id: vmware_1_1
+    - id: vmware_1_2
+    - id: vmware_2
+    - id: vmware_3_1
+    - id: vmware_p3_1_fix
+    - id: vmware_3_2
+    - id: vmware_p3_2_fix

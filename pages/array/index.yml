@@ -88,3 +88,28 @@ content_summary:
     - "硬體設備"
     - "虛擬機 (VM)"
     - "雲端版本"
+
+layout:
+  hero:
+    image:
+      id: array_banner
+  content_images:
+    - id: array_banner_m
+    - id: array_fix
+    - id: array_2
+    - id: array_3
+    - id: array_4
+    - id: array_5
+    - id: array_6
+    - id: array_7
+    - id: array_8
+    - id: array_9
+    - id: array_1_fix
+    - id: array_10
+    - id: array_11
+    - id: array_12
+    - id: array_13
+    - id: array_14
+    - id: array_15
+    - id: array_16
+    - id: array_17

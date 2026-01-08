@@ -98,3 +98,8 @@ content_summary:
     - "零售物流"
     - "食品倉儲"
     - "醫藥物流"
+
+layout:
+  hero:
+    image:
+      id: wms_banner_2

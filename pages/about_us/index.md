@@ -1,250 +1,71 @@
 
 
-![](assets/首頁Banner1209.png)
-
-
-
-
-
-![](assets/BN-Home-M.jpg)
-
-
-
-
-
-
-
-
-
-
-
-
 ##### About Us
-
-
-
 
 ## 公司簡介​
 
-
-
-
 鎰威科技專注於推動企業數位轉型，結合資訊安全、AI 科技與大數據應用，從架構規劃到服務導入，提供專業高效的一站式安全服務。我們秉持「專業、效率、信任、創新」的精神與持續提供優質服務的態度，攜手客戶共同邁向成長與成功。
-
-
-
-
-![](assets/about_us_1_fix2.png)
-
-
-
-
-
-![](assets/about_us_1_1_m.png)
-
-
-
-
-
-![](assets/about_us_1_2_m.png)
-
-
-
-
-
-![](assets/about_us_1_3_m.png)
-
-
-
-
-
-
-
 
 ##### Milestones
 
-
-
-
 ## 公司沿革
-
-
-
 
 ![#image_title](about_us_2_1_fix2-1.png)
 
-
-
-
 ![#image_title](about_us_2_2_fix2-1.png)
-
-
-
-
-
-
-
-
-
-
 
 ![#image_title](about_us_2_1_m.png)
 
-
-
-
 ![#image_title](about_us_2_2_m.png)
-
-
-
 
 ![#image_title](about_us_2_3_m.png)
 
-
-
-
 ![#image_title](about_us_2_4_m.png)
-
-
-
 
 ![#image_title](about_us_2_5_m.png)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ##### Certification
-
-
-
 
 ## 資格證書
 
-
-
-
 ![數位發展部「資訊安全服務機構」能量登錄](數位發展部「資訊安全服務機構」能量登錄-qij2pjc0ypkyf32xudqfv5kr95basbyimfobaxtpmo.jpg)
-
-
-
 
 ![自動化服務能量登錄證書_110.08~112.08](自動化服務能量登錄證書_110.08112.08-scaled-qij2h7hiek6hjh6hha4g9r8pr8d7kvw557kf7o6ark.jpg)
 
-
-
-
 ![資訊安全服務能量登錄證書_110.05~112.05](資訊安全服務能量登錄證書_110.05112.05-scaled-qij2gzysvvw6ylhep6vfpt5105e9vb2ag6cjdghg5c.jpg)
-
-
-
 
 ![資訊技術服務能量登錄證書_108.06~110.06](資訊技術服務能量登錄證書_108.06110.06-scaled-qij2h3q5n81c91by38hxzs6vdovqq3h7soyhakbvgg.jpg)
 
-
-
-
 ![資訊安全管理系統認證](270012013資訊安全管理系統認證-qij2pl7pcdnj2b07jejp053ofx217q5zaoza9hqxa8.png)
-
-
-
 
 ![勞動部「TTQS」證書](勞動部「TTQS」證書-qij2pgiie7h3g971auik5oadgzp758nbm1puv3xw5c.png)
 
-
-
-
 ![人才發展品質管理系統評核等級證書](勞動部勞動力發展署_人才發展品質管理系統評核通過證書11410171161016-rdlwpft05l34thpa49vumpm5rkxfoythj7hy9gnlds.png)
-
-
-
-
-
-
-
-
-
-
 
 ![數位發展部「資訊安全服務機構」能量登錄](數位發展部「資訊安全服務機構」能量登錄-qij2pjc0ypjthwed68disxwqhgew8k05fgon90rt34.jpg)
 
-
-
-
 ![自動化服務能量登錄證書_110.08~112.08](自動化服務能量登錄證書_110.08112.08-scaled-qij2h7hiek5cmahwt4rj7jkozjgt13xry8kr5r4e80.jpg)
-
-
-
 
 ![資訊安全服務能量登錄證書_110.05~112.05](資訊安全服務能量登錄證書_110.05112.05-scaled-qij2gzysvvv21esu11iinlh08ghvbj3x97cvbjfjls.jpg)
 
-
-
-
 ![資訊技術服務能量登錄證書_108.06~110.06](資訊技術服務能量登錄證書_108.06110.06-scaled-qij2h3q5n807bundf350xkiulzzc6biulpyt8n9yww.jpg)
-
-
-
 
 ![資訊安全管理系統認證](270012013資訊安全管理系統認證-qij2pl7pcdme54bmv96rxxfno85mny7m3pzm7kp0qo.png)
 
-
-
-
 ![勞動部「TTQS」證書](勞動部「TTQS」證書-qij2pgiie7fyj2igmp5n3gmcpasslgoyf2q6t6vzls.png)
-
-
-
 
 ![人才發展品質管理系統評核等級證書](勞動部勞動力發展署_人才發展品質管理系統評核通過證書11410171161016-rdlwpft05l1zwb0pg4ixkhy4zw1156v4c8ia7jlou8.png)
 
-
-
-
-
-
-
-
-
-
-
 ![數位發展部「資訊安全服務機構」能量登錄](數位發展部「資訊安全服務機構」能量登錄-qij2pjc0ypiokppsi30lqq8pprihos1s8hoz73pwjk.jpg)
-
-
-
 
 ![自動化服務能量登錄證書_110.08~112.08](自動化服務能量登錄證書_110.08112.08-scaled-qij2h7hiek47p3tc4zem5bwo7ukehbzer9l33u2hog.jpg)
 
-
-
-
 ![資訊安全服務能量登錄證書_110.05~112.05](資訊安全服務能量登錄證書_110.05112.05-scaled-qij2gzysvvtx4849cw5lldszgrlgrr5k28d79mdn28.jpg)
-
-
-
 
 ![資訊技術服務能量登錄證書_108.06~110.06](資訊技術服務能量登錄證書_108.06110.06-scaled-qij2h3q5n7z2enysqxs3vcutub2xmjkheqz56q82dc.jpg)
 
-
-
-
 ![資訊安全管理系統認證](270012013資訊安全管理系統認證-qij2pl7pcdl97xn273tuvprmwj984698wqzy5nn474.png)
 
-
-
-
 ![勞動部「TTQS」證書](勞動部「TTQS」證書-qij2pgiie7etlvtvyjsq18ybxlwe1oql83qir9u328.png)
-
-
-
 
 ![人才發展品質管理系統評核等級證書](勞動部勞動力發展署_人才發展品質管理系統評核通過證書11410171161016-rdlwpft05l0uz4c4rz60iaa4874mlewr59im5mjsao.png)

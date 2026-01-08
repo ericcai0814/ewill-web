@@ -88,3 +88,10 @@ content_summary:
     - "防止網路釣魚攻擊"
     - "提升使用者體驗"
     - "降低 IT 支援成本"
+
+layout:
+  hero:
+    image:
+      id: img
+  content_images:
+    - id: img

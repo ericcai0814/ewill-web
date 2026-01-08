@@ -94,3 +94,16 @@ content_summary:
     - "ISO 14064-1"
     - "SASB"
     - "TCFD"
+
+layout:
+  hero:
+    image:
+      id: esg_1
+  content_images:
+    - id: esg_p1_fix
+    - id: esg_2
+    - id: esg_p2_1
+    - id: esg_p2_2
+    - id: esg_p2_3
+    - id: esg_3
+    - id: esg_p3

@@ -88,3 +88,25 @@ content_summary:
   deployment:
     - "On-Premise 部署"
     - "支援 Windows 端點"
+
+layout:
+  hero:
+    image:
+      id: bn_ist_1209_scaled
+  content_images:
+    - id: bn_ist_m_fix
+    - id: ist_1
+    - id: ist_p1_1
+    - id: ist_p1_2
+    - id: ist_p1_3
+    - id: ist_p1_4
+    - id: ist_2
+    - id: ist_p2
+    - id: ist_3
+    - id: ist_p3_1
+    - id: ist_p3_2_fix
+    - id: ist_p3_3
+    - id: ist_p3_4
+    - id: ist_p3_5
+    - id: ist_4
+    - id: ist_p4_fix_scaled

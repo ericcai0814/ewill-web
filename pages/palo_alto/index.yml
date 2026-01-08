@@ -98,3 +98,15 @@ content_summary:
     - "企業資安主管 (CISO)"
     - "網路管理人員"
     - "雲端架構師"
+
+layout:
+  hero:
+    image:
+      id: paloalto_banner
+  content_images:
+    - id: paloalto_banner_m
+    - id: paloalto
+    - id: paloalto
+    - id: paloalto_1
+    - id: paloalto_1_m
+    - id: paloalto_2

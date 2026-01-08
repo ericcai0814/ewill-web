@@ -97,3 +97,10 @@ content_summary:
     - "即時串流 (Streaming)"
     - "數據品質監控"
     - "資料血緣追蹤"
+
+layout:
+  hero:
+    image:
+      id: data_middleware_banner
+  content_images:
+    - id: data_middleware_banner

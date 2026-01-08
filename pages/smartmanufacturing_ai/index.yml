@@ -110,3 +110,20 @@ content_summary:
     - "庫存周轉率提升"
     - "品質不良率降低"
     - "決策時間縮短"
+
+layout:
+  hero:
+    image:
+      id: ai_banner
+  content_images:
+    - id: ai_banner
+    - id: solutions_card_1
+    - id: whatweoffer_card_3
+    - id: solutions_card_2
+    - id: whatweoffer_card_1
+    - id: 568_card
+    - id: environment_card
+    - id: whatweoffer_card_3
+    - id: solutions_card_1
+    - id: management_card
+    - id: environment_card

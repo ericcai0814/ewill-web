@@ -90,3 +90,14 @@ content_summary:
     - "Security Fabric 一站式整合管理"
     - "FortiGuard 全球威脅情報"
     - "優異的性價比"
+
+layout:
+  hero:
+    image:
+      id: fortinet_banner
+  content_images:
+    - id: fortinet_banner_m
+    - id: fortinet
+    - id: fortinet_2
+    - id: fortinet_2_m
+    - id: fortinet_4_fix

@@ -92,3 +92,24 @@ content_summary:
     - "併購盡職調查"
     - "保險核保評估"
     - "法規合規報告"
+
+layout:
+  hero:
+    image:
+      id: bn_sec_1209_scaled
+  content_images:
+    - id: bn_securityscorecard_m_fix
+    - id: securityscorecard_1
+    - id: securityscorecard_p1_1
+    - id: securityscorecard_p1_2
+    - id: securityscorecard_p1_3
+    - id: securityscorecard_p1_4
+    - id: securityscorecard_p1_5
+    - id: securityscorecard_p1_6
+    - id: securityscorecard_p1_7
+    - id: securityscorecard_p1_8
+    - id: securityscorecard_p1_9
+    - id: securityscorecard_p1_10
+    - id: securityscorecard_2
+    - id: securityscorecard_3
+    - id: securityscorecard_4

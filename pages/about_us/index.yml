@@ -94,3 +94,14 @@ content_summary:
     - "潛在客戶"
     - "合作夥伴"
     - "求職者"
+
+layout:
+  hero:
+    image:
+      id: banner1209
+  content_images:
+    - id: bn_home_m
+    - id: about_us_1_fix2
+    - id: about_us_1_1_m
+    - id: about_us_1_2_m
+    - id: about_us_1_3_m
