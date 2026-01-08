@@ -40,6 +40,20 @@
 - 不要使用絕對路徑引用圖片
 - 不要在 MD 檔案中放技術參數
 
+### 4. Git Commit 規範
+- **顆粒度**：一個 commit 只做一件事，按功能邊界拆分
+- **Scope 分離**：不同 scope 的變更應分開 commit
+  - `docs` - 文件變更
+  - `feat(module)` - 功能新增
+  - `agent` - Agent 系統變更
+- **範例拆分**：
+  ```
+  docs(specs): 新增專案規格文件
+  feat(ewill-next): 初始化 Next.js 專案
+  feat(ewill-next): 實作首頁元件
+  chore(agent): 建立 run-log 系統
+  ```
+
 ---
 
 ## 待探索
