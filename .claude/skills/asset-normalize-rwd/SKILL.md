@@ -26,7 +26,7 @@ npx tsx scripts/normalize-assets.ts
 ### 輸入
 
 - `pages/*/assets/*` - 原始圖片
-- `pages/*/assets/*.meta.yml` - 圖片中繼資料（可選）
+- `pages/*/assets/*.yml` - 圖片元資料（整合格式，可選）
 
 ### 輸出
 
@@ -35,22 +35,30 @@ npx tsx scripts/normalize-assets.ts
 
 ### 檔名正規化規則
 
-| 原始檔名       | 正規化結果                        |
-| -------------- | --------------------------------- |
-| `首頁橫幅.jpg` | `hero_a1b2c3.jpg`（有 meta.yml）  |
-| `首頁橫幅.jpg` | `img_a1b2c3d4.jpg`（無 meta.yml） |
+| 原始檔名       | 正規化結果                    |
+| -------------- | ----------------------------- |
+| `首頁橫幅.jpg` | `hero_a1b2c3.jpg`（有 .yml）  |
+| `首頁橫幅.jpg` | `img_a1b2c3d4.jpg`（無 .yml） |
 | `Banner.PNG`   | `banner_a1b2c3.png`（大寫轉小寫） |
 
-### meta.yml 格式
+### 圖片元資料格式（.yml 整合格式）
 
 ```yaml
-# pages/home/assets/首頁橫幅.meta.yml
+# pages/index/assets/home-banner-1209.png.yml
 id: hero_banner
-alt: 首頁主視覺橫幅
+alt: 首頁主視覺橫幅，深藍色科技背景搭配專業標語
+description: "桌機版首頁主視覺橫幅..."
 variants:
-  desktop: 首頁橫幅_1920x600.jpg
-  mobile: 首頁橫幅_750x400.jpg
+  desktop: home-banner-1209.png
+  mobile: bn-home-m.jpg
 ```
+
+| 欄位 | 必要 | 說明 |
+|------|:----:|------|
+| `id` | ✓ | 圖片識別碼，用於 layout 引用 |
+| `alt` | ✓ | 圖片替代文字（SEO/無障礙） |
+| `description` | - | 詳細描述（供 AI/人類閱讀） |
+| `variants` | - | RWD 變體對應檔案 |
 
 ### asset-manifest.json 結構
 
