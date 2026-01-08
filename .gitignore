@@ -21,7 +21,7 @@ Thumbs.db
 # ====================
 # Build / Output
 # ====================
-dist/
+# dist/  # 暫時保留 dist/ 供靜態輸出驗證
 build/
 out/
 node_modules/
