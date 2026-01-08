@@ -9,7 +9,8 @@
 ├── README.md          # 本文件（文件索引）
 ├── Tasks/             # 功能 PRD 與實作計畫
 ├── System/            # 系統狀態、架構與決策記錄
-└── SOP/               # 標準作業程序（工作流程）
+├── SOP/               # 標準作業程序（工作流程）
+└── scripts/           # Agent 工具腳本
 ```
 
 ---
@@ -58,6 +59,25 @@
 | 檔案                                                                   | 說明                 |
 | ---------------------------------------------------------------------- | -------------------- |
 | [guide_architecture_evaluation.md](./SOP/guide_architecture_evaluation.md) | 內容架構評估建議書   |
+
+---
+
+## scripts/
+
+Agent 執行任務時使用的工具腳本。
+
+| 腳本 | 用途 |
+|------|------|
+| `find_undescribed.py` | 掃描目錄，找出缺少 `.yml` 描述檔的圖片 |
+| `fix-yml-metadata.py` | 批次補齊 `.yml` 的 `id` 和 `alt` 欄位 |
+| `migrate-image-refs.py` | 遷移圖片引用從 `index.md` 至 `index.yml` |
+| `analyze_website_design.py` | 分析網站設計結構與元素 |
+
+```bash
+# 範例
+python3 .agent/scripts/find_undescribed.py pages/
+python3 .agent/scripts/fix-yml-metadata.py
+```
 
 ---
 

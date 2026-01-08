@@ -65,10 +65,10 @@ variants:                          # 選填：RWD 變體
 ### 檢查缺少元資料的圖片
 
 ```bash
-python3 scripts/find_undescribed.py
+python3 .agent/scripts/find_undescribed.py
 
 # 掃描指定目錄
-python3 scripts/find_undescribed.py pages/index/
+python3 .agent/scripts/find_undescribed.py pages/index/
 ```
 
 ---
@@ -217,7 +217,7 @@ layout:
 
 ```bash
 # 掃描所有 pages/*/assets/*.yml 並補齊欄位
-python3 scripts/fix-yml-metadata.py
+python3 .agent/scripts/fix-yml-metadata.py
 ```
 
 - 從 `description` 自動生成 `alt`（取前 50 字）
@@ -228,7 +228,7 @@ python3 scripts/fix-yml-metadata.py
 遷移圖片引用：從 `index.md` 移至 `index.yml` layout。
 
 ```bash
-python3 scripts/migrate-image-refs.py
+python3 .agent/scripts/migrate-image-refs.py
 ```
 
 - 提取 `index.md` 中的 `![](assets/...)` 引用
@@ -241,7 +241,7 @@ python3 scripts/migrate-image-refs.py
 
 ```bash
 # 1. 所有圖片有元資料
-python3 scripts/find_undescribed.py
+python3 .agent/scripts/find_undescribed.py
 
 # 2. asset-manifest.json 存在且全小寫 ASCII
 jq '.assets[].normalized_path' dist/asset-manifest.json | grep -E '^"[a-z0-9_/.-]+"$'

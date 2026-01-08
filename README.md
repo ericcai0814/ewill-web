@@ -94,7 +94,7 @@ pages/{page_name}/
 
 ## 維護腳本
 
-位於 `scripts/` 目錄：
+位於 `.agent/scripts/` 目錄：
 
 | 腳本 | 用途 |
 | ---- | ---- |
@@ -105,16 +105,16 @@ pages/{page_name}/
 
 ```bash
 # 檢查缺少描述檔的圖片
-python3 scripts/find_undescribed.py pages/
+python3 .agent/scripts/find_undescribed.py pages/
 
 # 補齊 .yml 欄位
-python3 scripts/fix-yml-metadata.py
+python3 .agent/scripts/fix-yml-metadata.py
 
 # 遷移圖片引用
-python3 scripts/migrate-image-refs.py
+python3 .agent/scripts/migrate-image-refs.py
 
 # 分析網站設計
-python3 scripts/analyze_website_design.py
+python3 .agent/scripts/analyze_website_design.py
 ```
 
 ## URL 結構

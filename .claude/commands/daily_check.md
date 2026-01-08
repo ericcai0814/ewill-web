@@ -24,7 +24,7 @@ done
 或使用專案腳本：
 
 ```bash
-python scripts/find_undescribed.py
+python3 .agent/scripts/find_undescribed.py
 ```
 
 ## Step 3：檢查 MD/YML 配對
