@@ -187,7 +187,7 @@ function main() {
     console.log('\nTo fix:')
     console.log('1. Remove image references from index.md')
     console.log('2. Add image_id to index.yml layout configuration')
-    console.log('3. Create *.meta.yml for each asset with proper id')
+    console.log('3. Create *.yml for each asset with proper id')
     
     process.exit(1)
   }

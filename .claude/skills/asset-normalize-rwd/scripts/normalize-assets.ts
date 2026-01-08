@@ -141,7 +141,7 @@ function discoverAssets(): string[] {
     const files = fs.readdirSync(assetsDir)
     for (const file of files) {
       const ext = path.extname(file).toLowerCase()
-      if (CONFIG.imageExtensions.includes(ext) && !file.endsWith('.meta.yml')) {
+      if (CONFIG.imageExtensions.includes(ext) && !file.endsWith('.yml')) {
         assets.push(path.join(assetsDir, file))
       }
     }
@@ -157,7 +157,7 @@ function normalizeAsset(assetPath: string, existingIds: Set<string>): AssetEntry
   const basename = path.basename(assetPath, path.extname(assetPath))
   const dir = path.dirname(assetPath)
   
-  // Try to load meta.yml
+  // Try to load .yml metadata
   const meta = loadMetaYml(assetPath)
   
   // Determine ID and normalized filename

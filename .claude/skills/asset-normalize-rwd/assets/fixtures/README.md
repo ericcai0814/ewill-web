@@ -29,7 +29,7 @@ fixtures/
         ├── index.yml             # 頁面配置 (含 layout)
         └── assets/
             ├── 首頁橫幅.jpg           # 主圖 (非 ASCII 檔名)
-            ├── 首頁橫幅.jpg.meta.yml  # 資源中繼資料
+            ├── 首頁橫幅.jpg.yml       # 資源元資料
             ├── 首頁橫幅_1920x600.jpg  # 桌面版變體
             └── 首頁橫幅_750x400.jpg   # 行動版變體
 ```

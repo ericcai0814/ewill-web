@@ -23,10 +23,10 @@ dist/
 
 | 條件 | 輸入 | 輸出 |
 |------|------|------|
-| 有 meta.yml 且有 id | `首頁橫幅.jpg` + `id: hero` | `hero_a1b2c3.jpg` |
-| 有 meta.yml 無 id | `首頁橫幅.jpg` | `img_a1b2c3d4.jpg` |
-| 無 meta.yml，ASCII 檔名 | `banner.jpg` | `banner_a1b2c3.jpg` |
-| 無 meta.yml，非 ASCII | `首頁橫幅.jpg` | `img_a1b2c3d4.jpg` |
+| 有 .yml 且有 id | `首頁橫幅.jpg` + `id: hero` | `hero_a1b2c3.jpg` |
+| 有 .yml 無 id | `首頁橫幅.jpg` | `img_a1b2c3d4.jpg` |
+| 無 .yml，ASCII 檔名 | `banner.jpg` | `banner_a1b2c3.jpg` |
+| 無 .yml，非 ASCII | `首頁橫幅.jpg` | `img_a1b2c3d4.jpg` |
 
 ### 檔名格式
 
@@ -45,7 +45,7 @@ dist/
 
 ### 來源優先順序
 
-1. `*.meta.yml` 中指定的 `variants.desktop` / `variants.mobile`
+1. `*.yml` 中指定的 `variants.desktop` / `variants.mobile`
 2. 自動偵測同目錄下符合命名規則的檔案
 3. 回退使用主圖作為所有變體
 
@@ -158,7 +158,7 @@ interface ResolvedImage {
 
 | 情況 | 處理 |
 |------|------|
-| meta.yml 解析失敗 | 警告並使用 hash 命名 |
+| .yml 解析失敗 | 警告並使用 hash 命名 |
 | 檔案讀取失敗 | 錯誤並跳過該檔案 |
 | ID 重複 | 自動加上數字後綴 `{id}_1` |
 

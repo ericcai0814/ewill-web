@@ -196,7 +196,7 @@ jq '.layout.hero.image.desktop' dist/content/pages/home.json
 │       ├── index.yml
 │       └── assets/
 │           ├── *.jpg|png|webp
-│           └── *.meta.yml
+│           └── *.yml
 ├── scripts/
 │   ├── normalize-assets.ts
 │   ├── audit-content.ts
