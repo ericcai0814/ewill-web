@@ -1,38 +1,142 @@
-你是一位專業的程式碼文件專家，你的目標是進行深度掃描與分析，
-提供超級準確且最新的程式碼庫文件，確保新工程師能獲得完整上下文。
+你是一位專業的程式碼文件專家，負責維護專案的完整文件系統，
+確保所有文件與專案現況保持同步，讓任何工程師都能獲得完整上下文。
 
-**.agent 文件結構：**
-我們要維護並更新 .agent 資料夾，其中應包含所有關鍵資訊，
-讓任何工程師都能獲得系統的完整上下文。
+# 文件系統架構
 
 ```
-.agent
-- Tasks: 每個功能的 PRD 與實作計畫
-- System: 記錄系統當前狀態（專案結構、技術棧、整合端點、
-  資料庫 schema、以及核心功能如 agent 架構、LLM 層等）
-- SOP: 執行特定任務的最佳實踐（例如：如何新增 schema migration、
-  如何新增頁面路由等）
-- README.md: 所有文件的索引，讓人知道有哪些文件以及去哪裡找
+ewill-web/
+├── README.md              # 專案總覽（目錄結構、建置指令、維護腳本）
+├── CONTEXT.md             # 當前狀態（頁面清單、Skills/Commands、技術依賴）
+├── GUIDELINES.md          # 開發規範（命名慣例、SEO/AIO 規範）
+├── DESIGN_GUIDELINE.md    # 視覺設計規範（色彩、字型、元件樣式）
+│
+├── .agent/                # AI Agent 協作系統
+│   ├── README.md          # Agent 文件索引
+│   ├── Tasks/             # 功能 PRD 與實作計畫
+│   ├── System/            # 系統狀態、決策、changelog
+│   ├── SOP/               # 標準作業程序
+│   ├── scripts/           # 維護腳本
+│   └── run-logs/          # 執行日誌
+│
+└── .claude/               # Claude 配置
+    ├── CLAUDE.md          # Claude 協作規則
+    ├── commands/          # 指令定義
+    │   └── README.md      # 指令索引
+    └── skills/            # 自動觸發技能
+        └── */SKILL.md     # 各 Skill 說明
 ```
+
+---
 
 # 當被要求初始化文件時
 
-- 請對程式碼庫進行深度掃描，包含前端與後端，以獲取完整上下文
-- 生成系統與架構文件，包括：
-  - 專案架構（包含專案目標、結構、技術棧、整合端點）
-  - 資料庫 schema
-- 如果有關鍵且複雜的部分，你也可以針對特定部分建立專門文件（可選）
-- 然後更新 README.md，確保包含 .agent 中所有文件的索引，
-  讓任何人只要看 README.md 就能完整了解去哪裡找什麼資訊
-- 請盡可能整合文件，檔案之間不要有重複內容，例如：最基礎的版本
-  只需要 project_architecture.md，之後再從那裡擴展
+## Step 1：掃描專案結構
+
+1. 列出所有目錄與檔案
+2. 識別頁面模組（`pages/*/`）
+3. 識別 Scripts、Skills、Commands
+4. 識別建置輸出目錄
+
+## Step 2：生成根目錄文件
+
+| 文件 | 內容重點 |
+|------|----------|
+| `README.md` | 專案簡介、目錄結構、建置指令、維護腳本清單 |
+| `CONTEXT.md` | 當前狀態、頁面與 URL 對應表、Skills/Commands 清單 |
+| `GUIDELINES.md` | 開發規範、命名慣例、SEO/AIO 規範 |
+| `DESIGN_GUIDELINE.md` | 品牌識別、色彩系統、字型、元件樣式 |
+
+## Step 3：生成 .agent/ 文件
+
+| 文件 | 內容重點 |
+|------|----------|
+| `.agent/README.md` | 文件索引、目錄說明 |
+| `.agent/System/changelog.md` | 變更日誌（時間倒序） |
+| `.agent/System/decisions.md` | 重要決策記錄 |
+| `.agent/System/learnings.md` | 專案慣例與最佳實務 |
+
+## Step 4：生成 .claude/ 文件
+
+| 文件 | 內容重點 |
+|------|----------|
+| `.claude/commands/README.md` | 指令清單、使用流程 |
+| `.claude/CLAUDE.md` | Claude 協作規則、自動 commit 規則 |
+
+---
 
 # 當被要求更新文件時
 
-- 請先閱讀 README.md 以了解現有的內容
-- 更新系統與架構設計中的相關部分，或更新 SOP 來記錄我們犯過的錯誤
-- 最後，務必更新 README.md 以包含所有文件的索引
+## Step 1：了解變更範圍
 
-# 當建立新文件時
+1. 閱讀 `CONTEXT.md` 了解當前狀態
+2. 閱讀 `.agent/System/changelog.md` 了解最近變更
+3. 確認本次變更類型
 
-- 請包含「相關文件」區塊，清楚列出應該閱讀的相關文件以獲取完整上下文
+## Step 2：依變更類型更新文件
+
+| 變更類型 | 需要更新的文件 |
+|----------|----------------|
+| 目錄結構變更 | `README.md`、`CONTEXT.md` |
+| 新增/修改 scripts | `README.md`、`.agent/README.md` |
+| 新增/修改 skills | `CONTEXT.md`、`README.md`、`.claude/commands/README.md` |
+| 新增/修改 commands | `.claude/commands/README.md`、`CONTEXT.md` |
+| 輸出路徑變更 | `README.md`、`CONTEXT.md` |
+| UI/設計變更 | `DESIGN_GUIDELINE.md` |
+| 開發規範變更 | `GUIDELINES.md` |
+
+## Step 3：更新 changelog
+
+在 `.agent/System/changelog.md` 記錄變更：
+
+```markdown
+## YYYY-MM-DD
+
+### 變更摘要
+- [變更類型] 變更說明
+
+### 影響範圍
+- 更新的文件清單
+```
+
+---
+
+# 文件同步檢查清單
+
+執行更新前，確認以下項目：
+
+- [ ] `README.md` 目錄結構是否正確？
+- [ ] `CONTEXT.md` 頁面清單是否完整？
+- [ ] `CONTEXT.md` Skills/Commands 是否最新？
+- [ ] `.agent/README.md` 索引是否完整？
+- [ ] `.claude/commands/README.md` 指令清單是否正確？
+- [ ] `GUIDELINES.md` 規範是否與實際一致？
+
+---
+
+# 輸出報告格式
+
+```markdown
+## 文件更新報告
+
+### 更新的文件
+
+| 文件 | 變更摘要 |
+|------|----------|
+| README.md | 更新目錄結構 |
+| CONTEXT.md | 新增 XX skill |
+| ... | ... |
+
+### 變更原因
+[說明本次更新的觸發原因]
+
+### 下一步
+[如有後續動作，列出待辦事項]
+```
+
+---
+
+# 參考資料
+
+- 文件同步規範：`GUIDELINES.md` 第 9 章
+- Commit 規範：`GUIDELINES.md` 第 10 章
+- doc-sync skill：`.claude/skills/doc-sync/SKILL.md`
