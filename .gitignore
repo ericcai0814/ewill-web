@@ -21,10 +21,15 @@ Thumbs.db
 # ====================
 # Build / Output
 # ====================
-# dist/  # 暫時保留 dist/ 供靜態輸出驗證
+dist/
 build/
 out/
 node_modules/
+
+# Content Build 輸出目錄
+static-app/
+next-app/
+nuxt-app/
 
 # ====================
 # Logs
