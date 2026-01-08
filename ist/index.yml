@@ -1,0 +1,90 @@
+# ============================================================
+# IST 端點安全管理系統 - 鎰威科技
+# ============================================================
+
+seo:
+  title: "IST 端點安全管理 | 內部威脅防護與使用者行為監控 - 鎰威科技"
+  description: "鎰威科技提供 IST 端點安全管理系統，具備 14 項功能模組，協助企業管控內部資安風險。即時警報、操作紀錄、DLP 資料外洩防護與軟體控管，全面守護企業端點安全與機敏資料。"
+  keywords:
+    # 品牌與產品
+    - IST
+    - 端點安全
+    - 端點管理
+    # 功能關鍵字
+    - 內部威脅防護
+    - 使用者行為監控
+    - DLP 資料外洩防護
+    - 軟體控管
+    - USB 控管
+    # 長尾關鍵字
+    - 端點安全管理系統
+    - 員工電腦監控
+    - 資料外洩防護
+    - 內部稽核系統
+    - 鎰威科技
+
+url_mapping:
+  current_url: "/security-solutions/endpoint-security/"
+  old_url: "/ist/"
+  redirect: true
+
+# ============================================================
+# AIO (AI Optimization) 結構化資料
+# ============================================================
+
+aio:
+  webpage:
+    type: "ProductPage"
+    name: "IST 端點安全管理系統"
+    description: "IST 端點安全管理系統，協助企業防範內部威脅與資料外洩。"
+    breadcrumb:
+      type: "BreadcrumbList"
+      itemListElement:
+        - type: "ListItem"
+          position: 1
+          name: "首頁"
+          item: "https://www.ewill.com.tw/"
+        - type: "ListItem"
+          position: 2
+          name: "資訊安全解決方案"
+          item: "https://www.ewill.com.tw/security-solutions/"
+        - type: "ListItem"
+          position: 3
+          name: "IST 端點安全"
+          item: "https://www.ewill.com.tw/security-solutions/endpoint-security/"
+
+  product:
+    type: "SoftwareApplication"
+    name: "IST 端點安全管理系統"
+    applicationCategory: "Endpoint Security / DLP"
+    description: "14 項功能模組，全方位管控企業端點安全與內部威脅。"
+    features:
+      - "操作行為紀錄：完整記錄使用者應用程式、網頁瀏覽活動"
+      - "USB/裝置控管：管控外接裝置使用，防止資料複製外流"
+      - "檔案加密與追蹤：機敏檔案加密保護，追蹤檔案流向"
+      - "列印控管：管控列印行為，防止紙本資料外洩"
+      - "軟體白名單：僅允許核准的軟體執行，阻擋未授權程式"
+      - "即時警報：異常行為即時通報管理者"
+
+  faq:
+    - question: "什麼是內部威脅 (Insider Threat)？"
+      answer: "內部威脅是指來自企業內部人員（員工、承包商、合作夥伴）的資安風險，可能是惡意行為或無意的疏失。根據統計，超過 60% 的資料外洩與內部人員有關。IST 可協助企業監控與防範此類風險。"
+    - question: "IST 有哪些功能模組？"
+      answer: "IST 提供 14 項功能模組，包含：操作紀錄、螢幕側錄、USB 控管、列印控管、軟體控管、網站控管、檔案加密、資產管理、遠端控制、異常警報等，可依企業需求彈性選用。"
+    - question: "導入端點監控是否涉及隱私問題？"
+      answer: "企業有權在工作用電腦上進行適度監控以保護公司資產。建議在員工手冊或資安政策中明確告知監控範圍，並取得員工同意。IST 也支援僅記錄工作時段、排除個人資料夾等隱私保護設定。"
+
+content_summary:
+  main_topic: "端點安全與內部威脅防護"
+  module_categories:
+    - category: "行為監控"
+      modules: ["操作紀錄", "螢幕側錄", "上網行為"]
+    - category: "資料保護"
+      modules: ["USB 控管", "列印控管", "檔案加密"]
+    - category: "軟體控管"
+      modules: ["軟體白名單", "軟體派送", "資產管理"]
+    - category: "管理功能"
+      modules: ["遠端控制", "即時警報", "報表分析"]
+  deployment:
+    - "On-Premise 部署"
+    - "支援 Windows 端點"

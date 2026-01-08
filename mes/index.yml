@@ -1,0 +1,95 @@
+# ============================================================
+# MES 製造執行系統 - 鎰威科技
+# ============================================================
+
+seo:
+  title: "MES 製造執行系統 | 智慧工廠生產管理平台 - 鎰威科技"
+  description: "鎰威科技 MES 製造執行系統，即時監控產線數據、追蹤在製品、管理生產排程與品質追溯。整合 ERP 實現無紙化生產管理，助製造業邁向智慧工廠，提升生產效率與品質管控能力。"
+  keywords:
+    # 核心關鍵字
+    - MES
+    - MES 系統
+    - 製造執行系統
+    - Manufacturing Execution System
+    # 功能關鍵字
+    - 生產管理系統
+    - 產線監控
+    - 品質追溯
+    - 生產排程
+    - WIP 管理
+    # 長尾關鍵字
+    - MES 系統導入
+    - 智慧工廠 MES
+    - 製造業數位轉型
+    - MES 廠商推薦
+    - 鎰威科技
+
+url_mapping:
+  current_url: "/smart-manufacturing/mes/"
+  old_url: "/mes/"
+  redirect: true
+
+# ============================================================
+# AIO (AI Optimization) 結構化資料
+# ============================================================
+
+aio:
+  webpage:
+    type: "ProductPage"
+    name: "MES 製造執行系統"
+    description: "鎰威科技 MES 製造執行系統，連接 ERP 與現場設備，實現透明化生產管理。"
+    breadcrumb:
+      type: "BreadcrumbList"
+      itemListElement:
+        - type: "ListItem"
+          position: 1
+          name: "首頁"
+          item: "https://www.ewill.com.tw/"
+        - type: "ListItem"
+          position: 2
+          name: "智慧製造解決方案"
+          item: "https://www.ewill.com.tw/smart-manufacturing/"
+        - type: "ListItem"
+          position: 3
+          name: "MES 製造執行系統"
+          item: "https://www.ewill.com.tw/smart-manufacturing/mes/"
+
+  product:
+    type: "SoftwareApplication"
+    name: "MES 製造執行系統"
+    applicationCategory: "Manufacturing Execution System"
+    description: "連接企業 ERP 與現場設備，實現即時生產監控與管理的智慧製造平台。"
+    features:
+      - "即時產線監控：生產進度、設備狀態、異常警報一目瞭然"
+      - "WIP 在製品管理：追蹤每一批次的生產歷程"
+      - "品質追溯：完整的品質紀錄與批次追溯能力"
+      - "電子工單：無紙化生產，降低錯誤並提升效率"
+      - "設備整合：連接 PLC、CNC、IoT 感測器等設備"
+      - "報工管理：精確掌握人員工時與產出"
+
+  faq:
+    - question: "什麼是 MES 製造執行系統？"
+      answer: "MES (Manufacturing Execution System) 製造執行系統是連接企業 ERP 與現場設備的中間層系統。它負責將 ERP 的生產計畫轉化為現場作業指令，並即時收集生產數據回報給 ERP，實現生產透明化管理。"
+    - question: "MES 與 ERP 有什麼不同？"
+      answer: "ERP 著重企業資源規劃與財務管理，以天或批次為單位處理資料。MES 則專注於現場執行與即時監控，以秒或分鐘為單位追蹤生產狀態。兩者相輔相成，共同構成智慧製造的核心系統。"
+    - question: "導入 MES 有哪些效益？"
+      answer: "導入 MES 可帶來多項效益：生產效率提升 15-25%、品質不良率降低、庫存周轉率提升、生產透明度提高、符合客戶稽核要求、縮短交期回覆時間等。"
+    - question: "MES 導入需要多長時間？"
+      answer: "導入時間依範圍與複雜度而定。單一產線的基礎導入約需 2-3 個月，完整工廠的全面導入則需 6-12 個月。鎰威科技提供分階段導入服務，協助企業循序漸進達成目標。"
+
+content_summary:
+  main_topic: "製造執行系統與智慧工廠管理"
+  core_functions:
+    - name: "生產執行"
+      features: ["電子工單", "作業指導", "報工管理"]
+    - name: "品質管理"
+      features: ["SPC 統計製程控制", "品質追溯", "檢驗管理"]
+    - name: "設備管理"
+      features: ["OEE 設備效率", "預防保養", "設備監控"]
+    - name: "數據分析"
+      features: ["即時儀表板", "KPI 報表", "異常警報"]
+  integration:
+    - "ERP 整合 (SAP, Oracle, 鼎新)"
+    - "設備整合 (PLC, CNC, IoT)"
+    - "SCADA 整合"
+    - "WMS 倉儲整合"

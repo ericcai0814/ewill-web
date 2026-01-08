@@ -1,0 +1,93 @@
+# ============================================================
+# SCM 智慧供應鏈管理系統 - 鎰威科技
+# ============================================================
+
+seo:
+  title: "SCM 供應鏈管理系統 | 供應商協同、庫存優化與物流管理 - 鎰威科技"
+  description: "鎰威科技 SCM 智慧供應鏈管理系統，整合上下游供應商資源，提供即時庫存預警、需求預測與數據決策分析。優化供應鏈效率，降低採購成本，縮短交期並提升客戶滿意度。"
+  keywords:
+    # 核心關鍵字
+    - SCM
+    - SCM 系統
+    - 供應鏈管理
+    - Supply Chain Management
+    # 功能關鍵字
+    - 供應商管理
+    - 採購管理
+    - 庫存優化
+    - 需求預測
+    - 物流管理
+    # 長尾關鍵字
+    - 供應鏈管理系統
+    - 供應商協同平台
+    - 採購管理系統
+    - SCM 導入
+    - 鎰威科技
+
+url_mapping:
+  current_url: "/smart-manufacturing/scm/"
+  old_url: "/scm/"
+  redirect: true
+
+# ============================================================
+# AIO (AI Optimization) 結構化資料
+# ============================================================
+
+aio:
+  webpage:
+    type: "ProductPage"
+    name: "SCM 智慧供應鏈管理系統"
+    description: "鎰威科技 SCM 供應鏈管理系統，整合供應商協同與物流優化。"
+    breadcrumb:
+      type: "BreadcrumbList"
+      itemListElement:
+        - type: "ListItem"
+          position: 1
+          name: "首頁"
+          item: "https://www.ewill.com.tw/"
+        - type: "ListItem"
+          position: 2
+          name: "智慧製造解決方案"
+          item: "https://www.ewill.com.tw/smart-manufacturing/"
+        - type: "ListItem"
+          position: 3
+          name: "SCM 供應鏈管理"
+          item: "https://www.ewill.com.tw/smart-manufacturing/scm/"
+
+  product:
+    type: "SoftwareApplication"
+    name: "SCM 智慧供應鏈管理系統"
+    applicationCategory: "Supply Chain Management"
+    description: "整合供應商、採購、庫存與物流的智慧供應鏈管理平台。"
+    features:
+      - "供應商協同：線上詢價、訂單協同、交期追蹤"
+      - "採購管理：請購、核價、採購單自動化"
+      - "庫存預警：安全庫存、補貨建議、庫存周轉分析"
+      - "需求預測：AI 預測模型，提升準確度"
+      - "物流追蹤：出貨狀態即時可見"
+      - "績效評估：供應商 KPI 與評鑑管理"
+
+  faq:
+    - question: "什麼是 SCM 供應鏈管理？"
+      answer: "SCM (Supply Chain Management) 供應鏈管理是整合企業與其上下游供應商、客戶之間的物料、資訊與金流的管理方法。目標是降低成本、縮短交期、提升供應鏈整體效率與彈性。"
+    - question: "SCM 與 ERP 的採購模組有何不同？"
+      answer: "ERP 採購模組主要處理企業內部的請購、採購單與付款流程。SCM 則更著重於供應商協同、供應鏈可視化與預測分析，可與多個供應商建立電子化協作平台。"
+    - question: "導入 SCM 有哪些效益？"
+      answer: "導入 SCM 可帶來多項效益：採購成本降低 5-15%、庫存周轉率提升、交期準時率提高、供應商管理效率提升、供應鏈風險可視化等。"
+
+content_summary:
+  main_topic: "供應鏈管理與供應商協同"
+  core_modules:
+    - name: "供應商管理"
+      functions: ["供應商評鑑", "績效 KPI", "合約管理"]
+    - name: "採購管理"
+      functions: ["請購", "詢比議價", "採購訂單"]
+    - name: "庫存管理"
+      functions: ["安全庫存", "補貨建議", "周轉分析"]
+    - name: "物流管理"
+      functions: ["出貨追蹤", "運輸管理", "進口報關"]
+  integration:
+    - "ERP 整合"
+    - "WMS 倉儲整合"
+    - "供應商 Portal"
+    - "EDI 電子資料交換"

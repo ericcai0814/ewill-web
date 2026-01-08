@@ -1,0 +1,143 @@
+
+
+![](assets/BN-VMware-1209--scaled.jpg)
+
+
+
+
+
+![](assets/BN-VMware-M_fix.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+## VMware
+
+
+
+
+#### 虛擬化解決方案
+
+
+
+
+
+### VMware vSphere 主機虛擬化
+
+
+
+
+VMware vSphere 是領先的雲端作業系統，通過虛擬化簡化運算，提升資源安全性和靈活性，降低成本。支持任意作業系統和硬體，靈活整合內外部資源。
+
+
+
+
+
+
+
+### 提升伺服器使用率，降低成本
+
+
+
+
+將硬體使用率從5-15%提升至80%，並在單一硬體上虛擬化10台以上伺服器，有效降低硬體投資成本。
+
+
+
+
+![](assets/vmware_1_1.jpg)
+
+
+
+
+
+VMware Data Center 基礎架構
+
+
+
+
+
+![](assets/vmware_1_2.jpg)
+
+
+
+
+
+VMware 主機虛擬化模組階層架構
+
+
+
+
+
+
+
+
+
+### 簡化管理與維運
+
+
+
+
+VMware 可從單一控制點管理整個虛擬基礎設施，縮短50-70%佈建時間，集中管理所有虛擬機，並即時監控虛擬機與主機效能。
+
+
+
+
+![](assets/vmware_2.jpg)
+
+
+
+
+
+
+
+
+### 提升 IT 服務的可用性與可靠性
+
+
+
+
+搭配 VMware vCenter、vMotion 和 DRS，可實現虛擬機即時移轉，大幅提高IT服務的可用性。利用自動負載平衡功能，優化IT資源配置，減少重覆設定和維護工作。
+
+
+
+
+![](assets/vmware_3_1.jpg)
+
+
+
+
+
+![](assets/vmware_p3_1_fix.jpg)
+
+
+
+
+
+VMware vMotion (線上動態遷移功能)
+
+
+
+
+
+![](assets/vmware_3_2.jpg)
+
+
+
+
+
+![](assets/vmware_p3_2_fix.jpg)
+
+
+
+
+
+VMware DRS (自動負載平衡調整功能)

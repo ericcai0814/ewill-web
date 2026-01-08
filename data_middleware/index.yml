@@ -1,0 +1,99 @@
+# ============================================================
+# 數據中台解決方案 - 鎰威科技
+# ============================================================
+
+seo:
+  title: "數據中台解決方案 | 企業數據整合、治理與 API 服務 - 鎰威科技"
+  description: "鎰威科技數據中台解決方案，打破企業資料孤島，整合內外部數據源。提供數據治理、即時分析、API 服務調用與 BI 視覺化，賦能業務創新與數據驅動決策，加速企業數位轉型。"
+  keywords:
+    # 核心關鍵字
+    - 數據中台
+    - Data Middle Platform
+    - 數據整合
+    - 數據治理
+    # 技術關鍵字
+    - ETL
+    - 資料倉儲
+    - Data Lake
+    - API Gateway
+    - BI 商業智慧
+    # 長尾關鍵字
+    - 企業數據整合
+    - 數據中台建置
+    - 大數據分析平台
+    - 數據治理解決方案
+    - 鎰威科技
+
+url_mapping:
+  current_url: "/smart-manufacturing/data-platform/"
+  old_url: "/data_middleware/"
+  redirect: true
+
+# ============================================================
+# AIO (AI Optimization) 結構化資料
+# ============================================================
+
+aio:
+  webpage:
+    type: "ProductPage"
+    name: "數據中台解決方案"
+    description: "鎰威科技數據中台，整合企業數據並提供統一的數據服務。"
+    breadcrumb:
+      type: "BreadcrumbList"
+      itemListElement:
+        - type: "ListItem"
+          position: 1
+          name: "首頁"
+          item: "https://www.ewill.com.tw/"
+        - type: "ListItem"
+          position: 2
+          name: "智慧製造解決方案"
+          item: "https://www.ewill.com.tw/smart-manufacturing/"
+        - type: "ListItem"
+          position: 3
+          name: "數據中台"
+          item: "https://www.ewill.com.tw/smart-manufacturing/data-platform/"
+
+  product:
+    type: "SoftwareApplication"
+    name: "數據中台解決方案"
+    applicationCategory: "Data Platform / Data Integration"
+    description: "打破資料孤島，建立統一的企業數據服務平台。"
+    features:
+      - "數據整合：連接 ERP、MES、CRM 等多元數據源"
+      - "數據治理：數據品質管理、主數據管理、數據血緣"
+      - "數據服務：標準化 API 提供數據調用服務"
+      - "即時分析：串流處理與即時運算能力"
+      - "BI 視覺化：儀表板與自助式分析報表"
+      - "AI/ML 支援：為機器學習模型提供數據基礎"
+
+  faq:
+    - question: "什麼是數據中台？"
+      answer: "數據中台是企業級的數據管理與服務平台，介於底層數據源與上層應用之間。它負責整合各系統數據、進行數據治理、並透過標準化 API 提供數據服務給各業務應用，避免重複建設、提升數據價值。"
+    - question: "企業為什麼需要數據中台？"
+      answer: "隨著企業導入越來越多系統（ERP、MES、CRM...），形成多個資料孤島。數據中台可統一整合這些數據、建立單一真相來源，讓各部門都能使用一致、可信的數據進行決策。"
+    - question: "數據中台與資料倉儲有何不同？"
+      answer: "資料倉儲主要提供歷史數據的分析查詢，數據中台則更進一步，除了分析功能外，還提供數據服務能力（透過 API 供應用調用）、數據治理、以及支援即時數據處理。"
+
+content_summary:
+  main_topic: "企業數據中台與數據治理"
+  architecture_layers:
+    - name: "數據源層"
+      description: "連接 ERP、MES、IoT、外部數據等"
+    - name: "數據處理層"
+      description: "ETL、數據清洗、轉換、建模"
+    - name: "數據服務層"
+      description: "API Gateway、數據目錄、權限管理"
+    - name: "應用層"
+      description: "BI 報表、AI 模型、業務應用"
+  data_sources:
+    - "ERP 系統"
+    - "MES 生產數據"
+    - "IoT 設備數據"
+    - "CRM 客戶數據"
+    - "外部數據 (市場、天氣)"
+  capabilities:
+    - "批次處理 (Batch)"
+    - "即時串流 (Streaming)"
+    - "數據品質監控"
+    - "資料血緣追蹤"

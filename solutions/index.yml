@@ -1,0 +1,110 @@
+# ============================================================
+# 資訊安全服務總覽 (Security Solutions) - 鎰威科技
+# ============================================================
+
+seo:
+  title: "資訊安全解決方案 | 企業資安評估、檢測與防禦服務 - 鎰威科技"
+  description: "鎰威科技提供完整的企業資訊安全服務，包含弱點掃描、滲透測試、源碼檢測、端點防護與資安評級。代理 Palo Alto、Fortinet、Acunetix 等國際品牌，為企業建構全方位資安防護體系。"
+  keywords:
+    # 服務類型
+    - 資訊安全服務
+    - 資安解決方案
+    - 企業資安
+    # 具體服務
+    - 弱點掃描
+    - 滲透測試
+    - 源碼檢測
+    - 端點防護
+    - 資安評級
+    # 品牌相關
+    - Palo Alto Networks
+    - Fortinet
+    - Acunetix
+    # 長尾關鍵字
+    - 企業資安服務台灣
+    - 資安顧問服務
+    - 網路安全解決方案
+    - 鎰威科技
+
+url_mapping:
+  current_url: "/security-solutions/"
+  old_url: "/solutions/"
+  redirect: true
+
+# ============================================================
+# AIO (AI Optimization) 結構化資料
+# ============================================================
+
+aio:
+  webpage:
+    type: "CollectionPage"
+    name: "資訊安全解決方案"
+    description: "鎰威科技企業資訊安全服務總覽，涵蓋各類資安產品與服務。"
+    breadcrumb:
+      type: "BreadcrumbList"
+      itemListElement:
+        - type: "ListItem"
+          position: 1
+          name: "首頁"
+          item: "https://www.ewill.com.tw/"
+        - type: "ListItem"
+          position: 2
+          name: "資訊安全解決方案"
+          item: "https://www.ewill.com.tw/security-solutions/"
+
+  # 服務項目列表 (ItemList Schema)
+  service_list:
+    type: "ItemList"
+    name: "資訊安全服務項目"
+    itemListElement:
+      - type: "ListItem"
+        position: 1
+        name: "次世代防火牆"
+        description: "Palo Alto Networks、Fortinet 次世代防火牆，提供進階威脅防護"
+        url: "/security-solutions/palo-alto-networks/"
+      - type: "ListItem"
+        position: 2
+        name: "弱點掃描"
+        description: "Acunetix 網站弱點掃描、Vicarius vRX 漏洞管理"
+        url: "/security-solutions/vulnerability-scanning/"
+      - type: "ListItem"
+        position: 3
+        name: "資安評級"
+        description: "SecurityScorecard 企業資安評級與供應商風險管理"
+        url: "/security-solutions/security-scorecard/"
+      - type: "ListItem"
+        position: 4
+        name: "端點防護"
+        description: "IST 端點安全管理，防範內部威脅"
+        url: "/security-solutions/endpoint-security/"
+      - type: "ListItem"
+        position: 5
+        name: "日誌管理"
+        description: "LOGSEC 資安預警平台，集中式日誌分析"
+        url: "/security-solutions/logsec/"
+
+  faq:
+    - question: "企業為什麼需要資訊安全服務？"
+      answer: "隨著數位轉型加速，企業面臨的資安威脅日益複雜。資訊安全服務可協助企業識別弱點、防禦攻擊、符合法規要求，保護企業資產與客戶資料安全。"
+    - question: "鎰威科技的資安服務有哪些特色？"
+      answer: "鎰威科技代理多家國際知名資安品牌，提供從評估、規劃到導入的一站式服務。擁有 ISO 27001 認證與資安服務機構能量登錄，服務品質有保障。"
+    - question: "如何選擇適合的資安解決方案？"
+      answer: "建議先進行資安評估，了解企業現況與風險。鎰威科技提供免費的資安諮詢服務，協助您評估需求並規劃最適合的解決方案。"
+
+content_summary:
+  main_topic: "企業資訊安全服務與解決方案"
+  service_categories:
+    - category: "網路安全"
+      products: ["Palo Alto Networks", "Fortinet", "Array Networks"]
+    - category: "弱點管理"
+      products: ["Acunetix", "Vicarius vRX"]
+    - category: "資安監控"
+      products: ["LOGSEC", "SecurityScorecard"]
+    - category: "端點防護"
+      products: ["IST"]
+  target_industries:
+    - "金融業"
+    - "製造業"
+    - "政府機關"
+    - "醫療業"
+    - "零售業"

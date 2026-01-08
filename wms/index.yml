@@ -1,0 +1,100 @@
+# ============================================================
+# WMS 智慧倉儲管理系統 - 鎰威科技
+# ============================================================
+
+seo:
+  title: "WMS 倉儲管理系統 | 智慧倉儲、AGV 整合與庫存優化 - 鎰威科技"
+  description: "鎰威科技 WMS 智慧倉儲管理系統，整合 AGV 無人搬運車、智慧料架與條碼掃描，實現倉儲作業自動化。即時掌握庫存動態，優化儲位配置，提升揀貨效率與出貨準確率。"
+  keywords:
+    # 核心關鍵字
+    - WMS
+    - WMS 系統
+    - 倉儲管理系統
+    - Warehouse Management System
+    # 功能關鍵字
+    - 智慧倉儲
+    - 庫存管理
+    - AGV 整合
+    - 揀貨系統
+    - 條碼管理
+    # 長尾關鍵字
+    - WMS 系統導入
+    - 倉儲自動化
+    - 智慧物流
+    - WMS 廠商推薦
+    - 鎰威科技
+
+url_mapping:
+  current_url: "/smart-manufacturing/wms/"
+  old_url: "/wms/"
+  redirect: true
+
+# ============================================================
+# AIO (AI Optimization) 結構化資料
+# ============================================================
+
+aio:
+  webpage:
+    type: "ProductPage"
+    name: "WMS 智慧倉儲管理系統"
+    description: "鎰威科技 WMS 智慧倉儲管理系統，實現倉儲作業自動化與庫存優化。"
+    breadcrumb:
+      type: "BreadcrumbList"
+      itemListElement:
+        - type: "ListItem"
+          position: 1
+          name: "首頁"
+          item: "https://www.ewill.com.tw/"
+        - type: "ListItem"
+          position: 2
+          name: "智慧製造解決方案"
+          item: "https://www.ewill.com.tw/smart-manufacturing/"
+        - type: "ListItem"
+          position: 3
+          name: "WMS 倉儲管理"
+          item: "https://www.ewill.com.tw/smart-manufacturing/wms/"
+
+  product:
+    type: "SoftwareApplication"
+    name: "WMS 智慧倉儲管理系統"
+    applicationCategory: "Warehouse Management System"
+    description: "智慧化倉儲管理平台，優化庫存、提升揀貨效率、整合自動化設備。"
+    features:
+      - "入庫管理：收貨驗收、上架建議、儲位分配"
+      - "庫存管理：即時庫存、批號追蹤、效期管理"
+      - "揀貨優化：波次揀貨、路徑優化、複核出貨"
+      - "儲位管理：ABC 分析、動態儲位、空間利用率"
+      - "AGV 整合：無人搬運車派車與路徑規劃"
+      - "條碼/RFID：多元識別技術，減少人為錯誤"
+
+  faq:
+    - question: "什麼是 WMS 倉儲管理系統？"
+      answer: "WMS (Warehouse Management System) 倉儲管理系統是專門管理倉庫作業的軟體。從收貨入庫、儲位管理、揀貨出貨到盤點，WMS 透過系統化流程與條碼技術，提升倉儲效率並降低錯誤率。"
+    - question: "WMS 可以整合哪些自動化設備？"
+      answer: "鎰威科技 WMS 可整合多種自動化設備：AGV 無人搬運車、自動倉儲系統 (AS/RS)、輸送帶、電子標籤揀貨系統 (Pick to Light)、智慧料架等，實現倉儲全自動化作業。"
+    - question: "導入 WMS 的效益有哪些？"
+      answer: "導入 WMS 可提升倉儲效率 30-50%、降低揀貨錯誤率至 0.1% 以下、提升庫存準確率至 99% 以上、減少人力需求、縮短出貨時間，並支援多倉庫管理。"
+    - question: "WMS 如何與 ERP、MES 整合？"
+      answer: "WMS 透過標準 API 或 EDI 與 ERP 整合，同步採購單、銷售單、庫存資料。與 MES 整合則可實現生產領料、成品入庫的無縫銜接，達成物料全程追溯。"
+
+content_summary:
+  main_topic: "智慧倉儲管理與物流自動化"
+  core_modules:
+    - name: "入庫作業"
+      functions: ["收貨驗收", "品質檢驗", "上架作業"]
+    - name: "庫存管理"
+      functions: ["儲位管理", "批號追蹤", "效期管理", "盤點"]
+    - name: "出庫作業"
+      functions: ["訂單處理", "揀貨指示", "複核包裝", "出貨"]
+    - name: "加值服務"
+      functions: ["加工組裝", "貼標", "重新包裝"]
+  automation_integration:
+    - "AGV 無人搬運車"
+    - "AS/RS 自動倉儲"
+    - "輸送帶系統"
+    - "電子標籤揀貨 (PTL)"
+  target_industries:
+    - "電子製造業"
+    - "零售物流"
+    - "食品倉儲"
+    - "醫藥物流"

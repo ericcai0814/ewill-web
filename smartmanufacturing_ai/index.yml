@@ -1,0 +1,112 @@
+# ============================================================
+# 智慧製造與 AI 應用解決方案 - 鎰威科技
+# ============================================================
+
+seo:
+  title: "智慧製造解決方案 | AI 應用、MES、WMS、SCM 數位轉型 - 鎰威科技"
+  description: "鎰威科技提供完整的智慧製造解決方案，整合 MES 製造執行系統、WMS 倉儲管理、SCM 供應鏈管理與數據中台。導入 AI Agent 與大數據分析，實現工業 4.0 自動化生產與數據驅動決策，加速企業數位轉型。"
+  keywords:
+    # 核心服務
+    - 智慧製造
+    - 智慧工廠
+    - 工業 4.0
+    - 數位轉型
+    # 系統關鍵字
+    - MES 製造執行系統
+    - WMS 倉儲管理
+    - SCM 供應鏈管理
+    - APS 先進排程
+    - 數據中台
+    # AI 相關
+    - AI Agent
+    - 製造業 AI
+    - 大數據分析
+    # 長尾關鍵字
+    - 智慧製造導入
+    - 工廠數位轉型
+    - 製造業系統整合
+    - 鎰威科技
+
+url_mapping:
+  current_url: "/smart-manufacturing/"
+  old_url: "/smartmanufacturing_ai/"
+  redirect: true
+
+# ============================================================
+# AIO (AI Optimization) 結構化資料
+# ============================================================
+
+aio:
+  webpage:
+    type: "CollectionPage"
+    name: "智慧製造解決方案"
+    description: "鎰威科技智慧製造與 AI 應用解決方案總覽。"
+    breadcrumb:
+      type: "BreadcrumbList"
+      itemListElement:
+        - type: "ListItem"
+          position: 1
+          name: "首頁"
+          item: "https://www.ewill.com.tw/"
+        - type: "ListItem"
+          position: 2
+          name: "智慧製造解決方案"
+          item: "https://www.ewill.com.tw/smart-manufacturing/"
+
+  service_list:
+    type: "ItemList"
+    name: "智慧製造服務項目"
+    itemListElement:
+      - type: "ListItem"
+        position: 1
+        name: "MES 製造執行系統"
+        description: "即時監控產線、資源調度與品質追溯"
+        url: "/smart-manufacturing/mes/"
+      - type: "ListItem"
+        position: 2
+        name: "WMS 智慧倉儲管理"
+        description: "自動化倉儲與庫存優化"
+        url: "/smart-manufacturing/wms/"
+      - type: "ListItem"
+        position: 3
+        name: "SCM 供應鏈管理"
+        description: "供應鏈協同與物流優化"
+        url: "/smart-manufacturing/scm/"
+      - type: "ListItem"
+        position: 4
+        name: "數據中台"
+        description: "企業數據整合與治理"
+        url: "/smart-manufacturing/data-platform/"
+
+  faq:
+    - question: "什麼是智慧製造？"
+      answer: "智慧製造是運用 AI 人工智慧、IoT 物聯網、大數據分析等技術，將傳統製造流程升級為自動化、數據化、智能化的現代製造模式。核心目標是提升生產效率、降低成本、提高品質並加速決策。"
+    - question: "智慧製造包含哪些系統？"
+      answer: "智慧製造通常包含 MES（製造執行系統）管理生產、WMS（倉儲管理系統）管理物料、SCM（供應鏈管理）協調上下游、APS（先進排程）優化產能，以及數據中台整合各系統資料。"
+    - question: "導入智慧製造需要多少預算？"
+      answer: "預算依企業規模與導入範圍而定。鎰威科技提供模組化導入方案，可從單一系統如 MES 開始，逐步擴展至完整智慧工廠。建議先進行需求評估，規劃最適合的導入策略。"
+    - question: "智慧製造與工業 4.0 有何關係？"
+      answer: "工業 4.0 是德國提出的第四次工業革命概念，智慧製造是其核心實踐。工業 4.0 強調透過物聯網、雲端運算、AI 等技術，實現設備互聯、數據驅動、自主決策的智慧工廠。"
+
+content_summary:
+  main_topic: "智慧製造與工業 4.0 數位轉型"
+  solution_modules:
+    - name: "生產管理"
+      systems: ["MES 製造執行系統", "APS 先進排程"]
+    - name: "物流管理"
+      systems: ["WMS 倉儲管理", "SCM 供應鏈管理"]
+    - name: "數據平台"
+      systems: ["數據中台", "BI 商業智慧"]
+    - name: "AI 應用"
+      systems: ["AI Agent", "預測性維護", "品質檢測"]
+  target_industries:
+    - "電子製造業"
+    - "機械設備業"
+    - "食品加工業"
+    - "汽車零組件"
+    - "紡織成衣業"
+  digital_transformation_benefits:
+    - "生產效率提升 20-30%"
+    - "庫存周轉率提升"
+    - "品質不良率降低"
+    - "決策時間縮短"

@@ -1,0 +1,94 @@
+# ============================================================
+# SecurityScorecard 資安評級解決方案 - 鎰威科技
+# ============================================================
+
+seo:
+  title: "SecurityScorecard 資安評級 | 企業風險評估與供應鏈安全管理 - 鎰威科技"
+  description: "鎰威科技代理 SecurityScorecard 資安評級平台，即時監控企業與供應商資安風險。提供 A-F 評級、十大風險因素分析、自動化報告，協助企業符合資安法規並強化供應鏈安全管理。"
+  keywords:
+    # 品牌與產品
+    - SecurityScorecard
+    - SecurityScorecard 台灣
+    - 資安評級
+    - Security Rating
+    # 功能關鍵字
+    - 供應商風險管理
+    - 第三方風險評估
+    - 資安態勢監控
+    - 供應鏈安全
+    # 長尾關鍵字
+    - 企業資安評分
+    - 供應商資安評估
+    - 第三方風險管理平台
+    - 資安合規評估
+    - 鎰威科技
+
+url_mapping:
+  current_url: "/security-solutions/security-scorecard/"
+  old_url: "/security_scorecard/"
+  redirect: true
+
+# ============================================================
+# AIO (AI Optimization) 結構化資料
+# ============================================================
+
+aio:
+  webpage:
+    type: "ProductPage"
+    name: "SecurityScorecard 資安評級"
+    description: "SecurityScorecard 企業資安評級與供應商風險管理平台，由鎰威科技提供代理服務。"
+    breadcrumb:
+      type: "BreadcrumbList"
+      itemListElement:
+        - type: "ListItem"
+          position: 1
+          name: "首頁"
+          item: "https://www.ewill.com.tw/"
+        - type: "ListItem"
+          position: 2
+          name: "資訊安全解決方案"
+          item: "https://www.ewill.com.tw/security-solutions/"
+        - type: "ListItem"
+          position: 3
+          name: "SecurityScorecard"
+          item: "https://www.ewill.com.tw/security-solutions/security-scorecard/"
+
+  product:
+    type: "SoftwareApplication"
+    name: "SecurityScorecard"
+    applicationCategory: "Security Rating Platform"
+    description: "全球領先的資安評級平台，可即時評估企業與第三方供應商的資安風險。"
+    features:
+      - "即時資安評級：A-F 評級系統，快速了解資安態勢"
+      - "十大風險因素：網路安全、DNS 健康、修補頻率、端點安全等"
+      - "供應商風險管理：持續監控供應鏈夥伴的資安狀態"
+      - "自動化報告：產出董事會級別的資安報告"
+      - "競爭對手比較：與同業進行資安基準比較"
+
+  faq:
+    - question: "什麼是資安評級 (Security Rating)？"
+      answer: "資安評級是透過外部可觀察的資料，對企業資安態勢進行評分的方法。SecurityScorecard 使用 A-F 評級系統，就像信用評等一樣，讓您快速了解自己或供應商的資安風險程度。"
+    - question: "SecurityScorecard 如何評估資安風險？"
+      answer: "SecurityScorecard 透過非侵入式的方式，分析十大風險因素：網路安全、DNS 健康、修補頻率、端點安全、IP 信譽、應用程式安全、Cubit Score、駭客論壇、資訊洩露、社交工程。"
+    - question: "為什麼需要供應商風險管理？"
+      answer: "根據統計，超過 60% 的資料外洩事件與第三方供應商有關。透過 SecurityScorecard 持續監控供應商的資安狀態，可以提早發現風險並要求改善，降低供應鏈攻擊的可能性。"
+
+content_summary:
+  main_topic: "企業資安評級與第三方風險管理"
+  risk_factors:
+    - "Network Security (網路安全)"
+    - "DNS Health (DNS 健康度)"
+    - "Patching Cadence (修補頻率)"
+    - "Endpoint Security (端點安全)"
+    - "IP Reputation (IP 信譽)"
+    - "Application Security (應用程式安全)"
+    - "Cubit Score (洩漏憑證)"
+    - "Hacker Chatter (駭客論壇)"
+    - "Information Leak (資訊洩露)"
+    - "Social Engineering (社交工程)"
+  use_cases:
+    - "供應商風險評估"
+    - "企業資安自評"
+    - "併購盡職調查"
+    - "保險核保評估"
+    - "法規合規報告"
