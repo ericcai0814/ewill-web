@@ -7,70 +7,66 @@
 ## 目錄結構
 
 ```
-ewill-legacy-assets/
-├── index/                       # 首頁 → /
-│   ├── index.md                 # 首頁內容
-│   ├── index.yml                # 首頁配置
-│   └── assets/                  # 首頁圖片資源
-├── about_us/                    # 關於我們 → /about/
-├── solutions/                   # 資安服務總覽 → /security-solutions/
+ewill-web/
+├── pages/                       # 📄 網站頁面內容（SEO 資料源）
+│   ├── index/                   # 首頁 → /
+│   │   ├── index.md             # 頁面內容
+│   │   ├── index.yml            # SEO/AIO 配置
+│   │   └── assets/              # 圖片資源
+│   ├── about_us/                # 關於我們 → /about/
+│   ├── solutions/               # 資安服務總覽 → /security-solutions/
+│   │
+│   ├── # 資安產品 (Security Solutions)
+│   ├── palo_alto/               # → /security-solutions/palo-alto-networks/
+│   ├── fortinet/                # → /security-solutions/fortinet/
+│   ├── acunetix/                # → /security-solutions/acunetix/
+│   ├── security_scorecard/      # → /security-solutions/security-scorecard/
+│   ├── vicarius_vrx/            # → /security-solutions/vicarius-vrx/
+│   ├── array/                   # → /security-solutions/array-networks/
+│   ├── logsec/                  # → /security-solutions/logsec/
+│   ├── ist/                     # → /security-solutions/endpoint-security/
+│   │
+│   ├── # 基礎架構 (Infrastructure)
+│   ├── vmware/                  # → /infrastructure/vmware/
+│   │
+│   ├── # 智慧製造 (Smart Manufacturing)
+│   ├── smartmanufacturing_ai/   # → /smart-manufacturing/
+│   ├── mes/                     # → /smart-manufacturing/mes/
+│   ├── wms/                     # → /smart-manufacturing/wms/
+│   ├── scm/                     # → /smart-manufacturing/scm/
+│   ├── data_middleware/         # → /smart-manufacturing/data-platform/
+│   │
+│   ├── # 其他
+│   ├── esg/                     # → /esg/
+│   ├── event_20251118/          # → /events/smart-manufacturing-webinar-2025/
+│   └── event_20251124/          # → /events/passwordless-identity-protection/
 │
-├── # 資安產品 (Security Solutions)
-├── palo_alto/                   # → /security-solutions/palo-alto-networks/
-├── fortinet/                    # → /security-solutions/fortinet/
-├── acunetix/                    # → /security-solutions/acunetix/
-├── security_scorecard/          # → /security-solutions/security-scorecard/
-├── vicarius_vrx/                # → /security-solutions/vicarius-vrx/
-├── array/                       # → /security-solutions/array-networks/
-├── logsec/                      # → /security-solutions/logsec/
-├── ist/                         # → /security-solutions/endpoint-security/
+├── scripts/                     # 🔧 維護腳本
+├── design/                      # 🎨 設計參考（截圖）
 │
-├── # 基礎架構 (Infrastructure)
-├── vmware/                      # → /infrastructure/vmware/
+├── .agent/                      # 🤖 AI Agent 協作系統
+│   ├── README.md                # 文件索引
+│   ├── Tasks/                   # 功能 PRD
+│   ├── System/                  # 系統狀態、決策記錄
+│   └── SOP/                     # 標準作業程序
 │
-├── # 智慧製造 (Smart Manufacturing)
-├── smartmanufacturing_ai/       # → /smart-manufacturing/
-├── mes/                         # → /smart-manufacturing/mes/
-├── wms/                         # → /smart-manufacturing/wms/
-├── scm/                         # → /smart-manufacturing/scm/
-├── data_middleware/             # → /smart-manufacturing/data-platform/
-│
-├── # 其他
-├── esg/                         # → /esg/
-├── event_20251118/              # → /events/smart-manufacturing-webinar-2025/
-├── event_20251124/              # → /events/passwordless-identity-protection/
-│
-├── # AI Agent 協作系統
-├── .agent/
-│   ├── README.md                # AI Agent 文件索引
-│   ├── Tasks/                   # 功能 PRD 與實作計畫
-│   ├── System/                  # 系統狀態、決策記錄、AI 提示詞
-│   └── SOP/                     # 標準作業程序（工作流程）
-│
-├── # Claude 配置
-├── .claude/
+├── .claude/                     # 🔮 Claude 配置
 │   ├── CLAUDE.md                # AI 協作行為準則
-│   └── commands/                # AI 指令
+│   ├── commands/                # AI 指令
+│   └── skills/                  # AI 技能
 │
-├── # 設計參考
-├── design/                      # 設計參考資料
-│   └── screenshots/             # 官網截圖（首頁、關於、活動）
-│
-├── # 專案文件
 ├── README.md                    # 本文件
 ├── GUIDELINES.md                # 開發維護指南
-├── DESIGN_GUIDELINE.md          # 視覺設計規範（AI 生成指引）
-└── CONTEXT.md                   # 專案狀態互文
+├── DESIGN_GUIDELINE.md          # 視覺設計規範
+└── CONTEXT.md                   # 專案狀態
 ```
 
-## 檔案與資源說明
+## 頁面目錄結構
 
-### 模組目錄結構
-
-每個模組目錄採用統一結構：
+每個頁面目錄採用統一結構：
 
 ```
-module_name/
+pages/{page_name}/
 ├── index.md              # 頁面內容（Markdown）
 ├── index.yml             # 頁面元資料（SEO、AIO）
 └── assets/               # 圖片資源目錄
@@ -79,16 +75,9 @@ module_name/
     └── ...
 ```
 
-### 圖片資源
-
-- 專案中包含 231 張 `.jpg` 與 `.png` 圖片，用於網站視覺呈現
-- 各模組圖片存放於 `{module}/assets/` 目錄
-- 根目錄圖片（首頁資源）直接放置於根目錄
-- 每張圖片都對應一個 `.yml` 描述檔（如 `banner.jpg.yml`）
-
 ### 頁面配置 (index.yml)
 
-每個頁面目錄下的 `index.yml` 包含：
+每個頁面的 `index.yml` 包含：
 
 | 區塊              | 說明                                     |
 | ----------------- | ---------------------------------------- |
@@ -97,20 +86,26 @@ module_name/
 | `aio`             | AI Optimization 結構化資料（Schema.org） |
 | `content_summary` | 內容摘要，供 AI 爬蟲理解                 |
 
-### 維護腳本
+### 圖片資源
+
+- 專案中包含 231 張 `.jpg` 與 `.png` 圖片
+- 各頁面圖片存放於 `pages/{page}/assets/` 目錄
+- 每張圖片都對應一個 `.yml` 描述檔（如 `banner.jpg.yml`）
+
+## 維護腳本
 
 位於 `scripts/` 目錄：
 
-| 腳本 | 用途 |
-|------|------|
+| 腳本                  | 用途                                   |
+| --------------------- | -------------------------------------- |
 | `find_undescribed.py` | 掃描目錄，找出缺少 `.yml` 描述檔的圖片 |
 
 ```bash
-# 掃描整個專案
-python scripts/find_undescribed.py
+# 掃描所有頁面
+python scripts/find_undescribed.py pages/
 
-# 掃描指定目錄
-python scripts/find_undescribed.py index/
+# 掃描指定頁面
+python scripts/find_undescribed.py pages/logsec/
 ```
 
 ## URL 結構
@@ -142,7 +137,7 @@ python scripts/find_undescribed.py index/
 ## 使用方式
 
 1. 瀏覽本專案資源時，確保圖片與其 `.yml` 描述檔保持同步。
-2. 新增頁面時，參考 `GUIDELINES.md` 建立完整的 `index.yml`。
+2. 新增頁面時，在 `pages/` 下建立目錄，參考 `GUIDELINES.md` 建立完整的 `index.yml`。
 3. 變更 URL 時，更新 `url_mapping` 並確保設定 301 redirect。
 
 ## 相關文件

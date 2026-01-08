@@ -6,19 +6,20 @@
 
 ### 目錄結構
 
-所有圖片資源應存放於各模組的 `assets/` 子目錄：
+所有頁面內容存放於 `pages/` 目錄，圖片資源存放於各頁面的 `assets/` 子目錄：
 
 ```
-module_name/
-├── index.md              # 頁面內容
-├── index.yml             # 頁面元資料
-└── assets/               # 圖片資源目錄
-    ├── banner.jpg        # 圖片檔案
-    ├── banner.jpg.yml    # 圖片描述檔
-    └── ...
+pages/
+└── {page_name}/
+    ├── index.md              # 頁面內容
+    ├── index.yml             # 頁面元資料（SEO、AIO）
+    └── assets/               # 圖片資源目錄
+        ├── banner.jpg        # 圖片檔案
+        ├── banner.jpg.yml    # 圖片描述檔
+        └── ...
 ```
 
-**說明**：首頁資源同樣遵循此規範，存放於 `index/assets/`。
+**說明**：首頁資源存放於 `pages/index/assets/`。
 
 ### 圖片引用格式
 
@@ -30,7 +31,7 @@ module_name/
 
 ### 新增圖片
 
-- 圖片應放置於對應模組的 `assets/` 目錄
+- 圖片應放置於對應頁面的 `assets/` 目錄
 - 當你新增 `.jpg` 或 `.png` 圖片時，**必須**立即建立一個同名的 `.yml` 檔案
 - **不要**留下沒有描述檔的圖片孤兒
 
@@ -252,7 +253,7 @@ content_summary:
 |-------|------|
 | `agent` | `.agent/` 目錄相關 |
 | `claude` | `.claude/` 目錄相關 |
-| `content` | 內容模組（index.md、index.yml） |
+| `pages` | 頁面內容（pages/*/index.md、index.yml） |
 | `assets` | 圖片與媒體資源 |
 | `seo` | SEO 優化相關 |
 | `scripts` | 腳本工具 |

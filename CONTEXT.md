@@ -4,12 +4,29 @@
 
 ## 狀態總覽
 
-- **最後更新時間**: 2026-01-06
-- **目前階段**: Doc System 完善，已建立 Design Guideline 與 7 個 Claude Commands 自動化流程。
-- **專案類型**: 網站內容庫 (Content Repository) / 靜態資源管理。
+- **最後更新時間**: 2026-01-08
+- **目前階段**: 內容邊界重構完成，所有頁面內容集中於 `pages/` 目錄
+- **專案類型**: 網站內容庫 (Content Repository) / SEO 資料源
+- **頁面數量**: 20 個頁面目錄
 - **圖片覆蓋率**: 231 張圖片，全部 100% 有 `.yml` 描述檔
-- **圖片結構**: 所有模組圖片統一存放於 `{module}/assets/`（含首頁 `index/assets/`）
-- **設計規範**: [DESIGN_GUIDELINE.md](./DESIGN_GUIDELINE.md) 定義品牌視覺規範，供 AI 生成一致性設計
+- **圖片結構**: 所有頁面圖片統一存放於 `pages/{page}/assets/`
+- **設計規範**: [DESIGN_GUIDELINE.md](./DESIGN_GUIDELINE.md) 定義品牌視覺規範
+
+## 目錄結構
+
+```
+ewill-web/
+├── pages/              # 📄 網站頁面內容（SEO 資料源）
+│   ├── index/          # 首頁
+│   ├── about_us/       # 關於我們
+│   ├── solutions/      # 資安服務總覽
+│   ├── ...             # 其他 17 個頁面
+├── scripts/            # 🔧 維護腳本
+├── design/             # 🎨 設計參考
+├── .agent/             # 🤖 AI Agent 協作系統
+├── .claude/            # 🔮 Claude 配置
+└── *.md                # 專案文件
+```
 
 ## Claude 自動化
 
@@ -17,63 +34,64 @@
 
 ### Skills（自動觸發）
 
-| Skill | 說明 |
-|-------|------|
-| `doc-sync` | 修改文件時自動提醒同步 |
-| `image-management` | 處理圖片時自動套用規範 |
-| `sop-consistency` | 結構變更時自動檢查一致性 |
+| Skill              | 說明                     |
+| ------------------ | ------------------------ |
+| `doc-sync`         | 修改文件時自動提醒同步   |
+| `image-management` | 處理圖片時自動套用規範   |
+| `sop-consistency`  | 結構變更時自動檢查一致性 |
 
 ### Commands（明確呼叫）
 
-| 指令 | 用途 | 頻率 |
-|------|------|------|
-| `/daily_check` | 每日檢查 | 每日 |
-| `/seo_audit` | SEO 稽核 | 每週 |
-| `/check_sop` | SOP 一致性檢查 | 每月 |
-| `/gen_image_meta` | 圖片描述檔生成 | 新增圖片時 |
-| `/new_page` | 建立新頁面 | 新增頁面時 |
-| `/eval_architecture` | 架構評估 | 新專案時 |
+| 指令                 | 用途           | 頻率       |
+| -------------------- | -------------- | ---------- |
+| `/daily_check`       | 每日檢查       | 每日       |
+| `/seo_audit`         | SEO 稽核       | 每週       |
+| `/check_sop`         | SOP 一致性檢查 | 每月       |
+| `/gen_image_meta`    | 圖片描述檔生成 | 新增圖片時 |
+| `/new_page`          | 建立新頁面     | 新增頁面時 |
+| `/eval_architecture` | 架構評估       | 新專案時   |
 
 ## 詳細記錄
 
 > 📋 詳細的變更歷史與決策背景，請參考 `.agent/` 目錄：
 
-| 文件 | 說明 |
-|------|------|
-| [.agent/README.md](./.agent/README.md) | AI Agent 文件索引 |
-| [變更日誌](./.agent/System/changelog.md) | 專案所有變更記錄（時間倒序） |
-| [決策記錄](./.agent/System/decisions.md) | 重要決策的背景、選項與理由 |
+| 文件                                     | 說明                          |
+| ---------------------------------------- | ----------------------------- |
+| [.agent/README.md](./.agent/README.md)   | AI Agent 文件索引             |
+| [變更日誌](./.agent/System/changelog.md) | 專案所有變更記錄（時間倒序）  |
+| [決策記錄](./.agent/System/decisions.md) | 重要決策的背景、選項與理由    |
 | [專案特性](./.agent/System/learnings.md) | AI 學習到的專案慣例與最佳實務 |
 
 ## 關鍵技術與依賴
 
-- **結構**: Folder-based 結構，以產品/解決方案分類。
-- **Metadata**: YAML (`.yml`) 格式。
+- **結構**: `pages/` 為內容邊界，以頁面為單位組織
+- **Metadata**: YAML (`.yml`) 格式
 - **內容與元資料分離**: `index.md`（內容）+ `index.yml`（SEO/AIO）
 
-### 主要目錄與 URL 對應
+### 頁面目錄與 URL 對應
 
-| 目錄                     | 新 URL                                    | 說明               |
-| ------------------------ | ----------------------------------------- | ------------------ |
-| `root`                   | `/`                                       | 首頁               |
-| `about_us/`              | `/about/`                                 | 關於我們           |
-| `solutions/`             | `/security-solutions/`                    | 資安服務總覽       |
-| `palo_alto/`             | `/security-solutions/palo-alto-networks/` | Palo Alto Networks |
-| `fortinet/`              | `/security-solutions/fortinet/`           | Fortinet           |
-| `acunetix/`              | `/security-solutions/acunetix/`           | Acunetix           |
-| `security_scorecard/`    | `/security-solutions/security-scorecard/` | SecurityScorecard  |
-| `vicarius_vrx/`          | `/security-solutions/vicarius-vrx/`       | Vicarius vRX       |
-| `array/`                 | `/security-solutions/array-networks/`     | Array Networks     |
-| `logsec/`                | `/security-solutions/logsec/`             | LOGSEC             |
-| `ist/`                   | `/security-solutions/endpoint-security/`  | IST 端點安全       |
-| `vmware/`                | `/infrastructure/vmware/`                 | VMware             |
-| `smartmanufacturing_ai/` | `/smart-manufacturing/`                   | 智慧製造總覽       |
-| `mes/`                   | `/smart-manufacturing/mes/`               | MES                |
-| `wms/`                   | `/smart-manufacturing/wms/`               | WMS                |
-| `scm/`                   | `/smart-manufacturing/scm/`               | SCM                |
-| `data_middleware/`       | `/smart-manufacturing/data-platform/`     | 數據中台           |
-| `esg/`                   | `/esg/`                                   | ESG 永續發展       |
-| `event_*/`               | `/events/*`                               | 活動頁面           |
+| 目錄                           | URL                                         | 說明               |
+| ------------------------------ | ------------------------------------------- | ------------------ |
+| `pages/index/`                 | `/`                                         | 首頁               |
+| `pages/about_us/`              | `/about/`                                   | 關於我們           |
+| `pages/solutions/`             | `/security-solutions/`                      | 資安服務總覽       |
+| `pages/palo_alto/`             | `/security-solutions/palo-alto-networks/`   | Palo Alto Networks |
+| `pages/fortinet/`              | `/security-solutions/fortinet/`             | Fortinet           |
+| `pages/acunetix/`              | `/security-solutions/acunetix/`             | Acunetix           |
+| `pages/security_scorecard/`    | `/security-solutions/security-scorecard/`   | SecurityScorecard  |
+| `pages/vicarius_vrx/`          | `/security-solutions/vicarius-vrx/`         | Vicarius vRX       |
+| `pages/array/`                 | `/security-solutions/array-networks/`       | Array Networks     |
+| `pages/logsec/`                | `/security-solutions/logsec/`               | LOGSEC             |
+| `pages/ist/`                   | `/security-solutions/endpoint-security/`    | IST 端點安全       |
+| `pages/vmware/`                | `/infrastructure/vmware/`                   | VMware             |
+| `pages/smartmanufacturing_ai/` | `/smart-manufacturing/`                     | 智慧製造總覽       |
+| `pages/mes/`                   | `/smart-manufacturing/mes/`                 | MES                |
+| `pages/wms/`                   | `/smart-manufacturing/wms/`                 | WMS                |
+| `pages/scm/`                   | `/smart-manufacturing/scm/`                 | SCM                |
+| `pages/data_middleware/`       | `/smart-manufacturing/data-platform/`       | 數據中台           |
+| `pages/esg/`                   | `/esg/`                                     | ESG 永續發展       |
+| `pages/event_20251118/`        | `/events/smart-manufacturing-webinar-2025/` | 活動頁面           |
+| `pages/event_20251124/`        | `/events/passwordless-identity-protection/` | 活動頁面           |
 
 ## 待辦事項 / Next Steps
 

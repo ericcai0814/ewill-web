@@ -3,8 +3,9 @@
 find_undescribed.py - 找出缺少 .yml 描述檔的圖片
 
 使用方式：
-    python scripts/find_undescribed.py           # 掃描整個專案
-    python scripts/find_undescribed.py index/    # 掃描指定目錄
+    python scripts/find_undescribed.py              # 掃描整個專案
+    python scripts/find_undescribed.py pages/       # 掃描所有頁面
+    python scripts/find_undescribed.py pages/logsec # 掃描指定頁面
 
 相關 SOP：
     - .agent/SOP/02b_image_metadata.md
@@ -27,7 +28,7 @@ def find_undescribed_images(root_dir: Path, skip_dirs: set = None) -> list:
     Returns:
         缺少描述檔的圖片路徑列表
     """
-    skip_dirs = skip_dirs or {'.git', '.agent', '.claude', 'scripts', 'agent_backup'}
+    skip_dirs = skip_dirs or {'.git', '.agent', '.claude', 'scripts', 'design', 'design_reference'}
     undescribed = []
     
     for dirpath, dirnames, filenames in os.walk(root_dir):
