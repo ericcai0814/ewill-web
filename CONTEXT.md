@@ -37,7 +37,7 @@ ewill-web/
 | Skill              | 說明                     |
 | ------------------ | ------------------------ |
 | `doc-sync`         | 修改文件時自動提醒同步   |
-| `image-management` | 處理圖片時自動套用規範   |
+| `content-build`    | 內容建置流水線（圖片管理、正規化、RWD）|
 | `sop-consistency`  | 結構變更時自動檢查一致性 |
 
 ### Commands（明確呼叫）
