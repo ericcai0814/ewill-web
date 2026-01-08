@@ -37,10 +37,34 @@
 **完成任務後，須先詢問用戶確認是否需要 commit**：
 
 1. 完成任務後，詢問：「是否需要 commit？」
-2. 用戶確認後，使用 `git add -A` 暫存所有變更
-3. 依照 `GUIDELINES.md` 第 10 章的 Commit Message 規範撰寫訊息
-4. 執行 `git commit`
-5. 回報 commit hash 與變更摘要
+2. **執行文件同步檢查**（見下方）
+3. 用戶確認後，使用 `git add -A` 暫存所有變更
+4. 依照 `GUIDELINES.md` 第 10 章的 Commit Message 規範撰寫訊息
+5. 執行 `git commit`
+6. 回報 commit hash 與變更摘要
+
+### ⚠️ Commit 前必須檢查的文件
+
+**每次 commit 前，必須檢查以下文件是否需要更新：**
+
+| 文件 | 檢查內容 |
+|------|----------|
+| `README.md` | 目錄結構、建置指令、維護腳本 |
+| `CONTEXT.md` | 目錄結構、Skills/Commands、關鍵技術 |
+| `GUIDELINES.md` | 開發規範、命名慣例 |
+| `DESIGN_GUIDELINE.md` | 設計規範（如有 UI 變更） |
+| `.agent/README.md` | Agent 文件索引 |
+| `.claude/` 相關文件 | Skills/Commands 索引 |
+
+**觸發更新的變更類型：**
+
+| 變更類型 | 需要更新的文件 |
+|----------|----------------|
+| 目錄結構變更 | `README.md`、`CONTEXT.md` |
+| 新增/修改 scripts | `README.md`、`.agent/README.md` |
+| 新增/修改 skills | `CONTEXT.md`、`README.md` |
+| 輸出路徑變更 | `README.md`、`CONTEXT.md`、`SKILL.md` |
+| .gitignore 變更 | `README.md`（如涉及建置輸出） |
 
 ### Commit 時機
 

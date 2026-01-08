@@ -209,7 +209,29 @@ content_summary:
 
 ## 9. 文件更新規範
 
-- **同步更新**: 當新增、刪除或修改任何功能性檔案時，必須立即同步更新 `README.md`、`GUIDELINES.md` 及 `CONTEXT.md`，確保文件與專案實際狀態一致。
+### 同步更新原則
+
+當新增、刪除或修改任何功能性檔案時，**必須**立即同步更新相關文件。
+
+### 每次 Commit 必須檢查的文件
+
+| 文件 | 檢查內容 |
+|------|----------|
+| `README.md` | 目錄結構、建置指令、維護腳本 |
+| `CONTEXT.md` | 目錄結構、Skills/Commands、關鍵技術 |
+| `GUIDELINES.md` | 開發規範、命名慣例 |
+| `DESIGN_GUIDELINE.md` | 設計規範（如有 UI 變更） |
+| `.agent/README.md` | Agent 文件索引 |
+
+### 觸發更新的變更類型
+
+| 變更類型 | 需要更新的文件 |
+|----------|----------------|
+| 目錄結構變更 | `README.md`、`CONTEXT.md` |
+| 新增/修改 scripts | `README.md`、`.agent/README.md` |
+| 新增/修改 skills | `CONTEXT.md`、`README.md` |
+| 輸出路徑變更 | `README.md`、`CONTEXT.md` |
+| .gitignore 變更 | `README.md`（如涉及建置輸出） |
 
 ## 10. Git Commit Message 規範
 
