@@ -209,3 +209,80 @@ content_summary:
 ## 9. 文件更新規範
 
 - **同步更新**: 當新增、刪除或修改任何功能性檔案時，必須立即同步更新 `README.md`、`GUIDELINES.md` 及 `CONTEXT.md`，確保文件與專案實際狀態一致。
+
+## 10. Git Commit Message 規範
+
+本專案採用 [AngularJS Git Commit Message Conventions](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#commit)。
+
+### 訊息格式
+
+```
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+| 部分 | 說明 | 必要性 |
+|------|------|:------:|
+| **type** | commit 類別 | ✓ |
+| **scope** | 影響範圍 | 可選 |
+| **subject** | 簡短描述（≤50 字元，不加句號） | ✓ |
+| **body** | 詳細說明 Why & What | 可選 |
+| **footer** | issue 編號、BREAKING CHANGE | 可選 |
+
+### Type 類別
+
+| Type | 說明 |
+|------|------|
+| `feat` | 新增/修改功能 |
+| `fix` | 修補 bug |
+| `docs` | 文件變更 |
+| `style` | 格式調整（不影響程式碼運行） |
+| `refactor` | 重構（非新功能、非修 bug） |
+| `perf` | 效能優化 |
+| `test` | 增加測試 |
+| `chore` | 建構程序或輔助工具變動 |
+| `revert` | 撤銷先前 commit |
+
+### Scope 建議
+
+| Scope | 說明 |
+|-------|------|
+| `agent` | `.agent/` 目錄相關 |
+| `claude` | `.claude/` 目錄相關 |
+| `content` | 內容模組（index.md、index.yml） |
+| `assets` | 圖片與媒體資源 |
+| `seo` | SEO 優化相關 |
+| `scripts` | 腳本工具 |
+| `design` | 設計規範 |
+
+### 範例
+
+```
+feat(agent): 建立 AI Agent 協作系統
+
+新增 .agent/ 目錄，包含：
+- SOP/：7 個標準作業程序
+- System/：系統狀態與決策記錄
+- Tasks/：功能 PRD 存放處
+```
+
+```
+fix(content): 修正圖片路徑引用錯誤
+
+問題：index.md 中的圖片路徑指向舊位置
+修正：將 ![](image.png) 改為 ![](assets/image.png)
+
+issue #42
+```
+
+### 最佳實踐
+
+1. **獨立 commit**：每個意義不同的變更獨立 commit
+2. **subject 簡潔**：使用動詞開頭（新增、修正、更新、移除）
+3. **說明 Why & What**：body 中解釋變更原因與內容
+4. **關聯 issue**：方便追蹤程式異動原因
+
+> 參考：[Conventional Commits](https://www.conventionalcommits.org/)、[iT邦幫忙](https://ithelp.ithome.com.tw/articles/10228738)
