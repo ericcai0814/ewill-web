@@ -10,7 +10,8 @@
 ├── Tasks/             # 功能 PRD 與實作計畫
 ├── System/            # 系統狀態、架構與決策記錄
 ├── SOP/               # 標準作業程序（工作流程）
-└── scripts/           # Agent 工具腳本
+├── scripts/           # Agent 工具腳本
+└── run-logs/          # 執行日誌（每日一檔）
 ```
 
 ---
@@ -77,6 +78,28 @@ Agent 執行任務時使用的工具腳本。
 # 範例
 python3 .agent/scripts/find_undescribed.py pages/
 python3 .agent/scripts/fix-yml-metadata.py
+```
+
+---
+
+## run-logs/
+
+每日執行日誌，記錄 Agent 完成的所有任務。
+
+| 欄位 | 說明 |
+|------|------|
+| `run_id` | 遞增序號或時間戳 |
+| `timestamp` | 執行時間 (Asia/Taipei) |
+| `goal` | 任務目標 |
+| `prompt_used` | 實際使用的 prompt |
+| `actions` | 具體操作列表 |
+| `result` | 產出結果摘要 |
+| `expectation_check` | 期待判定（expected/actual/pass/rationale） |
+| `next_step` | 後續步驟 |
+
+```bash
+# 檔案命名
+.agent/run-logs/YYYY-MM-DD.md
 ```
 
 ---
