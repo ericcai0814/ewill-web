@@ -48,8 +48,8 @@ done
 # 掃描整個專案
 python scripts/find_undescribed.py
 
-# 掃描指定目錄
-python scripts/find_undescribed.py logsec/
+# 掃描指定頁面
+python scripts/find_undescribed.py pages/logsec/
 ```
 
 ### Step 2：生成描述檔
@@ -101,12 +101,12 @@ description: '此處填寫圖片的繁體中文描述'
 ### 輸入
 
 ```
-logsec/assets/logsec_banner.jpg
+pages/logsec/assets/logsec_banner.jpg
 ```
 
 ### 輸出
 
-檔案：`logsec/assets/logsec_banner.jpg.yml`
+檔案：`pages/logsec/assets/logsec_banner.jpg.yml`
 
 ```yaml
 description: 'LOGSEC 日誌管理解決方案橫幅，背景為藍色科技風格，展示集中式日誌監控介面。'
@@ -116,12 +116,12 @@ description: 'LOGSEC 日誌管理解決方案橫幅，背景為藍色科技風�
 
 ## 更多範例
 
-| 圖片路徑                                 | 描述                                              |
-| ---------------------------------------- | ------------------------------------------------- |
-| `home_bg.png`                            | 首頁背景圖，藍色漸層科技風格。                    |
-| `solutions/assets/solutions_card_1.png`  | 智慧管理解決方案卡片，展示 3D 數位儀表板功能。    |
-| `logsec/assets/graylog_dashboard.png`    | Graylog 儀表板截圖，顯示即時日誌監控與告警統計。  |
-| `event_20251118/assets/event_banner.jpg` | 2025 智慧製造研討會活動橫幅，包含日期與主題資訊。 |
+| 圖片路徑                                       | 描述                                              |
+| ---------------------------------------------- | ------------------------------------------------- |
+| `pages/index/assets/home_bg.png`               | 首頁背景圖，藍色漸層科技風格。                    |
+| `pages/solutions/assets/solutions_card_1.png`  | 智慧管理解決方案卡片，展示 3D 數位儀表板功能。    |
+| `pages/logsec/assets/graylog_dashboard.png`    | Graylog 儀表板截圖，顯示即時日誌監控與告警統計。  |
+| `pages/event_20251118/assets/event_banner.jpg` | 2025 智慧製造研討會活動橫幅，包含日期與主題資訊。 |
 
 ---
 
@@ -130,7 +130,7 @@ description: 'LOGSEC 日誌管理解決方案橫幅，背景為藍色科技風�
 > [!IMPORTANT] > `.yml` 描述檔與圖片放在同一目錄（`assets/` 子目錄）。
 
 ```
-/logsec/
+pages/logsec/
 ├── index.md
 ├── index.yml
 └── assets/

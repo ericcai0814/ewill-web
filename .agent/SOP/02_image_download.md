@@ -67,8 +67,8 @@ def extract_images(url):
 # 生成時間: [時間戳記]
 # ============================================================
 
-# 目標目錄（圖片存放於 assets/ 子目錄）
-TARGET_DIR="./logsec/assets"
+# 目標目錄（圖片存放於 pages/{page}/assets/）
+TARGET_DIR="./pages/logsec/assets"
 mkdir -p "$TARGET_DIR"
 
 echo "開始下載圖片..."
@@ -126,7 +126,7 @@ echo "下一步：執行 02b_image_metadata.md 為圖片建立描述檔"
 > 圖片必須下載到 `assets/` 子目錄，與 `.md` 檔案分離。
 
 ```
-/logsec/
+pages/logsec/
 ├── index.md              # 頁面內容
 ├── index.yml             # 技術參數
 └── assets/               # 圖片資源目錄
@@ -141,7 +141,7 @@ echo "下一步：執行 02b_image_metadata.md 為圖片建立描述檔"
 ## 約束條件
 
 - **不直接執行下載**，僅生成腳本
-- **下載目標**：`{module}/assets/` 目錄
+- **下載目標**：`pages/{page}/assets/` 目錄
 - 腳本需包含完整註解
 - 支援 macOS 與 Linux
 - 使用 `curl` 或 `wget`（優先 `curl`）

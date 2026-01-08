@@ -154,7 +154,7 @@ def generate_markdown(content_blocks, output_path, page_dir):
 
 if __name__ == "__main__":
     # 使用範例
-    page_dir = Path('logsec')  # 頁面目錄
+    page_dir = Path('pages/logsec')  # 頁面目錄
 
     blocks = parse_content_flow('logsec.html')
     generate_markdown(blocks, page_dir / 'index.md', page_dir)
@@ -170,7 +170,7 @@ if __name__ == "__main__":
 > 圖片存放於 `assets/` 子目錄，與 `.md` 檔案分離。
 
 ```
-/logsec/
+pages/logsec/
 ├── index.md              # 主要內容
 ├── index.yml             # 技術參數
 └── assets/               # 圖片資源目錄

@@ -85,7 +85,7 @@ daily_review:
 python scripts/find_undescribed.py
 
 # 列出所有頁面目錄
-for dir in */; do
+for dir in pages/*/; do
     if [ -d "$dir" ] && [ ! -f "${dir}index.yml" ]; then
         echo "缺少 index.yml: $dir"
     fi

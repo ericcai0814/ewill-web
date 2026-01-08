@@ -31,7 +31,7 @@ description: 將 SEO 與網址策略明確文件化，使用 MD 放主要內容�
 ## 檔案結構
 
 ```
-/logsec/
+pages/logsec/
 ├── index.md              # 頁面內容規劃（人類可讀）
 ├── index.yml             # 技術參數設定（機器可讀）
 └── assets/               # 圖片資源目錄
@@ -192,12 +192,12 @@ content_summary:
 
 ### 對照表
 
-| 目錄名稱                 | URL                                         |
-| ------------------------ | ------------------------------------------- |
-| `palo_alto/`             | `/security-solutions/palo-alto-networks/`   |
-| `logsec/`                | `/security-solutions/logsec/`               |
-| `smartmanufacturing_ai/` | `/smart-manufacturing/`                     |
-| `event_20251118/`        | `/events/smart-manufacturing-webinar-2025/` |
+| 目錄名稱                       | URL                                         |
+| ------------------------------ | ------------------------------------------- |
+| `pages/palo_alto/`             | `/security-solutions/palo-alto-networks/`   |
+| `pages/logsec/`                | `/security-solutions/logsec/`               |
+| `pages/smartmanufacturing_ai/` | `/smart-manufacturing/`                     |
+| `pages/event_20251118/`        | `/events/smart-manufacturing-webinar-2025/` |
 
 ---
 
