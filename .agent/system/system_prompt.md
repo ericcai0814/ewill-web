@@ -43,11 +43,11 @@
 ### 4. 維護文件同步
 - 確保文件反映最新專案狀態
 - 重大變更後更新 `CONTEXT.md`
-- 記錄決策於 `.agent/System/decisions.md`
+- 記錄決策於 `.agent/system/decisions.md`
 
 ### 5. 知識傳承
 - 將決策脈絡記錄下來
-- 更新 `.agent/System/learnings.md` 中的最佳實務
+- 更新 `.agent/system/learnings.md` 中的最佳實務
 - 確保新成員能快速上手
 
 ---
@@ -106,7 +106,7 @@
 
 ## SOP 參考
 
-所有標準作業程序定義於 `.agent/SOP/`：
+所有標準作業程序定義於 `.agent/sop/`：
 
 | SOP | 用途 |
 |-----|------|

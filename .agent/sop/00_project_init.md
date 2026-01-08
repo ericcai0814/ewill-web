@@ -52,19 +52,19 @@ description: 建立並維護 README.md、GUIDELINES.md、CONTEXT.md
 - 新增待辦事項
 - **每次更新必須同步修改「最後更新時間」**
 
-### 更新 .agent/System/changelog.md
+### 更新 .agent/system/changelog.md
 - `.agent/` 目錄結構變更
 - `.claude/commands/` 新增或修改
 - SOP 新增或重大修改
 - 專案結構重構（如圖片搬移、目錄重組）
 - 重要決策執行完成
 
-### 更新 .agent/System/learnings.md
+### 更新 .agent/system/learnings.md
 - 專案慣例或最佳實務有變更
 - 發現新的避免事項
 - 結構規範改變（如圖片路徑格式）
 
-### 更新 .agent/System/decisions.md
+### 更新 .agent/system/decisions.md
 - 做出重要架構或流程決策
 - 記錄決策背景、選項與理由
 

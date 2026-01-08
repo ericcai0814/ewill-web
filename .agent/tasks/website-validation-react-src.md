@@ -17,13 +17,13 @@ created: 2026-01-06
 
 ## 技術選型
 
-| 項目 | 選擇 | 理由 |
-|------|------|------|
-| 框架 | React + Vite | 用戶指定 |
-| 路由 | React Router | SPA 路由管理 |
+| 項目     | 選擇           | 理由             |
+| -------- | -------------- | ---------------- |
+| 框架     | React + Vite   | 用戶指定         |
+| 路由     | React Router   | SPA 路由管理     |
 | Markdown | react-markdown | MD 轉 React 組件 |
-| YAML | js-yaml | 解析 index.yml |
-| 樣式 | Tailwind CSS | 快速建立 UI |
+| YAML     | js-yaml        | 解析 index.yml   |
+| 樣式     | Tailwind CSS   | 快速建立 UI      |
 
 ## 資料來源
 
@@ -40,26 +40,29 @@ created: 2026-01-06
 
 使用 `index.yml` 中的 `url_mapping.current_url` 作為路由：
 
-| 模組目錄 | 路由 |
-|----------|------|
-| `index/` | `/` |
-| `about_us/` | `/about/` |
-| `logsec/` | `/security-solutions/logsec/` |
-| ... | ... |
+| 模組目錄    | 路由                          |
+| ----------- | ----------------------------- |
+| `index/`    | `/`                           |
+| `about_us/` | `/about/`                     |
+| `logsec/`   | `/security-solutions/logsec/` |
+| ...         | ...                           |
 
 ## 驗證項目
 
 ### 內容驗證
+
 - [ ] Markdown 渲染正確
 - [ ] 圖片顯示正常
 - [ ] 圖文順序與 MD 一致
 
 ### SEO 驗證
+
 - [ ] Title 正確套用
 - [ ] Description 正確套用
 - [ ] Keywords 正確套用
 
 ### AIO 驗證
+
 - [ ] Schema.org JSON-LD 生成
 - [ ] FAQ Schema 生成
 - [ ] Breadcrumb 生成
@@ -67,5 +70,4 @@ created: 2026-01-06
 ## 相關文件
 
 - [GUIDELINES.md](../../GUIDELINES.md) - 資源規範
-- [04_seo_structure.md](../SOP/04_seo_structure.md) - SEO 結構
-
+- [04_seo_structure.md](../sop/04_seo_structure.md) - SEO 結構

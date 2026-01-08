@@ -76,9 +76,9 @@ npx tsx .claude/skills/content-build/scripts/build.ts --target=nuxt    # → nux
 | 文件                                     | 說明                          |
 | ---------------------------------------- | ----------------------------- |
 | [.agent/README.md](./.agent/README.md)   | AI Agent 文件索引             |
-| [變更日誌](./.agent/System/changelog.md) | 專案所有變更記錄（時間倒序）  |
-| [決策記錄](./.agent/System/decisions.md) | 重要決策的背景、選項與理由    |
-| [專案特性](./.agent/System/learnings.md) | AI 學習到的專案慣例與最佳實務 |
+| [變更日誌](./.agent/system/changelog.md) | 專案所有變更記錄（時間倒序）  |
+| [決策記錄](./.agent/system/decisions.md) | 重要決策的背景、選項與理由    |
+| [專案特性](./.agent/system/learnings.md) | AI 學習到的專案慣例與最佳實務 |
 
 ## 關鍵技術與依賴
 

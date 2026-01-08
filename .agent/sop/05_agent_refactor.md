@@ -132,13 +132,13 @@ sop_audit:
 
 **檢查項目**：
 
-| 項目             | 驗證內容                                    |
-| ---------------- | ------------------------------------------- |
-| 圖片路徑格式     | 是否使用 `assets/` 子目錄格式               |
-| 目錄結構說明     | 是否符合 `Tasks/System/SOP` 結構            |
-| 相對路徑引用     | 引用其他文件的路徑是否正確                  |
-| 範例程式碼       | 腳本中的路徑是否正確                        |
-| 約束條件         | 描述是否與 GUIDELINES.md 一致               |
+| 項目         | 驗證內容                         |
+| ------------ | -------------------------------- |
+| 圖片路徑格式 | 是否使用 `assets/` 子目錄格式    |
+| 目錄結構說明 | 是否符合 `Tasks/System/SOP` 結構 |
+| 相對路徑引用 | 引用其他文件的路徑是否正確       |
+| 範例程式碼   | 腳本中的路徑是否正確             |
+| 約束條件     | 描述是否與 GUIDELINES.md 一致    |
 
 **執行步驟**：
 
@@ -204,13 +204,13 @@ sop_audit:
 
 ### 變更類型與影響範圍
 
-| 變更類型 | 需檢查的文件 |
-|----------|--------------|
-| **圖片路徑/結構變更** | `learnings.md`、所有 SOP、`GUIDELINES.md` |
-| **目錄結構重構** | `decisions.md`、所有 SOP、`README.md` |
-| **新增 Command** | `changelog.md`、`CONTEXT.md`、`.claude/commands/README.md` |
-| **新增/修改 SOP** | `changelog.md`、`.agent/README.md` |
-| **規範變更** | `GUIDELINES.md`、`learnings.md`、相關 SOP |
+| 變更類型              | 需檢查的文件                                               |
+| --------------------- | ---------------------------------------------------------- |
+| **圖片路徑/結構變更** | `learnings.md`、所有 SOP、`GUIDELINES.md`                  |
+| **目錄結構重構**      | `decisions.md`、所有 SOP、`README.md`                      |
+| **新增 Command**      | `changelog.md`、`CONTEXT.md`、`.claude/commands/README.md` |
+| **新增/修改 SOP**     | `changelog.md`、`.agent/README.md`                         |
+| **規範變更**          | `GUIDELINES.md`、`learnings.md`、相關 SOP                  |
 
 ### 檢查流程
 

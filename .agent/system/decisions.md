@@ -131,7 +131,7 @@
 
 ### 狀態
 
-✅ 已執行（儲存於 `.agent/SOP/guide_architecture_evaluation.md`）
+✅ 已執行（儲存於 `.agent/sop/guide_architecture_evaluation.md`）
 
 ---
 

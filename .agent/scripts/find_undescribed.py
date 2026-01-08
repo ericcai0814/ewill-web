@@ -8,7 +8,7 @@ find_undescribed.py - 找出缺少 .yml 描述檔的圖片
     python scripts/find_undescribed.py pages/logsec # 掃描指定頁面
 
 相關 SOP：
-    - .agent/SOP/02b_image_metadata.md
+    - .agent/sop/02b_image_metadata.md
     - .claude/commands/daily_check.md
 """
 

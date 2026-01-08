@@ -43,9 +43,9 @@ ewill-web/
 │
 ├── .agent/                      # 🤖 AI Agent 協作系統
 │   ├── README.md                # 文件索引
-│   ├── Tasks/                   # 功能 PRD
-│   ├── System/                  # 系統狀態、決策記錄
-│   ├── SOP/                     # 標準作業程序
+│   ├── tasks/                   # 功能 PRD
+│   ├── system/                  # 系統狀態、決策記錄
+│   ├── sop/                     # 標準作業程序
 │   ├── scripts/                 # 維護腳本
 │   └── run-logs/                # 執行日誌
 │
@@ -180,5 +180,5 @@ python3 .agent/scripts/analyze_website_design.py
 - [DESIGN_GUIDELINE.md](./DESIGN_GUIDELINE.md) - 視覺設計規範（AI 生成 UI 參考）
 - [CONTEXT.md](./CONTEXT.md) - 專案當前狀態與近期變更
 - [.agent/README.md](./.agent/README.md) - AI Agent 文件索引
-- [.agent/SOP/](./.agent/SOP/) - 標準作業程序
+- [.agent/sop/](./.agent/sop/) - 標準作業程序
 - [.claude/skills/content-build/SKILL.md](./.claude/skills/content-build/SKILL.md) - 內容建置流水線
