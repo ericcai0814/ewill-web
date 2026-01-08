@@ -20,11 +20,21 @@ ewill-web/
 │   ├── index/          # 首頁
 │   ├── about_us/       # 關於我們
 │   ├── solutions/      # 資安服務總覽
-│   ├── ...             # 其他 17 個頁面
-├── scripts/            # 🔧 維護腳本
-├── design/             # 🎨 設計參考
+│   └── ...             # 其他 17 個頁面
+│
 ├── .agent/             # 🤖 AI Agent 協作系統
+│   ├── scripts/        # 維護腳本
+│   └── run-logs/       # 執行日誌
+│
 ├── .claude/            # 🔮 Claude 配置
+│   └── skills/
+│       └── content-build/  # 內容建置流水線
+│
+├── # 建置輸出（已 gitignore）
+├── static-app/         # --target=static 輸出
+├── next-app/           # --target=next 輸出
+├── nuxt-app/           # --target=nuxt 輸出
+│
 └── *.md                # 專案文件
 ```
 
@@ -34,11 +44,19 @@ ewill-web/
 
 ### Skills（自動觸發）
 
-| Skill              | 說明                     |
-| ------------------ | ------------------------ |
-| `doc-sync`         | 修改文件時自動提醒同步   |
-| `content-build`    | 內容建置流水線（圖片管理、正規化、RWD）|
-| `sop-consistency`  | 結構變更時自動檢查一致性 |
+| Skill             | 說明                                          |
+| ----------------- | --------------------------------------------- |
+| `doc-sync`        | 修改文件時自動提醒同步                        |
+| `content-build`   | 內容建置流水線（圖片正規化、RWD、多框架輸出） |
+| `sop-consistency` | 結構變更時自動檢查一致性                      |
+
+#### content-build 輸出目標
+
+```bash
+npx tsx .claude/skills/content-build/scripts/build.ts --target=static  # → static-app/
+npx tsx .claude/skills/content-build/scripts/build.ts --target=next    # → next-app/public/
+npx tsx .claude/skills/content-build/scripts/build.ts --target=nuxt    # → nuxt-app/public/
+```
 
 ### Commands（明確呼叫）
 
@@ -67,6 +85,8 @@ ewill-web/
 - **結構**: `pages/` 為內容邊界，以頁面為單位組織
 - **Metadata**: YAML (`.yml`) 格式
 - **內容與元資料分離**: `index.md`（內容）+ `index.yml`（SEO/AIO）
+- **建置工具**: TypeScript（`content-build` skill）
+- **輸出目標**: Static / Next.js / Nuxt（自動偵測或明確指定）
 
 ### 頁面目錄與 URL 對應
 

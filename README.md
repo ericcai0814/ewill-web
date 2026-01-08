@@ -41,19 +41,24 @@ ewill-web/
 │   ├── event_20251118/          # → /events/smart-manufacturing-webinar-2025/
 │   └── event_20251124/          # → /events/passwordless-identity-protection/
 │
-├── scripts/                     # 🔧 維護腳本
-├── design/                      # 🎨 設計參考（截圖）
-│
 ├── .agent/                      # 🤖 AI Agent 協作系統
 │   ├── README.md                # 文件索引
 │   ├── Tasks/                   # 功能 PRD
 │   ├── System/                  # 系統狀態、決策記錄
-│   └── SOP/                     # 標準作業程序
+│   ├── SOP/                     # 標準作業程序
+│   ├── scripts/                 # 維護腳本
+│   └── run-logs/                # 執行日誌
 │
 ├── .claude/                     # 🔮 Claude 配置
 │   ├── CLAUDE.md                # AI 協作行為準則
 │   ├── commands/                # AI 指令
 │   └── skills/                  # AI 技能
+│       └── content-build/       # 內容建置流水線
+│
+├── # 建置輸出（已 gitignore）
+├── static-app/                  # 靜態輸出
+├── next-app/                    # Next.js 專案 public/
+└── nuxt-app/                    # Nuxt 專案 public/
 │
 ├── README.md                    # 本文件
 ├── GUIDELINES.md                # 開發維護指南
@@ -92,16 +97,36 @@ pages/{page_name}/
 - 各頁面圖片存放於 `pages/{page}/assets/` 目錄
 - 每張圖片都對應一個 `.yml` 描述檔（如 `banner.jpg.yml`）
 
+## Content Build（內容建置）
+
+使用 `.claude/skills/content-build/` 將內容轉換為網站資源：
+
+```bash
+# 自動偵測輸出目標
+npx tsx .claude/skills/content-build/scripts/build.ts
+
+# 明確指定目標
+npx tsx .claude/skills/content-build/scripts/build.ts --target=static  # → static-app/
+npx tsx .claude/skills/content-build/scripts/build.ts --target=next    # → next-app/public/
+npx tsx .claude/skills/content-build/scripts/build.ts --target=nuxt    # → nuxt-app/public/
+```
+
+建置流程：
+
+1. **normalize-assets** - 正規化圖片檔名，產出 `asset-manifest.json`
+2. **audit-content** - 檢查 Markdown 是否違規引用原始檔名
+3. **build-content** - 解析 `index.yml`，產出頁面 JSON
+
 ## 維護腳本
 
 位於 `.agent/scripts/` 目錄：
 
-| 腳本 | 用途 |
-| ---- | ---- |
-| `find_undescribed.py` | 掃描目錄，找出缺少 `.yml` 描述檔的圖片 |
-| `fix-yml-metadata.py` | 批次補齊 `.yml` 的 `id` 和 `alt` 欄位 |
-| `migrate-image-refs.py` | 遷移圖片引用從 `index.md` 至 `index.yml` |
-| `analyze_website_design.py` | 分析網站設計結構與元素 |
+| 腳本                        | 用途                                     |
+| --------------------------- | ---------------------------------------- |
+| `find_undescribed.py`       | 掃描目錄，找出缺少 `.yml` 描述檔的圖片   |
+| `fix-yml-metadata.py`       | 批次補齊 `.yml` 的 `id` 和 `alt` 欄位    |
+| `migrate-image-refs.py`     | 遷移圖片引用從 `index.md` 至 `index.yml` |
+| `analyze_website_design.py` | 分析網站設計結構與元素                   |
 
 ```bash
 # 檢查缺少描述檔的圖片
@@ -156,3 +181,4 @@ python3 .agent/scripts/analyze_website_design.py
 - [CONTEXT.md](./CONTEXT.md) - 專案當前狀態與近期變更
 - [.agent/README.md](./.agent/README.md) - AI Agent 文件索引
 - [.agent/SOP/](./.agent/SOP/) - 標準作業程序
+- [.claude/skills/content-build/SKILL.md](./.claude/skills/content-build/SKILL.md) - 內容建置流水線
