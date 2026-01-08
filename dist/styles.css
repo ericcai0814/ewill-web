@@ -272,6 +272,16 @@ img {
   width: 100%;
   height: 200px;
   object-fit: cover;
+  object-position: center;
+}
+
+/* 手機版卡片圖片 - 調整高度與裁切 */
+@media (max-width: 768px) {
+  .card-image {
+    height: 180px;
+    object-fit: cover;
+    object-position: center top;
+  }
 }
 
 .card-content {
