@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(for dir in about_us solutions palo_alto fortinet acunetix security_scorecard vicarius_vrx array logsec ist vmware smartmanufacturing_ai mes wms scm data_middleware esg event_20251118 event_20251124)",
+      "Bash(done)",
+      "Bash(while read img)",
+      "Bash(do if [ -f \"$img\" ])",
+      "Bash(then echo \"✓ $img\")",
+      "Bash(else echo \"✗ $img \\(檔案不存在\\)\")",
+      "Bash(fi)",
+      "Bash(else echo \"✗ $img \\(missing\\)\")",
+      "Bash(for:*)",
+      "Bash(do if [ -f \"$f\" ])",
+      "Bash(then echo \"✓ $f\")",
+      "Bash(else echo \"✗ $f \\(missing\\)\")"
+    ]
+  }
+}
