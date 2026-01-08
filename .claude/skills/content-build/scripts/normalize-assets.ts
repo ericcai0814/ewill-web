@@ -3,14 +3,18 @@
  * normalize-assets.ts
  * 
  * 將非 ASCII 圖片檔名正規化為 ASCII 全小寫，並產出 asset-manifest.json
+ * 支援 Next.js、Nuxt、Static 三種框架
  * 
- * Usage: npx tsx scripts/normalize-assets.ts
+ * Usage: 
+ *   npx tsx scripts/normalize-assets.ts
+ *   npx tsx scripts/normalize-assets.ts --framework=next
  */
 
 import * as fs from 'fs'
 import * as path from 'path'
 import * as crypto from 'crypto'
 import { parse as parseYaml } from 'yaml'
+import { BuildConfig, detectTarget, getConfig, parseArgs, printHelp } from './config'
 
 // ============================================================================
 // Types
@@ -38,6 +42,7 @@ interface AssetEntry {
 
 interface AssetManifest {
   generated_at: string
+  target: string
   assets: AssetEntry[]
 }
 
@@ -45,10 +50,7 @@ interface AssetManifest {
 // Configuration
 // ============================================================================
 
-const CONFIG = {
-  modulesDir: 'pages',  // 改為 pages 以符合專案結構
-  distAssetsDir: 'dist/assets',
-  manifestPath: 'dist/asset-manifest.json',
+const DEFAULT_CONFIG = {
   imageExtensions: ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'],
   hashLength: 8,
 }
@@ -62,7 +64,7 @@ function generateShortHash(content: Buffer): string {
     .createHash('sha256')
     .update(content)
     .digest('hex')
-    .substring(0, CONFIG.hashLength)
+    .substring(0, DEFAULT_CONFIG.hashLength)
 }
 
 function isAsciiLowercase(str: string): boolean {
@@ -70,16 +72,13 @@ function isAsciiLowercase(str: string): boolean {
 }
 
 function sanitizeToAscii(str: string): string {
-  // Remove extension first
   const ext = path.extname(str).toLowerCase()
   const basename = path.basename(str, path.extname(str))
   
-  // If already ASCII lowercase, keep it
   if (isAsciiLowercase(basename)) {
     return basename.toLowerCase() + ext
   }
   
-  // Otherwise return empty to trigger hash-based naming
   return ''
 }
 
@@ -99,49 +98,29 @@ function loadMetaYml(assetPath: string): AssetMeta | null {
   }
 }
 
-function findVariantFile(baseDir: string, baseName: string, variantSuffix: string): string | null {
-  const files = fs.readdirSync(baseDir)
-  
-  // Look for files matching pattern: {baseName}_{suffix}.{ext} or {baseName}_{dimensions}.{ext}
-  for (const file of files) {
-    const fileLower = file.toLowerCase()
-    const baseNameLower = baseName.toLowerCase()
-    
-    // Match patterns like: hero_1920x600.jpg, hero_desktop.jpg
-    if (fileLower.includes(baseNameLower) && 
-        (fileLower.includes(variantSuffix) || 
-         fileLower.includes('1920') || 
-         fileLower.includes('750'))) {
-      return path.join(baseDir, file)
-    }
-  }
-  
-  return null
-}
-
 // ============================================================================
 // Main Logic
 // ============================================================================
 
-function discoverAssets(): string[] {
+function discoverAssets(config: BuildConfig): string[] {
   const assets: string[] = []
   
-  if (!fs.existsSync(CONFIG.modulesDir)) {
-    console.error(`❌ Modules directory not found: ${CONFIG.modulesDir}`)
+  if (!fs.existsSync(config.contentDir)) {
+    console.error(`❌ Content directory not found: ${config.contentDir}`)
     process.exit(1)
   }
   
-  const modules = fs.readdirSync(CONFIG.modulesDir, { withFileTypes: true })
+  const modules = fs.readdirSync(config.contentDir, { withFileTypes: true })
     .filter(d => d.isDirectory())
   
   for (const mod of modules) {
-    const assetsDir = path.join(CONFIG.modulesDir, mod.name, 'assets')
+    const assetsDir = path.join(config.contentDir, mod.name, 'assets')
     if (!fs.existsSync(assetsDir)) continue
     
     const files = fs.readdirSync(assetsDir)
     for (const file of files) {
       const ext = path.extname(file).toLowerCase()
-      if (CONFIG.imageExtensions.includes(ext) && !file.endsWith('.yml')) {
+      if (DEFAULT_CONFIG.imageExtensions.includes(ext) && !file.endsWith('.yml')) {
         assets.push(path.join(assetsDir, file))
       }
     }
@@ -150,12 +129,18 @@ function discoverAssets(): string[] {
   return assets
 }
 
-function normalizeAsset(assetPath: string, existingIds: Set<string>): AssetEntry {
+function normalizeAsset(
+  assetPath: string, 
+  existingIds: Set<string>,
+  config: BuildConfig
+): AssetEntry {
   const content = fs.readFileSync(assetPath)
   const hash = generateShortHash(content)
   const ext = path.extname(assetPath).toLowerCase()
   const basename = path.basename(assetPath, path.extname(assetPath))
   const dir = path.dirname(assetPath)
+  
+  const distAssetsDir = path.join(config.outputDir, config.assetsDir)
   
   // Try to load .yml metadata
   const meta = loadMetaYml(assetPath)
@@ -187,7 +172,7 @@ function normalizeAsset(assetPath: string, existingIds: Set<string>): AssetEntry
   }
   existingIds.add(uniqueId)
   
-  const normalizedPath = path.join(CONFIG.distAssetsDir, normalizedName)
+  const normalizedPath = path.join(distAssetsDir, normalizedName)
   
   // Handle variants
   let desktopPath = normalizedPath.replace(ext, `_desktop${ext}`)
@@ -212,7 +197,7 @@ function normalizeAsset(assetPath: string, existingIds: Set<string>): AssetEntry
   }
   
   // Copy files
-  fs.mkdirSync(CONFIG.distAssetsDir, { recursive: true })
+  fs.mkdirSync(distAssetsDir, { recursive: true })
   fs.copyFileSync(assetPath, normalizedPath)
   fs.copyFileSync(desktopSource, desktopPath)
   fs.copyFileSync(mobileSource, mobilePath)
@@ -229,10 +214,12 @@ function normalizeAsset(assetPath: string, existingIds: Set<string>): AssetEntry
   }
 }
 
-function main() {
-  console.log('🔄 Starting asset normalization...\n')
+export async function normalizeAssets(config: BuildConfig): Promise<AssetManifest> {
+  console.log(`🔄 Starting asset normalization for ${config.target}...\n`)
+  console.log(`   Content dir: ${config.contentDir}`)
+  console.log(`   Output dir:  ${config.outputDir}\n`)
   
-  const assets = discoverAssets()
+  const assets = discoverAssets(config)
   console.log(`📦 Found ${assets.length} assets to process\n`)
   
   const existingIds = new Set<string>()
@@ -240,7 +227,7 @@ function main() {
   
   for (const assetPath of assets) {
     try {
-      const entry = normalizeAsset(assetPath, existingIds)
+      const entry = normalizeAsset(assetPath, existingIds, config)
       entries.push(entry)
       console.log(`✅ ${assetPath}`)
       console.log(`   → ${entry.normalized_path}`)
@@ -256,14 +243,39 @@ function main() {
   // Write manifest
   const manifest: AssetManifest = {
     generated_at: new Date().toISOString(),
+    target: config.target,
     assets: entries,
   }
   
-  fs.mkdirSync(path.dirname(CONFIG.manifestPath), { recursive: true })
-  fs.writeFileSync(CONFIG.manifestPath, JSON.stringify(manifest, null, 2))
+  const manifestPath = path.join(config.outputDir, 'asset-manifest.json')
+  fs.mkdirSync(path.dirname(manifestPath), { recursive: true })
+  fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2))
   
-  console.log(`\n📋 Manifest written to ${CONFIG.manifestPath}`)
+  console.log(`\n📋 Manifest written to ${manifestPath}`)
   console.log(`✅ Normalized ${entries.length} assets`)
+  
+  return manifest
 }
 
-main()
+// ============================================================================
+// CLI Entry Point
+// ============================================================================
+
+async function main() {
+  const args = parseArgs(process.argv.slice(2))
+  
+  if (args.help) {
+    printHelp()
+    process.exit(0)
+  }
+  
+  const target = args.target || detectTarget() || 'static'
+  const config = getConfig(target)
+  
+  await normalizeAssets(config)
+}
+
+// Run if called directly
+if (require.main === module) {
+  main().catch(console.error)
+}

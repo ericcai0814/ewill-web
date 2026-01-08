@@ -1,19 +1,50 @@
 ---
 name: content-build
-description: 內容建置流水線。管理圖片資源、正規化檔名、建立 RWD 友善的內容模型，產出 dist/content 與 dist/assets。觸發時機：執行網站內容建置、處理圖片資源、normalize assets、建立 page model。
+description: |
+  內容建置流水線。管理圖片資源、正規化檔名、建立 RWD 友善的內容模型。
+  支援 Next.js、Nuxt、靜態輸出三種目標，自動偵測或明確指定。
+  
+  觸發時機：
+  - 「建立 next 網頁」「建立 Next.js 網站」
+  - 「建立 nuxt 網頁」「建立 Nuxt 網站」
+  - 「建立靜態頁面」「建立 static 網頁」
+  - 「執行 content build」「normalize assets」
+  - 處理圖片資源、建立 page model
 ---
 
 # Content Build Pipeline
 
 內容建置流水線，包含圖片資源管理、檔名正規化、RWD 變體處理、內容編譯。
+支援 **Next.js**、**Nuxt**、**靜態輸出** 三種目標。
+
+## 快速開始
+
+```bash
+# 自動偵測輸出目標
+npx tsx .claude/skills/content-build/scripts/build.ts
+
+# 明確指定目標
+npx tsx .claude/skills/content-build/scripts/build.ts --target=next
+npx tsx .claude/skills/content-build/scripts/build.ts --target=nuxt
+npx tsx .claude/skills/content-build/scripts/build.ts --target=static
+```
+
+## 輸出目標
+
+| 目標 | 偵測條件 | 輸出目錄 |
+|------|----------|----------|
+| Next.js | `next.config.ts` 或 `next.config.js` 存在 | `{project}/public/` |
+| Nuxt | `nuxt.config.ts` 或 `nuxt.config.js` 存在 | `{project}/public/` |
+| Static | 預設（無框架時） | `dist/` |
 
 ## 工作流程概覽
 
 ```
-1. 圖片管理        → 確保圖片有 .yml 元資料
-2. normalize-assets → 正規化檔名，產出 asset-manifest.json
-3. audit-content    → 檢查 md 是否違規引用原始檔名
-4. build-content    → 解析 index.yml，產出 dist/content + dist/assets
+1. 偵測目標        → 檢查 next.config.* 或 nuxt.config.*（無則 static）
+2. 圖片管理        → 確保圖片有 .yml 元資料
+3. normalize-assets → 正規化檔名，產出 asset-manifest.json
+4. audit-content    → 檢查 md 是否違規引用原始檔名
+5. build-content    → 解析 index.yml，產出 {outputDir}/content + {outputDir}/assets
 ```
 
 ---

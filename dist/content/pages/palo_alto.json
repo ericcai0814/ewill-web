@@ -27,7 +27,36 @@
     "current_url": "/security-solutions/palo-alto-networks/",
     "new_url": ""
   },
-  "layout": {},
-  "content": "\n\n\n![](assets/paloalto_banner.jpg)\n\n\n\n\n\n![](assets/paloalto_banner_m.jpg)\n\n\n\n\n\n\n\n\n\n\n\n\n## Palo Alto\n\n\n\n\n#### 次世代防火牆\n\n\n\n\n\n### 雲端網路與資安整合方案\n\n\n\n\n整合 ZTNA 2.0 與 SD-WAN，提供遠端與分支據點高速、安全的網路存取。 透過 ZTNA 2.0 動態控管用戶與裝置權限，取代傳統 VPN；結合 NG-CASB、SWG、FWaaS，全面保護 SaaS 應用與網路流量。 支援全雲端部署，適用於遠端工作、雲端應用與企業分點，打造統一且高效的零信任資安架構。\n\n\n\n\n![](assets/paloalto.jpg)\n\n\n\n\n\n![](assets/paloalto.jpg)\n\n\n\n\n\n\n\n\n### Cortex 家族，從端點到自動化協助平台，提供一站式的服務\n\n\n\n\nCortex 家族串聯 XDR、XSOAR、Xpanse 到 XSIAM，從威脅偵測、事件調度、外部資產暴露管理到自動化安全營運，提供完整的一站式資安解決方案。\n結合 UNIT 42 顧問專家支援，讓企業能快速應對威脅、優化 SOC 效能，全面提升資安防禦力。\n\n\n\n\n![](assets/paloalto-1.jpg)\n\n\n\n\n\n![](assets/paloalto-1-m.jpg)\n\n\n\n\n\n\n\n\n### Prisma Cloud 雲端原生安全平台\n\n\n\n\nPalo Alto 提供涵蓋公有雲、私有雲及混合雲環境的工作負載防護解決方案。\n依企業需求，分為私有雲版（CWPP）與雲端版（CSPM＋CWPP），支援多雲平台安全、一致性防護與合規需求，協助企業打造零信任的雲端安全架構。\n\n\n\n\n![](assets/paloalto-2.jpg)",
-  "generated_at": "2026-01-08T03:51:37.143Z"
+  "layout": {
+    "hero": {
+      "image": {
+        "id": "paloalto_banner",
+        "desktop": "/assets/paloalto_banner_3d8c7a79_desktop.jpg",
+        "mobile": "/assets/paloalto_banner_3d8c7a79_mobile.jpg",
+        "alt": ""
+      }
+    },
+    "content_images": [
+      {
+        "id": "paloalto_banner_m"
+      },
+      {
+        "id": "paloalto"
+      },
+      {
+        "id": "paloalto"
+      },
+      {
+        "id": "paloalto_1"
+      },
+      {
+        "id": "paloalto_1_m"
+      },
+      {
+        "id": "paloalto_2"
+      }
+    ]
+  },
+  "content": "\n\n## Palo Alto\n\n#### 次世代防火牆\n\n### 雲端網路與資安整合方案\n\n整合 ZTNA 2.0 與 SD-WAN，提供遠端與分支據點高速、安全的網路存取。 透過 ZTNA 2.0 動態控管用戶與裝置權限，取代傳統 VPN；結合 NG-CASB、SWG、FWaaS，全面保護 SaaS 應用與網路流量。 支援全雲端部署，適用於遠端工作、雲端應用與企業分點，打造統一且高效的零信任資安架構。\n\n### Cortex 家族，從端點到自動化協助平台，提供一站式的服務\n\nCortex 家族串聯 XDR、XSOAR、Xpanse 到 XSIAM，從威脅偵測、事件調度、外部資產暴露管理到自動化安全營運，提供完整的一站式資安解決方案。\n結合 UNIT 42 顧問專家支援，讓企業能快速應對威脅、優化 SOC 效能，全面提升資安防禦力。\n\n### Prisma Cloud 雲端原生安全平台\n\nPalo Alto 提供涵蓋公有雲、私有雲及混合雲環境的工作負載防護解決方案。\n依企業需求，分為私有雲版（CWPP）與雲端版（CSPM＋CWPP），支援多雲平台安全、一致性防護與合規需求，協助企業打造零信任的雲端安全架構。\n\n",
+  "generated_at": "2026-01-08T06:44:52.946Z"
 }

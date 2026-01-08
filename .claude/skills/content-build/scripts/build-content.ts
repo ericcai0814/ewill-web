@@ -2,14 +2,18 @@
 /**
  * build-content.ts
  * 
- * 解析 index.yml，將 image_id 解析為實際路徑，產出 dist/content
+ * 解析 index.yml，將 image_id 解析為實際路徑，產出 content JSON
+ * 支援 Next.js、Nuxt、Static 三種框架
  * 
- * Usage: npx tsx scripts/build-content.ts
+ * Usage: 
+ *   npx tsx scripts/build-content.ts
+ *   npx tsx scripts/build-content.ts --framework=next
  */
 
 import * as fs from 'fs'
 import * as path from 'path'
 import { parse as parseYaml } from 'yaml'
+import { BuildConfig, detectTarget, getConfig, parseArgs, printHelp } from './config'
 
 // ============================================================================
 // Types
@@ -28,6 +32,7 @@ interface AssetEntry {
 
 interface AssetManifest {
   generated_at: string
+  target: string
   assets: AssetEntry[]
 }
 
@@ -99,6 +104,7 @@ interface PageJson {
 
 interface ContentManifest {
   generated_at: string
+  target: string
   pages: Array<{
     slug: string
     module: string
@@ -107,29 +113,19 @@ interface ContentManifest {
 }
 
 // ============================================================================
-// Configuration
-// ============================================================================
-
-const CONFIG = {
-  modulesDir: 'pages',  // 改為 pages 以符合專案結構
-  manifestPath: 'dist/asset-manifest.json',
-  contentDir: 'dist/content',
-  pagesDir: 'dist/content/pages',
-  assetsPublicPath: '/assets',
-}
-
-// ============================================================================
 // Asset Resolver
 // ============================================================================
 
 class AssetResolver {
   private assetMap: Map<string, AssetEntry> = new Map()
+  private assetsPublicPath: string
   
-  constructor(manifestPath: string) {
+  constructor(manifestPath: string, assetsPublicPath: string = '/assets') {
     if (!fs.existsSync(manifestPath)) {
       throw new Error(`Asset manifest not found: ${manifestPath}. Run normalize-assets.ts first.`)
     }
     
+    this.assetsPublicPath = assetsPublicPath
     const manifest: AssetManifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'))
     
     for (const asset of manifest.assets) {
@@ -144,11 +140,9 @@ class AssetResolver {
       return null
     }
     
-    // Use custom variant IDs or default to {id}_desktop/{id}_mobile
     let desktopPath = asset.variants.desktop
     let mobilePath = asset.variants.mobile
     
-    // If custom variant IDs specified, try to resolve them
     if (imageRef.desktop && imageRef.desktop !== `${imageRef.id}_desktop`) {
       const desktopAsset = this.assetMap.get(imageRef.desktop)
       if (desktopAsset) {
@@ -163,10 +157,9 @@ class AssetResolver {
       }
     }
     
-    // Convert to public paths
     const toPublicPath = (p: string) => {
       const filename = path.basename(p)
-      return `${CONFIG.assetsPublicPath}/${filename}`
+      return `${this.assetsPublicPath}/${filename}`
     }
     
     return {
@@ -186,19 +179,19 @@ class AssetResolver {
 // Main Logic
 // ============================================================================
 
-function discoverModules(): string[] {
-  if (!fs.existsSync(CONFIG.modulesDir)) {
-    console.error(`❌ Modules directory not found: ${CONFIG.modulesDir}`)
+function discoverModules(config: BuildConfig): string[] {
+  if (!fs.existsSync(config.contentDir)) {
+    console.error(`❌ Content directory not found: ${config.contentDir}`)
     process.exit(1)
   }
   
-  return fs.readdirSync(CONFIG.modulesDir, { withFileTypes: true })
+  return fs.readdirSync(config.contentDir, { withFileTypes: true })
     .filter(d => d.isDirectory())
     .map(d => d.name)
 }
 
-function loadModuleYml(moduleName: string): PageYml | null {
-  const ymlPath = path.join(CONFIG.modulesDir, moduleName, 'index.yml')
+function loadModuleYml(moduleName: string, config: BuildConfig): PageYml | null {
+  const ymlPath = path.join(config.contentDir, moduleName, 'index.yml')
   if (!fs.existsSync(ymlPath)) {
     return null
   }
@@ -212,8 +205,8 @@ function loadModuleYml(moduleName: string): PageYml | null {
   }
 }
 
-function loadModuleMd(moduleName: string): string {
-  const mdPath = path.join(CONFIG.modulesDir, moduleName, 'index.md')
+function loadModuleMd(moduleName: string, config: BuildConfig): string {
+  const mdPath = path.join(config.contentDir, moduleName, 'index.md')
   if (!fs.existsSync(mdPath)) {
     return ''
   }
@@ -226,7 +219,6 @@ function resolveLayout(layout: LayoutConfig | undefined, resolver: AssetResolver
   
   const resolved: PageJson['layout'] = {}
   
-  // Resolve hero image
   if (layout.hero?.image) {
     const resolvedImage = resolver.resolve(layout.hero.image)
     if (resolvedImage) {
@@ -234,21 +226,18 @@ function resolveLayout(layout: LayoutConfig | undefined, resolver: AssetResolver
     }
   }
   
-  // Resolve sections
   if (layout.sections) {
     resolved.sections = layout.sections.map(section => {
       const resolvedSection: PageJson['layout']['sections'][0] = {
         type: section.type,
       }
       
-      // Resolve image_ids array
       if (section.image_ids) {
         resolvedSection.images = section.image_ids
           .map(id => resolver.resolveById(id))
           .filter((img): img is ResolvedImage => img !== null)
       }
       
-      // Copy other properties
       for (const [key, value] of Object.entries(section)) {
         if (key !== 'type' && key !== 'image_ids') {
           resolvedSection[key] = value
@@ -259,7 +248,6 @@ function resolveLayout(layout: LayoutConfig | undefined, resolver: AssetResolver
     })
   }
   
-  // Copy other layout properties
   for (const [key, value] of Object.entries(layout)) {
     if (key !== 'hero' && key !== 'sections') {
       resolved[key] = value
@@ -269,9 +257,9 @@ function resolveLayout(layout: LayoutConfig | undefined, resolver: AssetResolver
   return resolved
 }
 
-function buildPage(moduleName: string, resolver: AssetResolver): PageJson {
-  const yml = loadModuleYml(moduleName) || {}
-  const content = loadModuleMd(moduleName)
+function buildPage(moduleName: string, resolver: AssetResolver, config: BuildConfig): PageJson {
+  const yml = loadModuleYml(moduleName, config) || {}
+  const content = loadModuleMd(moduleName, config)
   
   return {
     slug: moduleName,
@@ -291,30 +279,35 @@ function buildPage(moduleName: string, resolver: AssetResolver): PageJson {
   }
 }
 
-function main() {
-  console.log('🔄 Starting content build...\n')
+export async function buildContent(config: BuildConfig): Promise<ContentManifest> {
+  console.log(`🔄 Starting content build for ${config.target}...\n`)
+  console.log(`   Content dir: ${config.contentDir}`)
+  console.log(`   Output dir:  ${config.outputDir}\n`)
+  
+  const manifestPath = path.join(config.outputDir, 'asset-manifest.json')
+  const contentOutputDir = path.join(config.outputDir, config.contentSubDir)
+  const pagesOutputDir = path.join(contentOutputDir, 'pages')
   
   // Initialize asset resolver
   let resolver: AssetResolver
   try {
-    resolver = new AssetResolver(CONFIG.manifestPath)
+    resolver = new AssetResolver(manifestPath, `/${config.assetsDir}`)
   } catch (e) {
-    console.error(`❌ ${e.message}`)
+    console.error(`❌ ${(e as Error).message}`)
     process.exit(1)
   }
   
-  const modules = discoverModules()
+  const modules = discoverModules(config)
   console.log(`📦 Found ${modules.length} modules to process\n`)
   
-  // Ensure output directories exist
-  fs.mkdirSync(CONFIG.pagesDir, { recursive: true })
+  fs.mkdirSync(pagesOutputDir, { recursive: true })
   
   const manifestEntries: ContentManifest['pages'] = []
   
   for (const moduleName of modules) {
     try {
-      const page = buildPage(moduleName, resolver)
-      const outputPath = path.join(CONFIG.pagesDir, `${moduleName}.json`)
+      const page = buildPage(moduleName, resolver, config)
+      const outputPath = path.join(pagesOutputDir, `${moduleName}.json`)
       
       fs.writeFileSync(outputPath, JSON.stringify(page, null, 2))
       
@@ -333,14 +326,38 @@ function main() {
   // Write content manifest
   const manifest: ContentManifest = {
     generated_at: new Date().toISOString(),
+    target: config.target,
     pages: manifestEntries,
   }
   
-  const manifestOutputPath = path.join(CONFIG.contentDir, 'manifest.json')
+  const manifestOutputPath = path.join(contentOutputDir, 'manifest.json')
   fs.writeFileSync(manifestOutputPath, JSON.stringify(manifest, null, 2))
   
   console.log(`\n📋 Content manifest written to ${manifestOutputPath}`)
   console.log(`✅ Built ${manifestEntries.length} pages`)
+  
+  return manifest
 }
 
-main()
+// ============================================================================
+// CLI Entry Point
+// ============================================================================
+
+async function main() {
+  const args = parseArgs(process.argv.slice(2))
+  
+  if (args.help) {
+    printHelp()
+    process.exit(0)
+  }
+  
+  const target = args.target || detectTarget() || 'static'
+  const config = getConfig(target)
+  
+  await buildContent(config)
+}
+
+// Run if called directly
+if (require.main === module) {
+  main().catch(console.error)
+}
