@@ -1,0 +1,2315 @@
+{
+  "generated_at": "2026-01-08T03:46:25.632Z",
+  "assets": [
+    {
+      "id": "img_5acc057a",
+      "original_path": "pages/about_us/assets/270012013資訊安全管理系統認證-qij2pl7pcdl97xn273tuvprmwj984698wqzy5nn474.png",
+      "normalized_path": "dist/assets/img_5acc057a.png",
+      "variants": {
+        "desktop": "dist/assets/img_5acc057a_desktop.png",
+        "mobile": "dist/assets/img_5acc057a_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_0439e584",
+      "original_path": "pages/about_us/assets/270012013資訊安全管理系統認證-qij2pl7pcdme54bmv96rxxfno85mny7m3pzm7kp0qo.png",
+      "normalized_path": "dist/assets/img_0439e584.png",
+      "variants": {
+        "desktop": "dist/assets/img_0439e584_desktop.png",
+        "mobile": "dist/assets/img_0439e584_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_af1bee95",
+      "original_path": "pages/about_us/assets/270012013資訊安全管理系統認證-qij2pl7pcdnj2b07jejp053ofx217q5zaoza9hqxa8.png",
+      "normalized_path": "dist/assets/img_af1bee95.png",
+      "variants": {
+        "desktop": "dist/assets/img_af1bee95_desktop.png",
+        "mobile": "dist/assets/img_af1bee95_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_4d7d0ff0",
+      "original_path": "pages/about_us/assets/BN-Home-M.jpg",
+      "normalized_path": "dist/assets/img_4d7d0ff0.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_4d7d0ff0_desktop.jpg",
+        "mobile": "dist/assets/img_4d7d0ff0_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_89eb8911",
+      "original_path": "pages/about_us/assets/Frame-81_fix0219-r1pq1ydiknpnq33sjujsqyvksnzoaf0vw9ai2oeymg.png",
+      "normalized_path": "dist/assets/img_89eb8911.png",
+      "variants": {
+        "desktop": "dist/assets/img_89eb8911_desktop.png",
+        "mobile": "dist/assets/img_89eb8911_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_7201f929",
+      "original_path": "pages/about_us/assets/Frame-81_fix0219.png",
+      "normalized_path": "dist/assets/img_7201f929.png",
+      "variants": {
+        "desktop": "dist/assets/img_7201f929_desktop.png",
+        "mobile": "dist/assets/img_7201f929_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "about_us_1_1_m",
+      "original_path": "pages/about_us/assets/about_us_1_1_m.png",
+      "normalized_path": "dist/assets/about_us_1_1_m_ca088fb5.png",
+      "variants": {
+        "desktop": "dist/assets/about_us_1_1_m_ca088fb5_desktop.png",
+        "mobile": "dist/assets/about_us_1_1_m_ca088fb5_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "about_us_1_2_m",
+      "original_path": "pages/about_us/assets/about_us_1_2_m.png",
+      "normalized_path": "dist/assets/about_us_1_2_m_9e56b78a.png",
+      "variants": {
+        "desktop": "dist/assets/about_us_1_2_m_9e56b78a_desktop.png",
+        "mobile": "dist/assets/about_us_1_2_m_9e56b78a_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "about_us_1_3_m",
+      "original_path": "pages/about_us/assets/about_us_1_3_m.png",
+      "normalized_path": "dist/assets/about_us_1_3_m_d25d4d18.png",
+      "variants": {
+        "desktop": "dist/assets/about_us_1_3_m_d25d4d18_desktop.png",
+        "mobile": "dist/assets/about_us_1_3_m_d25d4d18_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "about_us_1_fix2",
+      "original_path": "pages/about_us/assets/about_us_1_fix2.png",
+      "normalized_path": "dist/assets/about_us_1_fix2_ab5b5582.png",
+      "variants": {
+        "desktop": "dist/assets/about_us_1_fix2_ab5b5582_desktop.png",
+        "mobile": "dist/assets/about_us_1_fix2_ab5b5582_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "about_us_2_1_fix2-1",
+      "original_path": "pages/about_us/assets/about_us_2_1_fix2-1.png",
+      "normalized_path": "dist/assets/about_us_2_1_fix2-1_936c834b.png",
+      "variants": {
+        "desktop": "dist/assets/about_us_2_1_fix2-1_936c834b_desktop.png",
+        "mobile": "dist/assets/about_us_2_1_fix2-1_936c834b_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "about_us_2_1_m",
+      "original_path": "pages/about_us/assets/about_us_2_1_m.png",
+      "normalized_path": "dist/assets/about_us_2_1_m_889cda91.png",
+      "variants": {
+        "desktop": "dist/assets/about_us_2_1_m_889cda91_desktop.png",
+        "mobile": "dist/assets/about_us_2_1_m_889cda91_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "about_us_2_2_fix2-1",
+      "original_path": "pages/about_us/assets/about_us_2_2_fix2-1.png",
+      "normalized_path": "dist/assets/about_us_2_2_fix2-1_5466aaba.png",
+      "variants": {
+        "desktop": "dist/assets/about_us_2_2_fix2-1_5466aaba_desktop.png",
+        "mobile": "dist/assets/about_us_2_2_fix2-1_5466aaba_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "about_us_2_2_m",
+      "original_path": "pages/about_us/assets/about_us_2_2_m.png",
+      "normalized_path": "dist/assets/about_us_2_2_m_b4f7af85.png",
+      "variants": {
+        "desktop": "dist/assets/about_us_2_2_m_b4f7af85_desktop.png",
+        "mobile": "dist/assets/about_us_2_2_m_b4f7af85_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "about_us_2_3_m",
+      "original_path": "pages/about_us/assets/about_us_2_3_m.png",
+      "normalized_path": "dist/assets/about_us_2_3_m_5cd38504.png",
+      "variants": {
+        "desktop": "dist/assets/about_us_2_3_m_5cd38504_desktop.png",
+        "mobile": "dist/assets/about_us_2_3_m_5cd38504_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "about_us_2_4_m",
+      "original_path": "pages/about_us/assets/about_us_2_4_m.png",
+      "normalized_path": "dist/assets/about_us_2_4_m_abf721ff.png",
+      "variants": {
+        "desktop": "dist/assets/about_us_2_4_m_abf721ff_desktop.png",
+        "mobile": "dist/assets/about_us_2_4_m_abf721ff_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "about_us_2_5_m",
+      "original_path": "pages/about_us/assets/about_us_2_5_m.png",
+      "normalized_path": "dist/assets/about_us_2_5_m_7627e21f.png",
+      "variants": {
+        "desktop": "dist/assets/about_us_2_5_m_7627e21f_desktop.png",
+        "mobile": "dist/assets/about_us_2_5_m_7627e21f_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_9931ee01",
+      "original_path": "pages/about_us/assets/勞動部「TTQS」證書-qij2pgiie7etlvtvyjsq18ybxlwe1oql83qir9u328.png",
+      "normalized_path": "dist/assets/img_9931ee01.png",
+      "variants": {
+        "desktop": "dist/assets/img_9931ee01_desktop.png",
+        "mobile": "dist/assets/img_9931ee01_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_8a12b075",
+      "original_path": "pages/about_us/assets/勞動部「TTQS」證書-qij2pgiie7fyj2igmp5n3gmcpasslgoyf2q6t6vzls.png",
+      "normalized_path": "dist/assets/img_8a12b075.png",
+      "variants": {
+        "desktop": "dist/assets/img_8a12b075_desktop.png",
+        "mobile": "dist/assets/img_8a12b075_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_2d2885b8",
+      "original_path": "pages/about_us/assets/勞動部「TTQS」證書-qij2pgiie7h3g971auik5oadgzp758nbm1puv3xw5c.png",
+      "normalized_path": "dist/assets/img_2d2885b8.png",
+      "variants": {
+        "desktop": "dist/assets/img_2d2885b8_desktop.png",
+        "mobile": "dist/assets/img_2d2885b8_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_02b64160",
+      "original_path": "pages/about_us/assets/勞動部勞動力發展署_人才發展品質管理系統評核通過證書11410171161016-rdlwpft05l0uz4c4rz60iaa4874mlewr59im5mjsao.png",
+      "normalized_path": "dist/assets/img_02b64160.png",
+      "variants": {
+        "desktop": "dist/assets/img_02b64160_desktop.png",
+        "mobile": "dist/assets/img_02b64160_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_468d907d",
+      "original_path": "pages/about_us/assets/勞動部勞動力發展署_人才發展品質管理系統評核通過證書11410171161016-rdlwpft05l1zwb0pg4ixkhy4zw1156v4c8ia7jlou8.png",
+      "normalized_path": "dist/assets/img_468d907d.png",
+      "variants": {
+        "desktop": "dist/assets/img_468d907d_desktop.png",
+        "mobile": "dist/assets/img_468d907d_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_8e0f6365",
+      "original_path": "pages/about_us/assets/勞動部勞動力發展署_人才發展品質管理系統評核通過證書11410171161016-rdlwpft05l34thpa49vumpm5rkxfoythj7hy9gnlds.png",
+      "normalized_path": "dist/assets/img_8e0f6365.png",
+      "variants": {
+        "desktop": "dist/assets/img_8e0f6365_desktop.png",
+        "mobile": "dist/assets/img_8e0f6365_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_9e9e0d4e",
+      "original_path": "pages/about_us/assets/數位發展部「資訊安全服務機構」能量登錄-qij2pjc0ypiokppsi30lqq8pprihos1s8hoz73pwjk.jpg",
+      "normalized_path": "dist/assets/img_9e9e0d4e.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_9e9e0d4e_desktop.jpg",
+        "mobile": "dist/assets/img_9e9e0d4e_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_fa335fc9",
+      "original_path": "pages/about_us/assets/數位發展部「資訊安全服務機構」能量登錄-qij2pjc0ypjthwed68disxwqhgew8k05fgon90rt34.jpg",
+      "normalized_path": "dist/assets/img_fa335fc9.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_fa335fc9_desktop.jpg",
+        "mobile": "dist/assets/img_fa335fc9_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_97b4f1ec",
+      "original_path": "pages/about_us/assets/數位發展部「資訊安全服務機構」能量登錄-qij2pjc0ypkyf32xudqfv5kr95basbyimfobaxtpmo.jpg",
+      "normalized_path": "dist/assets/img_97b4f1ec.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_97b4f1ec_desktop.jpg",
+        "mobile": "dist/assets/img_97b4f1ec_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_a35f9b46",
+      "original_path": "pages/about_us/assets/自動化服務能量登錄證書_110.08112.08-scaled-qij2h7hiek47p3tc4zem5bwo7ukehbzer9l33u2hog.jpg",
+      "normalized_path": "dist/assets/img_a35f9b46.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_a35f9b46_desktop.jpg",
+        "mobile": "dist/assets/img_a35f9b46_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_2e505622",
+      "original_path": "pages/about_us/assets/自動化服務能量登錄證書_110.08112.08-scaled-qij2h7hiek5cmahwt4rj7jkozjgt13xry8kr5r4e80.jpg",
+      "normalized_path": "dist/assets/img_2e505622.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_2e505622_desktop.jpg",
+        "mobile": "dist/assets/img_2e505622_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_1e74f046",
+      "original_path": "pages/about_us/assets/自動化服務能量登錄證書_110.08112.08-scaled-qij2h7hiek6hjh6hha4g9r8pr8d7kvw557kf7o6ark.jpg",
+      "normalized_path": "dist/assets/img_1e74f046.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_1e74f046_desktop.jpg",
+        "mobile": "dist/assets/img_1e74f046_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_77f35c81",
+      "original_path": "pages/about_us/assets/資訊安全服務能量登錄證書_110.05112.05-scaled-qij2gzysvvtx4849cw5lldszgrlgrr5k28d79mdn28.jpg",
+      "normalized_path": "dist/assets/img_77f35c81.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_77f35c81_desktop.jpg",
+        "mobile": "dist/assets/img_77f35c81_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_b0a10d99",
+      "original_path": "pages/about_us/assets/資訊安全服務能量登錄證書_110.05112.05-scaled-qij2gzysvvv21esu11iinlh08ghvbj3x97cvbjfjls.jpg",
+      "normalized_path": "dist/assets/img_b0a10d99.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_b0a10d99_desktop.jpg",
+        "mobile": "dist/assets/img_b0a10d99_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_84fb2719",
+      "original_path": "pages/about_us/assets/資訊安全服務能量登錄證書_110.05112.05-scaled-qij2gzysvvw6ylhep6vfpt5105e9vb2ag6cjdghg5c.jpg",
+      "normalized_path": "dist/assets/img_84fb2719.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_84fb2719_desktop.jpg",
+        "mobile": "dist/assets/img_84fb2719_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_f139bb6b",
+      "original_path": "pages/about_us/assets/資訊技術服務能量登錄證書_108.06110.06-scaled-qij2h3q5n7z2enysqxs3vcutub2xmjkheqz56q82dc.jpg",
+      "normalized_path": "dist/assets/img_f139bb6b.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_f139bb6b_desktop.jpg",
+        "mobile": "dist/assets/img_f139bb6b_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_adb0380e",
+      "original_path": "pages/about_us/assets/資訊技術服務能量登錄證書_108.06110.06-scaled-qij2h3q5n807bundf350xkiulzzc6biulpyt8n9yww.jpg",
+      "normalized_path": "dist/assets/img_adb0380e.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_adb0380e_desktop.jpg",
+        "mobile": "dist/assets/img_adb0380e_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_cb311dd5",
+      "original_path": "pages/about_us/assets/資訊技術服務能量登錄證書_108.06110.06-scaled-qij2h3q5n81c91by38hxzs6vdovqq3h7soyhakbvgg.jpg",
+      "normalized_path": "dist/assets/img_cb311dd5.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_cb311dd5_desktop.jpg",
+        "mobile": "dist/assets/img_cb311dd5_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_037e3807",
+      "original_path": "pages/about_us/assets/首頁Banner1209.png",
+      "normalized_path": "dist/assets/img_037e3807.png",
+      "variants": {
+        "desktop": "dist/assets/img_037e3807_desktop.png",
+        "mobile": "dist/assets/img_037e3807_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_d56c3819",
+      "original_path": "pages/acunetix/assets/BN-Acunetix-M_fix.jpg",
+      "normalized_path": "dist/assets/img_d56c3819.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_d56c3819_desktop.jpg",
+        "mobile": "dist/assets/img_d56c3819_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_89eb8911_1",
+      "original_path": "pages/acunetix/assets/Frame-81_fix0219-r1pq1ydiknpnq33sjujsqyvksnzoaf0vw9ai2oeymg.png",
+      "normalized_path": "dist/assets/img_89eb8911.png",
+      "variants": {
+        "desktop": "dist/assets/img_89eb8911_desktop.png",
+        "mobile": "dist/assets/img_89eb8911_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_7201f929_1",
+      "original_path": "pages/acunetix/assets/Frame-81_fix0219.png",
+      "normalized_path": "dist/assets/img_7201f929.png",
+      "variants": {
+        "desktop": "dist/assets/img_7201f929_desktop.png",
+        "mobile": "dist/assets/img_7201f929_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "acunetix_1",
+      "original_path": "pages/acunetix/assets/acunetix_1.jpg",
+      "normalized_path": "dist/assets/acunetix_1_e509aae9.jpg",
+      "variants": {
+        "desktop": "dist/assets/acunetix_1_e509aae9_desktop.jpg",
+        "mobile": "dist/assets/acunetix_1_e509aae9_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "acunetix_2",
+      "original_path": "pages/acunetix/assets/acunetix_2.png",
+      "normalized_path": "dist/assets/acunetix_2_01d3e674.png",
+      "variants": {
+        "desktop": "dist/assets/acunetix_2_01d3e674_desktop.png",
+        "mobile": "dist/assets/acunetix_2_01d3e674_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "acunetix_3",
+      "original_path": "pages/acunetix/assets/acunetix_3.jpg",
+      "normalized_path": "dist/assets/acunetix_3_a439afb5.jpg",
+      "variants": {
+        "desktop": "dist/assets/acunetix_3_a439afb5_desktop.jpg",
+        "mobile": "dist/assets/acunetix_3_a439afb5_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "acunetix_4",
+      "original_path": "pages/acunetix/assets/acunetix_4.png",
+      "normalized_path": "dist/assets/acunetix_4_50b04e88.png",
+      "variants": {
+        "desktop": "dist/assets/acunetix_4_50b04e88_desktop.png",
+        "mobile": "dist/assets/acunetix_4_50b04e88_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "acunetix_p1-scaled",
+      "original_path": "pages/acunetix/assets/acunetix_p1-scaled.jpg",
+      "normalized_path": "dist/assets/acunetix_p1-scaled_4741d4ae.jpg",
+      "variants": {
+        "desktop": "dist/assets/acunetix_p1-scaled_4741d4ae_desktop.jpg",
+        "mobile": "dist/assets/acunetix_p1-scaled_4741d4ae_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "acunetix_p2_fix",
+      "original_path": "pages/acunetix/assets/acunetix_p2_fix.png",
+      "normalized_path": "dist/assets/acunetix_p2_fix_dac0e920.png",
+      "variants": {
+        "desktop": "dist/assets/acunetix_p2_fix_dac0e920_desktop.png",
+        "mobile": "dist/assets/acunetix_p2_fix_dac0e920_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "acunetix_p3_fix",
+      "original_path": "pages/acunetix/assets/acunetix_p3_fix.jpg",
+      "normalized_path": "dist/assets/acunetix_p3_fix_1174fa15.jpg",
+      "variants": {
+        "desktop": "dist/assets/acunetix_p3_fix_1174fa15_desktop.jpg",
+        "mobile": "dist/assets/acunetix_p3_fix_1174fa15_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "acunetix_p4_fix",
+      "original_path": "pages/acunetix/assets/acunetix_p4_fix.png",
+      "normalized_path": "dist/assets/acunetix_p4_fix_48310aaa.png",
+      "variants": {
+        "desktop": "dist/assets/acunetix_p4_fix_48310aaa_desktop.png",
+        "mobile": "dist/assets/acunetix_p4_fix_48310aaa_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_b3b8bf33",
+      "original_path": "pages/acunetix/assets/產品BN-Acu-1209-scaled.jpg",
+      "normalized_path": "dist/assets/img_b3b8bf33.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_b3b8bf33_desktop.jpg",
+        "mobile": "dist/assets/img_b3b8bf33_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_89eb8911_2",
+      "original_path": "pages/array/assets/Frame-81_fix0219-r1pq1ydiknpnq33sjujsqyvksnzoaf0vw9ai2oeymg.png",
+      "normalized_path": "dist/assets/img_89eb8911.png",
+      "variants": {
+        "desktop": "dist/assets/img_89eb8911_desktop.png",
+        "mobile": "dist/assets/img_89eb8911_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_7201f929_2",
+      "original_path": "pages/array/assets/Frame-81_fix0219.png",
+      "normalized_path": "dist/assets/img_7201f929.png",
+      "variants": {
+        "desktop": "dist/assets/img_7201f929_desktop.png",
+        "mobile": "dist/assets/img_7201f929_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "array-1-fix",
+      "original_path": "pages/array/assets/array-1-fix.jpg",
+      "normalized_path": "dist/assets/array-1-fix_d8620b4c.jpg",
+      "variants": {
+        "desktop": "dist/assets/array-1-fix_d8620b4c_desktop.jpg",
+        "mobile": "dist/assets/array-1-fix_d8620b4c_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "array-10",
+      "original_path": "pages/array/assets/array-10.jpg",
+      "normalized_path": "dist/assets/array-10_e4f40a33.jpg",
+      "variants": {
+        "desktop": "dist/assets/array-10_e4f40a33_desktop.jpg",
+        "mobile": "dist/assets/array-10_e4f40a33_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "array-11",
+      "original_path": "pages/array/assets/array-11.jpg",
+      "normalized_path": "dist/assets/array-11_71728ed2.jpg",
+      "variants": {
+        "desktop": "dist/assets/array-11_71728ed2_desktop.jpg",
+        "mobile": "dist/assets/array-11_71728ed2_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "array-12",
+      "original_path": "pages/array/assets/array-12.jpg",
+      "normalized_path": "dist/assets/array-12_1cc39068.jpg",
+      "variants": {
+        "desktop": "dist/assets/array-12_1cc39068_desktop.jpg",
+        "mobile": "dist/assets/array-12_1cc39068_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "array-13",
+      "original_path": "pages/array/assets/array-13.jpg",
+      "normalized_path": "dist/assets/array-13_6245de97.jpg",
+      "variants": {
+        "desktop": "dist/assets/array-13_6245de97_desktop.jpg",
+        "mobile": "dist/assets/array-13_6245de97_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "array-14",
+      "original_path": "pages/array/assets/array-14.jpg",
+      "normalized_path": "dist/assets/array-14_947789f4.jpg",
+      "variants": {
+        "desktop": "dist/assets/array-14_947789f4_desktop.jpg",
+        "mobile": "dist/assets/array-14_947789f4_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "array-15",
+      "original_path": "pages/array/assets/array-15.jpg",
+      "normalized_path": "dist/assets/array-15_d5d10810.jpg",
+      "variants": {
+        "desktop": "dist/assets/array-15_d5d10810_desktop.jpg",
+        "mobile": "dist/assets/array-15_d5d10810_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "array-16",
+      "original_path": "pages/array/assets/array-16.jpg",
+      "normalized_path": "dist/assets/array-16_496328ed.jpg",
+      "variants": {
+        "desktop": "dist/assets/array-16_496328ed_desktop.jpg",
+        "mobile": "dist/assets/array-16_496328ed_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "array-17",
+      "original_path": "pages/array/assets/array-17.jpg",
+      "normalized_path": "dist/assets/array-17_b7ce3150.jpg",
+      "variants": {
+        "desktop": "dist/assets/array-17_b7ce3150_desktop.jpg",
+        "mobile": "dist/assets/array-17_b7ce3150_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "array-2",
+      "original_path": "pages/array/assets/array-2.jpg",
+      "normalized_path": "dist/assets/array-2_d5d10810.jpg",
+      "variants": {
+        "desktop": "dist/assets/array-2_d5d10810_desktop.jpg",
+        "mobile": "dist/assets/array-2_d5d10810_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "array-3",
+      "original_path": "pages/array/assets/array-3.jpg",
+      "normalized_path": "dist/assets/array-3_496328ed.jpg",
+      "variants": {
+        "desktop": "dist/assets/array-3_496328ed_desktop.jpg",
+        "mobile": "dist/assets/array-3_496328ed_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "array-4",
+      "original_path": "pages/array/assets/array-4.jpg",
+      "normalized_path": "dist/assets/array-4_18fa6b8e.jpg",
+      "variants": {
+        "desktop": "dist/assets/array-4_18fa6b8e_desktop.jpg",
+        "mobile": "dist/assets/array-4_18fa6b8e_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "array-5",
+      "original_path": "pages/array/assets/array-5.jpg",
+      "normalized_path": "dist/assets/array-5_662ffc22.jpg",
+      "variants": {
+        "desktop": "dist/assets/array-5_662ffc22_desktop.jpg",
+        "mobile": "dist/assets/array-5_662ffc22_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "array-6",
+      "original_path": "pages/array/assets/array-6.jpg",
+      "normalized_path": "dist/assets/array-6_25bdf43d.jpg",
+      "variants": {
+        "desktop": "dist/assets/array-6_25bdf43d_desktop.jpg",
+        "mobile": "dist/assets/array-6_25bdf43d_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "array-7",
+      "original_path": "pages/array/assets/array-7.jpg",
+      "normalized_path": "dist/assets/array-7_5ad2230c.jpg",
+      "variants": {
+        "desktop": "dist/assets/array-7_5ad2230c_desktop.jpg",
+        "mobile": "dist/assets/array-7_5ad2230c_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "array-8",
+      "original_path": "pages/array/assets/array-8.jpg",
+      "normalized_path": "dist/assets/array-8_9e9393fb.jpg",
+      "variants": {
+        "desktop": "dist/assets/array-8_9e9393fb_desktop.jpg",
+        "mobile": "dist/assets/array-8_9e9393fb_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "array-9",
+      "original_path": "pages/array/assets/array-9.jpg",
+      "normalized_path": "dist/assets/array-9_b7ce3150.jpg",
+      "variants": {
+        "desktop": "dist/assets/array-9_b7ce3150_desktop.jpg",
+        "mobile": "dist/assets/array-9_b7ce3150_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "array-fix",
+      "original_path": "pages/array/assets/array-fix.jpg",
+      "normalized_path": "dist/assets/array-fix_21b20f5c.jpg",
+      "variants": {
+        "desktop": "dist/assets/array-fix_21b20f5c_desktop.jpg",
+        "mobile": "dist/assets/array-fix_21b20f5c_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "array_banner",
+      "original_path": "pages/array/assets/array_banner.jpg",
+      "normalized_path": "dist/assets/array_banner_9ede83ef.jpg",
+      "variants": {
+        "desktop": "dist/assets/array_banner_9ede83ef_desktop.jpg",
+        "mobile": "dist/assets/array_banner_9ede83ef_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "array_banner_m",
+      "original_path": "pages/array/assets/array_banner_m.jpg",
+      "normalized_path": "dist/assets/array_banner_m_5e0825e1.jpg",
+      "variants": {
+        "desktop": "dist/assets/array_banner_m_5e0825e1_desktop.jpg",
+        "mobile": "dist/assets/array_banner_m_5e0825e1_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_89eb8911_3",
+      "original_path": "pages/data_middleware/assets/Frame-81_fix0219-r1pq1ydiknpnq33sjujsqyvksnzoaf0vw9ai2oeymg.png",
+      "normalized_path": "dist/assets/img_89eb8911.png",
+      "variants": {
+        "desktop": "dist/assets/img_89eb8911_desktop.png",
+        "mobile": "dist/assets/img_89eb8911_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_7201f929_3",
+      "original_path": "pages/data_middleware/assets/Frame-81_fix0219.png",
+      "normalized_path": "dist/assets/img_7201f929.png",
+      "variants": {
+        "desktop": "dist/assets/img_7201f929_desktop.png",
+        "mobile": "dist/assets/img_7201f929_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "data_middleware_banner",
+      "original_path": "pages/data_middleware/assets/data_middleware_banner.png",
+      "normalized_path": "dist/assets/data_middleware_banner_b3c1d80d.png",
+      "variants": {
+        "desktop": "dist/assets/data_middleware_banner_b3c1d80d_desktop.png",
+        "mobile": "dist/assets/data_middleware_banner_b3c1d80d_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_9996c160",
+      "original_path": "pages/esg/assets/BN-ESG-M.jpg",
+      "normalized_path": "dist/assets/img_9996c160.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_9996c160_desktop.jpg",
+        "mobile": "dist/assets/img_9996c160_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_f87cf22f",
+      "original_path": "pages/esg/assets/BN-ESG.jpg",
+      "normalized_path": "dist/assets/img_f87cf22f.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_f87cf22f_desktop.jpg",
+        "mobile": "dist/assets/img_f87cf22f_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_89eb8911_4",
+      "original_path": "pages/esg/assets/Frame-81_fix0219-r1pq1ydiknpnq33sjujsqyvksnzoaf0vw9ai2oeymg.png",
+      "normalized_path": "dist/assets/img_89eb8911.png",
+      "variants": {
+        "desktop": "dist/assets/img_89eb8911_desktop.png",
+        "mobile": "dist/assets/img_89eb8911_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_7201f929_4",
+      "original_path": "pages/esg/assets/Frame-81_fix0219.png",
+      "normalized_path": "dist/assets/img_7201f929.png",
+      "variants": {
+        "desktop": "dist/assets/img_7201f929_desktop.png",
+        "mobile": "dist/assets/img_7201f929_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "esg_1",
+      "original_path": "pages/esg/assets/esg_1.jpg",
+      "normalized_path": "dist/assets/esg_1_8067eca8.jpg",
+      "variants": {
+        "desktop": "dist/assets/esg_1_8067eca8_desktop.jpg",
+        "mobile": "dist/assets/esg_1_8067eca8_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "esg_2",
+      "original_path": "pages/esg/assets/esg_2.jpg",
+      "normalized_path": "dist/assets/esg_2_c459a824.jpg",
+      "variants": {
+        "desktop": "dist/assets/esg_2_c459a824_desktop.jpg",
+        "mobile": "dist/assets/esg_2_c459a824_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "esg_3",
+      "original_path": "pages/esg/assets/esg_3.jpg",
+      "normalized_path": "dist/assets/esg_3_3e05d31a.jpg",
+      "variants": {
+        "desktop": "dist/assets/esg_3_3e05d31a_desktop.jpg",
+        "mobile": "dist/assets/esg_3_3e05d31a_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "esg_p1_fix",
+      "original_path": "pages/esg/assets/esg_p1_fix.jpg",
+      "normalized_path": "dist/assets/esg_p1_fix_010b248a.jpg",
+      "variants": {
+        "desktop": "dist/assets/esg_p1_fix_010b248a_desktop.jpg",
+        "mobile": "dist/assets/esg_p1_fix_010b248a_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "esg_p2_1",
+      "original_path": "pages/esg/assets/esg_p2_1.jpg",
+      "normalized_path": "dist/assets/esg_p2_1_afb5b271.jpg",
+      "variants": {
+        "desktop": "dist/assets/esg_p2_1_afb5b271_desktop.jpg",
+        "mobile": "dist/assets/esg_p2_1_afb5b271_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "esg_p2_2",
+      "original_path": "pages/esg/assets/esg_p2_2.jpg",
+      "normalized_path": "dist/assets/esg_p2_2_494e1715.jpg",
+      "variants": {
+        "desktop": "dist/assets/esg_p2_2_494e1715_desktop.jpg",
+        "mobile": "dist/assets/esg_p2_2_494e1715_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "esg_p2_3",
+      "original_path": "pages/esg/assets/esg_p2_3.jpg",
+      "normalized_path": "dist/assets/esg_p2_3_1c81cfd9.jpg",
+      "variants": {
+        "desktop": "dist/assets/esg_p2_3_1c81cfd9_desktop.jpg",
+        "mobile": "dist/assets/esg_p2_3_1c81cfd9_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "esg_p3",
+      "original_path": "pages/esg/assets/esg_p3.jpg",
+      "normalized_path": "dist/assets/esg_p3_46f04a10.jpg",
+      "variants": {
+        "desktop": "dist/assets/esg_p3_46f04a10_desktop.jpg",
+        "mobile": "dist/assets/esg_p3_46f04a10_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_89eb8911_5",
+      "original_path": "pages/event_20251118/assets/Frame-81_fix0219-r1pq1ydiknpnq33sjujsqyvksnzoaf0vw9ai2oeymg.png",
+      "normalized_path": "dist/assets/img_89eb8911.png",
+      "variants": {
+        "desktop": "dist/assets/img_89eb8911_desktop.png",
+        "mobile": "dist/assets/img_89eb8911_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_7201f929_5",
+      "original_path": "pages/event_20251118/assets/Frame-81_fix0219.png",
+      "normalized_path": "dist/assets/img_7201f929.png",
+      "variants": {
+        "desktop": "dist/assets/img_7201f929_desktop.png",
+        "mobile": "dist/assets/img_7201f929_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_a54b743e",
+      "original_path": "pages/event_20251118/assets/智慧製造_配圖_01-scaled.jpg",
+      "normalized_path": "dist/assets/img_a54b743e.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_a54b743e_desktop.jpg",
+        "mobile": "dist/assets/img_a54b743e_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_89eb8911_6",
+      "original_path": "pages/event_20251124/assets/Frame-81_fix0219-r1pq1ydiknpnq33sjujsqyvksnzoaf0vw9ai2oeymg.png",
+      "normalized_path": "dist/assets/img_89eb8911.png",
+      "variants": {
+        "desktop": "dist/assets/img_89eb8911_desktop.png",
+        "mobile": "dist/assets/img_89eb8911_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_7201f929_6",
+      "original_path": "pages/event_20251124/assets/Frame-81_fix0219.png",
+      "normalized_path": "dist/assets/img_7201f929.png",
+      "variants": {
+        "desktop": "dist/assets/img_7201f929_desktop.png",
+        "mobile": "dist/assets/img_7201f929_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_eaf65102",
+      "original_path": "pages/event_20251124/assets/動信攜手鎰威科技.png",
+      "normalized_path": "dist/assets/img_eaf65102.png",
+      "variants": {
+        "desktop": "dist/assets/img_eaf65102_desktop.png",
+        "mobile": "dist/assets/img_eaf65102_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_89eb8911_7",
+      "original_path": "pages/fortinet/assets/Frame-81_fix0219-r1pq1ydiknpnq33sjujsqyvksnzoaf0vw9ai2oeymg.png",
+      "normalized_path": "dist/assets/img_89eb8911.png",
+      "variants": {
+        "desktop": "dist/assets/img_89eb8911_desktop.png",
+        "mobile": "dist/assets/img_89eb8911_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_7201f929_7",
+      "original_path": "pages/fortinet/assets/Frame-81_fix0219.png",
+      "normalized_path": "dist/assets/img_7201f929.png",
+      "variants": {
+        "desktop": "dist/assets/img_7201f929_desktop.png",
+        "mobile": "dist/assets/img_7201f929_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "fortinet-2-m",
+      "original_path": "pages/fortinet/assets/fortinet-2-m.jpg",
+      "normalized_path": "dist/assets/fortinet-2-m_e788d0f7.jpg",
+      "variants": {
+        "desktop": "dist/assets/fortinet-2-m_e788d0f7_desktop.jpg",
+        "mobile": "dist/assets/fortinet-2-m_e788d0f7_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "fortinet-2",
+      "original_path": "pages/fortinet/assets/fortinet-2.jpg",
+      "normalized_path": "dist/assets/fortinet-2_e609c4fe.jpg",
+      "variants": {
+        "desktop": "dist/assets/fortinet-2_e609c4fe_desktop.jpg",
+        "mobile": "dist/assets/fortinet-2_e609c4fe_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "fortinet-4-fix",
+      "original_path": "pages/fortinet/assets/fortinet-4-fix.jpg",
+      "normalized_path": "dist/assets/fortinet-4-fix_e261fd80.jpg",
+      "variants": {
+        "desktop": "dist/assets/fortinet-4-fix_e261fd80_desktop.jpg",
+        "mobile": "dist/assets/fortinet-4-fix_e261fd80_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "fortinet",
+      "original_path": "pages/fortinet/assets/fortinet.jpg",
+      "normalized_path": "dist/assets/fortinet_88703eac.jpg",
+      "variants": {
+        "desktop": "dist/assets/fortinet_88703eac_desktop.jpg",
+        "mobile": "dist/assets/fortinet_88703eac_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "fortinet_banner",
+      "original_path": "pages/fortinet/assets/fortinet_banner.jpg",
+      "normalized_path": "dist/assets/fortinet_banner_4a2e3c4e.jpg",
+      "variants": {
+        "desktop": "dist/assets/fortinet_banner_4a2e3c4e_desktop.jpg",
+        "mobile": "dist/assets/fortinet_banner_4a2e3c4e_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "fortinet_banner_m",
+      "original_path": "pages/fortinet/assets/fortinet_banner_m.jpg",
+      "normalized_path": "dist/assets/fortinet_banner_m_6b9a87d5.jpg",
+      "variants": {
+        "desktop": "dist/assets/fortinet_banner_m_6b9a87d5_desktop.jpg",
+        "mobile": "dist/assets/fortinet_banner_m_6b9a87d5_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_89eb8911_8",
+      "original_path": "pages/index/assets/Frame-81_fix0219-r1pq1ydiknpnq33sjujsqyvksnzoaf0vw9ai2oeymg.png",
+      "normalized_path": "dist/assets/img_89eb8911.png",
+      "variants": {
+        "desktop": "dist/assets/img_89eb8911_desktop.png",
+        "mobile": "dist/assets/img_89eb8911_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_7201f929_8",
+      "original_path": "pages/index/assets/Frame-81_fix0219.png",
+      "normalized_path": "dist/assets/img_7201f929.png",
+      "variants": {
+        "desktop": "dist/assets/img_7201f929_desktop.png",
+        "mobile": "dist/assets/img_7201f929_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "bn-home-m",
+      "original_path": "pages/index/assets/bn-home-m.jpg",
+      "normalized_path": "dist/assets/bn-home-m_4d7d0ff0.jpg",
+      "variants": {
+        "desktop": "dist/assets/bn-home-m_4d7d0ff0_desktop.jpg",
+        "mobile": "dist/assets/bn-home-m_4d7d0ff0_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "home-banner-1209",
+      "original_path": "pages/index/assets/home-banner-1209.png",
+      "normalized_path": "dist/assets/home-banner-1209_037e3807.png",
+      "variants": {
+        "desktop": "dist/assets/home-banner-1209_037e3807_desktop.png",
+        "mobile": "dist/assets/home-banner-1209_037e3807_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "home-bg",
+      "original_path": "pages/index/assets/home-bg.png",
+      "normalized_path": "dist/assets/home-bg_f2dcff28.png",
+      "variants": {
+        "desktop": "dist/assets/home-bg_f2dcff28_desktop.png",
+        "mobile": "dist/assets/home-bg_f2dcff28_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "logsec-popup-829",
+      "original_path": "pages/index/assets/logsec-popup-829.png",
+      "normalized_path": "dist/assets/logsec-popup-829_cb16a9c4.png",
+      "variants": {
+        "desktop": "dist/assets/logsec-popup-829_cb16a9c4_desktop.png",
+        "mobile": "dist/assets/logsec-popup-829_cb16a9c4_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "solutions_card_1",
+      "original_path": "pages/index/assets/solutions_card_1.png",
+      "normalized_path": "dist/assets/solutions_card_1_37666420.png",
+      "variants": {
+        "desktop": "dist/assets/solutions_card_1_37666420_desktop.png",
+        "mobile": "dist/assets/solutions_card_1_37666420_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "solutions_card_2",
+      "original_path": "pages/index/assets/solutions_card_2.png",
+      "normalized_path": "dist/assets/solutions_card_2_a9d33506.png",
+      "variants": {
+        "desktop": "dist/assets/solutions_card_2_a9d33506_desktop.png",
+        "mobile": "dist/assets/solutions_card_2_a9d33506_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "whatweoffer_card_1",
+      "original_path": "pages/index/assets/whatweoffer_card_1.png",
+      "normalized_path": "dist/assets/whatweoffer_card_1_60b7faeb.png",
+      "variants": {
+        "desktop": "dist/assets/whatweoffer_card_1_60b7faeb_desktop.png",
+        "mobile": "dist/assets/whatweoffer_card_1_60b7faeb_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "whatweoffer_card_2",
+      "original_path": "pages/index/assets/whatweoffer_card_2.png",
+      "normalized_path": "dist/assets/whatweoffer_card_2_ae964f12.png",
+      "variants": {
+        "desktop": "dist/assets/whatweoffer_card_2_ae964f12_desktop.png",
+        "mobile": "dist/assets/whatweoffer_card_2_ae964f12_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "whatweoffer_card_3",
+      "original_path": "pages/index/assets/whatweoffer_card_3.png",
+      "normalized_path": "dist/assets/whatweoffer_card_3_f749eed0.png",
+      "variants": {
+        "desktop": "dist/assets/whatweoffer_card_3_f749eed0_desktop.png",
+        "mobile": "dist/assets/whatweoffer_card_3_f749eed0_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_1446f743",
+      "original_path": "pages/ist/assets/BN-IST-M_fix.jpg",
+      "normalized_path": "dist/assets/img_1446f743.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_1446f743_desktop.jpg",
+        "mobile": "dist/assets/img_1446f743_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_89eb8911_9",
+      "original_path": "pages/ist/assets/Frame-81_fix0219-r1pq1ydiknpnq33sjujsqyvksnzoaf0vw9ai2oeymg.png",
+      "normalized_path": "dist/assets/img_89eb8911.png",
+      "variants": {
+        "desktop": "dist/assets/img_89eb8911_desktop.png",
+        "mobile": "dist/assets/img_89eb8911_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_7201f929_9",
+      "original_path": "pages/ist/assets/Frame-81_fix0219.png",
+      "normalized_path": "dist/assets/img_7201f929.png",
+      "variants": {
+        "desktop": "dist/assets/img_7201f929_desktop.png",
+        "mobile": "dist/assets/img_7201f929_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "ist_1",
+      "original_path": "pages/ist/assets/ist_1.jpg",
+      "normalized_path": "dist/assets/ist_1_817248ee.jpg",
+      "variants": {
+        "desktop": "dist/assets/ist_1_817248ee_desktop.jpg",
+        "mobile": "dist/assets/ist_1_817248ee_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "ist_2",
+      "original_path": "pages/ist/assets/ist_2.jpg",
+      "normalized_path": "dist/assets/ist_2_26c33fba.jpg",
+      "variants": {
+        "desktop": "dist/assets/ist_2_26c33fba_desktop.jpg",
+        "mobile": "dist/assets/ist_2_26c33fba_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "ist_3",
+      "original_path": "pages/ist/assets/ist_3.jpg",
+      "normalized_path": "dist/assets/ist_3_29ca3da4.jpg",
+      "variants": {
+        "desktop": "dist/assets/ist_3_29ca3da4_desktop.jpg",
+        "mobile": "dist/assets/ist_3_29ca3da4_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "ist_4",
+      "original_path": "pages/ist/assets/ist_4.jpg",
+      "normalized_path": "dist/assets/ist_4_b0d507cb.jpg",
+      "variants": {
+        "desktop": "dist/assets/ist_4_b0d507cb_desktop.jpg",
+        "mobile": "dist/assets/ist_4_b0d507cb_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "ist_p1_1",
+      "original_path": "pages/ist/assets/ist_p1_1.jpg",
+      "normalized_path": "dist/assets/ist_p1_1_008d75bd.jpg",
+      "variants": {
+        "desktop": "dist/assets/ist_p1_1_008d75bd_desktop.jpg",
+        "mobile": "dist/assets/ist_p1_1_008d75bd_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "ist_p1_2",
+      "original_path": "pages/ist/assets/ist_p1_2.jpg",
+      "normalized_path": "dist/assets/ist_p1_2_94ad5d55.jpg",
+      "variants": {
+        "desktop": "dist/assets/ist_p1_2_94ad5d55_desktop.jpg",
+        "mobile": "dist/assets/ist_p1_2_94ad5d55_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "ist_p1_3",
+      "original_path": "pages/ist/assets/ist_p1_3.jpg",
+      "normalized_path": "dist/assets/ist_p1_3_2d80e725.jpg",
+      "variants": {
+        "desktop": "dist/assets/ist_p1_3_2d80e725_desktop.jpg",
+        "mobile": "dist/assets/ist_p1_3_2d80e725_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "ist_p1_4",
+      "original_path": "pages/ist/assets/ist_p1_4.jpg",
+      "normalized_path": "dist/assets/ist_p1_4_39728fb8.jpg",
+      "variants": {
+        "desktop": "dist/assets/ist_p1_4_39728fb8_desktop.jpg",
+        "mobile": "dist/assets/ist_p1_4_39728fb8_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "ist_p2",
+      "original_path": "pages/ist/assets/ist_p2.jpg",
+      "normalized_path": "dist/assets/ist_p2_d382b4d1.jpg",
+      "variants": {
+        "desktop": "dist/assets/ist_p2_d382b4d1_desktop.jpg",
+        "mobile": "dist/assets/ist_p2_d382b4d1_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "ist_p3_1",
+      "original_path": "pages/ist/assets/ist_p3_1.jpg",
+      "normalized_path": "dist/assets/ist_p3_1_3de82acd.jpg",
+      "variants": {
+        "desktop": "dist/assets/ist_p3_1_3de82acd_desktop.jpg",
+        "mobile": "dist/assets/ist_p3_1_3de82acd_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "ist_p3_2_fix",
+      "original_path": "pages/ist/assets/ist_p3_2_fix.jpg",
+      "normalized_path": "dist/assets/ist_p3_2_fix_fcbfb984.jpg",
+      "variants": {
+        "desktop": "dist/assets/ist_p3_2_fix_fcbfb984_desktop.jpg",
+        "mobile": "dist/assets/ist_p3_2_fix_fcbfb984_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "ist_p3_3",
+      "original_path": "pages/ist/assets/ist_p3_3.jpg",
+      "normalized_path": "dist/assets/ist_p3_3_9e7b0c20.jpg",
+      "variants": {
+        "desktop": "dist/assets/ist_p3_3_9e7b0c20_desktop.jpg",
+        "mobile": "dist/assets/ist_p3_3_9e7b0c20_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "ist_p3_4",
+      "original_path": "pages/ist/assets/ist_p3_4.jpg",
+      "normalized_path": "dist/assets/ist_p3_4_8a2879f0.jpg",
+      "variants": {
+        "desktop": "dist/assets/ist_p3_4_8a2879f0_desktop.jpg",
+        "mobile": "dist/assets/ist_p3_4_8a2879f0_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "ist_p3_5",
+      "original_path": "pages/ist/assets/ist_p3_5.jpg",
+      "normalized_path": "dist/assets/ist_p3_5_fcb77b8c.jpg",
+      "variants": {
+        "desktop": "dist/assets/ist_p3_5_fcb77b8c_desktop.jpg",
+        "mobile": "dist/assets/ist_p3_5_fcb77b8c_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "ist_p4_fix-scaled",
+      "original_path": "pages/ist/assets/ist_p4_fix-scaled.jpg",
+      "normalized_path": "dist/assets/ist_p4_fix-scaled_79f12b8b.jpg",
+      "variants": {
+        "desktop": "dist/assets/ist_p4_fix-scaled_79f12b8b_desktop.jpg",
+        "mobile": "dist/assets/ist_p4_fix-scaled_79f12b8b_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_63dada3e",
+      "original_path": "pages/ist/assets/產品BN-IST-1209-scaled.jpg",
+      "normalized_path": "dist/assets/img_63dada3e.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_63dada3e_desktop.jpg",
+        "mobile": "dist/assets/img_63dada3e_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_89eb8911_10",
+      "original_path": "pages/logsec/assets/Frame-81_fix0219-r1pq1ydiknpnq33sjujsqyvksnzoaf0vw9ai2oeymg.png",
+      "normalized_path": "dist/assets/img_89eb8911.png",
+      "variants": {
+        "desktop": "dist/assets/img_89eb8911_desktop.png",
+        "mobile": "dist/assets/img_89eb8911_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_7201f929_10",
+      "original_path": "pages/logsec/assets/Frame-81_fix0219.png",
+      "normalized_path": "dist/assets/img_7201f929.png",
+      "variants": {
+        "desktop": "dist/assets/img_7201f929_desktop.png",
+        "mobile": "dist/assets/img_7201f929_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "graylog_2_fix_20250822",
+      "original_path": "pages/logsec/assets/graylog_2_fix_20250822.png",
+      "normalized_path": "dist/assets/graylog_2_fix_20250822_87e4e44f.png",
+      "variants": {
+        "desktop": "dist/assets/graylog_2_fix_20250822_87e4e44f_desktop.png",
+        "mobile": "dist/assets/graylog_2_fix_20250822_87e4e44f_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "graylog_3",
+      "original_path": "pages/logsec/assets/graylog_3.jpg",
+      "normalized_path": "dist/assets/graylog_3_54fe0160.jpg",
+      "variants": {
+        "desktop": "dist/assets/graylog_3_54fe0160_desktop.jpg",
+        "mobile": "dist/assets/graylog_3_54fe0160_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "graylog_4_fix_20250822",
+      "original_path": "pages/logsec/assets/graylog_4_fix_20250822.png",
+      "normalized_path": "dist/assets/graylog_4_fix_20250822_cb1f9a23.png",
+      "variants": {
+        "desktop": "dist/assets/graylog_4_fix_20250822_cb1f9a23_desktop.png",
+        "mobile": "dist/assets/graylog_4_fix_20250822_cb1f9a23_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "graylog_5_fix_20250822",
+      "original_path": "pages/logsec/assets/graylog_5_fix_20250822.png",
+      "normalized_path": "dist/assets/graylog_5_fix_20250822_a942458c.png",
+      "variants": {
+        "desktop": "dist/assets/graylog_5_fix_20250822_a942458c_desktop.png",
+        "mobile": "dist/assets/graylog_5_fix_20250822_a942458c_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "graylog_6_fix_20250822",
+      "original_path": "pages/logsec/assets/graylog_6_fix_20250822.png",
+      "normalized_path": "dist/assets/graylog_6_fix_20250822_40da60ce.png",
+      "variants": {
+        "desktop": "dist/assets/graylog_6_fix_20250822_40da60ce_desktop.png",
+        "mobile": "dist/assets/graylog_6_fix_20250822_40da60ce_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "graylog_7_fix_20250822",
+      "original_path": "pages/logsec/assets/graylog_7_fix_20250822.png",
+      "normalized_path": "dist/assets/graylog_7_fix_20250822_aaa4e115.png",
+      "variants": {
+        "desktop": "dist/assets/graylog_7_fix_20250822_aaa4e115_desktop.png",
+        "mobile": "dist/assets/graylog_7_fix_20250822_aaa4e115_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "graylog_p3_1",
+      "original_path": "pages/logsec/assets/graylog_p3_1.jpg",
+      "normalized_path": "dist/assets/graylog_p3_1_a3c09cf8.jpg",
+      "variants": {
+        "desktop": "dist/assets/graylog_p3_1_a3c09cf8_desktop.jpg",
+        "mobile": "dist/assets/graylog_p3_1_a3c09cf8_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "graylog_p3_2",
+      "original_path": "pages/logsec/assets/graylog_p3_2.jpg",
+      "normalized_path": "dist/assets/graylog_p3_2_ddfbaef7.jpg",
+      "variants": {
+        "desktop": "dist/assets/graylog_p3_2_ddfbaef7_desktop.jpg",
+        "mobile": "dist/assets/graylog_p3_2_ddfbaef7_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "graylog_p3_3",
+      "original_path": "pages/logsec/assets/graylog_p3_3.jpg",
+      "normalized_path": "dist/assets/graylog_p3_3_f76831a1.jpg",
+      "variants": {
+        "desktop": "dist/assets/graylog_p3_3_f76831a1_desktop.jpg",
+        "mobile": "dist/assets/graylog_p3_3_f76831a1_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "graylog_p3_4",
+      "original_path": "pages/logsec/assets/graylog_p3_4.jpg",
+      "normalized_path": "dist/assets/graylog_p3_4_210cd688.jpg",
+      "variants": {
+        "desktop": "dist/assets/graylog_p3_4_210cd688_desktop.jpg",
+        "mobile": "dist/assets/graylog_p3_4_210cd688_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "graylog_p3_5",
+      "original_path": "pages/logsec/assets/graylog_p3_5.jpg",
+      "normalized_path": "dist/assets/graylog_p3_5_cd2c9486.jpg",
+      "variants": {
+        "desktop": "dist/assets/graylog_p3_5_cd2c9486_desktop.jpg",
+        "mobile": "dist/assets/graylog_p3_5_cd2c9486_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "graylog_p3_6",
+      "original_path": "pages/logsec/assets/graylog_p3_6.jpg",
+      "normalized_path": "dist/assets/graylog_p3_6_ba4205a2.jpg",
+      "variants": {
+        "desktop": "dist/assets/graylog_p3_6_ba4205a2_desktop.jpg",
+        "mobile": "dist/assets/graylog_p3_6_ba4205a2_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "logsec_1_fix",
+      "original_path": "pages/logsec/assets/logsec_1_fix.png",
+      "normalized_path": "dist/assets/logsec_1_fix_c74c00aa.png",
+      "variants": {
+        "desktop": "dist/assets/logsec_1_fix_c74c00aa_desktop.png",
+        "mobile": "dist/assets/logsec_1_fix_c74c00aa_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "logsec_2_fix",
+      "original_path": "pages/logsec/assets/logsec_2_fix.png",
+      "normalized_path": "dist/assets/logsec_2_fix_b58698ac.png",
+      "variants": {
+        "desktop": "dist/assets/logsec_2_fix_b58698ac_desktop.png",
+        "mobile": "dist/assets/logsec_2_fix_b58698ac_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "logsec_2_fix2",
+      "original_path": "pages/logsec/assets/logsec_2_fix2.png",
+      "normalized_path": "dist/assets/logsec_2_fix2_8423fddc.png",
+      "variants": {
+        "desktop": "dist/assets/logsec_2_fix2_8423fddc_desktop.png",
+        "mobile": "dist/assets/logsec_2_fix2_8423fddc_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "logsec_banner",
+      "original_path": "pages/logsec/assets/logsec_banner.jpg",
+      "normalized_path": "dist/assets/logsec_banner_229760a0.jpg",
+      "variants": {
+        "desktop": "dist/assets/logsec_banner_229760a0_desktop.jpg",
+        "mobile": "dist/assets/logsec_banner_229760a0_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "logsec_banner_m",
+      "original_path": "pages/logsec/assets/logsec_banner_m.png",
+      "normalized_path": "dist/assets/logsec_banner_m_b7a7eca6.png",
+      "variants": {
+        "desktop": "dist/assets/logsec_banner_m_b7a7eca6_desktop.png",
+        "mobile": "dist/assets/logsec_banner_m_b7a7eca6_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_89eb8911_11",
+      "original_path": "pages/mes/assets/Frame-81_fix0219-r1pq1ydiknpnq33sjujsqyvksnzoaf0vw9ai2oeymg.png",
+      "normalized_path": "dist/assets/img_89eb8911.png",
+      "variants": {
+        "desktop": "dist/assets/img_89eb8911_desktop.png",
+        "mobile": "dist/assets/img_89eb8911_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_7201f929_11",
+      "original_path": "pages/mes/assets/Frame-81_fix0219.png",
+      "normalized_path": "dist/assets/img_7201f929.png",
+      "variants": {
+        "desktop": "dist/assets/img_7201f929_desktop.png",
+        "mobile": "dist/assets/img_7201f929_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "mes_banner_2",
+      "original_path": "pages/mes/assets/mes_banner_2.png",
+      "normalized_path": "dist/assets/mes_banner_2_f83127ff.png",
+      "variants": {
+        "desktop": "dist/assets/mes_banner_2_f83127ff_desktop.png",
+        "mobile": "dist/assets/mes_banner_2_f83127ff_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_89eb8911_12",
+      "original_path": "pages/palo_alto/assets/Frame-81_fix0219-r1pq1ydiknpnq33sjujsqyvksnzoaf0vw9ai2oeymg.png",
+      "normalized_path": "dist/assets/img_89eb8911.png",
+      "variants": {
+        "desktop": "dist/assets/img_89eb8911_desktop.png",
+        "mobile": "dist/assets/img_89eb8911_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_7201f929_12",
+      "original_path": "pages/palo_alto/assets/Frame-81_fix0219.png",
+      "normalized_path": "dist/assets/img_7201f929.png",
+      "variants": {
+        "desktop": "dist/assets/img_7201f929_desktop.png",
+        "mobile": "dist/assets/img_7201f929_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "paloalto-1-m",
+      "original_path": "pages/palo_alto/assets/paloalto-1-m.jpg",
+      "normalized_path": "dist/assets/paloalto-1-m_28c408ae.jpg",
+      "variants": {
+        "desktop": "dist/assets/paloalto-1-m_28c408ae_desktop.jpg",
+        "mobile": "dist/assets/paloalto-1-m_28c408ae_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "paloalto-1",
+      "original_path": "pages/palo_alto/assets/paloalto-1.jpg",
+      "normalized_path": "dist/assets/paloalto-1_c1687766.jpg",
+      "variants": {
+        "desktop": "dist/assets/paloalto-1_c1687766_desktop.jpg",
+        "mobile": "dist/assets/paloalto-1_c1687766_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "paloalto-2",
+      "original_path": "pages/palo_alto/assets/paloalto-2.jpg",
+      "normalized_path": "dist/assets/paloalto-2_cd947dd1.jpg",
+      "variants": {
+        "desktop": "dist/assets/paloalto-2_cd947dd1_desktop.jpg",
+        "mobile": "dist/assets/paloalto-2_cd947dd1_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "paloalto",
+      "original_path": "pages/palo_alto/assets/paloalto.jpg",
+      "normalized_path": "dist/assets/paloalto_c2ffb0e4.jpg",
+      "variants": {
+        "desktop": "dist/assets/paloalto_c2ffb0e4_desktop.jpg",
+        "mobile": "dist/assets/paloalto_c2ffb0e4_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "paloalto_banner",
+      "original_path": "pages/palo_alto/assets/paloalto_banner.jpg",
+      "normalized_path": "dist/assets/paloalto_banner_3d8c7a79.jpg",
+      "variants": {
+        "desktop": "dist/assets/paloalto_banner_3d8c7a79_desktop.jpg",
+        "mobile": "dist/assets/paloalto_banner_3d8c7a79_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "paloalto_banner_m",
+      "original_path": "pages/palo_alto/assets/paloalto_banner_m.jpg",
+      "normalized_path": "dist/assets/paloalto_banner_m_d41330a6.jpg",
+      "variants": {
+        "desktop": "dist/assets/paloalto_banner_m_d41330a6_desktop.jpg",
+        "mobile": "dist/assets/paloalto_banner_m_d41330a6_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_89eb8911_13",
+      "original_path": "pages/scm/assets/Frame-81_fix0219-r1pq1ydiknpnq33sjujsqyvksnzoaf0vw9ai2oeymg.png",
+      "normalized_path": "dist/assets/img_89eb8911.png",
+      "variants": {
+        "desktop": "dist/assets/img_89eb8911_desktop.png",
+        "mobile": "dist/assets/img_89eb8911_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_7201f929_13",
+      "original_path": "pages/scm/assets/Frame-81_fix0219.png",
+      "normalized_path": "dist/assets/img_7201f929.png",
+      "variants": {
+        "desktop": "dist/assets/img_7201f929_desktop.png",
+        "mobile": "dist/assets/img_7201f929_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_91cfdffe",
+      "original_path": "pages/scm/assets/SCM.png",
+      "normalized_path": "dist/assets/img_91cfdffe.png",
+      "variants": {
+        "desktop": "dist/assets/img_91cfdffe_desktop.png",
+        "mobile": "dist/assets/img_91cfdffe_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "scm_banner_2",
+      "original_path": "pages/scm/assets/scm_banner_2.png",
+      "normalized_path": "dist/assets/scm_banner_2_61336c70.png",
+      "variants": {
+        "desktop": "dist/assets/scm_banner_2_61336c70_desktop.png",
+        "mobile": "dist/assets/scm_banner_2_61336c70_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_6e1e5e9a",
+      "original_path": "pages/security_scorecard/assets/BN-SecurityScorecard-M_fix.jpg",
+      "normalized_path": "dist/assets/img_6e1e5e9a.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_6e1e5e9a_desktop.jpg",
+        "mobile": "dist/assets/img_6e1e5e9a_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_89eb8911_14",
+      "original_path": "pages/security_scorecard/assets/Frame-81_fix0219-r1pq1ydiknpnq33sjujsqyvksnzoaf0vw9ai2oeymg.png",
+      "normalized_path": "dist/assets/img_89eb8911.png",
+      "variants": {
+        "desktop": "dist/assets/img_89eb8911_desktop.png",
+        "mobile": "dist/assets/img_89eb8911_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_7201f929_14",
+      "original_path": "pages/security_scorecard/assets/Frame-81_fix0219.png",
+      "normalized_path": "dist/assets/img_7201f929.png",
+      "variants": {
+        "desktop": "dist/assets/img_7201f929_desktop.png",
+        "mobile": "dist/assets/img_7201f929_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "securityscorecard_1",
+      "original_path": "pages/security_scorecard/assets/securityscorecard_1.jpg",
+      "normalized_path": "dist/assets/securityscorecard_1_d5e67797.jpg",
+      "variants": {
+        "desktop": "dist/assets/securityscorecard_1_d5e67797_desktop.jpg",
+        "mobile": "dist/assets/securityscorecard_1_d5e67797_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "securityscorecard_2",
+      "original_path": "pages/security_scorecard/assets/securityscorecard_2.jpg",
+      "normalized_path": "dist/assets/securityscorecard_2_c3f897c4.jpg",
+      "variants": {
+        "desktop": "dist/assets/securityscorecard_2_c3f897c4_desktop.jpg",
+        "mobile": "dist/assets/securityscorecard_2_c3f897c4_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "securityscorecard_3",
+      "original_path": "pages/security_scorecard/assets/securityscorecard_3.png",
+      "normalized_path": "dist/assets/securityscorecard_3_8afa1c2b.png",
+      "variants": {
+        "desktop": "dist/assets/securityscorecard_3_8afa1c2b_desktop.png",
+        "mobile": "dist/assets/securityscorecard_3_8afa1c2b_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "securityscorecard_4",
+      "original_path": "pages/security_scorecard/assets/securityscorecard_4.png",
+      "normalized_path": "dist/assets/securityscorecard_4_cc49653a.png",
+      "variants": {
+        "desktop": "dist/assets/securityscorecard_4_cc49653a_desktop.png",
+        "mobile": "dist/assets/securityscorecard_4_cc49653a_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "securityscorecard_p1_1",
+      "original_path": "pages/security_scorecard/assets/securityscorecard_p1_1.jpg",
+      "normalized_path": "dist/assets/securityscorecard_p1_1_9056e66f.jpg",
+      "variants": {
+        "desktop": "dist/assets/securityscorecard_p1_1_9056e66f_desktop.jpg",
+        "mobile": "dist/assets/securityscorecard_p1_1_9056e66f_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "securityscorecard_p1_10",
+      "original_path": "pages/security_scorecard/assets/securityscorecard_p1_10.jpg",
+      "normalized_path": "dist/assets/securityscorecard_p1_10_388631e2.jpg",
+      "variants": {
+        "desktop": "dist/assets/securityscorecard_p1_10_388631e2_desktop.jpg",
+        "mobile": "dist/assets/securityscorecard_p1_10_388631e2_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "securityscorecard_p1_2",
+      "original_path": "pages/security_scorecard/assets/securityscorecard_p1_2.jpg",
+      "normalized_path": "dist/assets/securityscorecard_p1_2_dec4b5de.jpg",
+      "variants": {
+        "desktop": "dist/assets/securityscorecard_p1_2_dec4b5de_desktop.jpg",
+        "mobile": "dist/assets/securityscorecard_p1_2_dec4b5de_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "securityscorecard_p1_3",
+      "original_path": "pages/security_scorecard/assets/securityscorecard_p1_3.jpg",
+      "normalized_path": "dist/assets/securityscorecard_p1_3_b15d4eff.jpg",
+      "variants": {
+        "desktop": "dist/assets/securityscorecard_p1_3_b15d4eff_desktop.jpg",
+        "mobile": "dist/assets/securityscorecard_p1_3_b15d4eff_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "securityscorecard_p1_4",
+      "original_path": "pages/security_scorecard/assets/securityscorecard_p1_4.jpg",
+      "normalized_path": "dist/assets/securityscorecard_p1_4_7d5e8419.jpg",
+      "variants": {
+        "desktop": "dist/assets/securityscorecard_p1_4_7d5e8419_desktop.jpg",
+        "mobile": "dist/assets/securityscorecard_p1_4_7d5e8419_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "securityscorecard_p1_5",
+      "original_path": "pages/security_scorecard/assets/securityscorecard_p1_5.jpg",
+      "normalized_path": "dist/assets/securityscorecard_p1_5_19116124.jpg",
+      "variants": {
+        "desktop": "dist/assets/securityscorecard_p1_5_19116124_desktop.jpg",
+        "mobile": "dist/assets/securityscorecard_p1_5_19116124_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "securityscorecard_p1_6",
+      "original_path": "pages/security_scorecard/assets/securityscorecard_p1_6.jpg",
+      "normalized_path": "dist/assets/securityscorecard_p1_6_f805478f.jpg",
+      "variants": {
+        "desktop": "dist/assets/securityscorecard_p1_6_f805478f_desktop.jpg",
+        "mobile": "dist/assets/securityscorecard_p1_6_f805478f_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "securityscorecard_p1_7",
+      "original_path": "pages/security_scorecard/assets/securityscorecard_p1_7.jpg",
+      "normalized_path": "dist/assets/securityscorecard_p1_7_05c5700d.jpg",
+      "variants": {
+        "desktop": "dist/assets/securityscorecard_p1_7_05c5700d_desktop.jpg",
+        "mobile": "dist/assets/securityscorecard_p1_7_05c5700d_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "securityscorecard_p1_8",
+      "original_path": "pages/security_scorecard/assets/securityscorecard_p1_8.jpg",
+      "normalized_path": "dist/assets/securityscorecard_p1_8_325e87c8.jpg",
+      "variants": {
+        "desktop": "dist/assets/securityscorecard_p1_8_325e87c8_desktop.jpg",
+        "mobile": "dist/assets/securityscorecard_p1_8_325e87c8_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "securityscorecard_p1_9",
+      "original_path": "pages/security_scorecard/assets/securityscorecard_p1_9.jpg",
+      "normalized_path": "dist/assets/securityscorecard_p1_9_d4a16d8a.jpg",
+      "variants": {
+        "desktop": "dist/assets/securityscorecard_p1_9_d4a16d8a_desktop.jpg",
+        "mobile": "dist/assets/securityscorecard_p1_9_d4a16d8a_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_0ada3f61",
+      "original_path": "pages/security_scorecard/assets/產品BN-Sec-1209-scaled.jpg",
+      "normalized_path": "dist/assets/img_0ada3f61.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_0ada3f61_desktop.jpg",
+        "mobile": "dist/assets/img_0ada3f61_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "568_card",
+      "original_path": "pages/smartmanufacturing_ai/assets/568_card.jpg",
+      "normalized_path": "dist/assets/568_card_17d1f071.jpg",
+      "variants": {
+        "desktop": "dist/assets/568_card_17d1f071_desktop.jpg",
+        "mobile": "dist/assets/568_card_17d1f071_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_89eb8911_15",
+      "original_path": "pages/smartmanufacturing_ai/assets/Frame-81_fix0219-r1pq1ydiknpnq33sjujsqyvksnzoaf0vw9ai2oeymg.png",
+      "normalized_path": "dist/assets/img_89eb8911.png",
+      "variants": {
+        "desktop": "dist/assets/img_89eb8911_desktop.png",
+        "mobile": "dist/assets/img_89eb8911_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_7201f929_15",
+      "original_path": "pages/smartmanufacturing_ai/assets/Frame-81_fix0219.png",
+      "normalized_path": "dist/assets/img_7201f929.png",
+      "variants": {
+        "desktop": "dist/assets/img_7201f929_desktop.png",
+        "mobile": "dist/assets/img_7201f929_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "ai_banner",
+      "original_path": "pages/smartmanufacturing_ai/assets/ai_banner.png",
+      "normalized_path": "dist/assets/ai_banner_ff97a52b.png",
+      "variants": {
+        "desktop": "dist/assets/ai_banner_ff97a52b_desktop.png",
+        "mobile": "dist/assets/ai_banner_ff97a52b_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "environment_card",
+      "original_path": "pages/smartmanufacturing_ai/assets/environment_card.png",
+      "normalized_path": "dist/assets/environment_card_5845233d.png",
+      "variants": {
+        "desktop": "dist/assets/environment_card_5845233d_desktop.png",
+        "mobile": "dist/assets/environment_card_5845233d_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "management_card",
+      "original_path": "pages/smartmanufacturing_ai/assets/management_card.png",
+      "normalized_path": "dist/assets/management_card_f7565150.png",
+      "variants": {
+        "desktop": "dist/assets/management_card_f7565150_desktop.png",
+        "mobile": "dist/assets/management_card_f7565150_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "solutions_card_1_1",
+      "original_path": "pages/smartmanufacturing_ai/assets/solutions_card_1.png",
+      "normalized_path": "dist/assets/solutions_card_1_37666420.png",
+      "variants": {
+        "desktop": "dist/assets/solutions_card_1_37666420_desktop.png",
+        "mobile": "dist/assets/solutions_card_1_37666420_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "solutions_card_2_1",
+      "original_path": "pages/smartmanufacturing_ai/assets/solutions_card_2.png",
+      "normalized_path": "dist/assets/solutions_card_2_a9d33506.png",
+      "variants": {
+        "desktop": "dist/assets/solutions_card_2_a9d33506_desktop.png",
+        "mobile": "dist/assets/solutions_card_2_a9d33506_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "whatweoffer_card_1_1",
+      "original_path": "pages/smartmanufacturing_ai/assets/whatweoffer_card_1.png",
+      "normalized_path": "dist/assets/whatweoffer_card_1_60b7faeb.png",
+      "variants": {
+        "desktop": "dist/assets/whatweoffer_card_1_60b7faeb_desktop.png",
+        "mobile": "dist/assets/whatweoffer_card_1_60b7faeb_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "whatweoffer_card_3_1",
+      "original_path": "pages/smartmanufacturing_ai/assets/whatweoffer_card_3.png",
+      "normalized_path": "dist/assets/whatweoffer_card_3_f749eed0.png",
+      "variants": {
+        "desktop": "dist/assets/whatweoffer_card_3_f749eed0_desktop.png",
+        "mobile": "dist/assets/whatweoffer_card_3_f749eed0_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_2a3640ad",
+      "original_path": "pages/solutions/assets/BN-Solutions-M.jpg",
+      "normalized_path": "dist/assets/img_2a3640ad.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_2a3640ad_desktop.jpg",
+        "mobile": "dist/assets/img_2a3640ad_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_89eb8911_16",
+      "original_path": "pages/solutions/assets/Frame-81_fix0219-r1pq1ydiknpnq33sjujsqyvksnzoaf0vw9ai2oeymg.png",
+      "normalized_path": "dist/assets/img_89eb8911.png",
+      "variants": {
+        "desktop": "dist/assets/img_89eb8911_desktop.png",
+        "mobile": "dist/assets/img_89eb8911_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_7201f929_16",
+      "original_path": "pages/solutions/assets/Frame-81_fix0219.png",
+      "normalized_path": "dist/assets/img_7201f929.png",
+      "variants": {
+        "desktop": "dist/assets/img_7201f929_desktop.png",
+        "mobile": "dist/assets/img_7201f929_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "acunetix_card",
+      "original_path": "pages/solutions/assets/acunetix_card.png",
+      "normalized_path": "dist/assets/acunetix_card_93100311.png",
+      "variants": {
+        "desktop": "dist/assets/acunetix_card_93100311_desktop.png",
+        "mobile": "dist/assets/acunetix_card_93100311_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "array_card",
+      "original_path": "pages/solutions/assets/array_card.jpg",
+      "normalized_path": "dist/assets/array_card_03623054.jpg",
+      "variants": {
+        "desktop": "dist/assets/array_card_03623054_desktop.jpg",
+        "mobile": "dist/assets/array_card_03623054_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "bitdefender_card",
+      "original_path": "pages/solutions/assets/bitdefender_card.png",
+      "normalized_path": "dist/assets/bitdefender_card_676e80ed.png",
+      "variants": {
+        "desktop": "dist/assets/bitdefender_card_676e80ed_desktop.png",
+        "mobile": "dist/assets/bitdefender_card_676e80ed_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "deepinstinct_card",
+      "original_path": "pages/solutions/assets/deepinstinct_card.jpg",
+      "normalized_path": "dist/assets/deepinstinct_card_5b49b4f2.jpg",
+      "variants": {
+        "desktop": "dist/assets/deepinstinct_card_5b49b4f2_desktop.jpg",
+        "mobile": "dist/assets/deepinstinct_card_5b49b4f2_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "fortinet_card",
+      "original_path": "pages/solutions/assets/fortinet_card.jpg",
+      "normalized_path": "dist/assets/fortinet_card_3b1e109d.jpg",
+      "variants": {
+        "desktop": "dist/assets/fortinet_card_3b1e109d_desktop.jpg",
+        "mobile": "dist/assets/fortinet_card_3b1e109d_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "ist_card",
+      "original_path": "pages/solutions/assets/ist_card.png",
+      "normalized_path": "dist/assets/ist_card_595616b5.png",
+      "variants": {
+        "desktop": "dist/assets/ist_card_595616b5_desktop.png",
+        "mobile": "dist/assets/ist_card_595616b5_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "logsec_card",
+      "original_path": "pages/solutions/assets/logsec_card.jpg",
+      "normalized_path": "dist/assets/logsec_card_4666836d.jpg",
+      "variants": {
+        "desktop": "dist/assets/logsec_card_4666836d_desktop.jpg",
+        "mobile": "dist/assets/logsec_card_4666836d_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "paloalto_card",
+      "original_path": "pages/solutions/assets/paloalto_card.jpg",
+      "normalized_path": "dist/assets/paloalto_card_c309d8c7.jpg",
+      "variants": {
+        "desktop": "dist/assets/paloalto_card_c309d8c7_desktop.jpg",
+        "mobile": "dist/assets/paloalto_card_c309d8c7_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "securityscorecard_card",
+      "original_path": "pages/solutions/assets/securityscorecard_card.png",
+      "normalized_path": "dist/assets/securityscorecard_card_dde6f463.png",
+      "variants": {
+        "desktop": "dist/assets/securityscorecard_card_dde6f463_desktop.png",
+        "mobile": "dist/assets/securityscorecard_card_dde6f463_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "solutions_bg",
+      "original_path": "pages/solutions/assets/solutions_bg.png",
+      "normalized_path": "dist/assets/solutions_bg_29b6424f.png",
+      "variants": {
+        "desktop": "dist/assets/solutions_bg_29b6424f_desktop.png",
+        "mobile": "dist/assets/solutions_bg_29b6424f_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "sonarqube_card",
+      "original_path": "pages/solutions/assets/sonarqube_card.jpg",
+      "normalized_path": "dist/assets/sonarqube_card_c1b2420b.jpg",
+      "variants": {
+        "desktop": "dist/assets/sonarqube_card_c1b2420b_desktop.jpg",
+        "mobile": "dist/assets/sonarqube_card_c1b2420b_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "tenablenessus_card",
+      "original_path": "pages/solutions/assets/tenablenessus_card.jpg",
+      "normalized_path": "dist/assets/tenablenessus_card_fe31507a.jpg",
+      "variants": {
+        "desktop": "dist/assets/tenablenessus_card_fe31507a_desktop.jpg",
+        "mobile": "dist/assets/tenablenessus_card_fe31507a_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "vicariusvrx_card",
+      "original_path": "pages/solutions/assets/vicariusvrx_card.jpg",
+      "normalized_path": "dist/assets/vicariusvrx_card_aa697fb2.jpg",
+      "variants": {
+        "desktop": "dist/assets/vicariusvrx_card_aa697fb2_desktop.jpg",
+        "mobile": "dist/assets/vicariusvrx_card_aa697fb2_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_fede2f0e",
+      "original_path": "pages/solutions/assets/服務項目-m.png",
+      "normalized_path": "dist/assets/img_fede2f0e.png",
+      "variants": {
+        "desktop": "dist/assets/img_fede2f0e_desktop.png",
+        "mobile": "dist/assets/img_fede2f0e_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_ef0fbff2",
+      "original_path": "pages/solutions/assets/服務項目.png",
+      "normalized_path": "dist/assets/img_ef0fbff2.png",
+      "variants": {
+        "desktop": "dist/assets/img_ef0fbff2_desktop.png",
+        "mobile": "dist/assets/img_ef0fbff2_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_18897270",
+      "original_path": "pages/solutions/assets/解決方案BN1209-scaled.jpg",
+      "normalized_path": "dist/assets/img_18897270.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_18897270_desktop.jpg",
+        "mobile": "dist/assets/img_18897270_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_89eb8911_17",
+      "original_path": "pages/vicarius_vrx/assets/Frame-81_fix0219-r1pq1ydiknpnq33sjujsqyvksnzoaf0vw9ai2oeymg.png",
+      "normalized_path": "dist/assets/img_89eb8911.png",
+      "variants": {
+        "desktop": "dist/assets/img_89eb8911_desktop.png",
+        "mobile": "dist/assets/img_89eb8911_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_7201f929_17",
+      "original_path": "pages/vicarius_vrx/assets/Frame-81_fix0219.png",
+      "normalized_path": "dist/assets/img_7201f929.png",
+      "variants": {
+        "desktop": "dist/assets/img_7201f929_desktop.png",
+        "mobile": "dist/assets/img_7201f929_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "vicariusvrx-1-fix",
+      "original_path": "pages/vicarius_vrx/assets/vicariusvrx-1-fix.jpg",
+      "normalized_path": "dist/assets/vicariusvrx-1-fix_dfc25e0e.jpg",
+      "variants": {
+        "desktop": "dist/assets/vicariusvrx-1-fix_dfc25e0e_desktop.jpg",
+        "mobile": "dist/assets/vicariusvrx-1-fix_dfc25e0e_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "vicariusvrx-2-fix",
+      "original_path": "pages/vicarius_vrx/assets/vicariusvrx-2-fix.jpg",
+      "normalized_path": "dist/assets/vicariusvrx-2-fix_c1e417be.jpg",
+      "variants": {
+        "desktop": "dist/assets/vicariusvrx-2-fix_c1e417be_desktop.jpg",
+        "mobile": "dist/assets/vicariusvrx-2-fix_c1e417be_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "vicariusvrx",
+      "original_path": "pages/vicarius_vrx/assets/vicariusvrx.jpg",
+      "normalized_path": "dist/assets/vicariusvrx_b83292fd.jpg",
+      "variants": {
+        "desktop": "dist/assets/vicariusvrx_b83292fd_desktop.jpg",
+        "mobile": "dist/assets/vicariusvrx_b83292fd_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "vicariusvrx_banner",
+      "original_path": "pages/vicarius_vrx/assets/vicariusvrx_banner.jpg",
+      "normalized_path": "dist/assets/vicariusvrx_banner_b729be96.jpg",
+      "variants": {
+        "desktop": "dist/assets/vicariusvrx_banner_b729be96_desktop.jpg",
+        "mobile": "dist/assets/vicariusvrx_banner_b729be96_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "vicariusvrx_banner_m",
+      "original_path": "pages/vicarius_vrx/assets/vicariusvrx_banner_m.jpg",
+      "normalized_path": "dist/assets/vicariusvrx_banner_m_8a2f81ff.jpg",
+      "variants": {
+        "desktop": "dist/assets/vicariusvrx_banner_m_8a2f81ff_desktop.jpg",
+        "mobile": "dist/assets/vicariusvrx_banner_m_8a2f81ff_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_73bfa98b",
+      "original_path": "pages/vmware/assets/BN-VMware-1209--scaled.jpg",
+      "normalized_path": "dist/assets/img_73bfa98b.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_73bfa98b_desktop.jpg",
+        "mobile": "dist/assets/img_73bfa98b_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_0a73d54d",
+      "original_path": "pages/vmware/assets/BN-VMware-M_fix.jpg",
+      "normalized_path": "dist/assets/img_0a73d54d.jpg",
+      "variants": {
+        "desktop": "dist/assets/img_0a73d54d_desktop.jpg",
+        "mobile": "dist/assets/img_0a73d54d_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_89eb8911_18",
+      "original_path": "pages/vmware/assets/Frame-81_fix0219-r1pq1ydiknpnq33sjujsqyvksnzoaf0vw9ai2oeymg.png",
+      "normalized_path": "dist/assets/img_89eb8911.png",
+      "variants": {
+        "desktop": "dist/assets/img_89eb8911_desktop.png",
+        "mobile": "dist/assets/img_89eb8911_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_7201f929_18",
+      "original_path": "pages/vmware/assets/Frame-81_fix0219.png",
+      "normalized_path": "dist/assets/img_7201f929.png",
+      "variants": {
+        "desktop": "dist/assets/img_7201f929_desktop.png",
+        "mobile": "dist/assets/img_7201f929_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "vmware_1_1",
+      "original_path": "pages/vmware/assets/vmware_1_1.jpg",
+      "normalized_path": "dist/assets/vmware_1_1_ebca25c5.jpg",
+      "variants": {
+        "desktop": "dist/assets/vmware_1_1_ebca25c5_desktop.jpg",
+        "mobile": "dist/assets/vmware_1_1_ebca25c5_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "vmware_1_2",
+      "original_path": "pages/vmware/assets/vmware_1_2.jpg",
+      "normalized_path": "dist/assets/vmware_1_2_c8e4c058.jpg",
+      "variants": {
+        "desktop": "dist/assets/vmware_1_2_c8e4c058_desktop.jpg",
+        "mobile": "dist/assets/vmware_1_2_c8e4c058_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "vmware_2",
+      "original_path": "pages/vmware/assets/vmware_2.jpg",
+      "normalized_path": "dist/assets/vmware_2_bb83c77c.jpg",
+      "variants": {
+        "desktop": "dist/assets/vmware_2_bb83c77c_desktop.jpg",
+        "mobile": "dist/assets/vmware_2_bb83c77c_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "vmware_3_1",
+      "original_path": "pages/vmware/assets/vmware_3_1.jpg",
+      "normalized_path": "dist/assets/vmware_3_1_4650ebfd.jpg",
+      "variants": {
+        "desktop": "dist/assets/vmware_3_1_4650ebfd_desktop.jpg",
+        "mobile": "dist/assets/vmware_3_1_4650ebfd_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "vmware_3_2",
+      "original_path": "pages/vmware/assets/vmware_3_2.jpg",
+      "normalized_path": "dist/assets/vmware_3_2_033254ea.jpg",
+      "variants": {
+        "desktop": "dist/assets/vmware_3_2_033254ea_desktop.jpg",
+        "mobile": "dist/assets/vmware_3_2_033254ea_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "vmware_p3_1_fix",
+      "original_path": "pages/vmware/assets/vmware_p3_1_fix.jpg",
+      "normalized_path": "dist/assets/vmware_p3_1_fix_7560e271.jpg",
+      "variants": {
+        "desktop": "dist/assets/vmware_p3_1_fix_7560e271_desktop.jpg",
+        "mobile": "dist/assets/vmware_p3_1_fix_7560e271_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "vmware_p3_2_fix",
+      "original_path": "pages/vmware/assets/vmware_p3_2_fix.jpg",
+      "normalized_path": "dist/assets/vmware_p3_2_fix_35fafc1f.jpg",
+      "variants": {
+        "desktop": "dist/assets/vmware_p3_2_fix_35fafc1f_desktop.jpg",
+        "mobile": "dist/assets/vmware_p3_2_fix_35fafc1f_mobile.jpg"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_89eb8911_19",
+      "original_path": "pages/wms/assets/Frame-81_fix0219-r1pq1ydiknpnq33sjujsqyvksnzoaf0vw9ai2oeymg.png",
+      "normalized_path": "dist/assets/img_89eb8911.png",
+      "variants": {
+        "desktop": "dist/assets/img_89eb8911_desktop.png",
+        "mobile": "dist/assets/img_89eb8911_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "img_7201f929_19",
+      "original_path": "pages/wms/assets/Frame-81_fix0219.png",
+      "normalized_path": "dist/assets/img_7201f929.png",
+      "variants": {
+        "desktop": "dist/assets/img_7201f929_desktop.png",
+        "mobile": "dist/assets/img_7201f929_mobile.png"
+      },
+      "alt": ""
+    },
+    {
+      "id": "wms_banner_2",
+      "original_path": "pages/wms/assets/wms_banner_2.png",
+      "normalized_path": "dist/assets/wms_banner_2_4f36206f.png",
+      "variants": {
+        "desktop": "dist/assets/wms_banner_2_4f36206f_desktop.png",
+        "mobile": "dist/assets/wms_banner_2_4f36206f_mobile.png"
+      },
+      "alt": ""
+    }
+  ]
+}

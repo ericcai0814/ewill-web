@@ -1,0 +1,17 @@
+{
+  "name": "ewill-web",
+  "version": "1.0.0",
+  "description": "## 專案簡介",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "typescript": "^5.9.3",
+    "yaml": "^2.8.2"
+  }
+}

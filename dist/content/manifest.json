@@ -1,0 +1,105 @@
+{
+  "generated_at": "2026-01-08T03:46:51.205Z",
+  "pages": [
+    {
+      "slug": "about_us",
+      "module": "about_us",
+      "path": "pages/about_us.json"
+    },
+    {
+      "slug": "acunetix",
+      "module": "acunetix",
+      "path": "pages/acunetix.json"
+    },
+    {
+      "slug": "array",
+      "module": "array",
+      "path": "pages/array.json"
+    },
+    {
+      "slug": "data_middleware",
+      "module": "data_middleware",
+      "path": "pages/data_middleware.json"
+    },
+    {
+      "slug": "esg",
+      "module": "esg",
+      "path": "pages/esg.json"
+    },
+    {
+      "slug": "event_20251118",
+      "module": "event_20251118",
+      "path": "pages/event_20251118.json"
+    },
+    {
+      "slug": "event_20251124",
+      "module": "event_20251124",
+      "path": "pages/event_20251124.json"
+    },
+    {
+      "slug": "fortinet",
+      "module": "fortinet",
+      "path": "pages/fortinet.json"
+    },
+    {
+      "slug": "index",
+      "module": "index",
+      "path": "pages/index.json"
+    },
+    {
+      "slug": "ist",
+      "module": "ist",
+      "path": "pages/ist.json"
+    },
+    {
+      "slug": "logsec",
+      "module": "logsec",
+      "path": "pages/logsec.json"
+    },
+    {
+      "slug": "mes",
+      "module": "mes",
+      "path": "pages/mes.json"
+    },
+    {
+      "slug": "palo_alto",
+      "module": "palo_alto",
+      "path": "pages/palo_alto.json"
+    },
+    {
+      "slug": "scm",
+      "module": "scm",
+      "path": "pages/scm.json"
+    },
+    {
+      "slug": "security_scorecard",
+      "module": "security_scorecard",
+      "path": "pages/security_scorecard.json"
+    },
+    {
+      "slug": "smartmanufacturing_ai",
+      "module": "smartmanufacturing_ai",
+      "path": "pages/smartmanufacturing_ai.json"
+    },
+    {
+      "slug": "solutions",
+      "module": "solutions",
+      "path": "pages/solutions.json"
+    },
+    {
+      "slug": "vicarius_vrx",
+      "module": "vicarius_vrx",
+      "path": "pages/vicarius_vrx.json"
+    },
+    {
+      "slug": "vmware",
+      "module": "vmware",
+      "path": "pages/vmware.json"
+    },
+    {
+      "slug": "wms",
+      "module": "wms",
+      "path": "pages/wms.json"
+    }
+  ]
+}
