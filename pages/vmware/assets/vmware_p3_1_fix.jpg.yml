@@ -1,1 +1,3 @@
-description: "VMware vMotion 技術示意圖，展示虛擬機在不同 ESXi 主機間的即時遷移過程。"
+id: vmware_p3_1_fix
+alt: 'VMware vMotion 技術示意圖，展示虛擬機在不同 ESXi 主機間的即時遷移過程。'
+description: 'VMware vMotion 技術示意圖，展示虛擬機在不同 ESXi 主機間的即時遷移過程。'

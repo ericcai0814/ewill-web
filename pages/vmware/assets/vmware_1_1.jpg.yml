@@ -1,1 +1,3 @@
-description: "VMware vSphere 架構圖，顯示 ESXi 主機、vCenter Server、vSphere Client 與儲存設備 (iSCSI/Fibre Channel/NAS) 的連接關係。"
+id: vmware_1_1
+alt: VMware vSphere 架構圖
+description: 'VMware vSphere 架構圖，顯示 ESXi 主機、vCenter Server、vSphere Client 與儲存設備 (iSCSI/Fibre Channel/NAS) 的連接關係。'

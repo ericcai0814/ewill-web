@@ -1,1 +1,3 @@
-description: "VMware High Availability (HA) 架構示意圖，展示當實體主機故障時，虛擬機自動在其他主機重啟的機制。"
+id: vmware_p3_2_fix
+alt: 'VMware High Availability (HA) 架構示意圖，展示當實體主機故障時'
+description: 'VMware High Availability (HA) 架構示意圖，展示當實體主機故障時，虛擬機自動在其他主機重啟的機制。'

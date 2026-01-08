@@ -1,1 +1,3 @@
-description: "Palo Alto SASE 架構圖，整合 Security as a service (零信任、NG-CASB、SWG、FWaaS) 與 Network as a service (SD-WAN)，並透過 ADEM 進行用戶體驗管理。"
+id: paloalto
+alt: Palo Alto SASE 架構圖
+description: 'Palo Alto SASE 架構圖，整合 Security as a service (零信任、NG-CASB、SWG、FWaaS) 與 Network as a service (SD-WAN)，並透過 ADEM 進行用戶體驗管理。'

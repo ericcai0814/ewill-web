@@ -1,1 +1,3 @@
-description: "Graylog 異常偵測儀表板，顯示 Anomaly Count, Users With Anomalies 等指標及趨勢圖。"
+id: graylog_6_fix_20250822
+alt: Graylog 異常偵測儀表板
+description: 'Graylog 異常偵測儀表板，顯示 Anomaly Count, Users With Anomalies 等指標及趨勢圖。'

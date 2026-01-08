@@ -1,1 +1,3 @@
-description: "Graylog 總覽儀表板，包含 Domain SSL 憑證到期提醒、VPN 登入紀錄、AD 登入紀錄與快速識別異常活躍來源 IP。"
+id: graylog_2_fix_20250822
+alt: Graylog 總覽儀表板
+description: 'Graylog 總覽儀表板，包含 Domain SSL 憑證到期提醒、VPN 登入紀錄、AD 登入紀錄與快速識別異常活躍來源 IP。'

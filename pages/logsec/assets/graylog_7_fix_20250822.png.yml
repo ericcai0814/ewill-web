@@ -1,1 +1,3 @@
-description: "Graylog SSL-VPN 登入失敗儀表板，包含失敗總數與全球來源地圖分佈。"
+id: graylog_7_fix_20250822
+alt: 'Graylog SSL-VPN 登入失敗儀表板，包含失敗總數與全球來源地圖分佈。'
+description: 'Graylog SSL-VPN 登入失敗儀表板，包含失敗總數與全球來源地圖分佈。'
