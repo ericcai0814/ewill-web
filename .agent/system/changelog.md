@@ -6,6 +6,23 @@
 
 ---
 
+## [2026-01-09]
+
+### SOP 一致性檢查與修正
+
+執行 `/check_sop` 檢查，修正以下一致性問題：
+
+**05_agent_refactor.md**：
+- 將目錄結構圖中的 Title Case（`Tasks/`、`System/`、`SOP/`）改為小寫（`tasks/`、`system/`、`sop/`），與實際目錄結構一致
+- 更新目錄職責表格中的路徑引用
+- 更新自動化 Prompt 範例中的路徑引用
+
+**.agent/README.md**：
+- 更新 tasks/ 區塊，補充 `specs/` 子目錄與 `website-validation-react-src.md` 文件索引
+- 新增 `tasks/specs/` 子目錄的文件清單（Phase 1-5、design-system、content-guide、testing-plan）
+
+---
+
 ## [2026-01-06]
 
 ### 網站視覺優化（截圖分析）

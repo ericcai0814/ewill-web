@@ -27,14 +27,14 @@ description: 讓 AI Agent 成為網站規劃的長期協作角色，持續優化
 ```
 /.agent/
 ├── README.md                    # 文件索引（入口點）
-├── Tasks/                       # 功能 PRD 與實作計畫
+├── tasks/                       # 功能 PRD 與實作計畫
 │   └── [feature_name].md        # 新功能需求文件
-├── System/                      # 系統狀態、架構與決策記錄
+├── system/                      # 系統狀態、架構與決策記錄
 │   ├── system_prompt.md         # AI 系統提示詞
 │   ├── changelog.md             # 變更日誌（單一來源）
 │   ├── decisions.md             # 重要決策記錄
 │   └── learnings.md             # 專案特性與最佳實務
-└── SOP/                         # 標準作業程序
+└── sop/                         # 標準作業程序
     ├── # 工作流程 SOP（有執行順序）
     ├── 00_project_init.md       # 專案文件維護
     ├── 01_site_analysis.md      # 網站結構分析
@@ -51,9 +51,9 @@ description: 讓 AI Agent 成為網站規劃的長期協作角色，持續優化
 
 | 目錄      | 性質     | 內容                           | 生命週期           |
 | --------- | -------- | ------------------------------ | ------------------ |
-| `Tasks/`  | 需求驅動 | 「要做什麼」— 功能 PRD         | 短期（完成後歸檔） |
-| `System/` | 狀態驅動 | 「現況是什麼」— 決策、變更記錄 | 持續更新           |
-| `SOP/`    | 流程驅動 | 「如何做」— 標準作業程序       | 長期（可重複使用） |
+| `tasks/`  | 需求驅動 | 「要做什麼」— 功能 PRD         | 短期（完成後歸檔） |
+| `system/` | 狀態驅動 | 「現況是什麼」— 決策、變更記錄 | 持續更新           |
+| `sop/`    | 流程驅動 | 「如何做」— 標準作業程序       | 長期（可重複使用） |
 
 ---
 
@@ -135,7 +135,7 @@ sop_audit:
 | 項目             | 驗證內容                                    |
 | ---------------- | ------------------------------------------- |
 | 圖片路徑格式     | 是否使用 `assets/` 子目錄格式               |
-| 目錄結構說明     | 是否符合 `Tasks/System/SOP` 結構            |
+| 目錄結構說明     | 是否符合 `tasks/system/sop` 結構            |
 | 相對路徑引用     | 引用其他文件的路徑是否正確                  |
 | 範例程式碼       | 腳本中的路徑是否正確                        |
 | 約束條件         | 描述是否與 GUIDELINES.md 一致               |
@@ -153,11 +153,11 @@ sop_audit:
 ```
 請執行 SOP 一致性檢查：
 
-1. 讀取 GUIDELINES.md 和 System/changelog.md
+1. 讀取 GUIDELINES.md 和 system/changelog.md
 2. 掃描 .agent/sop/ 下所有 SOP
 3. 針對每個 SOP 檢查：
    - 圖片路徑是否使用 assets/ 格式
-   - .agent/ 結構是否為 Tasks/System/SOP
+   - .agent/ 結構是否為 tasks/system/sop
    - 相對路徑引用是否正確
 4. 輸出檢查報告
 5. 如有需要更新，列出變更摘要後詢問是否執行
@@ -167,7 +167,7 @@ sop_audit:
 
 ## 決策記錄格式
 
-當做出重要決策時，記錄於 `System/decisions.md`：
+當做出重要決策時，記錄於 `system/decisions.md`：
 
 ```markdown
 ## [YYYY-MM-DD] 決策標題
@@ -329,7 +329,7 @@ sop_audit:
 
 ## 知識更新
 
-當學習到新的專案知識時，更新 `System/learnings.md`：
+當學習到新的專案知識時，更新 `system/learnings.md`：
 
 - 專案特性與慣例
 - 最佳實務

@@ -20,9 +20,23 @@
 
 存放功能的 PRD（產品需求文件）與實作計畫。
 
-| 檔案         | 說明             |
-| ------------ | ---------------- |
-| _(目前為空)_ | 新功能規劃時建立 |
+| 檔案                                 | 說明                       |
+| ------------------------------------ | -------------------------- |
+| [specs/](./tasks/specs/)             | 網站重建專案規格文件       |
+| [website-validation-react-src.md](./tasks/website-validation-react-src.md) | React 驗證網站實作記錄 |
+
+### tasks/specs/ 子目錄
+
+| 檔案                         | 說明                   |
+| ---------------------------- | ---------------------- |
+| `phase-1-project-setup.md`   | Phase 1：專案建置      |
+| `phase-2-shared-components.md` | Phase 2：共用元件    |
+| `phase-3-homepage.md`        | Phase 3：首頁實作      |
+| `phase-4-inner-pages.md`     | Phase 4：內頁實作      |
+| `phase-5-optimization-deployment.md` | Phase 5：優化與部署 |
+| `design-system.md`           | 設計系統規格           |
+| `content-guide.md`           | 內容指南               |
+| `testing-plan.md`            | 測試計畫               |
 
 ---
 

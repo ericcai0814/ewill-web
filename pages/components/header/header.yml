@@ -1,0 +1,191 @@
+# ============================================================
+# Header 導覽列結構 - 鎰威科技官方網站
+# ============================================================
+
+component:
+  name: Header
+  type: layout
+  description: 全站共用導覽列元件
+
+# ============================================================
+# Logo 配置
+# ============================================================
+
+logo:
+  src: /assets/logo.png
+  alt: 鎰威科技 EWILL Technology
+  width: 180
+  height: 40
+  link: /
+
+# ============================================================
+# 導覽選單結構
+# ============================================================
+
+navigation:
+  - text: 活動訊息
+    url: /event_information/
+    children: []
+
+  - text: 關於鎰威
+    url: /about_us/
+    children:
+      - text: 公司簡介
+        url: /about_us/#about_us
+      - text: 公司沿革
+        url: /about_us/#milestones
+      - text: 資格證書
+        url: /about_us/#certification
+
+  - text: ESG
+    url: /esg/
+    children: []
+
+  - text: 服務項目
+    url: /services/
+    children:
+      - text: 軟體開發服務
+        url: /services/#software_development
+      - text: 資訊安全服務
+        url: /services/#security_services
+      - text: 系統規劃服務
+        url: /services/#system_planning
+        children:
+          - text: 開源作業系統
+            url: /ubuntu/
+          - text: 虛擬化解決方案
+            url: /vmware/
+          - text: 伺服器虛擬化管理
+            url: /proxmox_ve/
+
+  - text: 產品解決方案
+    url: /solutions/
+    children:
+      - text: 資安評估
+        url: /solutions/#security_assessment
+        children:
+          - text: 資安評級工具
+            url: /security_scorecard/
+      - text: 資安檢測
+        url: /solutions/#security_testing
+        children:
+          - text: 弱點掃描工具
+            url: /tenable_nessus/
+          - text: 原始碼分析平台
+            url: /sonarqube/
+          - text: 網站安全掃描
+            url: /acunetix/
+      - text: 資安防護
+        url: /solutions/#security_defense
+        children:
+          - text: 次世代防火牆
+            url: /palo_alto/
+          - text: 整合資安平台
+            url: /fortinet/
+          - text: 深度學習防護
+            url: /deep_instinct/
+          - text: 防毒與威脅防護
+            url: /bitdefender/
+      - text: 資安強化
+        url: /solutions/#security_enhancement
+        children:
+          - text: 端點安全管理
+            url: /ist/
+          - text: SSL VPN 解決方案
+            url: /array/
+          - text: 資安預警解決方案
+            url: /logsec/
+          - text: 漏洞風險管理
+            url: /vicarius_vrx/
+
+  - text: 智慧製造及AI
+    url: /smartmanufacturing_ai/
+    children:
+      - text: APS 智慧生產核心
+        url: /aps/
+      - text: MES 製造系統
+        url: /mes/
+      - text: SCM 智慧供應鏈
+        url: /scm/
+      - text: WMS 智慧倉儲
+        url: /wms/
+      - text: 承攬商管理系統
+        url: /cms_568/
+      - text: AI Agent 解決方案
+        url: /ai_agent/
+      - text: AI 數據分析預測
+        url: /ai_forecasting/
+      - text: 數據中台
+        url: /data_middleware/
+
+  - text: 聯絡鎰威
+    url: /contact/
+    is_cta: true
+    children: []
+
+# ============================================================
+# 視覺樣式配置
+# ============================================================
+
+styles:
+  desktop:
+    height: 80px
+    background: transparent
+    background_scrolled: rgba(255, 255, 255, 0.95)
+    backdrop_filter: blur(10px)
+    text_color: "#3F8696"
+    hover_color: "#2D9B9B"
+    shadow_scrolled: 0 2px 10px rgba(0, 0, 0, 0.05)
+    
+  mobile:
+    height: 64px
+    background: transparent
+    hamburger_color: "#3F8696"
+
+# ============================================================
+# 行為配置
+# ============================================================
+
+behavior:
+  sticky: false
+  hide_on_scroll: true
+  submenu_trigger: hover  # hover | click
+  mobile_breakpoint: 768px
+
+# ============================================================
+# 手機版選單
+# ============================================================
+
+mobile_menu:
+  type: slide_in   # slide_in | fullscreen | dropdown
+  direction: right # left | right | top
+  close_on_click: true
+  overlay: true
+  overlay_color: rgba(0, 0, 0, 0.5)
+
+# ============================================================
+# CTA 配置
+# ============================================================
+
+cta:
+  enabled: false
+  text: 聯絡鎰威
+  url: /contact/
+  style: link  # link | button
+  # 若未來需要按鈕樣式可設定：
+  # button_style:
+  #   background: linear-gradient(135deg, #2D9B9B 0%, #3AA8A8 100%)
+  #   color: "#FFFFFF"
+  #   border_radius: 24px
+  #   padding: 8px 20px
+
+# ============================================================
+# 無障礙設定
+# ============================================================
+
+accessibility:
+  nav_label: 主要導覽列
+  menu_label: 主選單
+  hamburger_label: 開啟選單
+  close_label: 關閉選單
+  submenu_label: 子選單
