@@ -8,6 +8,38 @@
 
 ## [2026-01-09]
 
+### 建立 run-log Skill
+
+建立自動化執行日誌記錄機制，簡化格式並於 commit 後自動觸發。
+
+**新增**：`.claude/skills/run-log/SKILL.md`
+
+---
+
+### Nuxt 共用元件 Phase 1 完成
+
+建立 Nuxt 3 共用元件，完成實作計畫第一階段：
+
+**新增檔案**：
+- `nuxt-app/components/AppHeader.vue`：完整三層導覽列（含手機版滑入選單）
+- `nuxt-app/components/AppFooter.vue`：六欄式頁尾（服務、解決方案、產品、智慧製造、公司）
+- `nuxt-app/components/SectionHeader.vue`：區塊標題元件（支援對齊、顏色變體）
+- `nuxt-app/components/ProductCard.vue`：產品卡片元件（支援圖片、標籤、連結）
+
+**修改檔案**：
+- `nuxt-app/layouts/default.vue`：簡化為使用 AppHeader + AppFooter 元件
+
+**技術特性**：
+| 特性 | 實作 |
+|------|------|
+| API 風格 | Composition API (`<script setup>`) |
+| 導覽結構 | 從 `header.yml` 轉換為 TypeScript 資料 |
+| RWD 支援 | Mobile / Tablet / Desktop 斷點 |
+| 動畫效果 | Vue Transition 元件 |
+| 無障礙 | aria-label、aria-expanded 屬性 |
+
+---
+
 ### Header 導覽列模組建立
 
 爬取官網 https://www.ewill.com.tw/ 的 Header 結構，建立共用元件文件：

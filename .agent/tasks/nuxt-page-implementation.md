@@ -1,7 +1,7 @@
 # Nuxt 頁面實作計畫
 
 > **建立日期**: 2026-01-09
-> **狀態**: 規劃中
+> **狀態**: Phase 1 完成
 
 ---
 
@@ -60,17 +60,17 @@ nuxt-app/
 
 ## 2. 實作優先順序
 
-### Phase 1: 共用元件重構（必要前置）
+### Phase 1: 共用元件重構（必要前置） ✅ 完成
 
 **目標**：建立可重用的共用元件，使用 `pages/header/header.yml` 資料
 
-| 元件 | 檔案 | 說明 |
-|------|------|------|
-| AppHeader | `components/AppHeader.vue` | 完整導覽列（含三層選單） |
-| AppFooter | `components/AppFooter.vue` | 頁尾（多欄式） |
-| SectionHeader | `components/SectionHeader.vue` | 區塊標題（Label + Title） |
-| ProductCard | `components/ProductCard.vue` | 產品/服務卡片 |
-| ResponsiveImage | `components/ResponsiveImage.vue` | RWD 圖片元件 |
+| 元件 | 檔案 | 狀態 | 說明 |
+|------|------|:----:|------|
+| AppHeader | `components/AppHeader.vue` | ✅ | 完整導覽列（含三層選單） |
+| AppFooter | `components/AppFooter.vue` | ✅ | 頁尾（多欄式） |
+| SectionHeader | `components/SectionHeader.vue` | ✅ | 區塊標題（Label + Title） |
+| ProductCard | `components/ProductCard.vue` | ✅ | 產品/服務卡片 |
+| ResponsiveImage | `components/ResponsiveImage.vue` | ⏳ | RWD 圖片元件（視需要實作） |
 
 ### Phase 2: 頁面模板
 

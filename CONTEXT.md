@@ -51,6 +51,7 @@ ewill-web/
 | `content-build`   | 內容建置流水線（圖片正規化、RWD、多框架輸出） |
 | `sop-consistency` | 結構變更時自動檢查一致性                      |
 | `web-crawler`     | 網站爬蟲工具（爬取頁面、產出 md/yml/圖片）    |
+| `run-log`         | 自動記錄執行日誌（commit 後觸發）             |
 
 #### content-build 輸出目標
 

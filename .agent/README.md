@@ -98,18 +98,16 @@ python3 .agent/scripts/fix-yml-metadata.py
 
 ## run-logs/
 
-每日執行日誌，記錄 Agent 完成的所有任務。
+每日執行日誌，記錄 Agent 完成的所有任務。由 `run-log` skill 自動維護。
 
-| 欄位                | 說明                                       |
-| ------------------- | ------------------------------------------ |
-| `run_id`            | 遞增序號或時間戳                           |
-| `timestamp`         | 執行時間 (Asia/Taipei)                     |
-| `goal`              | 任務目標                                   |
-| `prompt_used`       | 實際使用的 prompt                          |
-| `actions`           | 具體操作列表                               |
-| `result`            | 產出結果摘要                               |
-| `expectation_check` | 期待判定（expected/actual/pass/rationale） |
-| `next_step`         | 後續步驟                                   |
+### 簡化格式
+
+```markdown
+### [HH:MM] 任務標題
+
+- **結果**：一句話摘要
+- **Commit**：`hash` - commit message
+```
 
 ```bash
 # 檔案命名
