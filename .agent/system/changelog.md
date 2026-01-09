@@ -52,6 +52,21 @@
 
 ---
 
+### Commands 重新命名
+
+優化指令命名，使其更直覺：
+
+| 舊名稱 | 新名稱 | 說明 |
+|--------|--------|------|
+| `/daily_check` | `/check_assets` | 資源檢查（圖片、MD/YML 配對） |
+| `/check_sop` | `/check_docs` | 文件一致性檢查 |
+
+更新的文件：
+- `.claude/commands/README.md`
+- `CONTEXT.md`
+
+---
+
 ### SOP 一致性檢查與修正
 
 執行 `/check_sop` 檢查，修正以下一致性問題：

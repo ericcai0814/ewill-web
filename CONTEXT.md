@@ -64,11 +64,10 @@ npx tsx .claude/skills/content-build/scripts/build.ts --target=nuxt    # → nux
 
 | 指令                 | 用途           | 頻率       |
 | -------------------- | -------------- | ---------- |
-| `/daily_check`       | 每日檢查       | 每日       |
+| `/check_assets`      | 資源檢查       | 每日       |
 | `/seo_audit`         | SEO 稽核       | 每週       |
-| `/check_sop`         | SOP 一致性檢查 | 每月       |
+| `/check_docs`        | 文件一致性檢查 | 每月       |
 | `/gen_image_meta`    | 圖片描述檔生成 | 新增圖片時 |
-| `/new_page`          | 建立新頁面     | 新增頁面時 |
 | `/eval_architecture` | 架構評估       | 新專案時   |
 
 ## 詳細記錄

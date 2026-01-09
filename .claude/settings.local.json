@@ -12,7 +12,9 @@
       "Bash(for:*)",
       "Bash(do if [ -f \"$f\" ])",
       "Bash(then echo \"✓ $f\")",
-      "Bash(else echo \"✗ $f \\(missing\\)\")"
+      "Bash(else echo \"✗ $f \\(missing\\)\")",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)"
     ]
   }
 }
