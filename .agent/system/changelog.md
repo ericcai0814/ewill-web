@@ -28,6 +28,20 @@
 
 ---
 
+### 納入 web-crawler Skill
+
+將 `site-crawler/` 目錄移至 `.claude/skills/web-crawler/`，作為標準化網站爬蟲工具：
+
+**功能**：
+- 爬取網站頁面內容
+- 產出 `index.md`（Markdown 內容）
+- 產出 `index.yml`（SEO/Schema.org/OG 設定）
+- 下載圖片並建立描述檔
+
+**觸發詞**：爬取網站、備份網站、crawl、scrape
+
+---
+
 ### SOP 一致性檢查與修正
 
 執行 `/check_sop` 檢查，修正以下一致性問題：
