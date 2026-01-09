@@ -42,6 +42,16 @@
 
 ---
 
+### 移除 /new_page Command
+
+移除 `/new_page` command，改用 `web-crawler` skill 取代：
+
+- 刪除 `.claude/commands/new_page.md`
+- 更新 `.claude/commands/README.md` 移除相關引用
+- `web-crawler` 可自動從官網爬取並產出 md/yml/圖片
+
+---
+
 ### SOP 一致性檢查與修正
 
 執行 `/check_sop` 檢查，修正以下一致性問題：

@@ -43,7 +43,6 @@ Skills 位於 `.claude/skills/`，Claude 會**根據請求內容自動判斷**�
 | 指令              | 說明                                         | 觸發時機   |
 | ----------------- | -------------------------------------------- | ---------- |
 | `/gen_image_meta` | 為新增圖片生成描述檔                         | 新增圖片後 |
-| `/new_page`       | 建立新頁面（index.md + index.yml + assets/） | 新增頁面時 |
 
 ### 專案評估
 
@@ -99,7 +98,6 @@ Skills 位於 `.claude/skills/`，Claude 會**根據請求內容自動判斷**�
 | `/daily_check`       | `05_agent_refactor.md`                          |
 | `/seo_audit`         | `05_agent_refactor.md`                          |
 | `/gen_image_meta`    | `02b_image_metadata.md`                         |
-| `/new_page`          | `04_seo_structure.md` + `02b_image_metadata.md` |
 | `/eval_architecture` | `guide_architecture_evaluation.md`              |
 
 ---
