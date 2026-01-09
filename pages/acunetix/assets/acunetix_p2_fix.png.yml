@@ -1,3 +1,3 @@
 id: acunetix_p2_fix
-alt: 'Acunetix 掃描完成介面截圖，顯示 'Scan Complete' 100% 進度條'
-description: 'Acunetix 掃描完成介面截圖，顯示 'Scan Complete' 100% 進度條，下方列出已發現的網站清單，每個網站旁顯示不同嚴重程度的弱點數量（紅、橙、黃、綠色標籤）。'
+alt: "Acunetix 掃描完成介面截圖，顯示 'Scan Complete' 100% 進度條"
+description: "Acunetix 掃描完成介面截圖，顯示 'Scan Complete' 100% 進度條，下方列出已發現的網站清單，每個網站旁顯示不同嚴重程度的弱點數量（紅、橙、黃、綠色標籤）。"

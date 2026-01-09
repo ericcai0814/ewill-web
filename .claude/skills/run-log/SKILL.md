@@ -23,6 +23,7 @@ triggers:
 ```markdown
 ### [HH:MM] 任務標題
 
+- **Prompt**：用戶輸入的指令
 - **結果**：一句話摘要
 - **Commit**：`hash` - commit message
 ```
@@ -32,6 +33,7 @@ triggers:
 ```markdown
 ### [16:15] Commands 重新命名
 
+- **Prompt**：命名不直覺
 - **結果**：將 daily_check → check_assets，check_sop → check_docs
 - **Commit**：`90bde9e` - refactor(commands): 重新命名 daily_check 和 check_sop
 ```

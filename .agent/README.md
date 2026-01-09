@@ -105,6 +105,7 @@ python3 .agent/scripts/fix-yml-metadata.py
 ```markdown
 ### [HH:MM] 任務標題
 
+- **Prompt**：用戶輸入的指令
 - **結果**：一句話摘要
 - **Commit**：`hash` - commit message
 ```

@@ -129,6 +129,11 @@ function discoverAssets(config: BuildConfig): string[] {
   return assets
 }
 
+function toWebPath(absPath: string, webRoot: string): string {
+  const relativePath = path.relative(webRoot, absPath);
+  return '/' + relativePath.split(path.sep).join('/');
+}
+
 function normalizeAsset(
   assetPath: string, 
   existingIds: Set<string>,
@@ -205,10 +210,10 @@ function normalizeAsset(
   return {
     id: uniqueId,
     original_path: assetPath,
-    normalized_path: normalizedPath,
+    normalized_path: toWebPath(normalizedPath, config.outputDir),
     variants: {
-      desktop: desktopPath,
-      mobile: mobilePath,
+      desktop: toWebPath(desktopPath, config.outputDir),
+      mobile: toWebPath(mobilePath, config.outputDir),
     },
     alt: meta?.alt || '',
   }
