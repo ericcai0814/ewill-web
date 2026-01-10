@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# 檢查是否有 pages/*/index.md 被修改
+CHANGED_MD=$(git diff --cached --name-only --diff-filter=ACM | grep "^pages/.*/index\.md$" || true)
+
+if [ -n "$CHANGED_MD" ]; then
+  echo "🔄 偵測到 index.md 變更，執行 sync-content..."
+
+  # 執行同步
+  npm run sync-content
+
+  # 將更新的 yml 加入 staging
+  for md in $CHANGED_MD; do
+    yml="${md%.md}.yml"
+    if [ -f "$yml" ]; then
+      git add "$yml"
+      echo "  ✅ 已加入: $yml"
+    fi
+  done
+
+  echo "✅ 內容同步完成"
+fi

@@ -7,172 +7,180 @@
 ```
 pages/
 ├── {page}/
-│   ├── index.yml     # 頁面內容與元資料（SEO、AIO、layout）
-│   ├── index.md      # ⚠️ 已廢棄，內容已遷移至 index.yml
+│   ├── index.md      # 📝 頁面內容（人工編輯）
+│   ├── index.yml     # 🔧 頁面元資料 + layout.sections（程式產生）
 │   └── assets/       # 圖片資源
 │       ├── *.jpg|png
 │       └── *.yml     # 圖片元資料
 ```
 
-## 讀取內容
+## 內容編輯流程
 
-### 使用 lib/content.ts
-
-```typescript
-import { getPageContent, getPageAssets } from '@/lib/content'
-
-// 取得頁面內容
-const page = await getPageContent('logsec')
-// { seo, layout: { hero, sections }, ... }
-
-// 取得圖片資源
-const assets = await getPageAssets('logsec')
-// [{ id, alt, desktop, mobile }]
+```
+1. 編輯 index.md（人工）
+2. 執行 npm run sync-content（自動轉換）
+3. 產生 index.yml 的 layout.sections（自動）
+4. Commit 兩個檔案
 ```
 
-## 頁面結構
+> ⚠️ **請勿手動編輯 `layout.sections`**，應編輯 `index.md` 後執行同步腳本
 
-### layout.hero - Hero Banner
+## index.md 格式規範
 
-```yaml
-# pages/logsec/index.yml
-layout:
-  hero:
-    image:
-      id: logsec_banner  # 對應 assets/*.yml 中的 id
+### 基本結構
+
+```markdown
+##### English Label
+
+## 中文標題
+
+段落內容...
+
+![](assets/image.jpg)
+
+##### Another Label
+
+## 另一個標題
+
+更多內容...
+
+![](assets/another.jpg)
 ```
 
-### layout.sections - 頁面內容區塊
+### 格式說明
 
-頁面內容透過 `sections` 陣列定義，支援 `text` 和 `image` 兩種類型：
+| Markdown 語法 | 用途 | 轉換結果 |
+|--------------|------|----------|
+| `##### Label` | 英文小標（斜體） | section.label |
+| `## 標題` | 主標題 | section.title |
+| `### 副標題` | 副標題 | 包含在 content |
+| `#### 說明` | 說明文字 | 包含在 content |
+| 段落文字 | 內容 | section.content |
+| `![](assets/xxx.jpg)` | 圖片 | type: image, image_id |
+
+### 圖片引用
+
+使用相對路徑引用 `assets/` 目錄下的圖片：
+
+```markdown
+![](assets/banner.jpg)
+```
+
+轉換腳本會：
+1. 解析圖片路徑
+2. 查找對應的 `.yml` 描述檔
+3. 取得 `id` 欄位
+4. 產生 `{ type: "image", image_id: "xxx" }`
+
+## 轉換結果範例
+
+### 輸入：index.md
+
+```markdown
+##### About Us
+
+## 公司簡介
+
+鎰威科技專注於推動企業數位轉型...
+
+![](assets/about_us_1.png)
+
+##### Milestones
+
+## 公司沿革
+
+我們的成長歷程...
+
+![](assets/timeline.png)
+```
+
+### 輸出：index.yml 的 layout.sections
 
 ```yaml
 layout:
   sections:
-    # 文字區塊
     - type: "text"
+      label: "About Us"
+      title: "公司簡介"
       content: |
-        ## 標題
-        #### 副標題
-        ### 區塊標題
-        段落內容...
-
-    # 圖片區塊
+        鎰威科技專注於推動企業數位轉型...
     - type: "image"
-      image_id: "feature_image"
+      image_id: "about_us_1"
+    - type: "text"
+      label: "Milestones"
+      title: "公司沿革"
+      content: |
+        我們的成長歷程...
+    - type: "image"
+      image_id: "timeline"
+```
+
+## 程式讀取
+
+### 使用 composables/useContent.ts
+
+```typescript
+import { useContent } from '~/composables/useContent'
+
+const { pageContent, findAssetById } = useContent('logsec')
+
+// pageContent.layout.sections 包含結構化內容
+// findAssetById('image_id') 取得圖片資訊
 ```
 
 ### Section 類型
 
-| type | 必要欄位 | 說明 |
-|------|----------|------|
-| `text` | `content` | Markdown 格式的文字內容 |
-| `image` | `image_id` | 圖片 ID，對應 `assets/*.yml` 中的 `id` |
+| type | 欄位 | 說明 |
+|------|------|------|
+| `text` | `label`, `title`, `content` | 文字區塊 |
+| `image` | `image_id` | 圖片區塊 |
 
-## 圖片使用
+## index.yml 其他區塊
 
-### 從 assets/*.yml 取得圖片資訊
+以下區塊需**手動維護**（不受 sync-content 影響）：
 
-```yaml
-# pages/logsec/assets/logsec_banner.jpg.yml
-id: logsec_banner
-alt: LOGSEC 橫幅圖片
-description: "..."
-```
-
-### 在元件中使用
-
-```tsx
-import { getImageById } from '@/lib/content'
-
-const heroImage = await getImageById('logsec', 'logsec_banner')
-// { id, alt, normalized_path, variants: { desktop, mobile } }
-
-<ResponsiveImage
-  desktop={heroImage.variants.desktop}
-  mobile={heroImage.variants.mobile}
-  alt={heroImage.alt}
-  priority
-/>
-```
-
-## SEO 內容
-
-### 從 index.yml 取得 SEO
+### SEO 區塊
 
 ```yaml
-# pages/logsec/index.yml
 seo:
-  title: LOGSEC 資安預警平台 | 日誌管理 - 鎰威科技
-  description: 鎰威科技自主研發 LOGSEC 資安預警平台...
+  title: "頁面標題 - 鎰威科技"
+  description: "頁面描述..."
   keywords:
-    - LOGSEC
-    - 資安預警系統
-    - 日誌管理
+    - 關鍵字1
+    - 關鍵字2
 ```
 
-### 應用到 metadata
+### URL Mapping 區塊
 
-```typescript
-// app/page.tsx
-import { getPageContent } from '@/lib/content'
+```yaml
+url_mapping:
+  current_url: "/about/"
+  old_url: "/about_us/"
+  redirect: true
+```
 
-export async function generateMetadata() {
-  const page = await getPageContent('logsec')
-  return {
-    title: page.seo.title,
-    description: page.seo.description,
-    keywords: page.seo.keywords
-  }
-}
+### Hero 區塊
+
+```yaml
+layout:
+  hero:
+    image:
+      id: banner_id  # 手動指定 Banner 圖片
+```
+
+## 同步指令
+
+```bash
+# 同步所有頁面
+npm run sync-content
+
+# 同步特定頁面
+npm run sync-content -- --page=about_us
 ```
 
 ## 注意事項
 
-- **index.md 已廢棄**：所有內容透過 `index.yml` 的 `layout.sections` 管理
-- 圖片透過 `image_id` 引用，不再使用 Markdown 圖片語法
-- 文字內容使用 Markdown 格式，支援標題、段落等
-
-## 內容更新流程
-
-1. 修改 `pages/{page}/index.yml` 的 `layout.sections`
-2. 執行 `npm run build` 重新建置
-3. 驗證頁面顯示正確
-4. Commit 變更
-
-## 完整範例
-
-```yaml
-# pages/logsec/index.yml
-seo:
-  title: "LOGSEC 資安預警平台 | 日誌管理 - 鎰威科技"
-  description: "鎰威科技自主研發 LOGSEC 資安預警平台..."
-  keywords:
-    - LOGSEC
-    - 資安預警系統
-
-url_mapping:
-  current_url: "/security-solutions/logsec/"
-  old_url: "/logsec/"
-  redirect: true
-
-layout:
-  hero:
-    image:
-      id: logsec_banner
-  sections:
-    - type: "text"
-      content: |
-        ## LOGSEC
-        #### 資安預警解決方案
-        ### 平台功能概覽
-        LOGSEC 平台透過行為記錄整合...
-    - type: "image"
-      image_id: "logsec_1_fix"
-    - type: "text"
-      content: |
-        ### 整合日誌，安全更清晰
-        客戶設備產生日誌繁多且分散...
-    - type: "image"
-      image_id: "logsec_2_fix"
-```
+1. **圖片必須有 .yml 描述檔**：轉換腳本需要讀取 `id` 欄位
+2. **保持 md 和 yml 同步**：每次編輯 md 後都要執行 sync-content
+3. **Commit 兩個檔案**：md 和 yml 應一起提交
+4. **Hero 圖片手動設定**：`layout.hero.image.id` 不由腳本產生

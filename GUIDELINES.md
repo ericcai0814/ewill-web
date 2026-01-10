@@ -11,8 +11,8 @@
 ```
 pages/
 └── {page_name}/
-    ├── index.yml             # 頁面內容與元資料（SEO、AIO、layout）
-    ├── index.md              # ⚠️ 已廢棄，內容已遷移至 index.yml
+    ├── index.md              # 📝 頁面內容（人工編輯）
+    ├── index.yml             # 🔧 頁面元資料 + layout.sections（程式產生）
     └── assets/               # 圖片資源目錄
         ├── banner.jpg        # 圖片檔案
         ├── banner.jpg.yml    # 圖片描述檔
@@ -20,18 +20,31 @@ pages/
 ```
 
 **說明**：
-- 首頁資源存放於 `pages/index/assets/`
-- `index.md` 已廢棄，所有內容透過 `index.yml` 的 `layout.sections` 管理
+- `index.md` 是**主要編輯來源**，供團隊溝通與內容審閱
+- `index.yml` 的 `layout.sections` 由**轉換腳本自動產生**，供程式讀取
+- 執行 `npm run sync-content` 將 md 同步至 yml
+
+### 內容同步流程
+
+```
+編輯 index.md → 執行 npm run sync-content → 產生 yml sections → commit 兩者
+```
 
 ### 圖片引用格式
 
-在 `index.yml` 的 `layout.sections` 中引用圖片，使用圖片的 `id`：
+在 `index.md` 中使用標準 Markdown 語法引用圖片：
+
+```markdown
+![](assets/banner.jpg)
+```
+
+轉換腳本會自動解析並產生對應的 yml sections：
 
 ```yaml
 layout:
   sections:
     - type: "image"
-      image_id: "banner"  # 對應 assets/banner.jpg.yml 中的 id
+      image_id: "banner"  # 自動對應 assets/banner.jpg.yml 中的 id
 ```
 
 ### 新增圖片
@@ -59,7 +72,9 @@ layout:
 
 ### 2.1 Layout 區塊（頁面內容）
 
-`layout` 區塊定義頁面的視覺結構與內容，取代原本的 `index.md`。
+`layout` 區塊定義頁面的視覺結構與內容，**由轉換腳本從 `index.md` 自動產生**。
+
+> ⚠️ **請勿手動編輯 `layout.sections`**，應編輯 `index.md` 後執行 `npm run sync-content`
 
 ```yaml
 layout:
@@ -286,8 +301,9 @@ content_summary:
 
 - 當 AI 代理人（Agent）協助編輯時，應主動檢查是否產生了新的圖片檔案，並自動補上描述檔。
 - AI 應在每次重大變更後，協助更新 `CONTEXT.md` 以反映最新的專案狀態。
-- 新增頁面時，AI 應確保 `index.yml` 包含完整的 `layout`、`seo`、`url_mapping`、`aio`、`content_summary` 區塊。
-- 頁面內容應透過 `layout.sections` 管理，不應使用 `index.md`。
+- 新增頁面時，AI 應確保 `index.yml` 包含完整的 `seo`、`url_mapping`、`aio`、`content_summary` 區塊。
+- 頁面內容應編輯 `index.md`，再執行 `npm run sync-content` 同步至 `index.yml`。
+- 不應手動編輯 `index.yml` 的 `layout.sections`，該區塊由腳本自動產生。
 
 ## 9. 文件更新規範
 

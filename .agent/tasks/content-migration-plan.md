@@ -1,7 +1,39 @@
 # 頁面內容遷移計畫
 
 > **建立日期**: 2026-01-10
-> **目標**: 將所有頁面從 `index.md` + `index.yml` 格式遷移至統一的 `index.yml` sections 結構
+> **目標**: 建立 md → yml 自動同步機制，確保內容一致性
+> **狀態**: 自動化機制已建立
+
+---
+
+## 0. 自動化機制
+
+### 已建立的工具
+
+| 工具 | 路徑 | 用途 |
+|------|------|------|
+| sync-content | `.claude/skills/content-build/scripts/sync-content.ts` | md → yml 轉換 |
+| pre-commit hook | `.husky/pre-commit` | commit 前自動同步 |
+
+### 使用方式
+
+```bash
+# 手動同步所有頁面
+npm run sync-content
+
+# 同步特定頁面
+npm run sync-content -- --page=about_us
+
+# 檢查是否同步（CI 用）
+npm run sync-content:check
+```
+
+### 自動觸發
+
+當 commit 包含 `pages/*/index.md` 變更時：
+1. pre-commit hook 自動執行 `npm run sync-content`
+2. 更新的 `index.yml` 自動加入 staging
+3. 兩個檔案一起 commit
 
 ---
 

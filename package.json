@@ -1,21 +1,26 @@
 {
   "name": "ewill-web",
   "version": "1.0.0",
-  "description": "## 專案簡介",
+  "description": "鎰威科技網站內容庫",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sync-content": "npx tsx .claude/skills/content-build/scripts/sync-content.ts",
+    "sync-content:check": "npx tsx .claude/skills/content-build/scripts/sync-content.ts --check",
+    "build": "npx tsx .claude/skills/content-build/scripts/build.ts",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
     "@types/marked": "^5.0.2",
     "@types/node": "^25.0.3",
-    "typescript": "^5.9.3",
-    "yaml": "^2.8.2"
+    "husky": "^9.1.7",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
+    "js-yaml": "^4.1.0",
     "marked": "^17.0.1"
   }
 }
