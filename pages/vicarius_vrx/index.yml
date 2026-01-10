@@ -1,93 +1,76 @@
-# ============================================================
-# Vicarius vRX 漏洞管理解決方案 - 鎰威科技
-# ============================================================
-
 seo:
-  title: "Vicarius vRX 漏洞管理 | 自動化修補與 Patchless Protection - 鎰威科技"
-  description: "鎰威科技代理 Vicarius vRX 漏洞風險管理平台，提供漏洞掃描、風險優先排序與自動化修補。獨家 Patchless Protection 無補丁防禦技術，有效防護零日漏洞與無法修補的系統風險。"
+  title: Vicarius vRX 漏洞管理 | 自動化修補與 Patchless Protection - 鎰威科技
+  description: 鎰威科技代理 Vicarius vRX 漏洞風險管理平台，提供漏洞掃描、風險優先排序與自動化修補。獨家 Patchless Protection 無補丁防禦技術，有效防護零日漏洞與無法修補的系統風險。
   keywords:
-    # 品牌與產品
     - Vicarius
     - Vicarius vRX
     - vRX 漏洞管理
-    # 功能關鍵字
     - 漏洞管理
     - 弱點管理
     - 自動化修補
     - Patchless Protection
     - 無補丁防禦
-    # 長尾關鍵字
     - 漏洞管理平台
     - 自動化 Patch 管理
     - 零日漏洞防護
     - RBVM 風險型漏洞管理
     - 鎰威科技
-
 url_mapping:
-  current_url: "/security-solutions/vicarius-vrx/"
-  old_url: "/vicarius_vrx/"
+  current_url: /security-solutions/vicarius-vrx/
+  old_url: /vicarius_vrx/
   redirect: true
-
-# ============================================================
-# AIO (AI Optimization) 結構化資料
-# ============================================================
-
 aio:
   webpage:
-    type: "ProductPage"
-    name: "Vicarius vRX 漏洞管理"
-    description: "Vicarius vRX 漏洞風險管理平台，由鎰威科技提供代理與技術服務。"
+    type: ProductPage
+    name: Vicarius vRX 漏洞管理
+    description: Vicarius vRX 漏洞風險管理平台，由鎰威科技提供代理與技術服務。
     breadcrumb:
-      type: "BreadcrumbList"
+      type: BreadcrumbList
       itemListElement:
-        - type: "ListItem"
+        - type: ListItem
           position: 1
-          name: "首頁"
-          item: "https://www.ewill.com.tw/"
-        - type: "ListItem"
+          name: 首頁
+          item: https://www.ewill.com.tw/
+        - type: ListItem
           position: 2
-          name: "資訊安全解決方案"
-          item: "https://www.ewill.com.tw/security-solutions/"
-        - type: "ListItem"
+          name: 資訊安全解決方案
+          item: https://www.ewill.com.tw/security-solutions/
+        - type: ListItem
           position: 3
-          name: "Vicarius vRX"
-          item: "https://www.ewill.com.tw/security-solutions/vicarius-vrx/"
-
+          name: Vicarius vRX
+          item: https://www.ewill.com.tw/security-solutions/vicarius-vrx/
   product:
-    type: "SoftwareApplication"
-    name: "Vicarius vRX"
-    applicationCategory: "Vulnerability Management Platform"
-    description: "整合漏洞掃描、修補管理與無補丁防禦的一站式漏洞管理平台。"
+    type: SoftwareApplication
+    name: Vicarius vRX
+    applicationCategory: Vulnerability Management Platform
+    description: 整合漏洞掃描、修補管理與無補丁防禦的一站式漏洞管理平台。
     features:
-      - "漏洞掃描：自動探索並識別系統漏洞"
-      - "風險優先排序：基於 CVSS、可利用性與資產價值排定修補優先順序"
-      - "自動化修補：一鍵部署修補程式，支援 Windows、Linux、macOS"
-      - "Patchless Protection：獨家無補丁防禦技術，即時防護無法修補的漏洞"
-      - "整合報告：產出合規報告與風險趨勢分析"
-
+      - 漏洞掃描：自動探索並識別系統漏洞
+      - 風險優先排序：基於 CVSS、可利用性與資產價值排定修補優先順序
+      - 自動化修補：一鍵部署修補程式，支援 Windows、Linux、macOS
+      - Patchless Protection：獨家無補丁防禦技術，即時防護無法修補的漏洞
+      - 整合報告：產出合規報告與風險趨勢分析
   faq:
-    - question: "什麼是 Patchless Protection？"
-      answer: "Patchless Protection 是 Vicarius 的獨家技術，可在不安裝修補程式的情況下防護漏洞。透過記憶體防護與應用程式控制，即時阻擋漏洞利用攻擊。這對於無法停機更新或原廠已停止支援的系統特別有效。"
-    - question: "vRX 與傳統弱點掃描有何不同？"
-      answer: "傳統弱點掃描只告訴您有哪些漏洞，vRX 則提供完整的漏洞生命週期管理：從掃描、優先排序、自動修補到防護。更重要的是，vRX 的 Patchless Protection 可在無法修補時提供即時防護。"
-    - question: "自動化修補安全嗎？"
-      answer: "vRX 的自動化修補功能支援排程與分階段部署，可先在測試環境驗證後再推送至正式環境。也可設定維護時段，避免影響業務運作。"
-
+    - question: 什麼是 Patchless Protection？
+      answer: Patchless Protection 是 Vicarius 的獨家技術，可在不安裝修補程式的情況下防護漏洞。透過記憶體防護與應用程式控制，即時阻擋漏洞利用攻擊。這對於無法停機更新或原廠已停止支援的系統特別有效。
+    - question: vRX 與傳統弱點掃描有何不同？
+      answer: 傳統弱點掃描只告訴您有哪些漏洞，vRX 則提供完整的漏洞生命週期管理：從掃描、優先排序、自動修補到防護。更重要的是，vRX 的 Patchless Protection 可在無法修補時提供即時防護。
+    - question: 自動化修補安全嗎？
+      answer: vRX 的自動化修補功能支援排程與分階段部署，可先在測試環境驗證後再推送至正式環境。也可設定維護時段，避免影響業務運作。
 content_summary:
-  main_topic: "漏洞風險管理與自動化修補"
+  main_topic: 漏洞風險管理與自動化修補
   key_differentiators:
-    - "Patchless Protection 無補丁防禦"
-    - "風險型漏洞管理 (RBVM)"
-    - "跨平台自動化修補"
+    - Patchless Protection 無補丁防禦
+    - 風險型漏洞管理 (RBVM)
+    - 跨平台自動化修補
   supported_platforms:
-    - "Windows Server / Desktop"
-    - "Linux (RHEL, Ubuntu, CentOS)"
-    - "macOS"
+    - Windows Server / Desktop
+    - Linux (RHEL, Ubuntu, CentOS)
+    - macOS
   integration:
-    - "SIEM 整合"
-    - "Ticketing 系統整合"
-    - "API 整合"
-
+    - SIEM 整合
+    - Ticketing 系統整合
+    - API 整合
 layout:
   hero:
     image:
@@ -97,3 +80,26 @@ layout:
     - id: vicariusvrx
     - id: vicariusvrx_1_fix
     - id: vicariusvrx_2_fix
+  sections:
+    - type: text
+      content: |-
+        #### 漏洞風險管理
+
+        ### Vicarius vRx 三大核心技術總覽－從漏洞發現、修補到自動化管理，全面提升資安效率
+
+        全自動資產掃描：偵測系統、應用與未知二進位程式漏洞。
+        CVE 情資整合：串接 NVD、CVSS、網路態勢，提供即時風險評估。
+        xTags™ 風險排序：AI 動態評估風險，優先處理高危漏洞。
+
+        ### 修補與補救機制
+
+        智能補丁管理：自動推送補丁，確保設備安全更新。
+        無補丁防禦（Patchless Protection）：透過記憶體與 API 保護，防禦無法修補的漏洞。
+        補丁測試與快照回溯：RollBack & Snapshot 功能，避免修補錯誤影響營運。
+
+        ### 自動化漏洞管理
+
+        AI 修補建議：減少人工，快速制定最適補救行動。
+        修補排程自動化：可預設補丁佈署或風險處置流程。
+        整合 IT 系統：支援串接 SIEM、SOAR、API 與通知系統，即時觸發資安事件報告。
+      title: Vicarius vRX

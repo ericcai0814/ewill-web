@@ -1,106 +1,92 @@
-# ============================================================
-# 數據中台解決方案 - 鎰威科技
-# ============================================================
-
 seo:
-  title: "數據中台解決方案 | 企業數據整合、治理與 API 服務 - 鎰威科技"
-  description: "鎰威科技數據中台解決方案，打破企業資料孤島，整合內外部數據源。提供數據治理、即時分析、API 服務調用與 BI 視覺化，賦能業務創新與數據驅動決策，加速企業數位轉型。"
+  title: 數據中台解決方案 | 企業數據整合、治理與 API 服務 - 鎰威科技
+  description: 鎰威科技數據中台解決方案，打破企業資料孤島，整合內外部數據源。提供數據治理、即時分析、API 服務調用與 BI 視覺化，賦能業務創新與數據驅動決策，加速企業數位轉型。
   keywords:
-    # 核心關鍵字
     - 數據中台
     - Data Middle Platform
     - 數據整合
     - 數據治理
-    # 技術關鍵字
     - ETL
     - 資料倉儲
     - Data Lake
     - API Gateway
     - BI 商業智慧
-    # 長尾關鍵字
     - 企業數據整合
     - 數據中台建置
     - 大數據分析平台
     - 數據治理解決方案
     - 鎰威科技
-
 url_mapping:
-  current_url: "/smart-manufacturing/data-platform/"
-  old_url: "/data_middleware/"
+  current_url: /smart-manufacturing/data-platform/
+  old_url: /data_middleware/
   redirect: true
-
-# ============================================================
-# AIO (AI Optimization) 結構化資料
-# ============================================================
-
 aio:
   webpage:
-    type: "ProductPage"
-    name: "數據中台解決方案"
-    description: "鎰威科技數據中台，整合企業數據並提供統一的數據服務。"
+    type: ProductPage
+    name: 數據中台解決方案
+    description: 鎰威科技數據中台，整合企業數據並提供統一的數據服務。
     breadcrumb:
-      type: "BreadcrumbList"
+      type: BreadcrumbList
       itemListElement:
-        - type: "ListItem"
+        - type: ListItem
           position: 1
-          name: "首頁"
-          item: "https://www.ewill.com.tw/"
-        - type: "ListItem"
+          name: 首頁
+          item: https://www.ewill.com.tw/
+        - type: ListItem
           position: 2
-          name: "智慧製造解決方案"
-          item: "https://www.ewill.com.tw/smart-manufacturing/"
-        - type: "ListItem"
+          name: 智慧製造解決方案
+          item: https://www.ewill.com.tw/smart-manufacturing/
+        - type: ListItem
           position: 3
-          name: "數據中台"
-          item: "https://www.ewill.com.tw/smart-manufacturing/data-platform/"
-
+          name: 數據中台
+          item: https://www.ewill.com.tw/smart-manufacturing/data-platform/
   product:
-    type: "SoftwareApplication"
-    name: "數據中台解決方案"
-    applicationCategory: "Data Platform / Data Integration"
-    description: "打破資料孤島，建立統一的企業數據服務平台。"
+    type: SoftwareApplication
+    name: 數據中台解決方案
+    applicationCategory: Data Platform / Data Integration
+    description: 打破資料孤島，建立統一的企業數據服務平台。
     features:
-      - "數據整合：連接 ERP、MES、CRM 等多元數據源"
-      - "數據治理：數據品質管理、主數據管理、數據血緣"
-      - "數據服務：標準化 API 提供數據調用服務"
-      - "即時分析：串流處理與即時運算能力"
-      - "BI 視覺化：儀表板與自助式分析報表"
-      - "AI/ML 支援：為機器學習模型提供數據基礎"
-
+      - 數據整合：連接 ERP、MES、CRM 等多元數據源
+      - 數據治理：數據品質管理、主數據管理、數據血緣
+      - 數據服務：標準化 API 提供數據調用服務
+      - 即時分析：串流處理與即時運算能力
+      - BI 視覺化：儀表板與自助式分析報表
+      - AI/ML 支援：為機器學習模型提供數據基礎
   faq:
-    - question: "什麼是數據中台？"
-      answer: "數據中台是企業級的數據管理與服務平台，介於底層數據源與上層應用之間。它負責整合各系統數據、進行數據治理、並透過標準化 API 提供數據服務給各業務應用，避免重複建設、提升數據價值。"
-    - question: "企業為什麼需要數據中台？"
-      answer: "隨著企業導入越來越多系統（ERP、MES、CRM...），形成多個資料孤島。數據中台可統一整合這些數據、建立單一真相來源，讓各部門都能使用一致、可信的數據進行決策。"
-    - question: "數據中台與資料倉儲有何不同？"
-      answer: "資料倉儲主要提供歷史數據的分析查詢，數據中台則更進一步，除了分析功能外，還提供數據服務能力（透過 API 供應用調用）、數據治理、以及支援即時數據處理。"
-
+    - question: 什麼是數據中台？
+      answer: 數據中台是企業級的數據管理與服務平台，介於底層數據源與上層應用之間。它負責整合各系統數據、進行數據治理、並透過標準化 API 提供數據服務給各業務應用，避免重複建設、提升數據價值。
+    - question: 企業為什麼需要數據中台？
+      answer: 隨著企業導入越來越多系統（ERP、MES、CRM...），形成多個資料孤島。數據中台可統一整合這些數據、建立單一真相來源，讓各部門都能使用一致、可信的數據進行決策。
+    - question: 數據中台與資料倉儲有何不同？
+      answer: 資料倉儲主要提供歷史數據的分析查詢，數據中台則更進一步，除了分析功能外，還提供數據服務能力（透過 API 供應用調用）、數據治理、以及支援即時數據處理。
 content_summary:
-  main_topic: "企業數據中台與數據治理"
+  main_topic: 企業數據中台與數據治理
   architecture_layers:
-    - name: "數據源層"
-      description: "連接 ERP、MES、IoT、外部數據等"
-    - name: "數據處理層"
-      description: "ETL、數據清洗、轉換、建模"
-    - name: "數據服務層"
-      description: "API Gateway、數據目錄、權限管理"
-    - name: "應用層"
-      description: "BI 報表、AI 模型、業務應用"
+    - name: 數據源層
+      description: 連接 ERP、MES、IoT、外部數據等
+    - name: 數據處理層
+      description: ETL、數據清洗、轉換、建模
+    - name: 數據服務層
+      description: API Gateway、數據目錄、權限管理
+    - name: 應用層
+      description: BI 報表、AI 模型、業務應用
   data_sources:
-    - "ERP 系統"
-    - "MES 生產數據"
-    - "IoT 設備數據"
-    - "CRM 客戶數據"
-    - "外部數據 (市場、天氣)"
+    - ERP 系統
+    - MES 生產數據
+    - IoT 設備數據
+    - CRM 客戶數據
+    - 外部數據 (市場、天氣)
   capabilities:
-    - "批次處理 (Batch)"
-    - "即時串流 (Streaming)"
-    - "數據品質監控"
-    - "資料血緣追蹤"
-
+    - 批次處理 (Batch)
+    - 即時串流 (Streaming)
+    - 數據品質監控
+    - 資料血緣追蹤
 layout:
   hero:
     image:
       id: data_middleware_banner
   content_images:
     - id: data_middleware_banner
+  sections:
+    - type: text
+      content: "### 什麼是數據中台？\n\n數據中台是企業數位轉型的核心引擎，透過統一整合企業內外部的各類數據資源，打破資料孤島，消除資訊斷層，為企業提供即時、可靠且高價值的數據基礎。數據中台不僅彙聚了業務、行銷、運營、財務等多元數據，更能靈活支援各部門數據應用，加速決策效率，推動業務創新。\n\n### 數據中台的效益\n\n- 數據整合與治理：自動連結各類數據源，高效清洗、標準化及管理數據，讓資料更純淨、更可靠。\n- 即時洞察分析：結合先進分析引擎，快速生成可視化報表，幫助管理層與業務團隊及時掌握市場動態與客戶需求。\n- 彈性服務調用：資料服務即插即用，各部門可依需求靈活獲取所需數據，提升作業效率。\n- 數據賦能業務：促進行銷精準投放、客戶關係管理、供應鏈優化等多面向應用，全面提升企業核心競爭力。\n- 安全合規無憂：嚴格遵循國際數據安全規範，確保資料安全與合規，讓企業無後顧之憂。\n\n### 為什麼選擇我們的數據中台？\n\n- 業界領先技術團隊，全方位支援企業數據建設。\n- 專業客戶成功團隊，協助企業持續創造數據價值。\n\n### 立即行動，搶佔智慧製造先機！\n\n現在就是數據驅動企業成長的最佳時機！讓我們陪伴您的企業，一起打造高效、智能、敏捷的數據中台，開啟數位轉型新篇章。\n\n聯繫電話：0912083643\_ 張先生\n\nE-mail：Simon.chang@ewill.com.tw"

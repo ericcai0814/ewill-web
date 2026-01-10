@@ -1,96 +1,83 @@
-# ============================================================
-# Acunetix 網站弱點掃描解決方案 - 鎰威科技
-# ============================================================
-
 seo:
-  title: "Acunetix 網站弱點掃描 | Web 應用程式安全檢測工具 - 鎰威科技"
-  description: "鎰威科技代理 Acunetix 網站弱點掃描工具，自動化檢測 Web 應用程式與 API 安全漏洞。支援 OWASP Top 10、SQL Injection、XSS 等 12,000+ 種弱點掃描，協助企業符合資安法規並保護客戶資料。"
+  title: Acunetix 網站弱點掃描 | Web 應用程式安全檢測工具 - 鎰威科技
+  description: >-
+    鎰威科技代理 Acunetix 網站弱點掃描工具，自動化檢測 Web 應用程式與 API 安全漏洞。支援 OWASP Top 10、SQL Injection、XSS 等 12,000+
+    種弱點掃描，協助企業符合資安法規並保護客戶資料。
   keywords:
-    # 品牌與產品
     - Acunetix
     - Acunetix 台灣
     - 網站弱點掃描
     - Web 弱點掃描器
-    # 技術關鍵字
     - DAST
     - 動態應用程式安全測試
     - API 安全測試
     - OWASP Top 10
     - SQL Injection 檢測
     - XSS 檢測
-    # 長尾關鍵字
     - 網站安全檢測工具
     - 弱點掃描軟體推薦
     - Web 應用程式安全
     - 資安合規檢測
     - 鎰威科技
-
 url_mapping:
-  current_url: "/security-solutions/acunetix/"
-  old_url: "/acunetix/"
+  current_url: /security-solutions/acunetix/
+  old_url: /acunetix/
   redirect: true
-
-# ============================================================
-# AIO (AI Optimization) 結構化資料
-# ============================================================
-
 aio:
   webpage:
-    type: "ProductPage"
-    name: "Acunetix 網站弱點掃描"
-    description: "Acunetix 自動化網站弱點掃描工具，由鎰威科技提供代理與技術服務。"
+    type: ProductPage
+    name: Acunetix 網站弱點掃描
+    description: Acunetix 自動化網站弱點掃描工具，由鎰威科技提供代理與技術服務。
     breadcrumb:
-      type: "BreadcrumbList"
+      type: BreadcrumbList
       itemListElement:
-        - type: "ListItem"
+        - type: ListItem
           position: 1
-          name: "首頁"
-          item: "https://www.ewill.com.tw/"
-        - type: "ListItem"
+          name: 首頁
+          item: https://www.ewill.com.tw/
+        - type: ListItem
           position: 2
-          name: "資訊安全解決方案"
-          item: "https://www.ewill.com.tw/security-solutions/"
-        - type: "ListItem"
+          name: 資訊安全解決方案
+          item: https://www.ewill.com.tw/security-solutions/
+        - type: ListItem
           position: 3
-          name: "Acunetix"
-          item: "https://www.ewill.com.tw/security-solutions/acunetix/"
-
+          name: Acunetix
+          item: https://www.ewill.com.tw/security-solutions/acunetix/
   product:
-    type: "SoftwareApplication"
-    name: "Acunetix"
-    applicationCategory: "Web Application Security Scanner"
-    operatingSystem: "Windows, Linux, Cloud"
-    description: "領先的自動化網站弱點掃描工具，可檢測超過 12,000 種 Web 漏洞。"
+    type: SoftwareApplication
+    name: Acunetix
+    applicationCategory: Web Application Security Scanner
+    operatingSystem: Windows, Linux, Cloud
+    description: 領先的自動化網站弱點掃描工具，可檢測超過 12,000 種 Web 漏洞。
     features:
-      - "DeepScan 技術：深度掃描 AJAX、JavaScript 單頁應用程式"
-      - "API 安全測試：支援 REST、SOAP、GraphQL API 掃描"
-      - "OWASP Top 10 完整覆蓋：SQL Injection、XSS、CSRF 等"
-      - "CI/CD 整合：無縫整合 Jenkins、GitLab、Azure DevOps"
-      - "合規報告：自動產生 PCI DSS、HIPAA、GDPR 合規報告"
-
+      - DeepScan 技術：深度掃描 AJAX、JavaScript 單頁應用程式
+      - API 安全測試：支援 REST、SOAP、GraphQL API 掃描
+      - OWASP Top 10 完整覆蓋：SQL Injection、XSS、CSRF 等
+      - CI/CD 整合：無縫整合 Jenkins、GitLab、Azure DevOps
+      - 合規報告：自動產生 PCI DSS、HIPAA、GDPR 合規報告
   faq:
-    - question: "什麼是網站弱點掃描？"
-      answer: "網站弱點掃描是使用自動化工具檢測 Web 應用程式安全漏洞的過程。Acunetix 可以模擬駭客攻擊手法，找出 SQL Injection、XSS、敏感資料洩露等安全問題，讓您在被攻擊前先修補漏洞。"
-    - question: "Acunetix 可以掃描哪些類型的漏洞？"
-      answer: "Acunetix 可檢測超過 12,000 種 Web 漏洞，包含 OWASP Top 10（如 SQL Injection、XSS、CSRF）、零日漏洞、設定錯誤、敏感資料洩露等。也支援 REST API、GraphQL 等現代 API 架構的安全檢測。"
-    - question: "多久應該執行一次弱點掃描？"
-      answer: "建議在每次程式碼變更後執行掃描，或至少每月定期掃描一次。Acunetix 支援 CI/CD 整合，可在開發流程中自動執行掃描，實現 DevSecOps。"
-
+    - question: 什麼是網站弱點掃描？
+      answer: 網站弱點掃描是使用自動化工具檢測 Web 應用程式安全漏洞的過程。Acunetix 可以模擬駭客攻擊手法，找出 SQL Injection、XSS、敏感資料洩露等安全問題，讓您在被攻擊前先修補漏洞。
+    - question: Acunetix 可以掃描哪些類型的漏洞？
+      answer: >-
+        Acunetix 可檢測超過 12,000 種 Web 漏洞，包含 OWASP Top 10（如 SQL Injection、XSS、CSRF）、零日漏洞、設定錯誤、敏感資料洩露等。也支援 REST API、GraphQL
+        等現代 API 架構的安全檢測。
+    - question: 多久應該執行一次弱點掃描？
+      answer: 建議在每次程式碼變更後執行掃描，或至少每月定期掃描一次。Acunetix 支援 CI/CD 整合，可在開發流程中自動執行掃描，實現 DevSecOps。
 content_summary:
-  main_topic: "Web 應用程式安全檢測"
+  main_topic: Web 應用程式安全檢測
   vulnerability_categories:
-    - "注入攻擊 (SQL/NoSQL/OS/LDAP Injection)"
-    - "跨站腳本攻擊 (XSS)"
-    - "身份驗證漏洞"
-    - "敏感資料洩露"
-    - "API 安全漏洞"
+    - 注入攻擊 (SQL/NoSQL/OS/LDAP Injection)
+    - 跨站腳本攻擊 (XSS)
+    - 身份驗證漏洞
+    - 敏感資料洩露
+    - API 安全漏洞
   compliance_standards:
-    - "OWASP Top 10"
-    - "PCI DSS"
-    - "HIPAA"
-    - "GDPR"
-    - "ISO 27001"
-
+    - OWASP Top 10
+    - PCI DSS
+    - HIPAA
+    - GDPR
+    - ISO 27001
 layout:
   hero:
     image:
@@ -105,3 +92,31 @@ layout:
     - id: acunetix_p3_fix
     - id: acunetix_4
     - id: acunetix_p4_fix
+  sections:
+    - type: text
+      content: |-
+        #### 網站安全掃描
+
+        ### 網絡應用程序和 API 安全
+
+        您不需要投入更多時間來處理應用安全，您只需要 Acunetix。通過六個簡單的步驟，即可自動化您的網絡應用程序和 API 安全管理。
+
+        ### 確保全面掃描與安全防護
+
+        Acunetix 會自動創建並更新您的所有網站、應用程序和 API 的列表，確保發現所有需要掃描的內容。
+
+        這意味著您不會遺漏任何未掃描且容易受到攻擊的潛在入口點。
+
+        ### 深入掃描應用程序的每個角落
+
+        輕鬆掃描大多數其他漏洞掃描器無法觸及的區域。
+
+        無論是單頁應用（SPAs）、腳本密集型網站，還是使用 HTML5 及 JavaScript 構建的應用程序，Acunetix 都能有效進行掃描。
+        此外，您還可以錄製巨集以自動掃描受密碼保護的區域和難以觸及的部分，並檢測其他掃描器無法看到的未鏈接文件和 API 端點。
+
+        ### 檢測漏洞
+
+        快速找到使您面臨風險的安全漏洞，偵測超過 12,000 個漏洞，包括零日漏洞。
+        使用世界上最準確的掃描器找出您的安全漏洞，立即揭示發現的漏洞。
+        同時掃描多個環境 通過結合 DAST + IAST 掃描獲得更全面的覆蓋範圍。
+      title: Acunetix

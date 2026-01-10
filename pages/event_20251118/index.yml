@@ -1,99 +1,129 @@
-# ============================================================
-# 智慧製造線上研討會 (2025/11/18) - 鎰威科技
-# ============================================================
-
 seo:
-  title: "智慧製造入門研討會 | MES、WMS、AI 應用全解析 - 鎰威科技"
-  description: "鎰威科技 2025 智慧製造線上研討會，深入解析智慧製造入門關鍵解決方案。專家探討 MES 製造執行系統、WMS 倉儲管理、AI 應用導入策略，助企業掌握數位轉型先機，提升生產力與競爭力。"
+  title: 智慧製造入門研討會 | MES、WMS、AI 應用全解析 - 鎰威科技
+  description: 鎰威科技 2025 智慧製造線上研討會，深入解析智慧製造入門關鍵解決方案。專家探討 MES 製造執行系統、WMS 倉儲管理、AI 應用導入策略，助企業掌握數位轉型先機，提升生產力與競爭力。
   keywords:
-    # 活動關鍵字
     - 智慧製造研討會
     - 線上研討會
     - Webinar
-    # 內容關鍵字
     - 智慧製造
     - 數位轉型
     - 工業 4.0
     - MES 導入
     - WMS 導入
-    # 品牌
     - 鎰威科技
-
 url_mapping:
-  current_url: "/events/smart-manufacturing-webinar-2025/"
-  old_url: "/event_20251118/"
+  current_url: /events/smart-manufacturing-webinar-2025/
+  old_url: /event_20251118/
   redirect: true
-
-# ============================================================
-# AIO (AI Optimization) 結構化資料
-# ============================================================
-
 aio:
   webpage:
-    type: "EventPage"
-    name: "智慧製造入門研討會"
-    description: "鎰威科技智慧製造線上研討會活動頁面。"
+    type: EventPage
+    name: 智慧製造入門研討會
+    description: 鎰威科技智慧製造線上研討會活動頁面。
     breadcrumb:
-      type: "BreadcrumbList"
+      type: BreadcrumbList
       itemListElement:
-        - type: "ListItem"
+        - type: ListItem
           position: 1
-          name: "首頁"
-          item: "https://www.ewill.com.tw/"
-        - type: "ListItem"
+          name: 首頁
+          item: https://www.ewill.com.tw/
+        - type: ListItem
           position: 2
-          name: "活動資訊"
-          item: "https://www.ewill.com.tw/events/"
-        - type: "ListItem"
+          name: 活動資訊
+          item: https://www.ewill.com.tw/events/
+        - type: ListItem
           position: 3
-          name: "智慧製造研討會"
-          item: "https://www.ewill.com.tw/events/smart-manufacturing-webinar-2025/"
-
+          name: 智慧製造研討會
+          item: https://www.ewill.com.tw/events/smart-manufacturing-webinar-2025/
   event:
-    type: "Event"
-    name: "智慧製造入門關鍵解決方案全解析 線上研討會"
-    description: "深入解析智慧製造導入策略，涵蓋 MES、WMS、AI 應用等關鍵議題。"
-    eventStatus: "EventScheduled"
-    eventAttendanceMode: "OnlineEventAttendanceMode"
+    type: Event
+    name: 智慧製造入門關鍵解決方案全解析 線上研討會
+    description: 深入解析智慧製造導入策略，涵蓋 MES、WMS、AI 應用等關鍵議題。
+    eventStatus: EventScheduled
+    eventAttendanceMode: OnlineEventAttendanceMode
     location:
-      type: "VirtualLocation"
-      url: "https://www.ewill.com.tw/events/smart-manufacturing-webinar-2025/"
+      type: VirtualLocation
+      url: https://www.ewill.com.tw/events/smart-manufacturing-webinar-2025/
     organizer:
-      type: "Organization"
-      name: "鎰威科技"
-      url: "https://www.ewill.com.tw"
+      type: Organization
+      name: 鎰威科技
+      url: https://www.ewill.com.tw
     startDate: "2025-11-18T14:00:00+08:00"
     endDate: "2025-11-18T16:00:00+08:00"
     offers:
-      type: "Offer"
+      type: Offer
       price: "0"
-      priceCurrency: "TWD"
-      availability: "InStock"
-
+      priceCurrency: TWD
+      availability: InStock
   faq:
-    - question: "這場研討會適合誰參加？"
-      answer: "本研討會適合製造業主管、IT 主管、廠務經理、生產管理人員，以及任何對智慧製造有興趣、正在評估數位轉型的企業人士。"
-    - question: "參加研討會需要付費嗎？"
-      answer: "本研討會完全免費參加，只需事先報名即可。報名成功後會收到線上參與連結。"
-    - question: "研討會會錄影嗎？"
-      answer: "研討會將全程錄影，報名者可於活動後收到錄影回看連結。"
-
+    - question: 這場研討會適合誰參加？
+      answer: 本研討會適合製造業主管、IT 主管、廠務經理、生產管理人員，以及任何對智慧製造有興趣、正在評估數位轉型的企業人士。
+    - question: 參加研討會需要付費嗎？
+      answer: 本研討會完全免費參加，只需事先報名即可。報名成功後會收到線上參與連結。
+    - question: 研討會會錄影嗎？
+      answer: 研討會將全程錄影，報名者可於活動後收到錄影回看連結。
 content_summary:
-  event_type: "線上研討會"
+  event_type: 線上研討會
   main_topics:
-    - "智慧製造趨勢與入門策略"
-    - "MES 製造執行系統導入實務"
-    - "WMS 倉儲管理系統案例分享"
-    - "AI 應用於製造業的機會"
+    - 智慧製造趨勢與入門策略
+    - MES 製造執行系統導入實務
+    - WMS 倉儲管理系統案例分享
+    - AI 應用於製造業的機會
   target_audience:
-    - "製造業主管"
-    - "IT 主管"
-    - "生產管理人員"
-    - "數位轉型決策者"
-
+    - 製造業主管
+    - IT 主管
+    - 生產管理人員
+    - 數位轉型決策者
 layout:
   hero:
     image:
       id: 01_scaled
   content_images:
     - id: 01_scaled
+  sections:
+    - type: text
+      content: >-
+        ### 智慧製造線上研討會首部曲登場！  揭開智慧製造入門關鍵解決方案全解析
+
+
+        在數位科技快速發展、全球供應鏈競爭激烈的時代，智慧製造已成為企業轉型升級的重要關鍵。為協助企業掌握產業最新趨勢、加速智慧工廠落地應用，鎰威科技特別舉辦「智慧製造線上研討會首部曲」，深入剖析企業從傳統製造邁向智慧製造所需導入的第一步與核心解決方案。
+
+
+        本次研討會將聚焦智慧工廠必備的四大關鍵技術導入方向，協助製造業迎接數位浪潮、提升競爭優勢：
+
+
+        研討會主題亮點
+
+
+        ✔ MES系統 / IoT整合應用
+
+        MES 是製造業邁向智慧工廠不可或缺的基石，可協助企業提升生產效率、降低製造成本、縮短製程時間、提升良率，迎戰數位化時代的挑戰與轉型契機。
+
+
+        ✔ OT資訊安全解決方案
+
+        智慧工廠需要快速連網與大量設備整合，資安風險同時升高。研討會將介紹如何建立工廠 OT 防線，保障企業營運穩定，防止資料外洩與人為操作風險，打造安全可靠的智慧產線。
+
+
+        ✔智能倉儲管理（WMS）
+
+        結合智慧料架、AGV / 無人搬運車與物流整合，達成倉儲自動化、庫存精準管理與物流效率提升，讓生產鏈條銜接無縫、降低人力成本、提升供應鏈反應速度。
+
+
+        ✔ RMA AI平台
+
+        透過 AI 與智慧演算法，大幅縮短客戶退回產品故障處理與維修鑑定時間，不僅提升售後服務效率，也強化產品品質與客戶滿意度，打造更優質的客戶體驗。打造智慧製造第一步，為企業競爭力提前部署。
+
+
+        本次研討會將以實務案例與成功導入經驗為核心，協助企業了解：
+
+        ✔ 如何從零開始導入智慧製造
+
+        ✔ 企業導入前最常遇到的問題與誤區
+
+        ✔ 如何制定成本可控、效益最大化的導入策略
+
+        ✔ 智慧工廠從生產、倉儲到售後的完整鏈結
+
+
+        鎰威科技表示，智慧製造並非一次到位，而是依照企業規模、產線特性與資訊化成熟度，階段性導入更有效。本研討會將提供企業「可馬上著手」的導入方向，協助製造業提前布局未來市場。

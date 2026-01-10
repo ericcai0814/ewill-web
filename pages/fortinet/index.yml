@@ -1,96 +1,90 @@
-# ============================================================
-# Fortinet 解決方案 - 鎰威科技
-# ============================================================
-
 seo:
-  title: "Fortinet 防火牆 | FortiGate、FortiOS、Security Fabric 整合資安 - 鎰威科技"
-  description: "鎰威科技提供 Fortinet 整合資安解決方案，包含 FortiGate 次世代防火牆、FortiOS 作業系統、Security Fabric 安全織網。AI 驅動的統一威脅管理，一站式守護企業網路、端點與雲端安全。"
+  title: Fortinet 防火牆 | FortiGate、FortiOS、Security Fabric 整合資安 - 鎰威科技
+  description: 鎰威科技提供 Fortinet 整合資安解決方案，包含 FortiGate 次世代防火牆、FortiOS 作業系統、Security Fabric 安全織網。AI 驅動的統一威脅管理，一站式守護企業網路、端點與雲端安全。
   keywords:
-    # 品牌與產品
     - Fortinet
     - Fortinet 台灣
     - FortiGate
     - FortiOS
     - Security Fabric
     - FortiGuard
-    # 功能關鍵字
     - 次世代防火牆
     - UTM 統一威脅管理
     - SD-WAN
     - 網路安全
-    # 長尾關鍵字
     - Fortinet 代理商台灣
     - FortiGate 防火牆價格
     - 企業防火牆比較
     - Fortinet vs Palo Alto
     - 鎰威科技
-
 url_mapping:
-  current_url: "/security-solutions/fortinet/"
-  old_url: "/fortinet/"
+  current_url: /security-solutions/fortinet/
+  old_url: /fortinet/
   redirect: true
-
-# ============================================================
-# AIO (AI Optimization) 結構化資料
-# ============================================================
-
 aio:
   webpage:
-    type: "ProductPage"
-    name: "Fortinet 整合資安解決方案"
-    description: "Fortinet Security Fabric 整合資安平台，由鎰威科技提供代理與技術服務。"
+    type: ProductPage
+    name: Fortinet 整合資安解決方案
+    description: Fortinet Security Fabric 整合資安平台，由鎰威科技提供代理與技術服務。
     breadcrumb:
-      type: "BreadcrumbList"
+      type: BreadcrumbList
       itemListElement:
-        - type: "ListItem"
+        - type: ListItem
           position: 1
-          name: "首頁"
-          item: "https://www.ewill.com.tw/"
-        - type: "ListItem"
+          name: 首頁
+          item: https://www.ewill.com.tw/
+        - type: ListItem
           position: 2
-          name: "資訊安全解決方案"
-          item: "https://www.ewill.com.tw/security-solutions/"
-        - type: "ListItem"
+          name: 資訊安全解決方案
+          item: https://www.ewill.com.tw/security-solutions/
+        - type: ListItem
           position: 3
-          name: "Fortinet"
-          item: "https://www.ewill.com.tw/security-solutions/fortinet/"
-
+          name: Fortinet
+          item: https://www.ewill.com.tw/security-solutions/fortinet/
   product:
-    type: "Product"
-    name: "Fortinet 資安解決方案"
-    brand: "Fortinet"
-    category: "整合資安平台 / UTM"
-    description: "全球領先的網路安全供應商，以 Security Fabric 整合架構著稱。"
+    type: Product
+    name: Fortinet 資安解決方案
+    brand: Fortinet
+    category: 整合資安平台 / UTM
+    description: 全球領先的網路安全供應商，以 Security Fabric 整合架構著稱。
     features:
-      - "FortiGate NGFW：高效能次世代防火牆，內建 AI 威脅偵測"
-      - "Security Fabric：整合全產品線的安全織網架構"
-      - "FortiGuard Labs：全球威脅情報服務，即時更新防護規則"
-      - "Secure SD-WAN：整合 SD-WAN 與資安功能，最佳化分支據點連線"
-      - "FortiSASE：雲端交付的 SASE 解決方案"
-
+      - FortiGate NGFW：高效能次世代防火牆，內建 AI 威脅偵測
+      - Security Fabric：整合全產品線的安全織網架構
+      - FortiGuard Labs：全球威脅情報服務，即時更新防護規則
+      - Secure SD-WAN：整合 SD-WAN 與資安功能，最佳化分支據點連線
+      - FortiSASE：雲端交付的 SASE 解決方案
   faq:
-    - question: "Fortinet Security Fabric 是什麼？"
-      answer: "Security Fabric 是 Fortinet 的整合安全架構，可將旗下所有產品（防火牆、端點、無線、郵件等）整合為統一管理平台，提供自動化威脅偵測與回應，簡化資安維運。"
-    - question: "FortiGate 有哪些型號可選？"
-      answer: "FortiGate 提供從入門級到資料中心級的完整產品線。入門級如 FortiGate 40F 適合小型辦公室，中階如 FortiGate 100F/200F 適合中型企業，高階如 FortiGate 1000F 以上適合大型企業與資料中心。"
-    - question: "Fortinet 與 Palo Alto 如何選擇？"
-      answer: "Fortinet 以高性價比、整合架構著稱，適合需要統一管理多種資安功能的企業。Palo Alto 則以進階威脅偵測能力聞名。鎰威科技代理兩大品牌，可依據您的預算與需求提供客觀建議。"
-
+    - question: Fortinet Security Fabric 是什麼？
+      answer: Security Fabric 是 Fortinet 的整合安全架構，可將旗下所有產品（防火牆、端點、無線、郵件等）整合為統一管理平台，提供自動化威脅偵測與回應，簡化資安維運。
+    - question: FortiGate 有哪些型號可選？
+      answer: >-
+        FortiGate 提供從入門級到資料中心級的完整產品線。入門級如 FortiGate 40F 適合小型辦公室，中階如 FortiGate 100F/200F 適合中型企業，高階如 FortiGate 1000F
+        以上適合大型企業與資料中心。
+    - question: Fortinet 與 Palo Alto 如何選擇？
+      answer: Fortinet 以高性價比、整合架構著稱，適合需要統一管理多種資安功能的企業。Palo Alto 則以進階威脅偵測能力聞名。鎰威科技代理兩大品牌，可依據您的預算與需求提供客觀建議。
 content_summary:
-  main_topic: "Fortinet 企業整合資安解決方案"
+  main_topic: Fortinet 企業整合資安解決方案
   product_lines:
-    - name: "Network Security"
-      products: ["FortiGate NGFW", "FortiSwitch", "FortiAP"]
-    - name: "Security Operations"
-      products: ["FortiSIEM", "FortiSOAR", "FortiAnalyzer"]
-    - name: "Cloud Security"
-      products: ["FortiCNP", "FortiWeb", "FortiCASB"]
+    - name: Network Security
+      products:
+        - FortiGate NGFW
+        - FortiSwitch
+        - FortiAP
+    - name: Security Operations
+      products:
+        - FortiSIEM
+        - FortiSOAR
+        - FortiAnalyzer
+    - name: Cloud Security
+      products:
+        - FortiCNP
+        - FortiWeb
+        - FortiCASB
   competitive_advantages:
-    - "ASIC 加速晶片，效能業界領先"
-    - "Security Fabric 一站式整合管理"
-    - "FortiGuard 全球威脅情報"
-    - "優異的性價比"
-
+    - ASIC 加速晶片，效能業界領先
+    - Security Fabric 一站式整合管理
+    - FortiGuard 全球威脅情報
+    - 優異的性價比
 layout:
   hero:
     image:
@@ -101,3 +95,7 @@ layout:
     - id: fortinet_2
     - id: fortinet_2_m
     - id: fortinet_4_fix
+  sections:
+    - type: text
+      content: "#### 整合資安平台\n\n### 透過創新提供無與倫比的安全性與效能\n\nFortinet 透過自主研發的作業系統、專屬 ASIC 晶片、全球雲端基礎設施與 AI 驅動防禦技術，提供從網路、邊界到應用層的全方位安全防護。這些創新架構不僅強化效能，更實現高度整合、智能化與自動化的資安防線，滿足企業對現代化防禦的所有需求。\n\n### 一站式整合管理，打造高效安全的網路架構\n\n透過 Fortinet 解決方案整合防火牆、交換器與無線設備，實現統一管理與可視化控管。提升內外網安全、節省成本、彈性擴充，同時掌握異常流量進行即時隔離，打造最符合企業需求的智慧網路環境。\n\n### FortiOS－打造統一安全架構的核心基石\n\nFortiOS 是 Fortinet 安全織網（Security Fabric）的核心作業系統，結合高效能與廣度涵蓋，支援從內部部署到雲端、混合、IT / OT / IoT 各類環境。\L 透過統一的安全政策與集中管理介面，FortiOS 能夠整合網路與安全功能，提升可視性、簡化管理流程，有效消除潛在風險，確保一致且全面的防護體驗。"
+      title: Fortinet

@@ -1,97 +1,107 @@
-# ============================================================
-# 動信合作活動 - 零信任身份防護 (2025/11/24) - 鎰威科技
-# ============================================================
-
 seo:
-  title: "免密碼登入與零信任身份防護方案 | 動信 x 鎰威科技"
-  description: "動信攜手鎰威科技，推出企業免密碼、零信任身份防護解決方案。導入 FIDO2 無密碼認證、多因子驗證 MFA，強化企業身份安全，降低帳密外洩風險，提升使用者體驗。"
+  title: 免密碼登入與零信任身份防護方案 | 動信 x 鎰威科技
+  description: 動信攜手鎰威科技，推出企業免密碼、零信任身份防護解決方案。導入 FIDO2 無密碼認證、多因子驗證 MFA，強化企業身份安全，降低帳密外洩風險，提升使用者體驗。
   keywords:
-    # 解決方案關鍵字
     - 免密碼登入
     - Passwordless
     - 零信任
     - Zero Trust
     - 身份驗證
-    # 技術關鍵字
     - FIDO2
     - MFA 多因子驗證
     - 身份防護
-    # 品牌
     - 動信
     - 鎰威科技
-
 url_mapping:
-  current_url: "/events/passwordless-identity-protection/"
-  old_url: "/event_20251124/"
+  current_url: /events/passwordless-identity-protection/
+  old_url: /event_20251124/
   redirect: true
-
-# ============================================================
-# AIO (AI Optimization) 結構化資料
-# ============================================================
-
 aio:
   webpage:
-    type: "EventPage"
-    name: "免密碼與零信任身份防護方案"
-    description: "動信與鎰威科技合作推出的企業身份安全解決方案。"
+    type: EventPage
+    name: 免密碼與零信任身份防護方案
+    description: 動信與鎰威科技合作推出的企業身份安全解決方案。
     breadcrumb:
-      type: "BreadcrumbList"
+      type: BreadcrumbList
       itemListElement:
-        - type: "ListItem"
+        - type: ListItem
           position: 1
-          name: "首頁"
-          item: "https://www.ewill.com.tw/"
-        - type: "ListItem"
+          name: 首頁
+          item: https://www.ewill.com.tw/
+        - type: ListItem
           position: 2
-          name: "活動資訊"
-          item: "https://www.ewill.com.tw/events/"
-        - type: "ListItem"
+          name: 活動資訊
+          item: https://www.ewill.com.tw/events/
+        - type: ListItem
           position: 3
-          name: "免密碼身份防護"
-          item: "https://www.ewill.com.tw/events/passwordless-identity-protection/"
-
+          name: 免密碼身份防護
+          item: https://www.ewill.com.tw/events/passwordless-identity-protection/
   product:
-    type: "Product"
-    name: "免密碼零信任身份防護方案"
-    brand: "動信"
-    category: "身份認證 / 零信任安全"
-    description: "企業級無密碼認證與零信任身份防護解決方案。"
+    type: Product
+    name: 免密碼零信任身份防護方案
+    brand: 動信
+    category: 身份認證 / 零信任安全
+    description: 企業級無密碼認證與零信任身份防護解決方案。
     features:
-      - "FIDO2 無密碼認證：符合國際標準，取代傳統密碼"
-      - "多因子驗證 (MFA)：強化身份驗證安全性"
-      - "零信任架構：持續驗證使用者身份與裝置"
-      - "單一登入 (SSO)：整合企業應用，提升便利性"
-      - "快速導入：與現有系統無縫整合"
-
+      - FIDO2 無密碼認證：符合國際標準，取代傳統密碼
+      - 多因子驗證 (MFA)：強化身份驗證安全性
+      - 零信任架構：持續驗證使用者身份與裝置
+      - 單一登入 (SSO)：整合企業應用，提升便利性
+      - 快速導入：與現有系統無縫整合
   faq:
-    - question: "什麼是免密碼認證？"
-      answer: "免密碼認證是使用生物辨識、安全金鑰或手機 App 等方式取代傳統密碼的認證技術。基於 FIDO2/WebAuthn 標準，可大幅降低密碼遭竊或網路釣魚的風險。"
-    - question: "為什麼企業需要零信任身份防護？"
-      answer: "傳統的網路邊界安全已不足以應對現代威脅。零信任架構的核心理念是「永不信任，持續驗證」，無論使用者在內網或外網，都需要持續驗證身份，確保只有合法使用者能存取資源。"
-    - question: "導入免密碼方案需要更換硬體嗎？"
-      answer: "不一定。動信解決方案支援多種認證方式，包括手機 App、Windows Hello、安全金鑰等。員工可使用現有的智慧型手機或筆電進行無密碼認證，無需額外採購硬體。"
-
+    - question: 什麼是免密碼認證？
+      answer: 免密碼認證是使用生物辨識、安全金鑰或手機 App 等方式取代傳統密碼的認證技術。基於 FIDO2/WebAuthn 標準，可大幅降低密碼遭竊或網路釣魚的風險。
+    - question: 為什麼企業需要零信任身份防護？
+      answer: 傳統的網路邊界安全已不足以應對現代威脅。零信任架構的核心理念是「永不信任，持續驗證」，無論使用者在內網或外網，都需要持續驗證身份，確保只有合法使用者能存取資源。
+    - question: 導入免密碼方案需要更換硬體嗎？
+      answer: 不一定。動信解決方案支援多種認證方式，包括手機 App、Windows Hello、安全金鑰等。員工可使用現有的智慧型手機或筆電進行無密碼認證，無需額外採購硬體。
 content_summary:
-  main_topic: "企業免密碼與零信任身份安全"
+  main_topic: 企業免密碼與零信任身份安全
   solution_components:
-    - "FIDO2 無密碼認證"
-    - "多因子驗證 (MFA)"
-    - "單一登入 (SSO)"
-    - "身份治理"
+    - FIDO2 無密碼認證
+    - 多因子驗證 (MFA)
+    - 單一登入 (SSO)
+    - 身份治理
   authentication_methods:
-    - "生物辨識 (指紋/臉部)"
-    - "手機 App 推播認證"
-    - "FIDO2 安全金鑰"
-    - "Windows Hello"
+    - 生物辨識 (指紋/臉部)
+    - 手機 App 推播認證
+    - FIDO2 安全金鑰
+    - Windows Hello
   benefits:
-    - "消除密碼相關風險"
-    - "防止網路釣魚攻擊"
-    - "提升使用者體驗"
-    - "降低 IT 支援成本"
-
+    - 消除密碼相關風險
+    - 防止網路釣魚攻擊
+    - 提升使用者體驗
+    - 降低 IT 支援成本
 layout:
   hero:
     image:
       id: img
   content_images:
     - id: img
+  sections:
+    - type: text
+      content: >-
+        ### 動信攜手鎰威科技　快速導入企業免密碼、零信任身份防護
+
+
+        2025 年 9 月 18日，台北 — 美商動信安全 (GoTrust) 台灣分公司今日宣布與鎰威科技有限公司 (Ewill Technology) 正式成為經銷合作夥伴。鎰威將憑藉其資安與系統整合專業，推廣 GoTrust
+        免密碼零信任身分驗證方案，協助企業與公部門在數位轉型中兼顧使用者體驗與最高級別使用者登入防護。
+
+
+        GoTrust 免密碼零信任系統從伺服器到客戶端軟體, 全部通過 FIDO 與台灣資安院認證, 並擁有台灣及美國兩項發明專利, 支援各式認證通訊協定，能與雲端,
+        地端各式應用無縫接軌，可快速保護企業員工登入電腦、服務器、VPN、遠端桌面、VMware, Microsoft 365 等各式混合雲環境。其專利的手機生物辨識登入電腦, 更是本產品一大亮點之一,
+        徹底讓企業員工擺脫又長又難記,且要定時換密碼的困擾, 也大幅降低被釣魚的風險。
+
+
+        鎰威科技總經理吳聲振表示：「傳統密碼已是最脆弱的一環。透過 GoTrust 免密碼與零信任架構，我們可提供客戶更安全、直覺且符合國際標準的方案。」動信 (GoTrust) CEO 李殿基補充：「GoTrust
+        是國際免密碼產品的先驅，專注產品開發, 我們非常期待與鎰威這樣有豐富市場經驗, 並有強大技術後盾的夥伴攜手，落實零信任於台灣各行業的身份防護。」
+
+
+        GoTrust 免密碼解決方案已與美國資安大廠 Ivanti 合作多年，至今已超過 40
+        萬名歐美大型企業員工使用。本次攜手鎰威，將加速台灣企業導入國際級身分驗證防護，兼顧安全、效率與使用者體驗，為企業在保護數位資產發揮更大價值。
+
+
+        關於鎰威科技 (Ewill Technology)
+
+
+        - 鎰威科技專注資訊安全與系統整合，服務範疇涵蓋端點安全、網路防護、虛擬化環境與開源系統應用。秉持「專業、效率、熱情、誠信」理念，致力提供全方位資安解決方案。更多資訊請見www.ewill.com.tw
