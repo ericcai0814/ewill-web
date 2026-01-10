@@ -29,8 +29,14 @@ node_modules/
 # Content Build 輸出目錄
 static-app/
 next-app/
-nuxt-app/
 ewill-next/
+
+# Nuxt App（保留原始碼，忽略建置產出）
+nuxt-app/public/
+nuxt-app/.nuxt/
+nuxt-app/.output/
+nuxt-app/.firebase/
+nuxt-app/dist
 
 # ====================
 # Logs
