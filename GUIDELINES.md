@@ -11,22 +11,27 @@
 ```
 pages/
 └── {page_name}/
-    ├── index.md              # 頁面內容
-    ├── index.yml             # 頁面元資料（SEO、AIO）
+    ├── index.yml             # 頁面內容與元資料（SEO、AIO、layout）
+    ├── index.md              # ⚠️ 已廢棄，內容已遷移至 index.yml
     └── assets/               # 圖片資源目錄
         ├── banner.jpg        # 圖片檔案
         ├── banner.jpg.yml    # 圖片描述檔
         └── ...
 ```
 
-**說明**：首頁資源存放於 `pages/index/assets/`。
+**說明**：
+- 首頁資源存放於 `pages/index/assets/`
+- `index.md` 已廢棄，所有內容透過 `index.yml` 的 `layout.sections` 管理
 
 ### 圖片引用格式
 
-在 `index.md` 中引用圖片時，使用相對路徑：
+在 `index.yml` 的 `layout.sections` 中引用圖片，使用圖片的 `id`：
 
-```markdown
-![](assets/banner.jpg)
+```yaml
+layout:
+  sections:
+    - type: "image"
+      image_id: "banner"  # 對應 assets/banner.jpg.yml 中的 id
 ```
 
 ### 新增圖片
@@ -52,7 +57,69 @@ pages/
 
 每個頁面目錄下的 `index.yml` 必須包含以下區塊：
 
-### 2.1 SEO 區塊
+### 2.1 Layout 區塊（頁面內容）
+
+`layout` 區塊定義頁面的視覺結構與內容，取代原本的 `index.md`。
+
+```yaml
+layout:
+  # Hero Banner（必要）
+  hero:
+    image:
+      id: hero_banner  # 對應 assets/*.yml 中的 id
+
+  # 頁面內容區塊（必要）
+  sections:
+    # 文字區塊
+    - type: "text"
+      content: |
+        ## 標題
+        ### 副標題
+        段落內容...
+
+    # 圖片區塊
+    - type: "image"
+      image_id: "feature_image"  # 對應 assets/*.yml 中的 id
+
+    # 可交替排列 text 和 image
+    - type: "text"
+      content: |
+        ### 另一個區塊標題
+        更多內容...
+```
+
+#### Section 類型說明
+
+| type | 必要欄位 | 說明 |
+|------|----------|------|
+| `text` | `content` | Markdown 格式的文字內容 |
+| `image` | `image_id` | 圖片 ID，對應 `assets/*.yml` 中的 `id` |
+
+#### 範例（完整頁面結構）
+
+```yaml
+layout:
+  hero:
+    image:
+      id: logsec_banner
+  sections:
+    - type: "text"
+      content: |
+        ## LOGSEC
+        #### 資安預警解決方案
+        ### 平台功能概覽
+        LOGSEC 平台透過行為記錄整合與即時告警機制...
+    - type: "image"
+      image_id: "logsec_feature_1"
+    - type: "text"
+      content: |
+        ### 整合日誌，安全更清晰
+        客戶設備產生日誌繁多且分散...
+    - type: "image"
+      image_id: "logsec_feature_2"
+```
+
+### 2.2 SEO 區塊
 
 ```yaml
 seo:
@@ -70,7 +137,7 @@ seo:
     - XX 導入
 ```
 
-### 2.2 URL Mapping 區塊
+### 2.3 URL Mapping 區塊
 
 ```yaml
 url_mapping:
@@ -79,7 +146,7 @@ url_mapping:
   redirect: true # 是否需要 301 redirect
 ```
 
-### 2.3 AIO (AI Optimization) 區塊
+### 2.4 AIO (AI Optimization) 區塊
 
 ```yaml
 aio:
@@ -116,7 +183,7 @@ aio:
       answer: '問題 2 的回答。'
 ```
 
-### 2.4 Content Summary 區塊
+### 2.5 Content Summary 區塊
 
 ```yaml
 content_summary:
@@ -219,7 +286,8 @@ content_summary:
 
 - 當 AI 代理人（Agent）協助編輯時，應主動檢查是否產生了新的圖片檔案，並自動補上描述檔。
 - AI 應在每次重大變更後，協助更新 `CONTEXT.md` 以反映最新的專案狀態。
-- 新增頁面時，AI 應確保 `index.yml` 包含完整的 `seo`、`url_mapping`、`aio`、`content_summary` 區塊。
+- 新增頁面時，AI 應確保 `index.yml` 包含完整的 `layout`、`seo`、`url_mapping`、`aio`、`content_summary` 區塊。
+- 頁面內容應透過 `layout.sections` 管理，不應使用 `index.md`。
 
 ## 9. 文件更新規範
 
