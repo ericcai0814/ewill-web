@@ -1,5 +1,9 @@
 
 
+![](assets/mes_banner_2.png)
+
+![](assets/mes_banner_2.png)
+
 ### 什麼是 MES 製造執行系統？
 
 MES（Manufacturing Execution System，製造執行系統）是一套專為現代製造業打造的智能管理平台。

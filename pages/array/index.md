@@ -1,4 +1,7 @@
 
+![](assets/array_banner.jpg)
+
+![](assets/array_banner_m.jpg)
 
 ## Array
 
@@ -18,37 +21,55 @@
 
 - 強大可擴充性
 
+![](assets/array-fix.jpg)
+
 ### 企業信賴的全方位 SSL VPN 解決方案
 
 Array SSL VPN 提供多元平台支援、彈性存取方式與細緻的安全控管機制，無論是 BYOD 裝置管理、多因素身份驗證、細粒度存取政策，或是彈性部署於虛擬化與雲端環境，皆可滿足企業遠端辦公與行動工作需求，確保資料安全、存取順暢與管理便利。
+
+![](assets/array-2.jpg)
 
 ###### 不受設備限制，無論是受控管設備或 BYOD
 
 Windows、Mac、Chromebook、Linux、iOS、Android 等。 DesktopDirect 功能可確保安全的使用個人設備。
 
+![](assets/array-3.jpg)
+
 ###### 設備身份認證和訪客安全檢查
 
 對設備認證、獨特的硬體確認，以及訪客端安全策略執行預先身份驗證檢查。
+
+![](assets/array-4.jpg)
 
 ###### 用戶身份認證、MFA 和單點登錄
 
 可選擇 LDAP、SAML、OIDC 或雲端的多因子身份驗證、IDaaS 和單點登錄。
 
+![](assets/array-5.jpg)
+
 ###### 靈活的 SSL VPN 存取方法
 
 從單一、簡化的以 Web 為基礎進行網路層存取、RDP、客戶端伺服器和應用層存取。
+
+![](assets/array-6.jpg)
 
 ###### 資源特定的存取政策
 
 為基於身份的 URL、應用程式、文件和網路存取制定個別用戶策略，並提供大量日誌和統計訊息。
 
+![](assets/array-7.jpg)
+
 ###### 可訂制的虛擬入口
 
 多達 256 個入口，可根據各類群體的安全性和可用性偏好量身訂做。
 
+![](assets/array-8.jpg)
+
 ###### 在業務連續性要求下，許可證需求爆發性成長
 
 緊急用戶許可證的數量完全可滿足您的需求，其成本僅占標準遠端存取用戶許可證的一小部分。
+
+![](assets/array-9.jpg)
 
 ###### 實體、虛擬和雲端部署
 
@@ -57,6 +78,8 @@ Windows、Mac、Chromebook、Linux、iOS、Android 等。 DesktopDirect 功能�
 ### 關鍵應用的第一道防線：高效 Web 應用防火牆
 
 防禦零時差攻擊與應用層漏洞，WAF 提供即時、智慧型的高階保護機制，強化關鍵系統防禦力。
+
+![](assets/array-1-fix.jpg)
 
 - 自動阻擋零時差攻擊
 
@@ -72,33 +95,49 @@ Windows、Mac、Chromebook、Linux、iOS、Android 等。 DesktopDirect 功能�
 
 Array WAF 結合主動式防禦機制與智慧分析能力，提供對抗 DDoS、Zero-Day 攻擊、機器人濫用與 API 威脅的強大保護。支援細緻權限控管、安全交易驗證與雲端彈性部署，協助企業有效抵禦多元攻擊手法，守護應用服務穩定與資料安全。
 
+![](assets/array-10.jpg)
+
 ###### 主動 DDOS 防禦
 
 經過行為分析進行剖析，可提高應用安全性並預測攻擊將如何展開。
+
+![](assets/array-11.jpg)
 
 ###### 自動阻止 ZERO-DAY 攻擊
 
 基於機器學習運算法的多種技術結合起來，可標記任何異常並自動阻止威脅。
 
+![](assets/array-12.jpg)
+
 ###### 針對性保護
 
 內建安全掃描器可檢測應用來源碼中的漏洞並阻止攻擊企圖。
+
+![](assets/array-13.jpg)
 
 ###### 防止對最終用戶的攻擊
 
 由於客戶端安全模組數據屏蔽和精細存取設置，應用程式用戶可以保持安全。
 
+![](assets/array-14.jpg)
+
 ###### 防止機器人攻擊的精確保護
 
 為用戶建立行為模式可以輕鬆識別機器人並阻止自動攻擊，而不會減慢合法流量。
+
+![](assets/array-15.jpg)
 
 ###### 網路和行動 API 的完全安全
 
 經過分析 JSON 和 XML 數據以及協力廠商整合來阻止對 Web 和行動 API 的威脅。
 
+![](assets/array-16.jpg)
+
 ###### 在業務連續性要求下，許可證需求爆發性成長
 
 與 Array 負載平衡一起部署以建立端點到端點的應用交付網路解決方案。
+
+![](assets/array-17.jpg)
 
 ###### 實體、虛擬和雲端部署
 

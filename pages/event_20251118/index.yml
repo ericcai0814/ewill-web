@@ -81,6 +81,10 @@ layout:
   content_images:
     - id: 01_scaled
   sections:
+    - type: image
+      image_id: 01_scaled
+    - type: image
+      image_id: 01_scaled
     - type: text
       content: >-
         ### 智慧製造線上研討會首部曲登場！  揭開智慧製造入門關鍵解決方案全解析

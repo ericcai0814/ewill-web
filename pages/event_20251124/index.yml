@@ -79,6 +79,10 @@ layout:
   content_images:
     - id: img
   sections:
+    - type: image
+      image_id: img
+    - type: image
+      image_id: img
     - type: text
       content: >-
         ### 動信攜手鎰威科技　快速導入企業免密碼、零信任身份防護

@@ -1,4 +1,6 @@
+![](assets/產品BN-Acu-1209-scaled.jpg)
 
+![](assets/BN-Acunetix-M_fix.jpg)
 
 ## Acunetix
 
@@ -8,11 +10,19 @@
 
 您不需要投入更多時間來處理應用安全，您只需要 Acunetix。通過六個簡單的步驟，即可自動化您的網絡應用程序和 API 安全管理。
 
+![](assets/acunetix_1.jpg)
+
+![](assets/acunetix_p1-scaled.jpg)
+
 ### 確保全面掃描與安全防護
 
 Acunetix 會自動創建並更新您的所有網站、應用程序和 API 的列表，確保發現所有需要掃描的內容。
 
 這意味著您不會遺漏任何未掃描且容易受到攻擊的潛在入口點。
+
+![](assets/acunetix_2.png)
+
+![](assets/acunetix_p2_fix.png)
 
 ### 深入掃描應用程序的每個角落
 
@@ -21,9 +31,16 @@ Acunetix 會自動創建並更新您的所有網站、應用程序和 API 的列
 無論是單頁應用（SPAs）、腳本密集型網站，還是使用 HTML5 及 JavaScript 構建的應用程序，Acunetix 都能有效進行掃描。
 此外，您還可以錄製巨集以自動掃描受密碼保護的區域和難以觸及的部分，並檢測其他掃描器無法看到的未鏈接文件和 API 端點。
 
+![](assets/acunetix_3.jpg)
+
+![](assets/acunetix_p3_fix.jpg)
+
 ### 檢測漏洞
 
 快速找到使您面臨風險的安全漏洞，偵測超過 12,000 個漏洞，包括零日漏洞。
 使用世界上最準確的掃描器找出您的安全漏洞，立即揭示發現的漏洞。
 同時掃描多個環境 通過結合 DAST + IAST 掃描獲得更全面的覆蓋範圍。
 
+![](assets/acunetix_4.png)
+
+![](assets/acunetix_p4_fix.png)

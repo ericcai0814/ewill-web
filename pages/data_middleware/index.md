@@ -1,4 +1,7 @@
 
+![](assets/data_middleware_banner.png)
+
+![](assets/data_middleware_banner.png)
 
 ### 什麼是數據中台？
 

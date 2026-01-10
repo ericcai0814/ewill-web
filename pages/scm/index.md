@@ -1,5 +1,9 @@
 
 
+![](assets/scm_banner_2.png)
+
+![](assets/scm_banner_2.png)
+
 ### 什麼是 SCM 系統？
 
 SCM（Supply Chain Management，供應鏈管理）系統是一套整合企業上下游資源、提升協作效率的關鍵工具。
@@ -18,6 +22,8 @@ SCM（Supply Chain Management，供應鏈管理）系統是一套整合企業上
 供應鏈協同與即時掌握全局狀態的需求愈加迫切－特別是在多品項、小批量、訂單波動大的情況下，生產計畫、庫存健康度、交付準時率往往受到挑戰。
 
 我們觀察到，企業常見的幾個供應鏈痛點包括：
+
+![](assets/SCM.png)
 
 我們的供應鏈方案，能協助企業快速實現：
 

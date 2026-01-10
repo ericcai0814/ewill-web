@@ -1,5 +1,7 @@
 ![img](wms_banner_2.png)
 
+![](assets/wms_banner_2.png)
+
 ### 什麼是 WMS？
 
 WMS（Warehouse Management System，倉儲管理系統）是一套專為現代企業設計的智慧倉儲解決方案，協助企業全面管理庫存、優化作業流程、提升作業透明度，從而降低成本並提升服務品質。
