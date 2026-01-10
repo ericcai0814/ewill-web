@@ -31,10 +31,15 @@ ewill-web/
 │   └── skills/
 │       └── content-build/  # 內容建置流水線
 │
+├── nuxt-app/           # 🚀 Nuxt 3 應用程式（原始碼納入版控）
+│   ├── pages/          # 頁面元件
+│   ├── components/     # 共用元件
+│   ├── composables/    # Composables
+│   └── public/         # 靜態資源（content-build 輸出，已 gitignore）
+│
 ├── # 建置輸出（已 gitignore）
 ├── static-app/         # --target=static 輸出
 ├── next-app/           # --target=next 輸出
-├── nuxt-app/           # --target=nuxt 輸出
 │
 └── *.md                # 專案文件
 ```
