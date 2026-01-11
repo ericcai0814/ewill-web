@@ -1,0 +1,199 @@
+component:
+  name: Footer
+  type: layout
+  description: 全站共用頁尾元件
+company:
+  name: 鎰威科技股份有限公司
+  name_en: EWILL Technology Co., Ltd.
+  description: 專注於推動企業數位轉型，結合資訊安全、AI 科技與大數據應用。
+  logo: /assets/logo.png
+contact:
+  phone: (02) 2795-5833
+  email: service@ewill.com.tw
+  address: 台北市內湖區行善路 398 號 3 樓
+quick_links:
+  - text: 關於鎰威
+    url: /about_us/
+  - text: 服務項目
+    url: /services/
+  - text: ESG
+    url: /esg/
+  - text: 活動訊息
+    url: /event_information/
+  - text: 聯絡我們
+    url: /contact/
+solutions:
+  - text: 資訊安全服務
+    url: /solutions/
+  - text: 智慧製造
+    url: /smartmanufacturing_ai/
+  - text: AI 應用服務
+    url: /smartmanufacturing_ai/#ai_application
+social:
+  - platform: facebook
+    url: https://www.facebook.com/ewilltech
+    icon: facebook
+  - platform: linkedin
+    url: https://www.linkedin.com/company/ewill-technology
+    icon: linkedin
+copyright:
+  text: Copyright © 2024 鎰威科技 EWILL Technology. All rights reserved.
+  year: 2024
+layout:
+  sections:
+    - type: text
+      content: |-
+        # Footer 頁尾模組
+
+
+        | 欄位 | 內容 |
+        |------|------|
+        | 模組路徑 | 全站共用元件 |
+        | 主要功能 | 網站資訊、快速連結、聯絡資訊、社群連結 |
+        | 背景色 | `#1A1A2E` (深藍黑) |
+        | 文字色 | `#FFFFFF` / `#B0B0B0` |
+
+        ---
+      title: 模組資訊
+    - type: text
+      content: |-
+        ### 桌面版結構
+
+        ```
+        ┌──────────────────────────────────────────────────────────────────┐
+        │                           Footer                                  │
+        ├──────────────────────────────────────────────────────────────────┤
+        │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────┐  │
+        │  │   公司資訊   │  │   快速連結   │  │   解決方案   │  │  聯絡我們 │  │
+        │  │  Logo       │  │  關於鎰威   │  │  資安服務   │  │  電話    │  │
+        │  │  公司簡介   │  │  服務項目   │  │  智慧製造   │  │  Email   │  │
+        │  │             │  │  ESG       │  │  AI 應用    │  │  地址    │  │
+        │  └─────────────┘  └─────────────┘  └─────────────┘  └─────────┘  │
+        ├──────────────────────────────────────────────────────────────────┤
+        │  Copyright © 2024 鎰威科技 EWILL Technology. All rights reserved. │
+        └──────────────────────────────────────────────────────────────────┘
+        ```
+
+        ### 手機版結構
+
+        ```
+        ┌──────────────────────────────────┐
+        │            Footer                │
+        ├──────────────────────────────────┤
+        │  ┌────────────────────────────┐  │
+        │  │   Logo + 公司簡介           │  │
+        │  └────────────────────────────┘  │
+        │  ┌────────────────────────────┐  │
+        │  │   快速連結 (可收合)         │  │
+        │  └────────────────────────────┘  │
+        │  ┌────────────────────────────┐  │
+        │  │   解決方案 (可收合)         │  │
+        │  └────────────────────────────┘  │
+        │  ┌────────────────────────────┐  │
+        │  │   聯絡資訊                  │  │
+        │  └────────────────────────────┘  │
+        ├──────────────────────────────────┤
+        │  Copyright © 2024 鎰威科技       │
+        └──────────────────────────────────┘
+        ```
+
+        ---
+      title: 版面配置
+    - type: text
+      content: |-
+        | 屬性 | 值 |
+        |------|-----|
+        | 背景色 | `#1A1A2E` |
+        | 主要文字 | `#FFFFFF` |
+        | 次要文字 | `#B0B0B0` |
+        | 連結 Hover | `#2D9B9B` |
+        | 分隔線 | `#333333` |
+
+        ### CSS 規範
+
+        ```css
+        .footer {
+          background-color: #1A1A2E;
+          color: #FFFFFF;
+          padding: 60px 0 30px;
+        }
+
+        .footer__section-title {
+          font-size: 18px;
+          font-weight: 600;
+          margin-bottom: 20px;
+          color: #FFFFFF;
+        }
+
+        .footer__link {
+          font-size: 14px;
+          color: #B0B0B0;
+          display: block;
+          padding: 6px 0;
+          transition: color 0.2s ease;
+        }
+
+        .footer__link:hover {
+          color: #2D9B9B;
+        }
+
+        .footer__copyright {
+          border-top: 1px solid #333333;
+          padding-top: 20px;
+          margin-top: 40px;
+          text-align: center;
+          font-size: 14px;
+          color: #B0B0B0;
+        }
+        ```
+
+        ---
+      title: 視覺規範
+    - type: text
+      content: |-
+        ### 1. 公司資訊
+        - Logo
+        - 公司簡介文字
+        - 社群連結圖示
+
+        ### 2. 快速連結
+        - 關於鎰威
+        - 服務項目
+        - ESG
+        - 活動訊息
+
+        ### 3. 解決方案
+        - 資訊安全服務
+        - 智慧製造
+        - AI 應用服務
+
+        ### 4. 聯絡我們
+        - 電話
+        - Email
+        - 公司地址
+
+        ---
+      title: 內容區塊
+    - type: text
+      content: |-
+        - Logo 圖片：使用 `pages/header/assets/logo.png`
+        - 詳細資料結構：`index.yml`
+        - 設計規範：`DESIGN_GUIDELINE.md`
+
+        ---
+      title: 相關資源
+    - type: text
+      content: |-
+        1. **RWD 響應式**
+           - 桌面版：4 欄並排
+           - 平板：2 欄
+           - 手機：單欄堆疊，區塊可收合
+
+        2. **無障礙性 (a11y)**
+           - 所有連結需有清晰的文字
+           - 社群圖示需有 `aria-label`
+
+        3. **SEO**
+           - 使用語意化 HTML (`<footer>`, `<nav>`, `<address>`)
+           - 結構化資料標記公司資訊
+      title: 開發注意事項
