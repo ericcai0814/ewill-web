@@ -102,7 +102,7 @@ const closePopup = () => {
 </script>
 
 <template>
-  <NuxtLayout>
+  <div>
     <!-- Hero Section -->
     <section class="relative">
       <picture>
@@ -238,7 +238,7 @@ const closePopup = () => {
         </div>
       </Transition>
     </Teleport>
-  </NuxtLayout>
+  </div>
 </template>
 
 <style scoped>
