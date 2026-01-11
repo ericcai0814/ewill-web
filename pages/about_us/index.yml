@@ -91,6 +91,14 @@ layout:
       content: 鎰威科技專注於推動企業數位轉型，結合資訊安全、AI 科技與大數據應用，從架構規劃到服務導入，提供專業高效的一站式安全服務。我們秉持「專業、效率、信任、創新」的精神與持續提供優質服務的態度，攜手客戶共同邁向成長與成功。
       label: About Us
       title: 公司簡介​
+    - type: image
+      image_id: about_us_1_fix2
+    - type: image
+      image_id: about_us_1_1_m
+    - type: image
+      image_id: about_us_1_2_m
+    - type: image
+      image_id: about_us_1_3_m
     - type: text
       content: ""
       label: Milestones
