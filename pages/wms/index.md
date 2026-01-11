@@ -1,5 +1,3 @@
-![img](wms_banner_2.png)
-
 ![](assets/wms_banner_2.png)
 
 ### 什麼是 WMS？
