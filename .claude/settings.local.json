@@ -15,7 +15,11 @@
       "Bash(else echo \"✗ $f \\(missing\\)\")",
       "Bash(mkdir:*)",
       "Bash(cp:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(npm run build-content:*)",
+      "Bash(npx tsx:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)"
     ]
   }
 }

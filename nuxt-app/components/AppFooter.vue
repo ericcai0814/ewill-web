@@ -1,39 +1,61 @@
 <script setup lang="ts">
-// Footer 連結資料
-const footerLinks = {
-  services: [
+import { useFooterContent } from '~/composables/useLayoutContent'
+
+// Fetch footer content from JSON
+const { content, loading } = useFooterContent()
+
+// Dynamic current year
+const currentYear = new Date().getFullYear()
+
+// Footer links structure - derived from content or use defaults
+const footerLinks = computed(() => {
+  if (!content.value) {
+    return {
+      services: [],
+      solutions: [],
+      products: [],
+      smartMfg: [],
+      company: []
+    }
+  }
+
+  // Map quick_links to company section
+  const company = content.value.quick_links || []
+
+  // Map solutions from footer content
+  const solutions = content.value.solutions || []
+
+  // Default service links (these could also come from footer.yml if needed)
+  const services = [
     { text: '軟體開發服務', url: '/services/#software_development' },
     { text: '資訊安全服務', url: '/services/#security_services' },
     { text: '系統規劃服務', url: '/services/#system_planning' }
-  ],
-  solutions: [
-    { text: '智慧管理', url: '/solutions/#smart_management' },
-    { text: '資安評估', url: '/solutions/#security_assessment' },
-    { text: '資安檢測', url: '/solutions/#security_testing' },
-    { text: '資安防護', url: '/solutions/#security_defense' },
-    { text: '資安強化', url: '/solutions/#security_enhancement' }
-  ],
-  products: [
+  ]
+
+  // Default product links
+  const products = [
     { text: 'Palo Alto Networks', url: '/palo_alto/' },
     { text: 'Fortinet', url: '/fortinet/' },
     { text: 'LOGSEC', url: '/logsec/' },
     { text: 'Acunetix', url: '/acunetix/' }
-  ],
-  smartMfg: [
+  ]
+
+  // Default smart manufacturing links
+  const smartMfg = [
     { text: 'MES 製造系統', url: '/mes/' },
     { text: 'WMS 智慧倉儲', url: '/wms/' },
     { text: 'SCM 智慧供應鏈', url: '/scm/' },
     { text: '數據中台', url: '/data_middleware/' }
-  ],
-  company: [
-    { text: '關於鎰威', url: '/about_us/' },
-    { text: 'ESG 永續發展', url: '/esg/' },
-    { text: '活動訊息', url: '/event_information/' },
-    { text: '聯絡我們', url: '/contact/' }
   ]
-}
 
-const currentYear = new Date().getFullYear()
+  return {
+    services,
+    solutions,
+    products,
+    smartMfg,
+    company
+  }
+})
 </script>
 
 <template>
@@ -45,14 +67,14 @@ const currentYear = new Date().getFullYear()
         <div class="col-span-2 md:col-span-3 lg:col-span-1">
           <NuxtLink to="/" class="inline-block mb-4">
             <img
-              src="/assets/logo.png"
+              :src="content?.company?.logo || '/assets/logo.png'"
               alt="鎰威科技"
               class="h-10 w-auto brightness-0 invert"
             />
           </NuxtLink>
           <p class="text-white/80 text-sm leading-relaxed mb-4">
             專業 · 專注 · 專精<br />
-            企業數位轉型與資安整合專家
+            {{ content?.company?.description || '企業數位轉型與資安整合專家' }}
           </p>
           <p class="text-white/60 text-xs">
             PROFESSION · FOCUS · SPECIALIZATION
@@ -140,12 +162,23 @@ const currentYear = new Date().getFullYear()
         <div class="flex flex-col md:flex-row items-center justify-between gap-4">
           <!-- Copyright -->
           <p class="text-white/60 text-sm text-center md:text-left">
-            © {{ currentYear }} 鎰威科技股份有限公司 EWILL Technology. All rights reserved.
+            © {{ currentYear }} {{ content?.company?.name || '鎰威科技股份有限公司' }} {{ content?.company?.name_en || 'EWILL Technology' }}. All rights reserved.
           </p>
 
           <!-- Contact Info -->
           <div class="flex items-center gap-6 text-white/60 text-sm">
-            <a href="mailto:service@ewill.com.tw" class="hover:text-white transition-colors">
+            <a
+              v-if="content?.contact?.email"
+              :href="`mailto:${content.contact.email}`"
+              class="hover:text-white transition-colors"
+            >
+              {{ content.contact.email }}
+            </a>
+            <a
+              v-else
+              href="mailto:service@ewill.com.tw"
+              class="hover:text-white transition-colors"
+            >
               service@ewill.com.tw
             </a>
           </div>

@@ -12,7 +12,8 @@
 
 import * as fs from 'fs'
 import * as path from 'path'
-import { parse as parseYaml } from 'yaml'
+import * as yaml from 'js-yaml'
+const parseYaml = (content: string) => yaml.load(content) as Record<string, unknown>
 import { BuildConfig, detectTarget, getConfig, parseArgs, printHelp } from './config'
 
 // ============================================================================
@@ -257,10 +258,29 @@ function resolveLayout(layout: LayoutConfig | undefined, resolver: AssetResolver
   return resolved
 }
 
-function buildPage(moduleName: string, resolver: AssetResolver, config: BuildConfig): PageJson {
+// Layout component modules that should preserve all YAML fields
+const LAYOUT_COMPONENTS = ['header', 'footer']
+
+function isLayoutComponent(moduleName: string): boolean {
+  return LAYOUT_COMPONENTS.includes(moduleName)
+}
+
+function buildPage(moduleName: string, resolver: AssetResolver, config: BuildConfig): PageJson | Record<string, unknown> {
   const yml = loadModuleYml(moduleName, config) || {}
   const content = loadModuleMd(moduleName, config)
-  
+
+  // Layout components (header/footer) preserve all YAML fields
+  if (isLayoutComponent(moduleName)) {
+    return {
+      ...yml,
+      slug: moduleName,
+      module: moduleName,
+      content,
+      generated_at: new Date().toISOString(),
+    }
+  }
+
+  // Regular pages use standard structure
   return {
     slug: moduleName,
     module: moduleName,

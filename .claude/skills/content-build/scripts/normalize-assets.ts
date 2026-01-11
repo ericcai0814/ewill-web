@@ -13,7 +13,8 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import * as crypto from 'crypto'
-import { parse as parseYaml } from 'yaml'
+import * as yaml from 'js-yaml'
+const parseYaml = (content: string) => yaml.load(content) as Record<string, unknown>
 import { BuildConfig, detectTarget, getConfig, parseArgs, printHelp } from './config'
 
 // ============================================================================

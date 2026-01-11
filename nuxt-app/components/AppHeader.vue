@@ -1,113 +1,8 @@
 <script setup lang="ts">
-// 導覽選單資料結構
-interface NavItem {
-  text: string
-  url: string
-  is_cta?: boolean
-  children?: NavItem[]
-}
+import { useHeaderContent, type NavItem } from '~/composables/useLayoutContent'
 
-// 導覽選單資料（來自 pages/header/header.yml）
-const navigation: NavItem[] = [
-  {
-    text: '活動訊息',
-    url: '/event_information/',
-    children: []
-  },
-  {
-    text: '關於鎰威',
-    url: '/about_us/',
-    children: [
-      { text: '公司簡介', url: '/about_us/#about_us' },
-      { text: '公司沿革', url: '/about_us/#milestones' },
-      { text: '資格證書', url: '/about_us/#certification' }
-    ]
-  },
-  {
-    text: 'ESG',
-    url: '/esg/',
-    children: []
-  },
-  {
-    text: '服務項目',
-    url: '/services/',
-    children: [
-      { text: '軟體開發服務', url: '/services/#software_development' },
-      { text: '資訊安全服務', url: '/services/#security_services' },
-      {
-        text: '系統規劃服務',
-        url: '/services/#system_planning',
-        children: [
-          { text: '開源作業系統', url: '/ubuntu/' },
-          { text: '虛擬化解決方案', url: '/vmware/' },
-          { text: '伺服器虛擬化管理', url: '/proxmox_ve/' }
-        ]
-      }
-    ]
-  },
-  {
-    text: '產品解決方案',
-    url: '/solutions/',
-    children: [
-      {
-        text: '資安評估',
-        url: '/solutions/#security_assessment',
-        children: [
-          { text: '資安評級工具', url: '/security_scorecard/' }
-        ]
-      },
-      {
-        text: '資安檢測',
-        url: '/solutions/#security_testing',
-        children: [
-          { text: '弱點掃描工具', url: '/tenable_nessus/' },
-          { text: '原始碼分析平台', url: '/sonarqube/' },
-          { text: '網站安全掃描', url: '/acunetix/' }
-        ]
-      },
-      {
-        text: '資安防護',
-        url: '/solutions/#security_defense',
-        children: [
-          { text: '次世代防火牆', url: '/palo_alto/' },
-          { text: '整合資安平台', url: '/fortinet/' },
-          { text: '深度學習防護', url: '/deep_instinct/' },
-          { text: '防毒與威脅防護', url: '/bitdefender/' }
-        ]
-      },
-      {
-        text: '資安強化',
-        url: '/solutions/#security_enhancement',
-        children: [
-          { text: '端點安全管理', url: '/ist/' },
-          { text: 'SSL VPN 解決方案', url: '/array/' },
-          { text: '資安預警解決方案', url: '/logsec/' },
-          { text: '漏洞風險管理', url: '/vicarius_vrx/' }
-        ]
-      }
-    ]
-  },
-  {
-    text: '智慧製造及AI',
-    url: '/smartmanufacturing_ai/',
-    children: [
-      { text: 'APS 智慧生產核心', url: '/aps/' },
-      { text: 'MES 製造系統', url: '/mes/' },
-      { text: 'SCM 智慧供應鏈', url: '/scm/' },
-      { text: 'WMS 智慧倉儲', url: '/wms/' },
-      { text: '承攬商管理系統', url: '/cms_568/' },
-      { text: 'AI Agent 解決方案', url: '/ai_agent/' },
-      { text: 'AI 數據分析預測', url: '/ai_forecasting/' },
-      { text: '數據中台', url: '/data_middleware/' }
-    ]
-  },
-  {
-    text: '聯絡鎰威',
-    url: '/contact/',
-    is_cta: true,
-    children: []
-  }
-]
+// Fetch header content from JSON
+const { content, loading } = useHeaderContent()
 
 // 狀態
 const isScrolled = ref(false)
@@ -174,20 +69,23 @@ const toggleMobileExpand = (key: string) => {
     :class="isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-white'"
   >
     <div class="container mx-auto px-4 md:px-6">
-      <nav class="flex items-center justify-between h-20" aria-label="主要導覽列">
+      <nav
+        class="flex items-center justify-between h-20"
+        :aria-label="content?.accessibility?.nav_label || '主要導覽列'"
+      >
         <!-- Logo -->
-        <NuxtLink to="/" class="flex items-center">
+        <NuxtLink :to="content?.logo?.link || '/'" class="flex items-center">
           <img
-            src="/assets/logo.png"
-            alt="鎰威科技 EWILL Technology"
+            :src="content?.logo?.src || '/assets/logo.png'"
+            :alt="content?.logo?.alt || '鎰威科技 EWILL Technology'"
             class="h-10 w-auto"
           />
         </NuxtLink>
 
         <!-- Desktop Navigation -->
-        <div class="hidden lg:flex items-center gap-1">
+        <div v-if="content?.navigation" class="hidden lg:flex items-center gap-1">
           <div
-            v-for="(item, index) in navigation"
+            v-for="(item, index) in content.navigation"
             :key="item.text"
             class="relative"
             @mouseenter="openDropdown(index)"
@@ -266,7 +164,7 @@ const toggleMobileExpand = (key: string) => {
         <button
           class="lg:hidden p-2 text-gray-700 hover:text-primary-500 transition-colors"
           @click="toggleMobileMenu"
-          :aria-label="isMobileMenuOpen ? '關閉選單' : '開啟選單'"
+          :aria-label="isMobileMenuOpen ? (content?.accessibility?.close_label || '關閉選單') : (content?.accessibility?.hamburger_label || '開啟選單')"
           :aria-expanded="isMobileMenuOpen"
         >
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -306,11 +204,15 @@ const toggleMobileExpand = (key: string) => {
       >
         <!-- Mobile Header -->
         <div class="flex items-center justify-between p-4 border-b border-gray-100">
-          <img src="/assets/logo.png" alt="鎰威科技" class="h-8 w-auto" />
+          <img
+            :src="content?.logo?.src || '/assets/logo.png'"
+            :alt="content?.logo?.alt || '鎰威科技'"
+            class="h-8 w-auto"
+          />
           <button
             class="p-2 text-gray-500 hover:text-gray-700"
             @click="closeMobileMenu"
-            aria-label="關閉選單"
+            :aria-label="content?.accessibility?.close_label || '關閉選單'"
           >
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -319,8 +221,8 @@ const toggleMobileExpand = (key: string) => {
         </div>
 
         <!-- Mobile Navigation -->
-        <nav class="p-4" aria-label="手機版選單">
-          <div v-for="(item, index) in navigation" :key="item.text" class="border-b border-gray-100 last:border-0">
+        <nav v-if="content?.navigation" class="p-4" :aria-label="content?.accessibility?.menu_label || '手機版選單'">
+          <div v-for="(item, index) in content.navigation" :key="item.text" class="border-b border-gray-100 last:border-0">
             <div class="flex items-center justify-between">
               <NuxtLink
                 :to="item.url"
