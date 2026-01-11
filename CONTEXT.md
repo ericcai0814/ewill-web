@@ -4,14 +4,15 @@
 
 ## 狀態總覽
 
-- **最後更新時間**: 2026-01-09
-- **目前階段**: 內容邊界重構完成，所有頁面內容集中於 `pages/` 目錄
+- **最後更新時間**: 2026-01-11
+- **目前階段**: 內容邊界重構完成，文件系統使用指南已整合至 README
 - **專案類型**: 網站內容庫 (Content Repository) / SEO 資料源
-- **頁面數量**: 20 個頁面目錄 + 1 個共用元件 (Header)
+- **頁面數量**: 20 個頁面目錄 + 2 個共用元件 (Header, Footer)
 - **圖片覆蓋率**: 231 張圖片，全部 100% 有 `.yml` 描述檔
 - **圖片結構**: 所有頁面圖片統一存放於 `pages/{page}/assets/`
 - **設計規範**: [DESIGN_GUIDELINE.md](./DESIGN_GUIDELINE.md) 定義品牌視覺規範
-- **共用元件**: `pages/header/` 定義導覽列結構與樣式
+- **共用元件**: `pages/header/`、`pages/footer/` 定義導覽列與頁尾結構
+- **文件指南**: [README.md](./README.md#文件系統使用指南) 包含完整的文件系統使用說明
 
 ## 目錄結構
 
@@ -119,6 +120,8 @@ npx tsx .claude/skills/content-build/scripts/build.ts --target=nuxt    # → nux
 | `pages/esg/`                   | `/esg/`                                     | ESG 永續發展       |
 | `pages/event_20251118/`        | `/events/smart-manufacturing-webinar-2025/` | 活動頁面           |
 | `pages/event_20251124/`        | `/events/passwordless-identity-protection/` | 活動頁面           |
+| `pages/header/`                | (共用元件)                                  | 導覽列             |
+| `pages/footer/`                | (共用元件)                                  | 頁尾               |
 
 ## 待辦事項 / Next Steps
 
