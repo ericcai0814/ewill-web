@@ -1,5 +1,7 @@
 # Header 導覽列模組
 
+![鎰威科技 Logo](assets/logo.png)
+
 ## 模組資訊
 
 | 欄位 | 內容 |
