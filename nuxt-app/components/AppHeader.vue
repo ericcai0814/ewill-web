@@ -188,20 +188,23 @@ const toggleMobileExpand = (key: string) => {
     </div>
 
     <!-- Mobile Menu Overlay -->
-    <Transition name="fade">
-      <div
-        v-if="isMobileMenuOpen"
-        class="fixed inset-0 bg-black/50 z-40 lg:hidden"
-        @click="closeMobileMenu"
-      />
-    </Transition>
+    <Teleport to="body">
+      <Transition name="fade">
+        <div
+          v-if="isMobileMenuOpen"
+          class="fixed inset-0 bg-black/50 z-[998] lg:hidden"
+          @click="closeMobileMenu"
+        />
+      </Transition>
+    </Teleport>
 
     <!-- Mobile Menu Panel -->
-    <Transition name="slide">
-      <div
-        v-if="isMobileMenuOpen"
-        class="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white z-50 shadow-2xl lg:hidden overflow-y-auto"
-      >
+    <Teleport to="body">
+      <Transition name="slide">
+        <div
+          v-if="isMobileMenuOpen"
+          class="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white z-[999] shadow-2xl lg:hidden overflow-y-auto"
+        >
         <!-- Mobile Header -->
         <div class="flex items-center justify-between p-4 border-b border-gray-100">
           <img
@@ -302,6 +305,7 @@ const toggleMobileExpand = (key: string) => {
         </nav>
       </div>
     </Transition>
+    </Teleport>
   </header>
 </template>
 
