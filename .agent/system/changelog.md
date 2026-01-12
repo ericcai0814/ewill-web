@@ -8,6 +8,29 @@
 
 ## [2026-01-12]
 
+### content-build SKILL.md 壓縮優化
+
+應用 Progressive Disclosure 最佳實踐，重構 content-build Skill：
+
+**優化策略**：
+- 詳細工作流程移至 `references/workflow.md`
+- SKILL.md 簡化為快速開始 + 索引表
+- 標示每份參考文件的 token 成本，啟用成本效益決策
+
+**效益**：
+
+| 指標 | 原本 | 優化後 | 節省 |
+|------|------|--------|------|
+| 行數 | 295 | 63 | 79% |
+| 字元數 | 7,773 | 2,207 | 71% |
+| 預估 Tokens | ~3,900 | ~1,100 | **~2,800 tokens/次** |
+
+**檔案變更**：
+- 修改：`.claude/skills/content-build/SKILL.md`
+- 新增：`.claude/skills/content-build/references/workflow.md`
+
+---
+
 ### CLAUDE.md 提示詞壓縮優化
 
 應用 Context Engineering 最佳實踐，大幅壓縮 `.claude/CLAUDE.md`：
