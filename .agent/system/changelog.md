@@ -6,6 +6,79 @@
 
 ---
 
+## [2026-01-13]
+
+### 新增 AI 執行計畫文件系統
+
+建立跨對話可執行的多階段計畫，確保 AI 協作者遵循一致的工作流程。
+
+**新增檔案**：
+- `.agent/EXECUTION_PLAN.md`（1,102 行）：完整的 5 階段執行指引
+- `.agent/run-logs/2026-01-13.md`：今日執行日誌
+
+**核心階段**：
+- Phase 0: 文件發現與系統理解（建立允許 API 清單）
+- Phase 1: 任務理解與範圍確認（變更影響檢查清單）
+- Phase 2: 實作執行（從文件複製模式，不憑空創造）
+- Phase 3: 文件同步更新（changelog/README/CONTEXT）
+- Phase 4: 最終驗證與 Commit（9 項自動化檢查）
+- Phase 5: 專案特定驗證（SEO/圖片/建置/文件）
+
+**關鍵特性**：
+| 特性 | 說明 |
+|------|------|
+| 檔案路徑引用 | 所有範例包含具體位置（檔名:行號） |
+| 驗證檢查清單 | 每個階段結束都有明確的驗證項目 |
+| 反模式警示 | 列出常見錯誤與避免方法 |
+| 故障排除 | 附錄包含常見問題快速解決方案 |
+
+**效益**：
+- 新 AI 協作者可在 5 分鐘內建立上下文
+- 防止重複犯錯（圖片缺描述檔、URL 格式、commit 規範）
+- 確保文件同步一致性
+
+---
+
+### 移除 Co-Authored-By 規則
+
+根據專案需求，移除所有 Co-Authored-By 標記規則。
+
+**修改檔案**：
+- `.agent/EXECUTION_PLAN.md`：移除所有 Co-Authored-By 規則與範例
+- `.agent/README.md`：新增「執行計畫」章節，修正路徑引用
+- `.gitignore`：新增 `**/CLAUDE.md` 忽略規則
+
+**變更理由**：
+- Co-Authored-By 標記對本專案不適用
+- CLAUDE.md 為 claude-mem MCP 自動生成，不應納入版本控制
+
+---
+
+### web-crawler SKILL.md 壓縮優化
+
+應用 Progressive Disclosure 最佳實踐，壓縮 web-crawler Skill。
+
+**優化策略**：
+- 詳細工作流程移至 `references/workflow.md`
+- 配置說明移至 `references/config.md`
+- 輸出格式移至 `references/output-format.md`
+- SKILL.md 保留簡潔流程與索引
+
+**效益**：
+
+| 指標 | 原本 | 優化後 | 節省 |
+|------|------|--------|------|
+| 行數 | 248 | 69 | 72% |
+| 預估 Tokens | ~1,200 | ~350 | **~850 tokens/次** |
+
+**檔案變更**：
+- 修改：`.claude/skills/web-crawler/SKILL.md`
+- 新增：`.claude/skills/web-crawler/references/workflow.md`
+- 新增：`.claude/skills/web-crawler/references/config.md`
+- 新增：`.claude/skills/web-crawler/references/output-format.md`
+
+---
+
 ## [2026-01-12]
 
 ### content-build SKILL.md 壓縮優化
