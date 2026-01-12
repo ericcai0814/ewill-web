@@ -41,7 +41,7 @@ tail -100 GUIDELINES.md       # Commit message 規範
 **預期產出**:
 - [ ] 理解核心原則: 文件同步、Commit 確認、不破壞性操作
 - [ ] 理解同步啟發式: 何時需更新 README/CONTEXT/decisions/learnings
-- [ ] 理解 Commit 格式: `<type>(<scope>): <subject>` + Co-Authored-By
+- [ ] 理解 Commit 格式: `<type>(<scope>): <subject>`
 - [ ] 確認禁止操作: 刪除、覆蓋、URL 變更需人類確認
 
 #### 3. 可用工具與自動化（5 分鐘）
@@ -115,7 +115,7 @@ pages/{name}/
 - git diff
 - git log
 - git add -A
-- git commit -m "type(scope): subject\n\nCo-Authored-By: ..."
+- git commit -m "type(scope): subject"
 
 ❌ 禁止（需人類確認）:
 - git rm
@@ -142,10 +142,9 @@ pages/{name}/
 完成此階段後,必須能回答:
 
 1. 此專案的主要用途是什麼?（答: 網站內容庫 / SEO 資料源）
-2. 當前工作分支是什麼?（答: DEV）
-3. Commit 需要包含什麼特殊標記?（答: Co-Authored-By: Claude ...）
-4. 圖片檔案必須有什麼配對檔案?（答: .yml 描述檔）
-5. 哪些操作需要人類確認?（答: 刪除、覆寫、URL 變更）
+2. 當前工作分支是什麼?（答: DEV，主分支: master）
+3. 圖片檔案必須有什麼配對檔案?（答: .yml 描述檔）
+4. 哪些操作需要人類確認?（答: 刪除、覆寫、URL 變更）
 
 **如果無法回答以上問題,必須回到相關文件重新閱讀**
 
@@ -690,8 +689,6 @@ git commit -m "docs(agent): 記錄新頁面到 changelog"
 <type>(<scope>): <subject>
 
 <body>
-
-Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
 ```
 
 **Subject 規則**:
@@ -715,8 +712,7 @@ git commit -m "feat(pages): 新增安全防護產品頁面
 - 新增 3 張產品圖片 + .yml 描述檔
 - 遵循 pages/logsec/ 結構模式
 - URL: /security-solutions/new-product/
-
-Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
+"
 ```
 
 ### Step 4.4: 提交流程
@@ -755,8 +751,6 @@ feat(pages): 新增安全防護產品頁面
 - 新增 3 張產品圖片 + .yml 描述檔
 - 遵循 pages/logsec/ 結構模式
 - URL: /security-solutions/new-product/
-
-Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
 EOF
 )"
 
@@ -774,9 +768,6 @@ git log -1 --format="%h %s%n%b"
 # 1. 確認 commit message 格式正確
 git log -1 --format="%s" | grep -E "^(feat|fix|docs|refactor|chore)\(.+\): .+$"
 
-# 2. 確認包含 Co-Authored-By
-git log -1 --format="%b" | grep "Co-Authored-By: Claude"
-
 # 3. 確認 run-log skill 自動觸發
 # 檢查是否新增當日日誌
 ls -la .agent/run-logs/$(date +%Y-%m-%d).md
@@ -786,7 +777,7 @@ ls -la .agent/run-logs/$(date +%Y-%m-%d).md
 
 - [ ] 所有自動化檢查通過（find_undescribed.py, YAML 語法等）
 - [ ] 文件一致性驗證完成（README, CONTEXT, changelog 已更新）
-- [ ] Commit message 符合規範（type/scope/subject/body/Co-Authored-By）
+- [ ] Commit message 符合規範（type/scope/subject/body）
 - [ ] Git status 乾淨（所有變更已 commit）
 - [ ] run-log 自動記錄已觸發
 

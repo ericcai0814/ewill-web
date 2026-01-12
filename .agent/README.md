@@ -117,8 +117,34 @@ python3 .agent/scripts/fix-yml-metadata.py
 
 ---
 
+---
+
+## 執行計畫
+
+AI 協作者的完整執行指南，確保跨對話的一致性與品質。
+
+| 檔案                                          | 說明                                    |
+| --------------------------------------------- | --------------------------------------- |
+| [EXECUTION_PLAN.md](./EXECUTION_PLAN.md) | 多階段執行計畫，涵蓋文件發現、實作、驗證、Commit 完整流程 |
+
+**使用時機**：
+- 新 AI 協作者首次進入專案
+- 開始複雜的多步驟任務
+- 需要確保遵循專案規範
+
+**核心階段**：
+- Phase 0: 文件發現與系統理解（必讀）
+- Phase 1: 任務理解與範圍確認
+- Phase 2: 實作執行（從文件複製模式）
+- Phase 3: 文件同步更新
+- Phase 4: 最終驗證與 Commit
+- Phase 5: 專案特定驗證（可選）
+
+---
+
 ## 相關文件
 
 - [README.md](../README.md) - 專案概觀與目錄結構
 - [GUIDELINES.md](../GUIDELINES.md) - 開發規範與命名慣例
 - [CONTEXT.md](../CONTEXT.md) - 專案當前狀態
+- [EXECUTION_PLAN.md](./EXECUTION_PLAN.md) - AI 執行計畫（跨對話指南）
