@@ -19,7 +19,9 @@
       "Bash(npm run build-content:*)",
       "Bash(npx tsx:*)",
       "Bash(npm install:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(ls:*)",
+      "Bash(wc:*)"
     ]
   }
 }
