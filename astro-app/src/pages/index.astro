@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getPageContent } from '../utils/content';
+
+// 讀取首頁內容
+const pageData = await getPageContent('index');
+
+if (!pageData) {
+  return Astro.redirect('/404');
+}
+
+const { config, markdown } = pageData;
+---
+
+<Layout
+  title={config.seo.title}
+  description={config.seo.description}
+  keywords={config.seo.keywords}
+>
+  <main class="container mx-auto px-4 py-8">
+    <!-- Hero Section -->
+    <section class="mb-12">
+      <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-4">
+        Hello World
+      </h1>
+      <p class="text-xl text-gray-600">
+        歡迎來到鎰威科技 Astro 專案！
+      </p>
+    </section>
+
+    <!-- Content from Markdown -->
+    <section class="prose prose-lg max-w-none">
+      <h2 class="text-2xl font-bold mb-4">頁面內容</h2>
+      <div class="bg-gray-50 p-6 rounded-lg">
+        <h3 class="text-lg font-semibold mb-2">從 pages/index.md 讀取的內容：</h3>
+        <div class="whitespace-pre-wrap font-mono text-sm bg-white p-4 rounded border">
+          {markdown.substring(0, 500)}...
+        </div>
+      </div>
+    </section>
+
+    <!-- SEO Info -->
+    <section class="mt-12 bg-blue-50 p-6 rounded-lg">
+      <h2 class="text-2xl font-bold mb-4">SEO 設定</h2>
+      <dl class="space-y-2">
+        <div>
+          <dt class="font-semibold">標題：</dt>
+          <dd class="text-gray-700">{config.seo.title}</dd>
+        </div>
+        <div>
+          <dt class="font-semibold">描述：</dt>
+          <dd class="text-gray-700">{config.seo.description}</dd>
+        </div>
+        <div>
+          <dt class="font-semibold">URL：</dt>
+          <dd class="text-gray-700">{config.url_mapping.current_url}</dd>
+        </div>
+      </dl>
+    </section>
+  </main>
+</Layout>
