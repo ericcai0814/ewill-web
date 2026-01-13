@@ -1,1 +1,222 @@
 @import "tailwindcss";
+
+/* ========================================
+   Tailwind CSS v4 Theme Configuration
+   ======================================== */
+
+@theme {
+  /* 品牌色系 */
+  --color-brand-50: #e6f7f7;
+  --color-brand-100: #b3e6e6;
+  --color-brand-200: #80d5d5;
+  --color-brand-300: #4dc4c4;
+  --color-brand-400: #3fb3b3;
+  --color-brand-500: #3f8696;
+  --color-brand-600: #2d9b9b;
+  --color-brand-700: #267a7a;
+  --color-brand-800: #1f5a5a;
+  --color-brand-900: #183b3b;
+
+  /* 深色背景 */
+  --color-dark-50: #e8e8ec;
+  --color-dark-100: #c5c5cd;
+  --color-dark-200: #9f9fad;
+  --color-dark-300: #79798d;
+  --color-dark-400: #5d5d75;
+  --color-dark-500: #41415d;
+  --color-dark-600: #3b3b55;
+  --color-dark-700: #32324b;
+  --color-dark-800: #2a2a41;
+  --color-dark-900: #1a1a2e;
+
+  /* 字型 */
+  --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Poppins', var(--font-sans);
+
+  /* 圓角 */
+  --radius-card: 12px;
+  --radius-button: 24px;
+  --radius-lg: 16px;
+
+  /* 陰影 */
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+  --shadow-popup: 0 8px 30px rgba(0, 0, 0, 0.2);
+
+  /* 動畫 */
+  --transition-base: 0.3s ease;
+  --transition-fast: 0.15s ease;
+}
+
+/* ========================================
+   Dark Mode CSS Variables
+   ======================================== */
+
+:root {
+  /* 淺色模式變數 */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-tertiary: #e5e5e5;
+  --text-primary: #1a1a2e;
+  --text-secondary: #666666;
+  --text-tertiary: #999999;
+  --border-color: #e5e5e5;
+  --brand: #3f8696;
+  --brand-hover: #2d9b9b;
+
+  color-scheme: light;
+}
+
+.dark {
+  /* 深色模式變數 */
+  --bg-primary: #1a1a2e;
+  --bg-secondary: #2a2a41;
+  --bg-tertiary: #32324b;
+  --text-primary: #f5f5f5;
+  --text-secondary: #a0a0a0;
+  --text-tertiary: #777777;
+  --border-color: #3b3b55;
+  --brand: #4fb3c4;
+  --brand-hover: #6fcfdf;
+
+  color-scheme: dark;
+}
+
+/* ========================================
+   Base Styles
+   ======================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+/* ========================================
+   Utility Classes
+   ======================================== */
+
+/* 背景色 */
+.bg-primary { background-color: var(--bg-primary); }
+.bg-secondary { background-color: var(--bg-secondary); }
+.bg-tertiary { background-color: var(--bg-tertiary); }
+
+/* 文字色 */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+.text-brand { color: var(--brand); }
+
+/* 邊框色 */
+.border-default { border-color: var(--border-color); }
+
+/* 品牌色 hover */
+.hover\:text-brand-hover:hover { color: var(--brand-hover); }
+.hover\:bg-brand:hover { background-color: var(--brand); }
+.hover\:bg-brand-hover:hover { background-color: var(--brand-hover); }
+
+/* 卡片樣式 */
+.card-shadow { box-shadow: var(--shadow-card); }
+.card-shadow-hover:hover { box-shadow: var(--shadow-card-hover); }
+
+/* 過渡動畫 */
+.transition-colors-custom {
+  transition: background-color var(--transition-base),
+              color var(--transition-base),
+              border-color var(--transition-base);
+}
+
+/* ========================================
+   Dark Mode Toggle Animation
+   ======================================== */
+
+.dark-mode-toggle {
+  @apply relative w-10 h-10 rounded-full flex items-center justify-center;
+  @apply hover:bg-gray-100 dark:hover:bg-gray-800;
+  @apply transition-colors duration-200;
+}
+
+.dark-mode-toggle svg {
+  @apply w-5 h-5 text-gray-600 dark:text-gray-300;
+}
+
+/* ========================================
+   Typography Prose (for Markdown content)
+   ======================================== */
+
+.prose {
+  color: var(--text-primary);
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  color: var(--text-primary);
+}
+
+.prose a {
+  color: var(--brand);
+}
+
+.prose a:hover {
+  color: var(--brand-hover);
+}
+
+.prose strong {
+  color: var(--text-primary);
+}
+
+.prose code {
+  background-color: var(--bg-secondary);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+}
+
+/* ========================================
+   Scrollbar Styling
+   ======================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-tertiary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* ========================================
+   Focus States (Accessibility)
+   ======================================== */
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   Print Styles
+   ======================================== */
+
+@media print {
+  .dark {
+    --bg-primary: #ffffff;
+    --text-primary: #000000;
+  }
+
+  header, footer, .no-print {
+    display: none !important;
+  }
+}

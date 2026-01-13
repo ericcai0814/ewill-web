@@ -34,19 +34,26 @@ const social: SocialLink[] = footerData?.social || [];
 const copyright = footerData?.copyright?.text || `Copyright © ${new Date().getFullYear()} 鎰威科技 EWILL Technology. All rights reserved.`;
 ---
 
-<footer class="footer">
-  <div class="footer__container">
-    <div class="footer__grid">
+<footer class="bg-dark-900 text-white py-[60px] pb-[30px]">
+  <div class="max-w-[1280px] mx-auto px-6">
+    <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.5fr]">
       <!-- 公司資訊 -->
-      <div class="footer__section">
-        <img src={company.logo} alt={company.name} class="footer__logo" width="160" height="36" />
-        <p class="footer__description">{company.description}</p>
+      <div>
+        <img
+          src={company.logo}
+          alt={company.name}
+          class="h-9 w-auto mb-4 brightness-0 invert"
+          width="160"
+          height="36"
+        />
+        <p class="text-sm text-gray-400 leading-relaxed mb-5">{company.description}</p>
         {social.length > 0 && (
-          <div class="footer__social">
+          <div class="flex gap-3">
             {social.map((item) => (
               <a
                 href={item.url}
-                class="footer__social-link"
+                class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full text-gray-400
+                       hover:bg-brand-hover hover:text-white transition-all"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={item.platform}
@@ -68,47 +75,55 @@ const copyright = footerData?.copyright?.text || `Copyright © ${new Date().getF
       </div>
 
       <!-- 快速連結 -->
-      <div class="footer__section">
-        <h3 class="footer__section-title">快速連結</h3>
-        <ul class="footer__links">
+      <div>
+        <h3 class="text-lg font-semibold mb-5 text-white">快速連結</h3>
+        <ul class="list-none m-0 p-0">
           {quickLinks.map((link) => (
             <li>
-              <a href={link.url} class="footer__link">{link.text}</a>
+              <a href={link.url} class="block py-1.5 text-sm text-gray-400 no-underline hover:text-brand-hover transition-colors">
+                {link.text}
+              </a>
             </li>
           ))}
         </ul>
       </div>
 
       <!-- 解決方案 -->
-      <div class="footer__section">
-        <h3 class="footer__section-title">解決方案</h3>
-        <ul class="footer__links">
+      <div>
+        <h3 class="text-lg font-semibold mb-5 text-white">解決方案</h3>
+        <ul class="list-none m-0 p-0">
           {solutions.map((link) => (
             <li>
-              <a href={link.url} class="footer__link">{link.text}</a>
+              <a href={link.url} class="block py-1.5 text-sm text-gray-400 no-underline hover:text-brand-hover transition-colors">
+                {link.text}
+              </a>
             </li>
           ))}
         </ul>
       </div>
 
       <!-- 聯絡我們 -->
-      <div class="footer__section">
-        <h3 class="footer__section-title">聯絡我們</h3>
-        <address class="footer__contact">
-          <div class="footer__contact-item">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+      <div>
+        <h3 class="text-lg font-semibold mb-5 text-white">聯絡我們</h3>
+        <address class="not-italic">
+          <div class="flex items-start gap-3 mb-3 text-sm text-gray-400">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" class="shrink-0 mt-0.5">
               <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
             </svg>
-            <a href={`tel:${contact.phone.replace(/[^0-9]/g, '')}`}>{contact.phone}</a>
+            <a href={`tel:${contact.phone.replace(/[^0-9]/g, '')}`} class="text-gray-400 no-underline hover:text-brand-hover transition-colors">
+              {contact.phone}
+            </a>
           </div>
-          <div class="footer__contact-item">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+          <div class="flex items-start gap-3 mb-3 text-sm text-gray-400">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" class="shrink-0 mt-0.5">
               <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
             </svg>
-            <a href={`mailto:${contact.email}`}>{contact.email}</a>
+            <a href={`mailto:${contact.email}`} class="text-gray-400 no-underline hover:text-brand-hover transition-colors">
+              {contact.email}
+            </a>
           </div>
-          <div class="footer__contact-item">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+          <div class="flex items-start gap-3 mb-3 text-sm text-gray-400">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" class="shrink-0 mt-0.5">
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
             </svg>
             <span>{contact.address}</span>
@@ -118,143 +133,8 @@ const copyright = footerData?.copyright?.text || `Copyright © ${new Date().getF
     </div>
 
     <!-- Copyright -->
-    <div class="footer__copyright">
-      <p>{copyright}</p>
+    <div class="border-t border-dark-600 pt-5 mt-10 text-center">
+      <p class="text-sm text-gray-400 m-0">{copyright}</p>
     </div>
   </div>
 </footer>
-
-<style>
-  .footer {
-    background-color: #1A1A2E;
-    color: #fff;
-    padding: 60px 0 30px;
-  }
-
-  .footer__container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  .footer__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  @media (min-width: 768px) {
-    .footer__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .footer__grid {
-      grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    }
-  }
-
-  .footer__section-title {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    color: #fff;
-  }
-
-  .footer__logo {
-    height: 36px;
-    width: auto;
-    margin-bottom: 16px;
-    filter: brightness(0) invert(1);
-  }
-
-  .footer__description {
-    font-size: 14px;
-    color: #B0B0B0;
-    line-height: 1.6;
-    margin-bottom: 20px;
-  }
-
-  .footer__social {
-    display: flex;
-    gap: 12px;
-  }
-
-  .footer__social-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    color: #B0B0B0;
-    transition: all 0.2s ease;
-  }
-
-  .footer__social-link:hover {
-    background: #2D9B9B;
-    color: #fff;
-  }
-
-  .footer__links {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .footer__link {
-    display: block;
-    padding: 6px 0;
-    font-size: 14px;
-    color: #B0B0B0;
-    text-decoration: none;
-    transition: color 0.2s ease;
-  }
-
-  .footer__link:hover {
-    color: #2D9B9B;
-  }
-
-  .footer__contact {
-    font-style: normal;
-  }
-
-  .footer__contact-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    margin-bottom: 12px;
-    font-size: 14px;
-    color: #B0B0B0;
-  }
-
-  .footer__contact-item svg {
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .footer__contact-item a {
-    color: #B0B0B0;
-    text-decoration: none;
-    transition: color 0.2s ease;
-  }
-
-  .footer__contact-item a:hover {
-    color: #2D9B9B;
-  }
-
-  .footer__copyright {
-    border-top: 1px solid #333;
-    padding-top: 20px;
-    margin-top: 40px;
-    text-align: center;
-  }
-
-  .footer__copyright p {
-    font-size: 14px;
-    color: #B0B0B0;
-    margin: 0;
-  }
-</style>

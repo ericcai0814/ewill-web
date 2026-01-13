@@ -1,4 +1,6 @@
 ---
+import { cn } from '../utils/cn';
+
 export interface Props {
   label?: string;
   title: string;
@@ -16,25 +18,44 @@ const {
   features = [],
   align = 'center'
 } = Astro.props;
-
-const alignClass = `product-intro--${align}`;
 ---
 
-<section class:list={['product-intro', alignClass]}>
-  <div class="product-intro__container">
-    <div class="product-intro__content">
-      {label && <span class="product-intro__label">{label}</span>}
-      <h2 class="product-intro__title">{title}</h2>
-      {subtitle && <p class="product-intro__subtitle">{subtitle}</p>}
-      <div class="product-intro__description" set:html={description} />
+<section class="py-20 max-lg:py-[60px]">
+  <div class="max-w-[1280px] mx-auto px-6 max-lg:px-4">
+    <div class={cn(
+      'max-w-[900px]',
+      align === 'center' ? 'mx-auto text-center' : 'text-left'
+    )}>
+      {label && (
+        <span class="inline-block text-sm font-semibold text-brand uppercase tracking-[0.1em]
+                     mb-4 px-4 py-1.5 bg-brand/10 rounded-[20px]">
+          {label}
+        </span>
+      )}
+      <h2 class="text-[42px] max-lg:text-[32px] font-bold text-primary dark:text-white mb-4 leading-tight">
+        {title}
+      </h2>
+      {subtitle && (
+        <p class="text-xl max-lg:text-lg text-brand font-medium mb-6 leading-relaxed">
+          {subtitle}
+        </p>
+      )}
+      <div
+        class="text-lg max-lg:text-base text-secondary dark:text-gray-300 leading-relaxed
+               [&_p]:mb-4 [&_p:last-child]:mb-0"
+        set:html={description}
+      />
 
       {features.length > 0 && (
-        <ul class="product-intro__features">
+        <ul class={cn(
+          'list-none mt-8 p-0 grid gap-3',
+          align === 'center' && 'max-w-[600px] mx-auto text-left'
+        )}>
           {features.map((feature) => (
-            <li class="product-intro__feature">
-              <svg class="product-intro__check" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="10" fill="#3F8696" opacity="0.1"/>
-                <path d="M8 12l3 3 5-5" stroke="#3F8696" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <li class="flex items-center gap-3 text-base max-lg:text-[15px] text-primary dark:text-gray-200">
+              <svg class="shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" class="fill-brand/10"/>
+                <path d="M8 12l3 3 5-5" class="stroke-brand" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
               <span>{feature}</span>
             </li>
@@ -44,126 +65,3 @@ const alignClass = `product-intro--${align}`;
     </div>
   </div>
 </section>
-
-<style>
-  .product-intro {
-    padding: 80px 0;
-  }
-
-  .product-intro__container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  .product-intro__content {
-    max-width: 900px;
-  }
-
-  /* Alignment */
-  .product-intro--center .product-intro__content {
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .product-intro--left .product-intro__content {
-    text-align: left;
-  }
-
-  .product-intro__label {
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 600;
-    color: #3F8696;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 16px;
-    padding: 6px 16px;
-    background: rgba(63, 134, 150, 0.1);
-    border-radius: 20px;
-  }
-
-  .product-intro__title {
-    font-size: 42px;
-    font-weight: 700;
-    color: #1A1A2E;
-    margin: 0 0 16px;
-    line-height: 1.2;
-  }
-
-  .product-intro__subtitle {
-    font-size: 20px;
-    color: #3F8696;
-    font-weight: 500;
-    margin: 0 0 24px;
-    line-height: 1.4;
-  }
-
-  .product-intro__description {
-    font-size: 18px;
-    color: #666;
-    line-height: 1.8;
-  }
-
-  .product-intro__description :global(p) {
-    margin: 0 0 16px;
-  }
-
-  .product-intro__description :global(p:last-child) {
-    margin-bottom: 0;
-  }
-
-  .product-intro__features {
-    list-style: none;
-    margin: 32px 0 0;
-    padding: 0;
-    display: grid;
-    gap: 12px;
-  }
-
-  .product-intro--center .product-intro__features {
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left;
-  }
-
-  .product-intro__feature {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 16px;
-    color: #333;
-  }
-
-  .product-intro__check {
-    flex-shrink: 0;
-  }
-
-  /* Mobile adjustments */
-  @media (max-width: 1023px) {
-    .product-intro {
-      padding: 60px 0;
-    }
-
-    .product-intro__container {
-      padding: 0 16px;
-    }
-
-    .product-intro__title {
-      font-size: 32px;
-    }
-
-    .product-intro__subtitle {
-      font-size: 18px;
-    }
-
-    .product-intro__description {
-      font-size: 16px;
-    }
-
-    .product-intro__feature {
-      font-size: 15px;
-    }
-  }
-</style>

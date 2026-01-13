@@ -70,7 +70,14 @@
       "Bash(jq:*)",
       "Bash(cat:*)",
       "Bash(npm run content:build:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(curl:*)",
+      "Bash(git reset:*)",
+      "Bash(grep:*)",
+      "Bash(do echo \"=== $id ===\" grep -rn \"image_id: $id\" pages/*/index.yml)",
+      "Bash(git revert:*)",
+      "Bash(git checkout:*)",
+      "Bash(npm cache clean:*)"
     ]
   }
 }

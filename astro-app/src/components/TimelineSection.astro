@@ -42,46 +42,99 @@ const eventsWithImages = await Promise.all(
   })
 );
 
-const layoutClass = `timeline--${layout}`;
+const isHorizontal = layout === 'horizontal';
 ---
 
-<section class="timeline-section">
-  <div class="timeline-section__container">
+<section class="py-20 max-lg:py-[60px] bg-secondary dark:bg-dark-800">
+  <div class="max-w-[1280px] mx-auto px-6 max-lg:px-4">
     <!-- Section Header -->
-    <header class="timeline-section__header">
-      {label && <span class="timeline-section__label">{label}</span>}
-      <h2 class="timeline-section__title">{title}</h2>
-      {description && <p class="timeline-section__description">{description}</p>}
+    <header class="text-center mb-[60px] max-lg:mb-10">
+      {label && (
+        <span class="inline-block text-sm font-semibold text-brand uppercase tracking-[0.1em] mb-3">
+          {label}
+        </span>
+      )}
+      <h2 class="text-4xl max-lg:text-[28px] font-bold text-primary dark:text-white mb-4 leading-tight">
+        {title}
+      </h2>
+      {description && (
+        <p class="text-lg text-secondary dark:text-gray-300 m-0 max-w-[600px] mx-auto leading-relaxed">
+          {description}
+        </p>
+      )}
     </header>
 
     <!-- Timeline -->
-    <div class:list={['timeline', layoutClass]}>
-      <div class="timeline__line" aria-hidden="true"></div>
+    <div class:list={[
+      'relative',
+      isHorizontal
+        ? 'flex overflow-x-auto gap-6 py-5 max-w-none'
+        : 'max-w-[900px] mx-auto'
+    ]}>
+      <!-- Timeline Line -->
+      <div
+        class:list={[
+          'absolute bg-gradient-to-b from-brand to-brand-hover',
+          isHorizontal
+            ? 'top-10 left-0 right-0 h-0.5 w-auto'
+            : 'left-1/2 max-lg:left-10 top-0 bottom-0 w-0.5 -translate-x-1/2 max-lg:translate-x-0'
+        ]}
+        aria-hidden="true"
+      ></div>
+
       {eventsWithImages.map((event, index) => (
         <article
-          class="timeline-event"
+          class:list={[
+            'relative',
+            isHorizontal
+              ? 'flex flex-col shrink-0 w-[280px]'
+              : [
+                  'flex mb-12 last:mb-0 max-lg:flex-col max-lg:pl-[100px]',
+                  index % 2 === 0
+                    ? 'flex-row pr-[calc(50%+40px)] max-lg:pr-0'
+                    : 'flex-row-reverse pl-[calc(50%+40px)] max-lg:pl-[100px]'
+                ]
+          ]}
           data-event-id={event.id}
-          style={`--event-index: ${index}`}
         >
-          <div class="timeline-event__marker">
-            <span class="timeline-event__year">{event.year}</span>
+          <!-- Marker -->
+          <div class:list={[
+            isHorizontal
+              ? 'relative mb-6'
+              : 'absolute left-1/2 max-lg:left-10 top-0 -translate-x-1/2 max-lg:translate-x-[-50%] z-[2]'
+          ]}>
+            <span class:list={[
+              'flex items-center justify-center bg-gradient-to-br from-brand to-brand-hover text-white font-bold rounded-full shadow-[0_4px_20px_rgba(63,134,150,0.3)]',
+              isHorizontal
+                ? 'w-16 h-16 text-base'
+                : 'w-20 h-20 max-lg:w-[60px] max-lg:h-[60px] text-lg max-lg:text-sm'
+            ]}>
+              {event.year}
+            </span>
           </div>
-          <div class="timeline-event__content">
+
+          <!-- Content -->
+          <div class="w-full bg-primary dark:bg-dark-700 rounded-xl overflow-hidden shadow-card
+                      transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
             {event.image && (
-              <div class="timeline-event__image-wrapper">
+              <div class="aspect-video overflow-hidden bg-secondary dark:bg-dark-600">
                 <img
                   src={event.image.src}
                   alt={event.image.alt}
-                  class="timeline-event__image"
+                  class="w-full h-full object-cover"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
             )}
-            <div class="timeline-event__text">
-              <h3 class="timeline-event__title">{event.title}</h3>
+            <div class="p-6 max-lg:p-5">
+              <h3 class="text-xl max-lg:text-lg font-semibold text-primary dark:text-white mb-2 leading-relaxed">
+                {event.title}
+              </h3>
               {event.description && (
-                <p class="timeline-event__description">{event.description}</p>
+                <p class="text-sm text-secondary dark:text-gray-400 m-0 leading-relaxed">
+                  {event.description}
+                </p>
               )}
             </div>
           </div>
@@ -90,249 +143,3 @@ const layoutClass = `timeline--${layout}`;
     </div>
   </div>
 </section>
-
-<style>
-  .timeline-section {
-    padding: 80px 0;
-    background: #f8f9fa;
-  }
-
-  .timeline-section__container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  .timeline-section__header {
-    text-align: center;
-    margin-bottom: 60px;
-  }
-
-  .timeline-section__label {
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 600;
-    color: #3F8696;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 12px;
-  }
-
-  .timeline-section__title {
-    font-size: 36px;
-    font-weight: 700;
-    color: #1A1A2E;
-    margin: 0 0 16px;
-    line-height: 1.3;
-  }
-
-  .timeline-section__description {
-    font-size: 18px;
-    color: #666;
-    margin: 0;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.6;
-  }
-
-  /* Timeline Container */
-  .timeline {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .timeline__line {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, #3F8696, #2D9B9B);
-    transform: translateX(-50%);
-  }
-
-  /* Timeline Event */
-  .timeline-event {
-    position: relative;
-    display: flex;
-    margin-bottom: 48px;
-  }
-
-  .timeline-event:last-child {
-    margin-bottom: 0;
-  }
-
-  .timeline-event:nth-child(odd) {
-    flex-direction: row;
-    padding-right: calc(50% + 40px);
-  }
-
-  .timeline-event:nth-child(even) {
-    flex-direction: row-reverse;
-    padding-left: calc(50% + 40px);
-  }
-
-  .timeline-event__marker {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    transform: translateX(-50%);
-    z-index: 2;
-  }
-
-  .timeline-event__year {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, #3F8696 0%, #2D9B9B 100%);
-    color: #fff;
-    font-size: 18px;
-    font-weight: 700;
-    border-radius: 50%;
-    box-shadow: 0 4px 20px rgba(63, 134, 150, 0.3);
-  }
-
-  .timeline-event__content {
-    background: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    transition: all 0.3s ease;
-    width: 100%;
-  }
-
-  .timeline-event__content:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-  }
-
-  .timeline-event__image-wrapper {
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    background: #f5f5f5;
-  }
-
-  .timeline-event__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .timeline-event__text {
-    padding: 24px;
-  }
-
-  .timeline-event__title {
-    font-size: 20px;
-    font-weight: 600;
-    color: #1A1A2E;
-    margin: 0 0 8px;
-    line-height: 1.4;
-  }
-
-  .timeline-event__description {
-    font-size: 14px;
-    color: #666;
-    margin: 0;
-    line-height: 1.6;
-  }
-
-  /* Horizontal Layout */
-  .timeline--horizontal {
-    display: flex;
-    overflow-x: auto;
-    gap: 24px;
-    padding: 20px 0;
-    max-width: none;
-  }
-
-  .timeline--horizontal .timeline__line {
-    top: 40px;
-    left: 0;
-    right: 0;
-    bottom: auto;
-    width: auto;
-    height: 2px;
-    transform: none;
-  }
-
-  .timeline--horizontal .timeline-event {
-    flex-direction: column;
-    flex-shrink: 0;
-    width: 280px;
-    margin-bottom: 0;
-    padding: 0;
-  }
-
-  .timeline--horizontal .timeline-event:nth-child(odd),
-  .timeline--horizontal .timeline-event:nth-child(even) {
-    flex-direction: column;
-    padding: 0;
-  }
-
-  .timeline--horizontal .timeline-event__marker {
-    position: relative;
-    left: auto;
-    top: auto;
-    transform: none;
-    margin-bottom: 24px;
-  }
-
-  .timeline--horizontal .timeline-event__year {
-    width: 64px;
-    height: 64px;
-    font-size: 16px;
-  }
-
-  /* Mobile adjustments */
-  @media (max-width: 1023px) {
-    .timeline-section {
-      padding: 60px 0;
-    }
-
-    .timeline-section__container {
-      padding: 0 16px;
-    }
-
-    .timeline-section__header {
-      margin-bottom: 40px;
-    }
-
-    .timeline-section__title {
-      font-size: 28px;
-    }
-
-    .timeline__line {
-      left: 40px;
-    }
-
-    .timeline-event {
-      flex-direction: column !important;
-      padding: 0 0 0 100px !important;
-      margin-bottom: 32px;
-    }
-
-    .timeline-event__marker {
-      left: 40px;
-      transform: translateX(-50%);
-    }
-
-    .timeline-event__year {
-      width: 60px;
-      height: 60px;
-      font-size: 14px;
-    }
-
-    .timeline-event__text {
-      padding: 20px;
-    }
-
-    .timeline-event__title {
-      font-size: 18px;
-    }
-  }
-</style>

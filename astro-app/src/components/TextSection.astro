@@ -36,111 +36,31 @@ function parseMarkdown(md: string): string {
 const htmlContent = parseMarkdown(content);
 ---
 
-<section class="text-section" id={id}>
-  <div class="text-section__container">
-    {label && <span class="text-section__label">{label}</span>}
-    {title && <h2 class="text-section__title">{title}</h2>}
-    <div class="text-section__content prose" set:html={htmlContent} />
+<section class="py-[60px]" id={id}>
+  <div class="max-w-[900px] mx-auto px-6 text-center">
+    {label && (
+      <span class="inline-block text-[13px] font-semibold text-brand uppercase tracking-[0.15em]
+                   mb-4 px-5 py-2 border border-brand rounded-[20px]">
+        {label}
+      </span>
+    )}
+    {title && (
+      <h2 class="text-[32px] md:text-[40px] font-bold text-brand mb-6 text-center">
+        {title}
+      </h2>
+    )}
+    <div
+      class="prose text-base leading-relaxed text-secondary dark:text-gray-300 text-left
+             [&_h1]:text-brand [&_h1]:mt-6 [&_h1]:mb-2 [&_h1]:font-semibold
+             [&_h2]:text-brand [&_h2]:text-[28px] [&_h2]:mt-6 [&_h2]:mb-2 [&_h2]:font-semibold
+             [&_h3]:text-brand [&_h3]:text-[22px] [&_h3]:mt-6 [&_h3]:mb-2 [&_h3]:font-semibold
+             [&_h4]:text-brand [&_h4]:text-[18px] [&_h4]:mt-6 [&_h4]:mb-2 [&_h4]:font-semibold
+             [&_p]:mb-4
+             [&_a]:text-brand-hover [&_a]:underline [&_a:hover]:text-brand
+             [&_ul]:my-4 [&_ul]:pl-6 [&_ol]:my-4 [&_ol]:pl-6
+             [&_li]:mb-2
+             [&_strong]:font-semibold [&_strong]:text-primary dark:[&_strong]:text-gray-100"
+      set:html={htmlContent}
+    />
   </div>
 </section>
-
-<style>
-  .text-section {
-    padding: 60px 0;
-  }
-
-  .text-section__container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  .text-section__label {
-    display: inline-block;
-    font-size: 13px;
-    font-weight: 600;
-    color: #3F8696;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-bottom: 16px;
-    padding: 8px 20px;
-    border: 1px solid #3F8696;
-    border-radius: 20px;
-  }
-
-  .text-section__title {
-    font-size: 32px;
-    font-weight: 700;
-    color: #3F8696;
-    margin-bottom: 24px;
-    text-align: center;
-  }
-
-  /* 讓 label 置中 */
-  .text-section__container {
-    text-align: center;
-  }
-
-  @media (min-width: 768px) {
-    .text-section__title {
-      font-size: 40px;
-    }
-  }
-
-  .text-section__content {
-    font-size: 16px;
-    line-height: 1.8;
-    color: #333;
-    text-align: left;
-  }
-
-  .text-section__content :global(h1),
-  .text-section__content :global(h2),
-  .text-section__content :global(h3),
-  .text-section__content :global(h4) {
-    color: #3F8696;
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
-    font-weight: 600;
-  }
-
-  .text-section__content :global(h2) {
-    font-size: 28px;
-  }
-
-  .text-section__content :global(h3) {
-    font-size: 22px;
-  }
-
-  .text-section__content :global(h4) {
-    font-size: 18px;
-  }
-
-  .text-section__content :global(p) {
-    margin-bottom: 1em;
-  }
-
-  .text-section__content :global(a) {
-    color: #2D9B9B;
-    text-decoration: underline;
-  }
-
-  .text-section__content :global(a:hover) {
-    color: #3F8696;
-  }
-
-  .text-section__content :global(ul),
-  .text-section__content :global(ol) {
-    margin: 1em 0;
-    padding-left: 1.5em;
-  }
-
-  .text-section__content :global(li) {
-    margin-bottom: 0.5em;
-  }
-
-  .text-section__content :global(strong) {
-    font-weight: 600;
-    color: #1A1A2E;
-  }
-</style>
