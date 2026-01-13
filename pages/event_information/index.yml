@@ -12,6 +12,37 @@ layout:
   sections:
     - type: text
       content: |-
-        # 活動訊息
+        ---
+        crawled_at: '2026-01-13T11:55:50.198314+08:00'
+        source_url: https://www.ewill.com.tw/event_information/
+        ---
 
-        此頁面內容建置中，敬請期待。
+        # 活動訊息 - 鎰威科技有限公司
+    - type: image
+      image_id: __banner1209
+    - type: image
+      image_id: bn_home_m
+    - type: text
+      content: ""
+      label: Event Information
+      title: 活動訊息
+    - type: image
+      image_id: images_________________m2
+    - type: text
+      content: 動信攜手鎰威科技推廣免密碼零信任方案，協助企業快速導入更安全便捷的身分驗證防護，強化整體資安能力。
+      label: 活動新聞​
+    - type: image
+      image_id: images_1117______m_fix_1024x519
+    - type: text
+      content: 鎰威科技發表 LOGSEC 資安預警方案，協助企業快速整合日誌、強化事件分析與資安可視化能力，全面提升防護成效。
+      label: 活動新聞​
+    - type: image
+      image_id: images_________01_1024x576
+    - type: text
+      content: 「鎰威科技智慧製造線上研討會」聚焦 MES、OT 資安、智能倉儲、AI RMA 等四大關鍵技術，協助企業啟動智慧工廠轉型。
+      label: 活動新聞​
+    - type: image
+      image_id: images_line_album_20251021_251027_74_1024x576
+    - type: text
+      content: 鎰威科技攜手 Dell 舉辦「Proxmox VE on Dell」研討會，分享如何以高效、穩定的一體化虛擬化平台協助企業打造更安全彈性的 IT 架構。
+      label: 活動新聞

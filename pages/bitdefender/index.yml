@@ -12,6 +12,51 @@ layout:
   sections:
     - type: text
       content: |-
-        # 防毒與威脅防護 Bitdefender
+        ---
+        crawled_at: '2026-01-13T11:52:08.094757+08:00'
+        source_url: https://www.ewill.com.tw/bitdefender/
+        ---
 
-        此頁面內容建置中，敬請期待。
+        # Bitdefender - 鎰威科技有限公司
+    - type: image
+      image_id: images___bn_bit_1209_scaled
+    - type: image
+      image_id: images_bn_bitdefender_m_fix
+    - type: text
+      content: |-
+        #### 防毒與威脅防護
+
+        ### Bitdefender Gravityzone
+
+        最全面企業入侵防禦平台，統一的預防、偵測、回應 全面防護端點、網路、雲端。
+      title: Bitdefender
+    - type: image
+      image_id: images_bitdefender_1
+    - type: text
+      content: |-
+        ### Bitdefender 分層的新世代端點保護平台
+
+        使用自動調整分層體系結構，其中包括端點控制、預防、偵測、修復與能見性。
+    - type: image
+      image_id: images_bitdefender_2
+    - type: text
+      content: |-
+        ### GravityZone 雲端主控台
+
+        具備多達36個圖表輪播功能，完整協助管理者快速了解系統防護狀態。
+    - type: image
+      image_id: images_bitdefender_3
+    - type: text
+      content: "### 為什麼選擇 Bitdefender"
+    - type: image
+      image_id: images_bitdefender_4
+    - type: image
+      image_id: images_bitdefender_p4_1
+    - type: image
+      image_id: images_bitdefender_p4_2
+    - type: image
+      image_id: images_bitdefender_p4_3_fix
+    - type: image
+      image_id: images_bitdefender_p4_4
+    - type: image
+      image_id: images_bitdefender_p4_5

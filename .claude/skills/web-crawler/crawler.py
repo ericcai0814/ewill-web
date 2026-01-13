@@ -105,6 +105,12 @@ class CrawlerConfig:
         'cookie-notice', 'popup-overlay', 'ad-container'
     ])
 
+    # 排除的 URL 路徑（用於過濾不需要爬取的頁面）
+    excluded_paths: list = field(default_factory=list)
+
+    # 圖片目錄名稱（default: 'images', pages 格式: 'assets'）
+    images_dir_name: str = 'images'
+
 
 # ============================================
 # 工具函式 (Utility Functions)
@@ -116,6 +122,29 @@ def slugify(text: str) -> str:
     text = re.sub(r'[^\w\s-]', '', text)
     text = re.sub(r'[-\s]+', '-', text)
     return text.strip('-')
+
+
+def normalize_url(url: str) -> str:
+    """
+    正規化 URL，確保相同頁面只有一個 URL 表示
+
+    - 移除結尾斜線（首頁除外）
+    - 移除 query string 和 fragment
+
+    Examples:
+        /about_us/ → /about_us
+        /about_us  → /about_us
+        /          → /
+    """
+    parsed = urlparse(url)
+    path = parsed.path
+
+    # 移除結尾斜線（但保留根路徑 /）
+    if path != '/' and path.endswith('/'):
+        path = path.rstrip('/')
+
+    # 重建 URL（不含 query string 和 fragment）
+    return f"{parsed.scheme}://{parsed.netloc}{path}"
 
 
 def url_to_path(url: str, base_domain: str) -> Path:
@@ -892,9 +921,10 @@ class WebsiteCrawler:
         print(f"\n📄 預覽檔案位置:")
         print(f"   • Markdown: {output_base}/index.md")
         print(f"   • YAML 設定: {output_base}/index.yml")
-        if (output_base / 'images').exists():
-            img_count = len(list((output_base / 'images').glob('*.*'))) // 2  # 除以2因為有yml
-            print(f"   • 圖片: {output_base}/images/ ({img_count} 張)")
+        images_dir = output_base / self.config.images_dir_name
+        if images_dir.exists():
+            img_count = len(list(images_dir.glob('*.*'))) // 2  # 除以2因為有yml
+            print(f"   • 圖片: {images_dir}/ ({img_count} 張)")
         
         print(f"\n📊 網站概況:")
         print(f"   • 總共發現 {len(self.all_urls)} 個頁面待爬取")
@@ -1054,13 +1084,14 @@ class WebsiteCrawler:
     def _discover_urls(self, domain: str, start_url: str) -> list[str]:
         """發現網站所有 URL"""
         urls = set()
-        
+
         print("   嘗試 sitemap.xml...")
         sitemap_urls = self.fetcher.fetch_sitemap(domain)
         if sitemap_urls:
             print(f"   ✅ 從 sitemap 取得 {len(sitemap_urls)} 個 URL")
-            urls.update(sitemap_urls)
-        
+            # 正規化 sitemap URLs
+            urls.update(normalize_url(u) for u in sitemap_urls)
+
         print("   掃描首頁連結...")
         html = self.fetcher.fetch(start_url)
         if html:
@@ -1069,22 +1100,47 @@ class WebsiteCrawler:
                 href = a['href']
                 abs_url = urljoin(start_url, href)
                 parsed = urlparse(abs_url)
-                
+
                 if parsed.netloc == domain:
-                    clean_url = f"{parsed.scheme}://{parsed.netloc}{parsed.path}"
+                    # 正規化 URL（移除結尾斜線）
+                    clean_url = normalize_url(f"{parsed.scheme}://{parsed.netloc}{parsed.path}")
                     urls.add(clean_url)
-        
-        urls.add(start_url)
+
+        # 正規化 start_url
+        urls.add(normalize_url(start_url))
+
+        # 過濾排除路徑
+        if self.config.excluded_paths:
+            filtered_urls = set()
+            for url in urls:
+                path = urlparse(url).path.strip('/')
+                # 檢查是否匹配任何排除路徑
+                excluded = False
+                for excluded_path in self.config.excluded_paths:
+                    if path == excluded_path or path.startswith(f"{excluded_path}/"):
+                        excluded = True
+                        break
+                if not excluded:
+                    filtered_urls.add(url)
+
+            excluded_count = len(urls) - len(filtered_urls)
+            if excluded_count > 0:
+                print(f"   ⏭️  過濾 {excluded_count} 個排除路徑")
+            urls = filtered_urls
+
         urls = sorted(list(urls))
-        
+
         return urls
-    
+
     def _crawl_page(self, url: str, domain: str, output_base: Path):
         """爬取單一頁面"""
+        # 正規化 URL 以避免重複爬取
+        url = normalize_url(url)
+
         if url in self.crawled_urls:
             print("   ⏭️  已處理過，跳過")
             return
-        
+
         self.crawled_urls.add(url)
         
         html = self.fetcher.fetch(url)
@@ -1112,8 +1168,8 @@ class WebsiteCrawler:
             page_dir = output_base / url_path
         
         page_dir.mkdir(parents=True, exist_ok=True)
-        
-        images_dir = page_dir / 'images'
+
+        images_dir = page_dir / self.config.images_dir_name
         downloaded_images = []
         
         print(f"   🔍 發現 {len(parsed['images'])} 張圖片")
@@ -1132,7 +1188,7 @@ class WebsiteCrawler:
         markdown = parsed['markdown']
         for img in downloaded_images:
             old_url = img['original_url']
-            new_path = f"./images/{img['filename']}"
+            new_path = f"./{self.config.images_dir_name}/{img['filename']}"
             markdown = markdown.replace(old_url, new_path)
         
         md_content = self.generator.generate_markdown(
@@ -1318,7 +1374,22 @@ def main():
         default=50,
         help='最小圖片尺寸 px (預設: 50)'
     )
-    
+
+    parser.add_argument(
+        '--exclude',
+        type=str,
+        default='',
+        help='排除的路徑（逗號分隔），例如: elementor-hf,category,hello-world'
+    )
+
+    parser.add_argument(
+        '--format',
+        type=str,
+        choices=['default', 'pages'],
+        default='default',
+        help='輸出格式：default (images/) 或 pages (assets/)'
+    )
+
     args = parser.parse_args()
     
     if args.continue_crawl:
@@ -1342,6 +1413,12 @@ def main():
             print("❌ 未提供網址，結束程式")
             sys.exit(1)
     
+    # 解析排除路徑
+    excluded_paths = [p.strip() for p in args.exclude.split(',') if p.strip()]
+
+    # 設定圖片目錄名稱
+    images_dir_name = 'assets' if args.format == 'pages' else 'images'
+
     config = CrawlerConfig(
         mode=mode,
         debug=args.debug,
@@ -1349,7 +1426,9 @@ def main():
         crawl_delay=args.delay,
         timeout=args.timeout,
         max_retries=args.retries,
-        min_image_size=args.min_image_size
+        min_image_size=args.min_image_size,
+        excluded_paths=excluded_paths,
+        images_dir_name=images_dir_name
     )
     
     crawler = WebsiteCrawler(config)

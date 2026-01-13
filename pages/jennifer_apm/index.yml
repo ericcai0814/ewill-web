@@ -1,0 +1,66 @@
+seo:
+  title: Jennifer APM - 鎰威科技有限公司
+  description: Jennifer APM - 鎰威科技有限公司 相關資訊，鎰威科技提供專業的企業數位轉型與資訊安全服務。
+  keywords:
+    - jennifer_apm
+    - 鎰威科技
+url_mapping:
+  current_url: /jennifer_apm/
+  old_url: /jennifer_apm/
+  redirect: false
+layout:
+  sections:
+    - type: text
+      content: |-
+        ---
+        crawled_at: '2026-01-13T11:57:31.970475+08:00'
+        source_url: https://www.ewill.com.tw/jennifer_apm/
+        ---
+
+        # Jennifer APM - 鎰威科技有限公司
+    - type: image
+      image_id: images___bn_jen_1209_scaled
+    - type: image
+      image_id: images_bn_jennifer_apm_m_fix
+    - type: text
+      content: |-
+        #### 應用效能監控
+
+        ### 強大的實時應用性能管理器​
+      title: Jennifer APM
+    - type: image
+      image_id: images_jenniferapm_1_fix
+    - type: text
+      content: |-
+        ### 即時事件警報​
+
+        JENNIFER 會擷取異常應用程式交易事件，例如回應時間錯誤的交易、交易錯誤/異常和錯誤的 SQL 語句等，並即時發出警報。
+    - type: image
+      image_id: images_bitdefender_2
+    - type: image
+      image_id: images_jenniferapm_p2_1
+    - type: image
+      image_id: images_jenniferapm_p2_2
+    - type: text
+      content: |-
+        ### 即時故障控制
+
+        JENNIFER 的即時故障控制功能保證了網路系統在突發災難情況下的穩定運作。
+    - type: image
+      image_id: images_bitdefender_3
+    - type: image
+      image_id: images_jenniferapm_p3_1
+    - type: image
+      image_id: images_jenniferapm_p3_2
+    - type: text
+      content: "### 支援的平台"
+    - type: image
+      image_id: images_bitdefender_4
+    - type: image
+      image_id: images_jenniferapm_p4_1
+    - type: image
+      image_id: images_jenniferapm_p4_2
+    - type: image
+      image_id: images_jenniferapm_p4_3
+    - type: image
+      image_id: images_jenniferapm_p4_4
