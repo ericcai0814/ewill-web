@@ -15,6 +15,7 @@ import ProductIntroSection from '../components/ProductIntroSection.astro';
 import FeatureShowcaseSection from '../components/FeatureShowcaseSection.astro';
 import TimelineSection from '../components/TimelineSection.astro';
 import GallerySection from '../components/GallerySection.astro';
+import ContactFormSection from '../components/ContactFormSection.astro';
 import { getAssetById } from '../utils/content';
 import type { PageContent, LayoutSection, AioData } from '../utils/content';
 import type { JsonLdItem } from '../components/SEO.astro';
@@ -204,6 +205,16 @@ const jsonLdItems = buildJsonLd(aio);
             gap={section.gap}
             images={section.images}
             lightbox={section.lightbox}
+          />
+        );
+      }
+      if (section.type === 'contact_form' && section.fields) {
+        return (
+          <ContactFormSection
+            label={section.label}
+            title={section.title || ''}
+            fields={section.fields}
+            button_text={section.button_text || '送出'}
           />
         );
       }

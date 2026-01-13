@@ -71,8 +71,16 @@ export interface GalleryImage {
   caption?: string;
 }
 
+export interface ContactField {
+  name: string;
+  label: string;
+  placeholder?: string;
+  required?: boolean;
+  type?: 'text' | 'email' | 'tel' | 'textarea';
+}
+
 export interface LayoutSection {
-  type: 'image' | 'text' | 'card_list' | 'anchor' | 'feature_grid' | 'cta' | 'product_intro' | 'feature_showcase' | 'timeline' | 'gallery';
+  type: 'image' | 'text' | 'card_list' | 'anchor' | 'feature_grid' | 'cta' | 'product_intro' | 'feature_showcase' | 'timeline' | 'gallery' | 'contact_form';
   // Common
   id?: string;
   image_id?: string;
@@ -100,6 +108,8 @@ export interface LayoutSection {
   images?: GalleryImage[];
   gap?: 'small' | 'medium' | 'large';
   lightbox?: boolean;
+  // contact_form
+  fields?: ContactField[];
 }
 
 /**
