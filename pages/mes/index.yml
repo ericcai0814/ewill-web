@@ -95,12 +95,59 @@ layout:
   hero:
     image:
       id: mes_banner_2
-  content_images:
-    - id: mes_banner_2
   sections:
-    - type: image
-      image_id: mes_banner_2
-    - type: image
-      image_id: mes_banner_2
-    - type: text
-      content: "### 什麼是 MES 製造執行系統？\n\nMES（Manufacturing Execution System，製造執行系統）是一套專為現代製造業打造的智能管理平台。\n\n它串接企業內部的 ERP 系統與現場生產設備，實現資訊流與物流的無縫整合，協助企業即時掌控、追蹤與優化整個生產流程。\n\n### MES 的核心優勢\n\n- 即時數據監控：隨時掌握產線動態，生產狀態一目了然，快速發現瓶頸與異常。\n- 資源調度：靈活調度資源，提升產能利用率。\n- 品質全程追溯：每一件產品從原料進廠到最終出貨全程記錄，有效強化品質管理。\n- 減少人為錯誤：標準化作業流程，降低錯誤率與返工成本。\n- 數位化無紙化管理：省去繁瑣紙本紀錄，促進環保並提升資料準確性。\n\n### 為什麼選擇我們的 MES 系統？\n\n- 易於整合：可與主流 ERP、WMS、PLM 等系統無縫接軌，資料互通無礙。\n- 直覺化操作介面：簡易上手，減少員工培訓時間，提高導入效率。\n- 專業顧問服務：導入前後全程技術支援，協助企業穩健轉型智慧製造。\n\n### 立即行動，搶佔智慧製造先機！\n\n現在就聯繫我們，由專業顧問為您規劃專屬 MES 解決方案，助您的企業實現智慧生產、效率翻倍、營運升級！\n\n掌握數位時代脈動，讓 MES 系統成為您邁向智慧製造的最佳夥伴。\n\n聯繫電話：0912083643\_ 張先生\n\nE-mail：Simon.chang@ewill.com.tw"
+    # 產品介紹
+    - type: product_intro
+      label: 製造執行系統
+      title: 什麼是 MES 製造執行系統？
+      description: >-
+        MES（Manufacturing Execution System，製造執行系統）是一套專為現代製造業打造的智能管理平台。
+        它串接企業內部的 ERP 系統與現場生產設備，實現資訊流與物流的無縫整合，
+        協助企業即時掌控、追蹤與優化整個生產流程。
+      align: center
+
+    # MES 核心優勢
+    - type: feature_grid
+      title: MES 的核心優勢
+      columns: 3
+      variant: icon
+      features:
+        - id: advantage_1
+          title: 即時數據監控
+          description: 隨時掌握產線動態，生產狀態一目了然，快速發現瓶頸與異常。
+        - id: advantage_2
+          title: 資源調度
+          description: 靈活調度資源，提升產能利用率。
+        - id: advantage_3
+          title: 品質全程追溯
+          description: 每一件產品從原料進廠到最終出貨全程記錄，有效強化品質管理。
+        - id: advantage_4
+          title: 減少人為錯誤
+          description: 標準化作業流程，降低錯誤率與返工成本。
+        - id: advantage_5
+          title: 數位化無紙化管理
+          description: 省去繁瑣紙本紀錄，促進環保並提升資料準確性。
+
+    # 為什麼選擇我們
+    - type: feature_grid
+      title: 為什麼選擇我們的 MES 系統？
+      columns: 3
+      variant: minimal
+      features:
+        - id: reason_1
+          title: 易於整合
+          description: 可與主流 ERP、WMS、PLM 等系統無縫接軌，資料互通無礙。
+        - id: reason_2
+          title: 直覺化操作介面
+          description: 簡易上手，減少員工培訓時間，提高導入效率。
+        - id: reason_3
+          title: 專業顧問服務
+          description: 導入前後全程技術支援，協助企業穩健轉型智慧製造。
+
+    # 行動呼籲
+    - type: cta
+      title: 立即行動，搶佔智慧製造先機！
+      description: 讓專業顧問為您規劃專屬 MES 解決方案
+      button_text: 聯繫我們
+      button_link: /contact/
+      variant: primary

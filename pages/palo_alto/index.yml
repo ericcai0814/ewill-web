@@ -98,40 +98,38 @@ layout:
   hero:
     image:
       id: paloalto_banner
-  content_images:
-    - id: paloalto_banner_m
-    - id: paloalto
-    - id: paloalto
-    - id: paloalto_1
-    - id: paloalto_1_m
-    - id: paloalto_2
   sections:
-    - type: image
-      image_id: paloalto_banner
-    - type: image
-      image_id: paloalto_banner_m
-    - type: text
-      content: "#### 次世代防火牆\n\n### 雲端網路與資安整合方案\n\n整合 ZTNA 2.0 與 SD-WAN，提供遠端與分支據點高速、安全的網路存取。\L透過 ZTNA 2.0 動態控管用戶與裝置權限，取代傳統 VPN；結合 NG-CASB、SWG、FWaaS，全面保護 SaaS 應用與網路流量。\L支援全雲端部署，適用於遠端工作、雲端應用與企業分點，打造統一且高效的零信任資安架構。"
-      title: Palo Alto
-    - type: image
-      image_id: paloalto
-    - type: image
-      image_id: paloalto
-    - type: text
-      content: |-
-        ### Cortex 家族，從端點到自動化協助平台，提供一站式的服務
+    # 產品介紹
+    - type: product_intro
+      label: 次世代防火牆
+      title: 雲端網路與資安整合方案
+      description: >-
+        整合 ZTNA 2.0 與 SD-WAN，提供遠端與分支據點高速、安全的網路存取。
+        透過 ZTNA 2.0 動態控管用戶與裝置權限，取代傳統 VPN；結合 NG-CASB、SWG、FWaaS，全面保護 SaaS 應用與網路流量。
+        支援全雲端部署，適用於遠端工作、雲端應用與企業分點，打造統一且高效的零信任資安架構。
+      align: center
 
-        Cortex 家族串聯 XDR、XSOAR、Xpanse 到 XSIAM，從威脅偵測、事件調度、外部資產暴露管理到自動化安全營運，提供完整的一站式資安解決方案。
-        結合 UNIT 42 顧問專家支援，讓企業能快速應對威脅、優化 SOC 效能，全面提升資安防禦力。
-    - type: image
-      image_id: paloalto_1
-    - type: image
-      image_id: paloalto_1_m
-    - type: text
-      content: |-
-        ### Prisma Cloud 雲端原生安全平台
+    # 功能展示 - 交錯圖文
+    - type: feature_showcase
+      layout: alternating
+      features:
+        - id: feature_1
+          image_id: paloalto
+          title: Cortex 家族，從端點到自動化協助平台，提供一站式的服務
+          description: >-
+            Cortex 家族串聯 XDR、XSOAR、Xpanse 到 XSIAM，從威脅偵測、事件調度、外部資產暴露管理到自動化安全營運，提供完整的一站式資安解決方案。
+            結合 UNIT 42 顧問專家支援，讓企業能快速應對威脅、優化 SOC 效能，全面提升資安防禦力。
+        - id: feature_2
+          image_id: paloalto_1
+          title: Prisma Cloud 雲端原生安全平台
+          description: >-
+            Palo Alto 提供涵蓋公有雲、私有雲及混合雲環境的工作負載防護解決方案。
+            依企業需求，分為私有雲版（CWPP）與雲端版（CSPM＋CWPP），支援多雲平台安全、一致性防護與合規需求，協助企業打造零信任的雲端安全架構。
 
-        Palo Alto 提供涵蓋公有雲、私有雲及混合雲環境的工作負載防護解決方案。
-        依企業需求，分為私有雲版（CWPP）與雲端版（CSPM＋CWPP），支援多雲平台安全、一致性防護與合規需求，協助企業打造零信任的雲端安全架構。
-    - type: image
-      image_id: paloalto_2
+    # 行動呼籲
+    - type: cta
+      title: 立即了解 Palo Alto Networks 解決方案
+      description: 讓專業顧問協助您評估次世代防火牆與雲端資安需求
+      button_text: 聯繫我們
+      button_link: /contact/
+      variant: primary

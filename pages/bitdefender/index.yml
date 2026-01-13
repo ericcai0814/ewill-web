@@ -14,54 +14,56 @@ url_mapping:
   old_url: /bitdefender/
   redirect: false
 layout:
+  hero:
+    image:
+      id: hero_bitdefender
   sections:
-    - type: text
-      content: |-
-        ---
-        crawled_at: '2026-01-13T11:52:08.094757+08:00'
-        source_url: https://www.ewill.com.tw/bitdefender/
-        ---
+    # 產品介紹
+    - type: product_intro
+      label: 防毒與威脅防護
+      title: Bitdefender GravityZone
+      description: 最全面企業入侵防禦平台，統一的預防、偵測、回應，全面防護端點、網路、雲端。
+      align: center
 
-        # Bitdefender - 鎰威科技有限公司
-    - type: image
-      image_id: hero_bitdefender
-    - type: image
-      image_id: hero_bitdefender_mobile
-    - type: text
-      content: |-
-        #### 防毒與威脅防護
+    # 功能展示 - 交錯圖文
+    - type: feature_showcase
+      layout: alternating
+      features:
+        - id: feature_1
+          image_id: product_gravityzone_architecture
+          title: Bitdefender 分層的新世代端點保護平台
+          description: 使用自動調整分層體系結構，其中包括端點控制、預防、偵測、修復與能見性。
+        - id: feature_2
+          image_id: product_bitdefender_2
+          title: GravityZone 雲端主控台
+          description: 具備多達36個圖表輪播功能，完整協助管理者快速了解系統防護狀態。
+        - id: feature_3
+          image_id: product_bitdefender_3
+          title: 為什麼選擇 Bitdefender
+          description: 全球領先的資安防護品牌，提供多層次防禦架構與即時威脅偵測能力。
 
-        ### Bitdefender Gravityzone
+    # 合作夥伴認證圖庫
+    - type: gallery
+      title: 國際認證與獎項
+      columns: 3
+      gap: medium
+      lightbox: false
+      images:
+        - id: partner_1
+          image_id: partner_bitdefender_1
+        - id: partner_2
+          image_id: partner_bitdefender_2
+        - id: partner_3
+          image_id: partner_bitdefender_3
+        - id: partner_4
+          image_id: partner_bitdefender_4
+        - id: partner_5
+          image_id: partner_bitdefender_5
 
-        最全面企業入侵防禦平台，統一的預防、偵測、回應 全面防護端點、網路、雲端。
-      title: Bitdefender
-    - type: image
-      image_id: product_gravityzone_architecture
-    - type: text
-      content: |-
-        ### Bitdefender 分層的新世代端點保護平台
-
-        使用自動調整分層體系結構，其中包括端點控制、預防、偵測、修復與能見性。
-    - type: image
-      image_id: product_bitdefender_2
-    - type: text
-      content: |-
-        ### GravityZone 雲端主控台
-
-        具備多達36個圖表輪播功能，完整協助管理者快速了解系統防護狀態。
-    - type: image
-      image_id: product_bitdefender_3
-    - type: text
-      content: "### 為什麼選擇 Bitdefender"
-    - type: image
-      image_id: product_bitdefender_4
-    - type: image
-      image_id: partner_bitdefender_1
-    - type: image
-      image_id: partner_bitdefender_2
-    - type: image
-      image_id: partner_bitdefender_3
-    - type: image
-      image_id: partner_bitdefender_4
-    - type: image
-      image_id: partner_bitdefender_5
+    # 行動呼籲
+    - type: cta
+      title: 立即體驗 Bitdefender 企業端點防護
+      description: 讓專業顧問協助您評估端點安全需求
+      button_text: 聯繫我們
+      button_link: /contact/
+      variant: primary
