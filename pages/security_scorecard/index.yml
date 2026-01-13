@@ -81,75 +81,71 @@ layout:
     image:
       id: bn_sec_1209_scaled
   sections:
-    - type: image
-      image_id: bn_sec_1209_scaled
-    - type: image
-      image_id: bn_securityscorecard_m_fix
-    - type: text
-      content: >-
-        #### 資安評級工具
+    # 產品介紹
+    - type: product_intro
+      label: 資安評級工具
+      title: SecurityScorecard 評級針對十組風險因素
+      description: >-
+        可為企業本身與第三方供應商的網路資安風險管理帶來幫助的 SecurityScorecard，採用非入侵式資訊收集分析技術，
+        在資料蒐集方面，包含公開資料收集、網路誘捕機制，以及威脅情資整合，加上弱點搜尋引擎，將可分析各個企業的10大風險類別。
+      align: center
 
+    # 十大風險因素圖庫
+    - type: gallery
+      title: 十大風險類別
+      columns: 4
+      gap: small
+      lightbox: true
+      images:
+        - id: risk_1
+          image_id: securityscorecard_p1_1
+        - id: risk_2
+          image_id: securityscorecard_p1_2
+        - id: risk_3
+          image_id: securityscorecard_p1_3
+        - id: risk_4
+          image_id: securityscorecard_p1_4
+        - id: risk_5
+          image_id: securityscorecard_p1_5
+        - id: risk_6
+          image_id: securityscorecard_p1_6
+        - id: risk_7
+          image_id: securityscorecard_p1_7
+        - id: risk_8
+          image_id: securityscorecard_p1_8
+        - id: risk_9
+          image_id: securityscorecard_p1_9
+        - id: risk_10
+          image_id: securityscorecard_p1_10
 
-        ### SecurityScorecard 評級針對十組風險因素
+    # 功能展示 - 交錯圖文
+    - type: feature_showcase
+      layout: alternating
+      features:
+        - id: feature_1
+          image_id: securityscorecard_2
+          title: 一致的、數據驅動的安全評級標準
+          description: >-
+            透過無與倫比的圖形全面了解網路風險，讓您全面了解生態系統風險。
+            找出每個供應商內的相關風險和特定漏洞，以便您可以與第三方合作加速風險緩解。
+            透過單一儀表板來簡化緩解措施並快速識別威脅暴露，突顯所有供應商的優點和缺點領域。
+        - id: feature_2
+          image_id: securityscorecard_3
+          title: 安全評級可以為您做什麼
+          description: >-
+            客製化修復計劃：透過自動化和客製化的修復計劃來改善您的安全狀況，以達成目標安全記分卡評級，
+            當您修復 IT 基礎架構中的關鍵漏洞時，您的評級將隨之提升。
+        - id: feature_3
+          image_id: securityscorecard_4
+          title: Forrester New Wave™：網路安全風險評級
+          description: >-
+            SecurityScorecard 在2021 年第一季度報告中被評為網路安全風險評級領域的領導者，
+            在資料準確、流程透明度、爭議解決、系統整合性、使用案例的廣度、商業策略等評估標準中獲得最高評分。
 
-
-        可為企業本身與第三方供應商的網路資安風險管理帶來幫助的
-        SecurityScorecard，採用非入侵式資訊收集分析技術，在資料蒐集方面，包含公開資料收集、網路誘捕機制，以及威脅情資整合，加上弱點搜尋引擎，將可分析各個企業的10大風險類別。
-      title: SecurityScorecard
-    - type: image
-      image_id: securityscorecard_1
-    - type: image
-      image_id: securityscorecard_p1_1
-    - type: image
-      image_id: securityscorecard_p1_2
-    - type: image
-      image_id: securityscorecard_p1_3
-    - type: image
-      image_id: securityscorecard_p1_4
-    - type: image
-      image_id: securityscorecard_p1_5
-    - type: image
-      image_id: securityscorecard_p1_6
-    - type: image
-      image_id: securityscorecard_p1_7
-    - type: image
-      image_id: securityscorecard_p1_8
-    - type: image
-      image_id: securityscorecard_p1_9
-    - type: image
-      image_id: securityscorecard_p1_10
-    - type: text
-      content: |-
-        ### 一致的、數據驅動的安全評級標準
-
-        - 透過無與倫比的圖形全面了解網路風險，讓您全面了解生態系統風險。
-        - 找出每個供應商內的相關風險和特定漏洞，以便您可以與第三方合作加速風險緩解。
-        - 透過單一儀表板來簡化緩解措施並快速識別威脅暴露，突顯所有供應商的優點和缺點領域。
-    - type: image
-      image_id: securityscorecard_2
-    - type: text
-      content: |-
-        ### 安全評級可以為您做什麼
-
-        客製化修復計劃
-
-        透過自動化和客製化的修復計劃來改善您的安全狀況，以達成目標安全記分卡評級，當您修復 IT 基礎架構中的關鍵漏洞時，您的評級將隨之提升。
-    - type: image
-      image_id: securityscorecard_3
-    - type: text
-      content: |-
-        ### Forrester New Wave™：網路安全風險評級
-
-        SecurityScorecard 在2021 年第一季度報告中被評為網路安全風險評級領域的領導者。
-    - type: image
-      image_id: securityscorecard_4
-    - type: text
-      content: |-
-        SecurityScorecard 在以下評估標準中獲得的最高評分
-
-        - 資料準確
-        - 流程透明度
-        - 爭議解決
-        - 系統整合性
-        - 使用案例的廣度
-        - 商業策略
+    # 行動呼籲
+    - type: cta
+      title: 立即了解 SecurityScorecard 資安評級
+      description: 讓專業顧問協助您評估企業與供應鏈資安風險
+      button_text: 聯繫我們
+      button_link: /contact/
+      variant: primary

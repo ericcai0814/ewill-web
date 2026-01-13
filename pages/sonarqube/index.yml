@@ -20,119 +20,67 @@ layout:
     image:
       id: hero_sonarqube
   sections:
-    - type: text
-      content: |-
-        ---
-        crawled_at: '2026-01-13T12:03:55.858453+08:00'
-        source_url: https://www.ewill.com.tw/sonarqube/
-        ---
+    # 產品介紹
+    - type: product_intro
+      label: 原始碼分析平台
+      title: 從源頭強化程式碼品質與安全
+      description: >-
+        SonarQube 提供自動化的程式碼品質與安全審查功能，協助開發團隊在本地或雲端環境中快速識別潛在風險，
+        並提供可行建議，讓開發者從源頭產出更好、更安全的程式碼。
+      align: center
 
-        # SonarQube - 鎰威科技有限公司
-    - type: image
-      image_id: hero_sonarqube
-    - type: image
-      image_id: hero_sonarqube_mobile
-    - type: text
-      content: |-
-        #### 原始碼分析平台
+    # 特色網格
+    - type: feature_grid
+      title: 全面掌握程式碼品質與安全風險的智慧平台
+      columns: 3
+      variant: icon
+      features:
+        - id: feature_1
+          title: 程式碼智能分析
+          description: 深入解析程式碼庫結構，提供可行見解，有效降低開發人員的認知負荷，提升整體開發效率。
+        - id: feature_2
+          title: 完整整合 DevSecOps
+          description: 整合 GitHub、Jenkins、GitLab CI/CD 等主流工具，實現自動化程式碼品質管控。
+        - id: feature_3
+          title: 靈活部署，高效運行
+          description: 支援本地、雲端、Docker、Kubernetes 等多種部署模式，確保卓越效能。
+        - id: feature_4
+          title: 精準分析，快速回饋
+          description: 提供業界領先的分析精度，減少誤報與噪音，幾分鐘內即可取得可操作的程式碼品質與安全建議。
+        - id: feature_5
+          title: 即時修復支援
+          description: 透過 SonarQube for IDE，在撰寫程式碼的同時即時偵測與修正問題。
+        - id: feature_6
+          title: 全面安全審查
+          description: 自動檢測開發者編寫、開源、甚至 AI 產生的程式碼中的漏洞，確保所有程式碼的安全性。
 
-        ### 從源頭強化程式碼品質與安全
+    # 功能展示 - 交錯圖文
+    - type: feature_showcase
+      layout: alternating
+      features:
+        - id: showcase_1
+          image_id: feature_sonarqube_1
+          title: 將您的程式碼轉化為策略優勢
+          description: >-
+            您的程式碼是重要的資產，SonarQube 協助您釋放其最大潛力。透過深入分析程式碼庫，
+            精準識別真正的問題並提供即時修正建議，讓開發工作不僅更有效率，更能為業務創造實質成果。
+        - id: showcase_2
+          image_id: feature_sonarqube_2
+          title: AI 產生程式碼的品質和責任保障
+          description: >-
+            AI Code Assurance 協助開發人員自信地運用 AI 編碼工具。它透過自動化程式碼審查與嚴謹的品質檢查機制，
+            主動偵測由 AI 生成的程式碼中的潛在問題，確保在部署前已符合最高的安全與品質標準。
+        - id: showcase_3
+          image_id: feature_sonarqube_11
+          title: 打造穩定、安全、可持續維運的程式碼品質
+          description: >-
+            透過 SonarQube 有效掌握開發過程中的程式碼品質與安全風險，自動化掃描錯誤與弱點、
+            提升應用程式安全性，並協助團隊減少技術債務，強化軟體可維護性與開發效率。
 
-        SonarQube 提供自動化的程式碼品質與安全審查功能，協助開發團隊在本地或雲端環境中快速識別潛在風險，並提供可行建議，讓開發者從源頭產出更好、更安全的程式碼。
-      title: SonarQube
-    - type: image
-      image_id: product_sonarqube_main
-    - type: text
-      content: "### 全面掌握程式碼品質與安全風險的智慧平台"
-    - type: image
-      image_id: feature_sonarqube_3
-    - type: text
-      content: |-
-        ###### 程式碼智能分析
-
-        深入解析程式碼庫結構，提供可行見解，有效降低開發人員的認知負荷，提升整體開發效率。
-    - type: image
-      image_id: feature_sonarqube_4
-    - type: text
-      content: |-
-        ###### 完整整合 DevSecOps
-
-        整合 GitHub、Jenkins、GitLab CI/CD 等主流工具，實現自動化程式碼品質管控。
-    - type: image
-      image_id: feature_sonarqube_5
-    - type: text
-      content: |-
-        ###### 靈活部署，高效運行
-
-        支援本地、雲端、Docker、Kubernetes 等多種部署模式，搭配多執行緒與語言最佳化載入引擎，確保卓越效能。
-    - type: image
-      image_id: feature_sonarqube_6
-    - type: text
-      content: |-
-        ###### 精準分析，快速回饋
-
-        提供業界領先的分析精度，減少誤報與噪音，幾分鐘內即可取得可操作的程式碼品質與安全建議。
-    - type: image
-      image_id: feature_sonarqube_7
-    - type: text
-      content: |-
-        ###### 即時修復支援
-
-        透過 SonarQube for IDE，在撰寫程式碼的同時即時偵測與修正問題，並同步遵循伺服器端的編碼準則。
-    - type: image
-      image_id: feature_sonarqube_8
-    - type: text
-      content: |-
-        ###### 全面安全審查
-
-        自動檢測開發者編寫、開源、甚至 AI 產生的程式碼中的漏洞，深入發掘潛藏風險，確保所有程式碼的安全性。
-    - type: image
-      image_id: feature_sonarqube_9
-    - type: text
-      content: |-
-        ###### 品質門控政策
-
-        透過 SonarQube 的品質閘門機制，防止未符合標準的程式碼進入正式環境，降低後期修正與維護成本。
-    - type: image
-      image_id: feature_sonarqube_10
-    - type: text
-      content: |-
-        ###### 合規性保障
-
-        提供對應 OWASP 等安全與品質標準的自動化稽核報告，協助企業達成法規與內部開發政策要求。
-
-        ### 將您的程式碼轉化為策略優勢
-
-        您的程式碼是重要的資產，SonarQube 協助您釋放其最大潛力。透過深入分析程式碼庫，精準識別真正的問題並提供即時修正建議，讓開發工作不僅更有效率，更能為業務創造實質成果。
-    - type: image
-      image_id: feature_sonarqube_1
-    - type: text
-      content: "### AI 產生程式碼的品質和責任保障\n\nAI Code Assurance 協助開發人員自信地運用 AI 編碼工具。它透過自動化程式碼審查與嚴謹的品質檢查機制，主動偵測由 AI 生成的程式碼中的潛在問題。\L 所有含有 AI 程式碼的專案皆須經過專屬審核流程，確保在部署前已符合最高的安全與品質標準，有效降低風險、強化信任。"
-    - type: image
-      image_id: feature_sonarqube_2
-    - type: text
-      content: |-
-        ### 打造穩定、安全、可持續維運的程式碼品質
-
-        透過 SonarQube 有效掌握開發過程中的程式碼品質與安全風險，自動化掃描錯誤與弱點、提升應用程式安全性，並協助團隊減少技術債務，強化軟體可維護性與開發效率，是企業邁向高品質軟體交付的關鍵工具。
-    - type: image
-      image_id: feature_sonarqube_11
-    - type: text
-      content: |-
-        ###### 代碼可靠
-
-        即時捕捉開發過程中的錯誤與潛在風險，避免錯誤程式碼進入產品環境，降低使用者受影響的機率，提升軟體穩定性與品質。
-    - type: image
-      image_id: feature_sonarqube_12
-    - type: text
-      content: |-
-        ###### 應用安全
-
-        發現應用程式中可能存在的漏洞與弱點，透過安全熱點分析與 AppSec 原則，主動防堵風險，提升整體程式碼安全性與防禦能力。
-    - type: image
-      image_id: feature_sonarqube_13
-    - type: text
-      content: |-
-        ###### 技術債務
-
-        協助開發團隊管理與減少技術債務，確保專案具備良好可維護性與延展性，加速後續開發效率，減少技術負擔與重工。
+    # 行動呼籲
+    - type: cta
+      title: 立即體驗 SonarQube 程式碼品質分析
+      description: 讓專業顧問協助您評估 DevSecOps 與程式碼品質管理需求
+      button_text: 聯繫我們
+      button_link: /contact/
+      variant: primary

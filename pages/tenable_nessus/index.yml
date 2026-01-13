@@ -20,75 +20,59 @@ layout:
     image:
       id: hero_nessus
   sections:
-    - type: text
-      content: |-
-        ---
-        crawled_at: '2026-01-13T12:04:18.958550+08:00'
-        source_url: https://www.ewill.com.tw/tenable_nessus/
-        ---
+    # 產品介紹
+    - type: product_intro
+      label: 弱點掃描工具
+      title: IT 資產與系統弱點風險全面掌握
+      description: >-
+        支援 IT 資產自動探索、漏洞掃描與法規稽核（如 PCI、HIPAA、SOX）。可檢測網路設備、虛擬平台、作業系統、資料庫、Web 應用與行動裝置。
+        支援 SCADA 工控系統、敏感資料與修補狀況稽核，具備認證與非認證掃描模式。
+      align: center
 
-        # Tenable Nessus - 鎰威科技有限公司
-    - type: image
-      image_id: hero_nessus
-    - type: image
-      image_id: hero_nessus_mobile
-    - type: text
-      content: >-
-        #### 弱點掃描工具
+    # 功能展示 - 交錯圖文
+    - type: feature_showcase
+      layout: alternating
+      features:
+        - id: feature_1
+          image_id: feature_nessus_6
+          title: 弱點掃描五大流程：系統性掌握資安風險
+          description: >-
+            透過五大階段流程，全面檢測作業系統、網路設備與主機弱點，依據 CVE 最新漏洞資料進行比對。
+            資安專家分析初次結果並提供改善建議，完成修補後再複測驗證，提供完整弱點報告。
+            建議每年定期執行並於一個月內完成高風險項目修補。
+        - id: feature_2
+          image_id: feature_nessus_1
+          title: 從檢測到管理：弱點風險一站式掌控
+          description: >-
+            完成弱點掃描後，報告與漏洞警示將整合於 AI 智管家平台。透過五大智能模組，企業可即時查閱檢測結果、
+            追蹤修補進度，並透過視覺化儀表板進行風險分類與決策管理，有效提升漏洞修補效率與資安透明度。
 
+    # 特色網格
+    - type: feature_grid
+      title: 智能漏洞管理模組
+      columns: 3
+      variant: minimal
+      features:
+        - id: module_1
+          title: 風險量化清晰呈現
+          description: 即時掌握各設備弱點數量與風險等級，風險態勢一目了然。
+        - id: module_2
+          title: 設備風險分級追蹤
+          description: 依風險等級標註關鍵設備，優先處理高風險資產。
+        - id: module_3
+          title: 弱點資訊完整詳實
+          description: 提供弱點說明、影響範圍與官方建議修補方式，協助快速處置。
+        - id: module_4
+          title: 修補排程可視化管理
+          description: 支援風險修補排程設定，落實弱點管理與持續改善。
+        - id: module_5
+          title: 修補紀錄完整留存
+          description: 呈現各設備歷次修補狀況與變更紀錄，建構完整修補追溯鏈。
 
-        ### IT 資產與系統弱點風險全面掌握
-
-
-        支援 IT 資產自動探索、漏洞掃描與法規稽核（如 PCI、HIPAA、SOX）。可檢測網路設備、虛擬平台、作業系統、資料庫、Web 應用與行動裝置。支援 SCADA
-        工控系統、敏感資料與修補狀況稽核，具備認證與非認證掃描模式。
-      title: Tenable Nessus
-    - type: image
-      image_id: product_nessus_main
-    - type: text
-      content: |-
-        ### 弱點掃描五大流程：系統性掌握資安風險
-
-        透過五大階段流程，全面檢測作業系統、網路設備與主機弱點，依據 CVE 最新漏洞資料進行比對。資安專家分析初次結果並提供改善建議，完成修補後再複測驗證，提供完整弱點報告。建議每年定期執行並於一個月內完成高風險項目修補。
-    - type: image
-      image_id: feature_nessus_6
-    - type: text
-      content: |-
-        ### 從檢測到管理：弱點風險一站式掌控
-
-        完成弱點掃描後，報告與漏洞警示將整合於 AI 智管家平台。透過五大智能模組，企業可即時查閱檢測結果、追蹤修補進度，並透過視覺化儀表板進行風險分類與決策管理，有效提升漏洞修補效率與資安透明度。
-    - type: image
-      image_id: feature_nessus_1
-    - type: text
-      content: |-
-        ###### 風險量化清晰呈現
-
-        即時掌握各設備弱點數量與風險等級，風險態勢一目了然。
-    - type: image
-      image_id: feature_nessus_2
-    - type: text
-      content: |-
-        ###### 設備風險分級追蹤
-
-        依風險等級標註關鍵設備，優先處理高風險資產。
-    - type: image
-      image_id: feature_nessus_3
-    - type: text
-      content: |-
-        ###### 弱點資訊完整詳實
-
-        提供弱點說明、影響範圍與官方建議修補方式，協助快速處置。
-    - type: image
-      image_id: feature_nessus_4
-    - type: text
-      content: |-
-        ###### 修補排程可視化管理
-
-        支援風險修補排程設定，落實弱點管理與持續改善
-    - type: image
-      image_id: feature_nessus_5
-    - type: text
-      content: |-
-        ###### 修補紀錄完整留存
-
-        呈現各設備歷次修補狀況與變更紀錄，建構完整修補追溯鏈。
+    # 行動呼籲
+    - type: cta
+      title: 立即體驗 Tenable Nessus 弱點掃描
+      description: 讓專業顧問協助您評估漏洞檢測與合規稽核需求
+      button_text: 聯繫我們
+      button_link: /contact/
+      variant: primary
