@@ -52,7 +52,13 @@
       "Bash(find:*)",
       "Bash(do if [ ! -f \"$img.yml\" ])",
       "Bash(then echo \"$img\")",
-      "Skill(gen_image_meta)"
+      "Skill(gen_image_meta)",
+      "Bash(echo \"pages 目錄頁面數:\" ls -d pages/*/)",
+      "Bash(do basename \"$d\")",
+      "Bash(comm:*)",
+      "Bash(node -e:*)",
+      "Bash(npx lighthouse:*)",
+      "Bash(pkill:*)"
     ]
   }
 }
