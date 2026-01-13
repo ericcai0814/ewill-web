@@ -1,11 +1,12 @@
 ---
 export interface Props {
+  id?: string;       // 錨點 ID
   content: string;
   title?: string;
   label?: string;
 }
 
-const { content, title, label } = Astro.props;
+const { id, content, title, label } = Astro.props;
 
 // 簡易 Markdown 轉 HTML
 function parseMarkdown(md: string): string {
@@ -35,7 +36,7 @@ function parseMarkdown(md: string): string {
 const htmlContent = parseMarkdown(content);
 ---
 
-<section class="text-section">
+<section class="text-section" id={id}>
   <div class="text-section__container">
     {label && <span class="text-section__label">{label}</span>}
     {title && <h2 class="text-section__title">{title}</h2>}

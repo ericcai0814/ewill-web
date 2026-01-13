@@ -9,6 +9,7 @@ import TextSection from '../components/TextSection.astro';
 import ImageSection from '../components/ImageSection.astro';
 import CardListSection from '../components/CardListSection.astro';
 import AnchorSection from '../components/AnchorSection.astro';
+import AnchorNav from '../components/AnchorNav.astro';
 import FeatureGridSection from '../components/FeatureGridSection.astro';
 import CTASection from '../components/CTASection.astro';
 import ProductIntroSection from '../components/ProductIntroSection.astro';
@@ -81,6 +82,9 @@ function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
 }
 
 const jsonLdItems = buildJsonLd(aio);
+
+// AnchorNav 配置
+const hasAnchors = layout?.anchors && layout.anchors.length > 0;
 ---
 
 <Layout
@@ -91,7 +95,7 @@ const jsonLdItems = buildJsonLd(aio);
 >
   <Header />
 
-  <main class="page-main">
+  <main class:list={['page-main', { 'page-main--with-anchors': hasAnchors }]}>
     <!-- Breadcrumb -->
     {shouldShowBreadcrumb && <Breadcrumb />}
 
@@ -100,11 +104,19 @@ const jsonLdItems = buildJsonLd(aio);
       <HeroSection image={layout.hero.image} />
     )}
 
+    <!-- AnchorNav (側邊導航) -->
+    {hasAnchors && (
+      <div class="page-main__anchor-nav">
+        <AnchorNav items={layout.anchors} position="sidebar" sticky={true} />
+      </div>
+    )}
+
     <!-- Dynamic Sections -->
     {layout?.sections && layout.sections.map((section: LayoutSection) => {
       if (section.type === 'text' && section.content) {
         return (
           <TextSection
+            id={section.id}
             content={section.content}
             title={section.title}
             label={section.label}
@@ -229,6 +241,61 @@ const jsonLdItems = buildJsonLd(aio);
   .page-main {
     min-height: 100vh;
     padding-top: 100px; /* Header height */
+  }
+
+  /* 帶有 AnchorNav 的頁面佈局 */
+  .page-main--with-anchors {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .page-main__anchor-nav {
+    display: none;
+  }
+
+  /* 桌機版 (≥1024px) 顯示側邊導航 */
+  @media (min-width: 1024px) {
+    .page-main--with-anchors {
+      grid-template-columns: 220px 1fr;
+      gap: 32px;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    .page-main__anchor-nav {
+      display: block;
+      grid-row: 3; /* 在 breadcrumb 和 hero 之後 */
+    }
+
+    /* Hero 和 Breadcrumb 橫跨整個寬度 */
+    .page-main--with-anchors > :global(.hero-section),
+    .page-main--with-anchors > :global(.breadcrumb) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  /* 平板 (545-1023px) 頂部水平導航 */
+  @media (min-width: 545px) and (max-width: 1023px) {
+    .page-main__anchor-nav {
+      display: block;
+      position: sticky;
+      top: 74px;
+      z-index: 10;
+      background: #fff;
+    }
+  }
+
+  /* 手機 (≤544px) 頂部水平導航 */
+  @media (max-width: 544px) {
+    .page-main__anchor-nav {
+      display: block;
+      position: sticky;
+      top: 60px;
+      z-index: 10;
+      background: #fff;
+    }
   }
 
   /* 平板 (≤921px) */

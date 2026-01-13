@@ -159,6 +159,15 @@ export interface AioData {
 }
 
 /**
+ * AnchorNav 項目型別
+ */
+export interface AnchorItem {
+  id: string;
+  label: string;
+  icon?: string;
+}
+
+/**
  * 頁面內容型別（來自 content/pages/*.json）
  */
 export interface PageContent {
@@ -177,6 +186,7 @@ export interface PageContent {
     hero?: {
       image?: ResolvedImage;
     };
+    anchors?: AnchorItem[];  // AnchorNav 導航項目
     sections?: LayoutSection[];
     popup?: {
       image_id: string;

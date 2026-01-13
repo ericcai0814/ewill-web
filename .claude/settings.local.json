@@ -58,7 +58,19 @@
       "Bash(comm:*)",
       "Bash(node -e:*)",
       "Bash(npx lighthouse:*)",
-      "Bash(pkill:*)"
+      "Bash(pkill:*)",
+      "Bash(git filter-branch:*)",
+      "Bash(git stash:*)",
+      "Bash(FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch:*)",
+      "Bash(git stash pop:*)",
+      "Bash(git push:*)",
+      "Bash(tree:*)",
+      "mcp__ide__getDiagnostics",
+      "WebFetch(domain:www.ewill.com.tw)",
+      "Bash(jq:*)",
+      "Bash(cat:*)",
+      "Bash(npm run content:build:*)",
+      "Bash(npm run:*)"
     ]
   }
 }
