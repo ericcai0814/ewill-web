@@ -1,7 +1,7 @@
 # Astro 元件實作任務
 
 > 建立日期: 2026-01-13
-> 狀態: 🚧 進行中
+> 狀態: ✅ 完成
 > 設計規格: [`astro-app/src/COMPONENTS.md`](../../astro-app/src/COMPONENTS.md)
 
 ## 目標
@@ -87,7 +87,7 @@
 | solutions | ✅ | anchor_section (x4) |
 | about_us | ✅ | feature_grid, timeline, gallery |
 | logsec | ✅ | product_intro, feature_showcase, cta |
-| 其他產品頁 | ⬜ | 待套用 logsec 範本 |
+| 其他產品頁 (25) | ✅ | product_intro, feature_grid, feature_showcase, gallery, cta |
 
 ---
 
