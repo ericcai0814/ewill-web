@@ -2,9 +2,13 @@
 import Layout from './Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import PopupModal from '../components/PopupModal.astro';
 import HeroSection from '../components/HeroSection.astro';
 import TextSection from '../components/TextSection.astro';
 import ImageSection from '../components/ImageSection.astro';
+import CardListSection from '../components/CardListSection.astro';
+import { getAssetById } from '../utils/content';
 import type { PageContent, LayoutSection } from '../utils/content';
 
 export interface Props {
@@ -12,14 +16,33 @@ export interface Props {
   showBreadcrumb?: boolean;
 }
 
-const { page, showBreadcrumb = false } = Astro.props;
+const { page, showBreadcrumb = true } = Astro.props;
 const { seo, layout } = page;
+
+// 首頁不顯示 Breadcrumb
+const shouldShowBreadcrumb = showBreadcrumb && page.slug !== 'index';
+
+// Popup 設定 (僅首頁)
+let popupImage = null;
+if (layout?.popup?.image_id) {
+  const asset = await getAssetById(layout.popup.image_id);
+  if (asset) {
+    popupImage = {
+      desktop: asset.variants.desktop,
+      mobile: asset.variants.mobile,
+      alt: asset.alt
+    };
+  }
+}
 ---
 
 <Layout title={seo.title} description={seo.description} keywords={seo.keywords}>
   <Header />
 
   <main class="page-main">
+    <!-- Breadcrumb -->
+    {shouldShowBreadcrumb && <Breadcrumb />}
+
     <!-- Hero Section -->
     {layout?.hero?.image && (
       <HeroSection image={layout.hero.image} />
@@ -41,6 +64,18 @@ const { seo, layout } = page;
           <ImageSection image_id={section.image_id} />
         );
       }
+      if (section.type === 'card_list' && section.cards) {
+        return (
+          <CardListSection
+            label={section.label}
+            title={section.title || ''}
+            description={section.description}
+            columns={section.columns}
+            layout_variant={section.layout_variant}
+            cards={section.cards}
+          />
+        );
+      }
       return null;
     })}
 
@@ -49,6 +84,15 @@ const { seo, layout } = page;
   </main>
 
   <Footer />
+
+  <!-- Popup Modal (首頁限定) -->
+  {popupImage && layout?.popup && (
+    <PopupModal
+      image={popupImage}
+      link={layout.popup.link}
+      trigger={layout.popup.trigger as 'first_visit' | 'scroll' | 'time'}
+    />
+  )}
 </Layout>
 
 <style>

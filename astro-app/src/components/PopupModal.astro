@@ -1,0 +1,245 @@
+---
+export interface Props {
+  image: {
+    desktop: string;
+    mobile: string;
+    alt: string;
+  };
+  link: string;
+  trigger?: 'first_visit' | 'scroll' | 'time';
+  delay?: number;  // ms, for 'time' trigger
+}
+
+const { image, link, trigger = 'first_visit', delay = 3000 } = Astro.props;
+---
+
+<div
+  class="popup-modal"
+  id="popup-modal"
+  data-trigger={trigger}
+  data-delay={delay}
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-label="促銷彈窗"
+>
+  <div class="popup-modal__overlay" id="popup-overlay"></div>
+  <div class="popup-modal__content">
+    <button
+      class="popup-modal__close"
+      id="popup-close"
+      aria-label="關閉彈窗"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <a href={link} class="popup-modal__link" target="_blank" rel="noopener noreferrer">
+      <picture class="popup-modal__picture">
+        <source media="(min-width: 1024px)" srcset={image.desktop} />
+        <source media="(max-width: 1023px)" srcset={image.mobile} />
+        <img
+          src={image.desktop}
+          alt={image.alt}
+          class="popup-modal__image"
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
+    </a>
+  </div>
+</div>
+
+<style>
+  .popup-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .popup-modal.is-open {
+    display: flex;
+  }
+
+  .popup-modal__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+  }
+
+  .popup-modal__content {
+    position: relative;
+    max-width: 600px;
+    max-height: 90vh;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: popup-enter 0.3s ease-out;
+  }
+
+  @keyframes popup-enter {
+    from {
+      opacity: 0;
+      transform: scale(0.9) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .popup-modal__close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #333;
+    transition: all 0.2s ease;
+    z-index: 1;
+  }
+
+  .popup-modal__close:hover {
+    background: #fff;
+    transform: scale(1.1);
+  }
+
+  .popup-modal__link {
+    display: block;
+  }
+
+  .popup-modal__picture {
+    display: block;
+    width: 100%;
+  }
+
+  .popup-modal__image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 1023px) {
+    .popup-modal {
+      padding: 16px;
+    }
+
+    .popup-modal__content {
+      max-width: 100%;
+    }
+
+    .popup-modal__close {
+      top: 8px;
+      right: 8px;
+      width: 32px;
+      height: 32px;
+    }
+  }
+</style>
+
+<script>
+  const STORAGE_KEY = 'site_popup_dismissed';
+
+  function initPopupModal() {
+    const modal = document.getElementById('popup-modal');
+    const overlay = document.getElementById('popup-overlay');
+    const closeBtn = document.getElementById('popup-close');
+
+    if (!modal) return;
+
+    const trigger = modal.dataset.trigger || 'first_visit';
+    const delay = parseInt(modal.dataset.delay || '3000', 10);
+
+    function showModal() {
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function hideModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      // 記錄已關閉
+      try {
+        localStorage.setItem(STORAGE_KEY, 'true');
+      } catch (e) {
+        // localStorage 可能被禁用
+      }
+    }
+
+    function shouldShow(): boolean {
+      try {
+        return localStorage.getItem(STORAGE_KEY) !== 'true';
+      } catch (e) {
+        return false; // localStorage 禁用時不顯示
+      }
+    }
+
+    // 綁定關閉事件
+    closeBtn?.addEventListener('click', hideModal);
+    overlay?.addEventListener('click', hideModal);
+
+    // ESC 鍵關閉
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+        hideModal();
+      }
+    });
+
+    // 根據 trigger 類型決定顯示時機
+    if (!shouldShow()) return;
+
+    switch (trigger) {
+      case 'first_visit':
+        // 頁面載入後短暫延遲顯示
+        setTimeout(showModal, 500);
+        break;
+
+      case 'scroll':
+        // 滾動到頁面 30% 時顯示
+        let scrollTriggered = false;
+        window.addEventListener('scroll', () => {
+          if (scrollTriggered) return;
+          const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+          if (scrollPercent >= 30) {
+            scrollTriggered = true;
+            showModal();
+          }
+        });
+        break;
+
+      case 'time':
+        // 指定延遲後顯示
+        setTimeout(showModal, delay);
+        break;
+    }
+  }
+
+  // DOM 載入後初始化
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPopupModal);
+  } else {
+    initPopupModal();
+  }
+</script>

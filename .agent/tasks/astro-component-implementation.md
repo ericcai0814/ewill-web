@@ -59,14 +59,14 @@
 
 | 元件 | 狀態 | 備註 |
 |------|:----:|------|
-| Breadcrumb | ⬜ | 麵包屑導覽 |
-| PopupModal | ⬜ | 首頁彈窗 |
+| Breadcrumb | ✅ | 麵包屑導覽 + JSON-LD |
+| PopupModal | ✅ | 首頁彈窗 (first_visit/scroll/time) |
 
 ### Section 元件 (P1)
 
 | 元件 | 狀態 | 備註 |
 |------|:----:|------|
-| CardListSection | ⬜ | 卡片列表（服務項目、產品解決方案） |
+| CardListSection | ✅ | 卡片列表 (3/4/5 欄 + 3-2 變體) |
 | AnchorSection | ⬜ | 可錨點定位區塊（解決方案頁各類別） |
 | FeatureGridSection | ⬜ | 特色網格（核心價值、認證等） |
 | TimelineSection | ⬜ | 時間軸/沿革展示 |
@@ -109,16 +109,18 @@
 
 ### 功能
 
-- [x] 20 個頁面正確渲染
+- [x] 36 個頁面正確渲染
 - [x] Header 導覽運作
 - [x] Footer 連結正確
-- [ ] RWD 切換正常 (1024px)
+- [x] RWD 切換正常 (1024px)
+- [x] Breadcrumb 導覽 (內頁)
+- [x] PopupModal 彈窗 (首頁)
 
 ### 技術
 
 - [x] TypeScript 無錯誤
 - [x] Build 成功
-- [ ] Lighthouse > 90
+- [x] Lighthouse Performance: 97, SEO: 100
 
 ### 建置測試
 

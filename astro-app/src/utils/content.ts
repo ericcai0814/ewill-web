@@ -37,12 +37,25 @@ export interface ResolvedImage {
 /**
  * Layout section 型別
  */
+export interface CardData {
+  id: string;
+  image_id: string;
+  title: string;
+  description: string;
+  link?: string;
+  link_text?: string;
+}
+
 export interface LayoutSection {
-  type: 'image' | 'text';
+  type: 'image' | 'text' | 'card_list';
   image_id?: string;
   content?: string;
   label?: string;
   title?: string;
+  description?: string;
+  columns?: 3 | 4 | 5;
+  layout_variant?: '3-2' | 'equal';
+  cards?: CardData[];
 }
 
 /**
@@ -87,21 +100,30 @@ export interface ContentManifest {
   }[];
 }
 
-// 快取
+// 快取（僅在 production 模式使用）
 let assetManifestCache: AssetManifest | null = null;
 let contentManifestCache: ContentManifest | null = null;
+
+// 開發模式標記
+const isDev = import.meta.env?.DEV ?? process.env.NODE_ENV !== 'production';
 
 /**
  * 取得 asset manifest
  */
 export async function getAssetManifest(): Promise<AssetManifest | null> {
-  if (assetManifestCache) return assetManifestCache;
+  // 開發模式不使用快取，確保檔案變更能即時反映
+  if (!isDev && assetManifestCache) return assetManifestCache;
 
   try {
     const manifestPath = path.join(process.cwd(), 'public', 'asset-manifest.json');
     const content = await fs.readFile(manifestPath, 'utf-8');
-    assetManifestCache = JSON.parse(content);
-    return assetManifestCache;
+    const manifest = JSON.parse(content);
+
+    // 僅在 production 模式快取
+    if (!isDev) {
+      assetManifestCache = manifest;
+    }
+    return manifest;
   } catch (error) {
     console.error('無法讀取 asset-manifest.json', error);
     return null;
@@ -112,13 +134,18 @@ export async function getAssetManifest(): Promise<AssetManifest | null> {
  * 取得 content manifest
  */
 export async function getContentManifest(): Promise<ContentManifest | null> {
-  if (contentManifestCache) return contentManifestCache;
+  // 開發模式不使用快取
+  if (!isDev && contentManifestCache) return contentManifestCache;
 
   try {
     const manifestPath = path.join(process.cwd(), 'public', 'content', 'manifest.json');
     const content = await fs.readFile(manifestPath, 'utf-8');
-    contentManifestCache = JSON.parse(content);
-    return contentManifestCache;
+    const manifest = JSON.parse(content);
+
+    if (!isDev) {
+      contentManifestCache = manifest;
+    }
+    return manifest;
   } catch (error) {
     console.error('無法讀取 content/manifest.json', error);
     return null;
