@@ -1,6 +1,6 @@
 seo:
   title: 活動訊息 | 研討會、新聞發布與產業活動 - 鎰威科技
-  description: 鎰威科技最新活動訊息，包含資安與智慧製造研討會、線上 Webinar、 產品發表會與產業合作新聞。追蹤最新活動資訊，掌握數位轉型趨勢與技術新知。
+  description: 鎰威科技最新活動訊息，包含資安與智慧製造研討會、線上 Webinar、產品發表會與產業合作新聞。追蹤最新活動資訊，掌握數位轉型趨勢與技術新知。
   keywords:
     - 活動訊息
     - 研討會
@@ -11,43 +11,46 @@ seo:
     - 鎰威科技
 url_mapping:
   current_url: /event_information/
-  old_url: /event_information/
-  redirect: false
+  new_url: ""
 layout:
+  hero:
+    image:
+      id: banner1209
+      desktop: banner1209
+      mobile: bn_home_m
+      alt: 活動訊息 - 專業·專注·專精
   sections:
     - type: text
       content: |-
-        ---
-        crawled_at: '2026-01-13T11:55:50.198314+08:00'
-        source_url: https://www.ewill.com.tw/event_information/
-        ---
+        # 活動訊息
 
-        # 活動訊息 - 鎰威科技有限公司
-    - type: image
-      image_id: banner1209
-    - type: image
-      image_id: bn_home_m
-    - type: text
-      content: ""
+        鎰威科技最新活動訊息，包含資安與智慧製造研討會、線上 Webinar、產品發表會與產業合作新聞。
+    - type: card_list
       label: Event Information
       title: 活動訊息
-    - type: image
-      image_id: event_info_passwordless
-    - type: text
-      content: 動信攜手鎰威科技推廣免密碼零信任方案，協助企業快速導入更安全便捷的身分驗證防護，強化整體資安能力。
-      label: 活動新聞​
-    - type: image
-      image_id: event_info_news_m
-    - type: text
-      content: 鎰威科技發表 LOGSEC 資安預警方案，協助企業快速整合日誌、強化事件分析與資安可視化能力，全面提升防護成效。
-      label: 活動新聞​
-    - type: image
-      image_id: event_info_smartmfg
-    - type: text
-      content: 「鎰威科技智慧製造線上研討會」聚焦 MES、OT 資安、智能倉儲、AI RMA 等四大關鍵技術，協助企業啟動智慧工廠轉型。
-      label: 活動新聞​
-    - type: image
-      image_id: event_info_photo_1
-    - type: text
-      content: 鎰威科技攜手 Dell 舉辦「Proxmox VE on Dell」研討會，分享如何以高效、穩定的一體化虛擬化平台協助企業打造更安全彈性的 IT 架構。
-      label: 活動新聞
+      columns: 3
+      cards:
+        - id: event_passwordless
+          image_id: event_info_passwordless
+          title: 活動新聞
+          description: 動信攜手鎰威科技推廣免密碼零信任方案，協助企業快速導入更安全便捷的身分驗證防護，強化整體資安能力。
+          link: /event_20251124/
+          link_text: 了解更多
+        - id: event_logsec
+          image_id: event_info_news_m
+          title: 活動新聞
+          description: 鎰威科技發表 LOGSEC 資安預警方案，協助企業快速整合日誌、強化事件分析與資安可視化能力，全面提升防護成效。
+          link: /event_20251118/
+          link_text: 了解更多
+        - id: event_smartmfg
+          image_id: event_info_smartmfg
+          title: 活動新聞
+          description: 「鎰威科技智慧製造線上研討會」聚焦 MES、OT 資安、智能倉儲、AI RMA 等四大關鍵技術，協助企業啟動智慧工廠轉型。
+          link: /event_20251021/
+          link_text: 了解更多
+        - id: event_proxmox
+          image_id: event_info_photo_1
+          title: 活動新聞
+          description: 鎰威科技攜手 Dell 舉辦「Proxmox VE on Dell」研討會，分享如何以高效、穩定的一體化虛擬化平台協助企業打造更安全彈性的 IT 架構。
+          link: /event_20251119/
+          link_text: 了解更多
