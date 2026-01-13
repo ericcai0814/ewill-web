@@ -1,0 +1,17 @@
+seo:
+  title: 伺服器虛擬化管理 Proxmox VE - 鎰威科技
+  description: 伺服器虛擬化管理 Proxmox VE相關資訊，鎰威科技提供專業的企業數位轉型與資訊安全服務。
+  keywords:
+    - 伺服器虛擬化管理 Proxmox VE
+    - 鎰威科技
+url_mapping:
+  current_url: /proxmox_ve/
+  old_url: /proxmox_ve/
+  redirect: false
+layout:
+  sections:
+    - type: text
+      content: |-
+        # 伺服器虛擬化管理 Proxmox VE
+
+        此頁面內容建置中，敬請期待。

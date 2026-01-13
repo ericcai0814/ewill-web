@@ -1,5 +1,5 @@
 ---
-import { getPageContent } from '../utils/content';
+import { getPageContent, getAssetById } from '../utils/content';
 
 interface NavItem {
   text: string;
@@ -11,7 +11,15 @@ interface NavItem {
 // 讀取 header.json
 const headerData = await getPageContent('header');
 
-const logo = headerData?.logo || { src: '/assets/logo.png', alt: '鎰威科技', link: '/' };
+// 從 asset-manifest 取得 logo 圖片路徑
+const logoAsset = await getAssetById('logo');
+const logoSrc = logoAsset?.normalized_path || '/assets/logo.png';
+const logo = {
+  src: logoSrc,
+  alt: headerData?.logo?.alt || '鎰威科技 EWILL Technology',
+  link: headerData?.logo?.link || '/'
+};
+
 const navigation: NavItem[] = headerData?.navigation || [];
 ---
 

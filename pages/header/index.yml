@@ -80,7 +80,7 @@ navigation:
         children:
           - text: 次世代防火牆
             url: /palo_alto/
-          - text: 整合資安平台
+          - text: 整合式資安平台
             url: /fortinet/
           - text: 深度學習防護
             url: /deep_instinct/
@@ -133,14 +133,14 @@ styles:
     background: transparent
     background_scrolled: rgba(255, 255, 255, 0.95)
     backdrop_filter: blur(10px)
-    text_color: "#3F8696"
-    hover_color: "#2D9B9B"
+    text_color: '#3F8696'
+    hover_color: '#2D9B9B'
     shadow_scrolled: 0 2px 10px rgba(0, 0, 0, 0.05)
-    
+
   mobile:
     height: 64px
     background: transparent
-    hamburger_color: "#3F8696"
+    hamburger_color: '#3F8696'
 
 # ============================================================
 # 行為配置
@@ -149,7 +149,7 @@ styles:
 behavior:
   sticky: false
   hide_on_scroll: true
-  submenu_trigger: hover  # hover | click
+  submenu_trigger: hover # hover | click
   mobile_breakpoint: 768px
 
 # ============================================================
@@ -157,7 +157,7 @@ behavior:
 # ============================================================
 
 mobile_menu:
-  type: slide_in   # slide_in | fullscreen | dropdown
+  type: slide_in # slide_in | fullscreen | dropdown
   direction: right # left | right | top
   close_on_click: true
   overlay: true
@@ -171,7 +171,7 @@ cta:
   enabled: false
   text: 聯絡鎰威
   url: /contact/
-  style: link  # link | button
+  style: link # link | button
   # 若未來需要按鈕樣式可設定：
   # button_style:
   #   background: linear-gradient(135deg, #2D9B9B 0%, #3AA8A8 100%)

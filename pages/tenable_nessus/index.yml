@@ -1,0 +1,17 @@
+seo:
+  title: 弱點掃描工具 Tenable Nessus - 鎰威科技
+  description: 弱點掃描工具 Tenable Nessus相關資訊，鎰威科技提供專業的企業數位轉型與資訊安全服務。
+  keywords:
+    - 弱點掃描工具 Tenable Nessus
+    - 鎰威科技
+url_mapping:
+  current_url: /tenable_nessus/
+  old_url: /tenable_nessus/
+  redirect: false
+layout:
+  sections:
+    - type: text
+      content: |-
+        # 弱點掃描工具 Tenable Nessus
+
+        此頁面內容建置中，敬請期待。

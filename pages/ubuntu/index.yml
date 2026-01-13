@@ -1,0 +1,17 @@
+seo:
+  title: 開源作業系統 Ubuntu - 鎰威科技
+  description: 開源作業系統 Ubuntu相關資訊，鎰威科技提供專業的企業數位轉型與資訊安全服務。
+  keywords:
+    - 開源作業系統 Ubuntu
+    - 鎰威科技
+url_mapping:
+  current_url: /ubuntu/
+  old_url: /ubuntu/
+  redirect: false
+layout:
+  sections:
+    - type: text
+      content: |-
+        # 開源作業系統 Ubuntu
+
+        此頁面內容建置中，敬請期待。

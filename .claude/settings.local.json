@@ -41,7 +41,8 @@
       "Bash(agent-browser screenshot:*)",
       "Bash(agent-browser scroll:*)",
       "Bash(agent-browser press:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(pnpm build:*)"
     ]
   }
 }
