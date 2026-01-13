@@ -4,15 +4,15 @@
 
 ## 狀態總覽
 
-- **最後更新時間**: 2026-01-13
-- **目前階段**: Astro 專案初始化完成，可從 pages/ 讀取內容並建置靜態網站
+- **最後更新時間**: 2026-01-14
+- **目前階段**: Astro 元件開發完成，支援 12 種 Section 類型動態渲染
 - **專案類型**: 網站內容庫 (Content Repository) + Astro SSG 靜態網站
 - **前端技術**: Astro 5.x + TypeScript + Tailwind CSS
-- **頁面數量**: 20 個頁面目錄 + 2 個共用元件 (Header, Footer)
+- **頁面數量**: 38 個頁面（content-build 輸出）
 - **圖片覆蓋率**: 231 張圖片，全部 100% 有 `.yml` 描述檔
 - **圖片結構**: 所有頁面圖片統一存放於 `pages/{page}/assets/`
 - **設計規範**: [DESIGN_GUIDELINE.md](./DESIGN_GUIDELINE.md) 定義品牌視覺規範
-- **共用元件**: `pages/header/`、`pages/footer/` 定義導覽列與頁尾結構
+- **共用元件**: Header、Footer、SEO、Breadcrumb、12 種 Section 元件
 - **文件指南**: [README.md](./README.md#文件系統使用指南) 包含完整的文件系統使用說明
 
 ## 目錄結構

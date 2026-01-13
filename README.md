@@ -82,7 +82,17 @@ ewill-web/
 │   └── skills/                  # AI 技能
 │       └── content-build/       # 內容建置流水線
 │
-├── # 建置輸出（已 gitignore）
+├── astro-app/                   # ⭐ Astro 5.x 靜態網站（主要前端專案）
+│   ├── src/
+│   │   ├── layouts/             # 版型 (Layout.astro, PageLayout.astro)
+│   │   ├── components/          # 共用元件 (Header, Footer, SEO, Sections)
+│   │   ├── pages/               # 頁面路由 ([slug].astro)
+│   │   ├── styles/              # 全域樣式
+│   │   └── utils/               # 內容讀取工具 (content.ts)
+│   ├── public/                  # content-build 輸出（已 gitignore）
+│   └── dist/                    # Astro 建置輸出（已 gitignore）
+│
+├── # 其他建置輸出（已 gitignore）
 ├── static-app/                  # 靜態輸出
 ├── next-app/                    # Next.js 專案 public/
 └── nuxt-app/                    # Nuxt 專案 public/

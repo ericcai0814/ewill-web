@@ -23,6 +23,7 @@
 | 檔案                                 | 說明                       |
 | ------------------------------------ | -------------------------- |
 | [specs/](./tasks/specs/)             | 網站重建專案規格文件       |
+| [astro-component-implementation.md](./tasks/astro-component-implementation.md) | Astro 元件實作進度追蹤 |
 | [website-validation-react-src.md](./tasks/website-validation-react-src.md) | React 驗證網站實作記錄 |
 
 ### tasks/specs/ 子目錄
