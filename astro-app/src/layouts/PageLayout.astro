@@ -13,6 +13,8 @@ import FeatureGridSection from '../components/FeatureGridSection.astro';
 import CTASection from '../components/CTASection.astro';
 import ProductIntroSection from '../components/ProductIntroSection.astro';
 import FeatureShowcaseSection from '../components/FeatureShowcaseSection.astro';
+import TimelineSection from '../components/TimelineSection.astro';
+import GallerySection from '../components/GallerySection.astro';
 import { getAssetById } from '../utils/content';
 import type { PageContent, LayoutSection } from '../utils/content';
 
@@ -132,6 +134,30 @@ if (layout?.popup?.image_id) {
             title={section.title}
             layout={section.layout}
             features={section.features}
+          />
+        );
+      }
+      if (section.type === 'timeline' && section.events) {
+        return (
+          <TimelineSection
+            label={section.label}
+            title={section.title || ''}
+            description={section.description}
+            events={section.events}
+            layout={section.layout as 'vertical' | 'horizontal'}
+          />
+        );
+      }
+      if (section.type === 'gallery' && section.images) {
+        return (
+          <GallerySection
+            label={section.label}
+            title={section.title}
+            description={section.description}
+            columns={section.columns as 2 | 3 | 4}
+            gap={section.gap}
+            images={section.images}
+            lightbox={section.lightbox}
           />
         );
       }

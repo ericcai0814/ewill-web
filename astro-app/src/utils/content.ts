@@ -56,8 +56,23 @@ export interface FeatureData {
   bullets?: string[];
 }
 
+export interface TimelineEvent {
+  id: string;
+  year: string;
+  title: string;
+  description?: string;
+  image_id?: string;
+}
+
+export interface GalleryImage {
+  id: string;
+  image_id: string;
+  title?: string;
+  caption?: string;
+}
+
 export interface LayoutSection {
-  type: 'image' | 'text' | 'card_list' | 'anchor' | 'feature_grid' | 'cta' | 'product_intro' | 'feature_showcase';
+  type: 'image' | 'text' | 'card_list' | 'anchor' | 'feature_grid' | 'cta' | 'product_intro' | 'feature_showcase' | 'timeline' | 'gallery';
   // Common
   id?: string;
   image_id?: string;
@@ -67,7 +82,7 @@ export interface LayoutSection {
   subtitle?: string;
   description?: string;
   // card_list / anchor
-  columns?: 3 | 4 | 5;
+  columns?: 2 | 3 | 4 | 5;
   layout_variant?: '3-2' | 'equal';
   cards?: CardData[];
   // feature_grid
@@ -78,7 +93,13 @@ export interface LayoutSection {
   button_link?: string;
   align?: 'center' | 'left';
   // feature_showcase
-  layout?: 'alternating' | 'image-left' | 'image-right';
+  layout?: 'alternating' | 'image-left' | 'image-right' | 'vertical' | 'horizontal';
+  // timeline
+  events?: TimelineEvent[];
+  // gallery
+  images?: GalleryImage[];
+  gap?: 'small' | 'medium' | 'large';
+  lightbox?: boolean;
 }
 
 /**

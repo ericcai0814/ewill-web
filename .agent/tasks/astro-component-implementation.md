@@ -72,8 +72,8 @@
 | CTASection | ✅ | 行動呼籲 (primary/secondary/dark) |
 | ProductIntroSection | ✅ | 產品介紹 + 功能列表 |
 | FeatureShowcaseSection | ✅ | 圖文交錯展示 (alternating) |
-| TimelineSection | ⬜ | 時間軸/沿革展示 |
-| GallerySection | ⬜ | 圖片圖庫展示（證書、案例等） |
+| TimelineSection | ✅ | 時間軸 (vertical/horizontal) + Lightbox |
+| GallerySection | ✅ | 圖片圖庫 (2/3/4 欄) + Lightbox |
 
 ---
 
