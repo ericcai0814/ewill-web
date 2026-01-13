@@ -78,88 +78,87 @@ content_summary:
     - 求職者
 layout:
   hero:
+    type: hero_banner
     image:
       id: banner1209
-  content_images:
-    - id: bn_home_m
-    - id: about_us_1_fix2
-    - id: about_us_1_1_m
-    - id: about_us_1_2_m
-    - id: about_us_1_3_m
+      desktop: banner1209
+      mobile: bn_home_m
+      alt: 關於鎰威科技
+
   sections:
+    # 公司簡介
     - type: text
-      content: 鎰威科技專注於推動企業數位轉型，結合資訊安全、AI 科技與大數據應用，從架構規劃到服務導入，提供專業高效的一站式安全服務。我們秉持「專業、效率、信任、創新」的精神與持續提供優質服務的態度，攜手客戶共同邁向成長與成功。
       label: About Us
-      title: 公司簡介​
-    - type: image
-      image_id: about_us_1_fix2
-    - type: image
-      image_id: about_us_1_1_m
-    - type: image
-      image_id: about_us_1_2_m
-    - type: image
-      image_id: about_us_1_3_m
-    - type: text
-      content: ""
+      title: 公司簡介
+      content: 鎰威科技專注於推動企業數位轉型，結合資訊安全、AI 科技與大數據應用，從架構規劃到服務導入，提供專業高效的一站式安全服務。我們秉持「專業、效率、信任、創新」的精神與持續提供優質服務的態度，攜手客戶共同邁向成長與成功。
+
+    # 核心價值 - 4 column feature grid
+    - type: feature_grid
+      columns: 4
+      image:
+        desktop: about_us_1_fix2
+        mobile_variant: vertical
+      features:
+        - id: professional
+          image_id: about_us_1_1_m
+          title: 專業
+          subtitle: Professional
+          description: 持續精進技術能力，提供最專業的服務品質
+        - id: efficiency
+          image_id: about_us_1_2_m
+          title: 效率
+          subtitle: Efficiency
+          description: 優化服務流程，快速回應客戶需求
+        - id: trust
+          image_id: about_us_1_3_m
+          title: 信任
+          subtitle: Trust
+          description: 建立長期合作關係，成為客戶信賴的夥伴
+        - id: innovation
+          image_id: about_us_1_4_m
+          title: 創新
+          subtitle: Innovation
+          description: 導入最新技術，協助客戶保持競爭優勢
+
+    # 公司沿革
+    - type: timeline
       label: Milestones
       title: 公司沿革
-    - type: image
-      image_id: about_us_2_1_fix2_1
-    - type: image
-      image_id: about_us_2_2_fix2_1
-    - type: image
-      image_id: about_us_2_1_m
-    - type: image
-      image_id: about_us_2_2_m
-    - type: image
-      image_id: about_us_2_3_m
-    - type: image
-      image_id: about_us_2_4_m
-    - type: image
-      image_id: about_us_2_5_m
-    - type: text
-      content: ""
+      image:
+        desktop:
+          - about_us_2_1_fix2_1
+          - about_us_2_2_fix2_1
+        mobile:
+          - about_us_2_1_m
+          - about_us_2_2_m
+          - about_us_2_3_m
+          - about_us_2_4_m
+          - about_us_2_5_m
+
+    # 資格證書
+    - type: gallery
       label: Certification
       title: 資格證書
-    - type: image
-      image_id: qij2pjc0ypkyf32xudqfv5kr95basbyimfobaxtpmo
-    - type: image
-      image_id: 1100811208_scaled_qij2h7hiek6hjh6hha4g9r8pr8d7kvw557kf7o6ark
-    - type: image
-      image_id: 1100511205_scaled_qij2gzysvvw6ylhep6vfpt5105e9vb2ag6cjdghg5c
-    - type: image
-      image_id: 1080611006_scaled_qij2h3q5n81c91by38hxzs6vdovqq3h7soyhakbvgg
-    - type: image
-      image_id: 270012013_qij2pl7pcdnj2b07jejp053ofx217q5zaoza9hqxa8
-    - type: image
-      image_id: ttqs_qij2pgiie7h3g971auik5oadgzp758nbm1puv3xw5c
-    - type: image
-      image_id: 11410171161016_rdlwpft05l34thpa49vumpm5rkxfoythj7hy9gnlds
-    - type: image
-      image_id: qij2pjc0ypjthwed68disxwqhgew8k05fgon90rt34
-    - type: image
-      image_id: 1100811208_scaled_qij2h7hiek5cmahwt4rj7jkozjgt13xry8kr5r4e80
-    - type: image
-      image_id: 1100511205_scaled_qij2gzysvvv21esu11iinlh08ghvbj3x97cvbjfjls
-    - type: image
-      image_id: 1080611006_scaled_qij2h3q5n807bundf350xkiulzzc6biulpyt8n9yww
-    - type: image
-      image_id: 270012013_qij2pl7pcdme54bmv96rxxfno85mny7m3pzm7kp0qo
-    - type: image
-      image_id: ttqs_qij2pgiie7fyj2igmp5n3gmcpasslgoyf2q6t6vzls
-    - type: image
-      image_id: 11410171161016_rdlwpft05l1zwb0pg4ixkhy4zw1156v4c8ia7jlou8
-    - type: image
-      image_id: qij2pjc0ypiokppsi30lqq8pprihos1s8hoz73pwjk
-    - type: image
-      image_id: 1100811208_scaled_qij2h7hiek47p3tc4zem5bwo7ukehbzer9l33u2hog
-    - type: image
-      image_id: 1100511205_scaled_qij2gzysvvtx4849cw5lldszgrlgrr5k28d79mdn28
-    - type: image
-      image_id: 1080611006_scaled_qij2h3q5n7z2enysqxs3vcutub2xmjkheqz56q82dc
-    - type: image
-      image_id: 270012013_qij2pl7pcdl97xn273tuvprmwj984698wqzy5nn474
-    - type: image
-      image_id: ttqs_qij2pgiie7etlvtvyjsq18ybxlwe1oql83qir9u328
-    - type: image
-      image_id: 11410171161016_rdlwpft05l0uz4c4rz60iaa4874mlewr59im5mjsao
+      columns: 3
+      images:
+        - id: cert_iso27001
+          image_id: qij2pjc0ypkyf32xudqfv5kr95basbyimfobaxtpmo
+          title: ISO 27001:2013
+        - id: cert_2021_1
+          image_id: 1100811208_scaled_qij2h7hiek6hjh6hha4g9r8pr8d7kvw557kf7o6ark
+          title: 資安服務機構能量登錄
+        - id: cert_2021_2
+          image_id: 1100511205_scaled_qij2gzysvvw6ylhep6vfpt5105e9vb2ag6cjdghg5c
+          title: 自動化服務能量登錄
+        - id: cert_2019
+          image_id: 1080611006_scaled_qij2h3q5n81c91by38hxzs6vdovqq3h7soyhakbvgg
+          title: 專業認證
+        - id: cert_270012013
+          image_id: 270012013_qij2pl7pcdnj2b07jejp053ofx217q5zaoza9hqxa8
+          title: 國際認證
+        - id: cert_ttqs
+          image_id: ttqs_qij2pgiie7h3g971auik5oadgzp758nbm1puv3xw5c
+          title: TTQS 銀牌認證
+        - id: cert_2025
+          image_id: 11410171161016_rdlwpft05l34thpa49vumpm5rkxfoythj7hy9gnlds
+          title: 最新認證

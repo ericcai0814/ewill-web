@@ -55,10 +55,39 @@
 
 ## Phase 2: 增強功能 (P1)
 
+### 功能元件
+
 | 元件 | 狀態 | 備註 |
 |------|:----:|------|
 | Breadcrumb | ⬜ | 麵包屑導覽 |
 | PopupModal | ⬜ | 首頁彈窗 |
+
+### Section 元件 (P1)
+
+| 元件 | 狀態 | 備註 |
+|------|:----:|------|
+| CardListSection | ⬜ | 卡片列表（服務項目、產品解決方案） |
+| AnchorSection | ⬜ | 可錨點定位區塊（解決方案頁各類別） |
+| FeatureGridSection | ⬜ | 特色網格（核心價值、認證等） |
+| TimelineSection | ⬜ | 時間軸/沿革展示 |
+| GallerySection | ⬜ | 圖片圖庫展示（證書、案例等） |
+| ProductIntroSection | ⬜ | 產品介紹區塊 |
+| FeatureShowcaseSection | ⬜ | 功能展示（圖文交錯） |
+| CTASection | ⬜ | 行動呼籲區塊 |
+
+---
+
+## Phase 3: Layout YML 優化
+
+> 將現有 text + image 扁平結構優化為語義化 section types
+
+| 頁面 | 狀態 | 新增類型 |
+|------|:----:|----------|
+| index | ✅ | hero_banner, card_list (x2) |
+| solutions | ✅ | anchor_section (x4) |
+| about_us | ✅ | feature_grid, timeline, gallery |
+| logsec | ✅ | product_intro, feature_showcase, cta |
+| 其他產品頁 | ⬜ | 待套用 logsec 範本 |
 
 ---
 

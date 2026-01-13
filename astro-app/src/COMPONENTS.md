@@ -8,7 +8,8 @@
 |------|------|------|
 | Layout | 2 | 頁面版型 |
 | 共用元件 | 5 | Header, Footer, SEO 等 |
-| Section 元件 | 3 | Hero, Text, Image |
+| Section 元件 (P0) | 3 | Hero, Text, Image |
+| Section 元件 (P1) | 8 | CardList, Anchor, FeatureGrid, Timeline, Gallery, ProductIntro, FeatureShowcase, CTA |
 | 功能元件 | 2 | Breadcrumb, Popup |
 
 ---
@@ -232,6 +233,152 @@ interface ImageSectionProps {
 **實作重點**:
 - 從 `asset-manifest.json` 查詢圖片路徑
 - 使用 `getAssetById()` 工具函數
+
+### CardListSection (P1)
+
+- **路徑**: `src/components/CardListSection.astro`
+- **用途**: 卡片列表（服務項目、產品解決方案）
+
+```typescript
+interface CardListSectionProps {
+  label?: string;
+  title: string;
+  description?: string;
+  columns: 3 | 4 | 5;
+  layout_variant?: '3-2' | 'equal';  // 5 cards: 3+2 或平均
+  cards: {
+    id: string;
+    image_id: string;
+    title: string;
+    description: string;
+    link?: string;
+    link_text?: string;
+  }[];
+}
+```
+
+### AnchorSection (P1)
+
+- **路徑**: `src/components/AnchorSection.astro`
+- **用途**: 可錨點定位區塊（解決方案頁各類別）
+
+```typescript
+interface AnchorSectionProps {
+  id: string;           // 錨點 ID
+  title: string;
+  description: string;
+  cards: {
+    id: string;
+    image_id: string;
+    title: string;
+    description: string;
+    link?: string;
+    link_text?: string;
+  }[];
+}
+```
+
+### FeatureGridSection (P1)
+
+- **路徑**: `src/components/FeatureGridSection.astro`
+- **用途**: 特色網格（核心價值、認證等）
+
+```typescript
+interface FeatureGridSectionProps {
+  columns: 3 | 4;
+  image?: {
+    desktop: string;
+    mobile_variant: 'horizontal' | 'vertical';
+  };
+  features: {
+    id: string;
+    image_id?: string;
+    title: string;
+    subtitle?: string;
+    description: string;
+  }[];
+}
+```
+
+### TimelineSection (P1)
+
+- **路徑**: `src/components/TimelineSection.astro`
+- **用途**: 時間軸/沿革展示
+
+```typescript
+interface TimelineSectionProps {
+  label?: string;
+  title: string;
+  image: {
+    desktop: string[];
+    mobile: string[];
+  };
+}
+```
+
+### GallerySection (P1)
+
+- **路徑**: `src/components/GallerySection.astro`
+- **用途**: 圖片圖庫展示（證書、案例等）
+
+```typescript
+interface GallerySectionProps {
+  label?: string;
+  title: string;
+  columns: 3 | 4;
+  images: {
+    id: string;
+    image_id: string;
+    title?: string;
+  }[];
+}
+```
+
+### ProductIntroSection (P1)
+
+- **路徑**: `src/components/ProductIntroSection.astro`
+- **用途**: 產品介紹區塊
+
+```typescript
+interface ProductIntroSectionProps {
+  label?: string;
+  title: string;
+  subtitle?: string;
+  description: string;
+}
+```
+
+### FeatureShowcaseSection (P1)
+
+- **路徑**: `src/components/FeatureShowcaseSection.astro`
+- **用途**: 功能展示（圖文交錯）
+
+```typescript
+interface FeatureShowcaseSectionProps {
+  layout: 'alternating' | 'image-left' | 'image-right';
+  features: {
+    id: string;
+    image_id: string;
+    title: string;
+    description: string;
+  }[];
+}
+```
+
+### CTASection (P1)
+
+- **路徑**: `src/components/CTASection.astro`
+- **用途**: 行動呼籲區塊
+
+```typescript
+interface CTASectionProps {
+  title: string;
+  description?: string;
+  button_text: string;
+  button_link: string;
+  variant?: 'primary' | 'secondary';
+}
+```
 
 ---
 
