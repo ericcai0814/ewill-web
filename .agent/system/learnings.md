@@ -46,6 +46,16 @@
 - 圖片 `.yml` 描述檔應包含語義化 `id`（如 `event_20251021_photo`），而非檔名格式
 - 跨頁面引用圖片時，需將圖片複製到對應頁面的 `assets/` 目錄
 
+### 4.1 sync-content 智慧合併機制
+- **可同步類型**：`text`, `image`（從 md 解析）
+- **手動類型**：`card_list`, `cta`, `contact_form`, `feature_grid` 等（在 yml 手動配置）
+- **智慧合併邏輯**：
+  1. 從 md 解析新的 text/image sections
+  2. 保留現有的手動配置 sections
+  3. 合併順序：新的 text/image 在前，手動 sections 在後
+- **pre-commit hook**：當 index.md 變更時自動執行 sync-content
+- **重要**：手動配置的 sections 不會被 sync-content 覆蓋
+
 ### 5. Git Commit 規範
 - **顆粒度**：一個 commit 只做一件事，按功能邊界拆分
 - **Scope 分離**：不同 scope 的變更應分開 commit

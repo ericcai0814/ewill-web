@@ -29,3 +29,29 @@ layout:
 
         請填寫以下表單，我們將盡快與您聯繫。
       title: 聯絡資訊
+    - type: contact_form
+      label: Contact
+      title: 聯絡資訊
+      fields:
+        - name: name
+          label: 您的大名
+          placeholder: 請輸入您的姓名
+          required: true
+        - name: email
+          label: 電子郵件
+          placeholder: 請輸入您的電子郵件
+          required: true
+        - name: phone
+          label: 電話 / 手機號碼
+          placeholder: 請輸入您的電話 / 手機號碼
+          required: false
+        - name: company
+          label: 公司名稱
+          placeholder: 請輸入您的公司名稱
+          required: false
+        - name: message
+          label: 詢問內容
+          placeholder: 請輸入您要詢問的內容
+          required: true
+          type: textarea
+      button_text: 送出

@@ -30,7 +30,19 @@ interface ImageSection {
   image_id: string
 }
 
-type Section = TextSection | ImageSection
+// 手動配置的 section 類型（不會被 sync-content 覆蓋）
+interface ManualSection {
+  type: 'card_list' | 'anchor' | 'feature_grid' | 'cta' | 'product_intro' |
+        'feature_showcase' | 'timeline' | 'gallery' | 'contact_form'
+  [key: string]: unknown
+}
+
+type Section = TextSection | ImageSection | ManualSection
+
+// 可從 md 同步的 section types
+const SYNCABLE_TYPES = ['text', 'image'] as const
+type SyncableType = typeof SYNCABLE_TYPES[number]
+
 
 // 解析命令列參數
 function parseArgs(): { page?: string; check?: boolean; help?: boolean } {
@@ -196,27 +208,64 @@ function parseMarkdownToSections(mdContent: string, pagePath: string): Section[]
   return sections
 }
 
-// 比較兩個 sections 是否相等
+// 比較兩個 sections 是否相等（只比較可同步的 sections）
 function sectionsEqual(a: Section[], b: Section[]): boolean {
-  if (a.length !== b.length) return false
+  // 只比較 syncable sections
+  const syncableA = a.filter(s => SYNCABLE_TYPES.includes(s.type as SyncableType))
+  const syncableB = b.filter(s => SYNCABLE_TYPES.includes(s.type as SyncableType))
 
-  for (let i = 0; i < a.length; i++) {
-    if (a[i].type !== b[i].type) return false
+  if (syncableA.length !== syncableB.length) return false
 
-    if (a[i].type === 'text' && b[i].type === 'text') {
-      const ta = a[i] as TextSection
-      const tb = b[i] as TextSection
+  for (let i = 0; i < syncableA.length; i++) {
+    if (syncableA[i].type !== syncableB[i].type) return false
+
+    if (syncableA[i].type === 'text' && syncableB[i].type === 'text') {
+      const ta = syncableA[i] as TextSection
+      const tb = syncableB[i] as TextSection
       if (ta.label !== tb.label || ta.title !== tb.title || ta.content !== tb.content) {
         return false
       }
-    } else if (a[i].type === 'image' && b[i].type === 'image') {
-      const ia = a[i] as ImageSection
-      const ib = b[i] as ImageSection
+    } else if (syncableA[i].type === 'image' && syncableB[i].type === 'image') {
+      const ia = syncableA[i] as ImageSection
+      const ib = syncableB[i] as ImageSection
       if (ia.image_id !== ib.image_id) return false
     }
   }
 
   return true
+}
+
+/**
+ * 智慧合併 sections
+ * - 用新的 text/image sections 替換舊的
+ * - 保留所有手動配置的 sections（非 text/image）
+ * - 維持手動 sections 的相對位置
+ */
+function smartMergeSections(existing: Section[], newSyncable: Section[]): Section[] {
+  // 分離現有的 syncable 和 manual sections
+  const manualSections: { index: number; section: Section }[] = []
+
+  existing.forEach((section, index) => {
+    if (!SYNCABLE_TYPES.includes(section.type as SyncableType)) {
+      manualSections.push({ index, section })
+    }
+  })
+
+  // 如果沒有手動 sections，直接返回新的
+  if (manualSections.length === 0) {
+    return newSyncable
+  }
+
+  // 智慧合併：新的 syncable sections 在前，手動 sections 在後
+  // 這樣可以保持 layout 的一致性（內容在上，互動元件在下）
+  const result: Section[] = [...newSyncable]
+
+  // 將手動 sections 按原始順序追加到末尾
+  for (const { section } of manualSections) {
+    result.push(section)
+  }
+
+  return result
 }
 
 // 讀取現有 yml 的 sections
@@ -232,8 +281,8 @@ function getExistingSections(ymlPath: string): Section[] {
   }
 }
 
-// 更新 index.yml 的 layout.sections
-function updateYmlSections(ymlPath: string, sections: Section[]): boolean {
+// 更新 index.yml 的 layout.sections（使用智慧合併）
+function updateYmlSections(ymlPath: string, newSyncableSections: Section[]): boolean {
   if (!existsSync(ymlPath)) {
     console.warn(`  ⚠️  找不到 yml 檔案: ${ymlPath}`)
     return false
@@ -248,9 +297,26 @@ function updateYmlSections(ymlPath: string, sections: Section[]): boolean {
       data.layout = {}
     }
 
-    // 更新 sections
     const layout = data.layout as Record<string, unknown>
-    layout.sections = sections
+    const existingSections = (layout.sections as Section[]) || []
+
+    // 檢查是否有手動配置的 sections
+    const hasManualSections = existingSections.some(
+      s => !SYNCABLE_TYPES.includes(s.type as SyncableType)
+    )
+
+    // 智慧合併：保留手動 sections
+    const mergedSections = smartMergeSections(existingSections, newSyncableSections)
+
+    if (hasManualSections) {
+      const manualCount = existingSections.filter(
+        s => !SYNCABLE_TYPES.includes(s.type as SyncableType)
+      ).length
+      console.log(`  🔒 保留 ${manualCount} 個手動配置的 sections`)
+    }
+
+    // 更新 sections
+    layout.sections = mergedSections
 
     // 寫回檔案
     const newContent = yaml.dump(data, {
@@ -308,13 +374,21 @@ function syncPage(pageName: string, checkOnly: boolean): 'synced' | 'skipped' | 
   // 取得現有 sections
   const existingSections = getExistingSections(ymlPath)
 
-  // 比較是否需要更新
+  // 計算現有的 syncable sections 數量
+  const existingSyncableCount = existingSections.filter(
+    s => SYNCABLE_TYPES.includes(s.type as SyncableType)
+  ).length
+  const manualCount = existingSections.length - existingSyncableCount
+
+  // 比較是否需要更新（只比較 syncable sections）
   if (sectionsEqual(newSections, existingSections)) {
-    console.log(`  ✓ 已同步（${newSections.length} 個區塊）`)
+    const suffix = manualCount > 0 ? ` + ${manualCount} 手動` : ''
+    console.log(`  ✓ 已同步（${newSections.length} 個區塊${suffix}）`)
     return 'skipped'
   }
 
-  console.log(`  📝 ${existingSections.length} → ${newSections.length} 個區塊`)
+  const suffix = manualCount > 0 ? ` (保留 ${manualCount} 手動)` : ''
+  console.log(`  📝 ${existingSyncableCount} → ${newSections.length} 個同步區塊${suffix}`)
 
   if (checkOnly) {
     console.log(`  ⚠️  需要同步`)
