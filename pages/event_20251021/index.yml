@@ -1,9 +1,17 @@
 seo:
-  title: event_20251021 - 鎰威科技有限公司
-  description: event_20251021 - 鎰威科技有限公司 相關資訊，鎰威科技提供專業的企業數位轉型與資訊安全服務。
+  title: 鎰威科技 × Dell Technologies 活動回顧 | 2025/10/21 - 鎰威科技
+  description: >-
+    鎰威科技與 Dell Technologies 聯合舉辦活動回顧。
+    分享企業 IT 基礎架構、虛擬化與資料保護最新趨勢，
+    協助企業建構現代化資料中心與混合雲環境。
   keywords:
-    - event_20251021
-    - 鎰威科技
+    - Dell Technologies
+    - 鎰威科技活動
+    - IT 基礎架構
+    - 資料中心
+    - 虛擬化
+    - 企業活動
+    - 2025 活動
 url_mapping:
   current_url: /event_20251021/
   old_url: /event_20251021/

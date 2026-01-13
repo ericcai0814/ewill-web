@@ -1,0 +1,8 @@
+id: hero_proxmox
+alt: Proxmox VE 產品頁桌機版橫幅
+description: >
+  Proxmox VE 虛擬化平台產品頁 Hero Banner，藍天白雲背景搭配伺服器架構圖，
+  中央顯示橙色 PROXMOX Logo，周圍環繞雲端備份、網路、叢集管理等功能圖示。
+variants:
+  desktop: bn-proxmox-1209-scaled.jpg
+  mobile: bn-proxmox-m_fix.jpg

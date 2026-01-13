@@ -1,0 +1,6 @@
+id: hero_ubuntu_mobile
+alt: Ubuntu 產品頁手機版橫幅
+description: Ubuntu Linux 作業系統產品頁手機版 Hero Banner，適配行動裝置螢幕尺寸。
+variants:
+  desktop: bn-ubuntu-1209-scaled.jpg
+  mobile: bn-ubuntu-m_fix.jpg

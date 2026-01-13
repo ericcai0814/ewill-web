@@ -1,0 +1,8 @@
+id: hero_deepinstinct
+alt: Deep Instinct 產品頁桌機版橫幅
+description: >
+  Deep Instinct 深度學習防護產品頁 Hero Banner，伺服器機房背景搭配藍色光效，
+  中央顯示 Deep Instinct Logo 與標語「執行前預測並攔截惡意程式，有效防堵未知威脅」。
+variants:
+  desktop: deepinstinct_banner.jpg
+  mobile: deepinstinct_banner_m.jpg

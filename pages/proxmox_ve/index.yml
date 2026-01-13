@@ -1,9 +1,17 @@
 seo:
-  title: 伺服器虛擬化管理 Proxmox VE - 鎰威科技
-  description: 伺服器虛擬化管理 Proxmox VE相關資訊，鎰威科技提供專業的企業數位轉型與資訊安全服務。
+  title: Proxmox VE 企業虛擬化平台 | KVM 虛擬機與 LXC 容器管理 - 鎰威科技
+  description: >-
+    鎰威科技提供 Proxmox VE 企業虛擬化解決方案，整合 KVM 虛擬機、LXC 容器、ZFS 軟體定義儲存。
+    全網頁式管理介面，支援高可用叢集、快照備份與跨平台操作，大幅降低虛擬化建置成本，
+    是 VMware 替代方案的最佳選擇。
   keywords:
-    - 伺服器虛擬化管理 Proxmox VE
-    - 鎰威科技
+    - Proxmox VE
+    - Proxmox 台灣
+    - 伺服器虛擬化
+    - KVM 虛擬機
+    - LXC 容器
+    - ZFS 儲存
+    - VMware 替代方案
 url_mapping:
   current_url: /proxmox_ve/
   old_url: /proxmox_ve/

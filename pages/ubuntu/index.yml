@@ -1,9 +1,17 @@
 seo:
-  title: 開源作業系統 Ubuntu - 鎰威科技
-  description: 開源作業系統 Ubuntu相關資訊，鎰威科技提供專業的企業數位轉型與資訊安全服務。
+  title: Ubuntu 企業級 Linux | Canonical 官方支援與訂閱服務 - 鎰威科技
+  description: >-
+    鎰威科技提供 Ubuntu 企業級 Linux 解決方案與 Canonical 官方支援服務。
+    市佔率超過 45% 的伺服器作業系統，支援 Kubernetes、容器化部署與雲端整合，
+    提供長期安全更新與技術支援，是企業 IT 基礎架構的可靠選擇。
   keywords:
-    - 開源作業系統 Ubuntu
-    - 鎰威科技
+    - Ubuntu
+    - Ubuntu 台灣
+    - Linux 伺服器
+    - Canonical
+    - 企業 Linux
+    - Ubuntu Pro
+    - 開源作業系統
 url_mapping:
   current_url: /ubuntu/
   old_url: /ubuntu/

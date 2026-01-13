@@ -1,9 +1,17 @@
 seo:
-  title: APS 智慧生產核心 - 鎰威科技
-  description: APS 智慧生產核心相關資訊，鎰威科技提供專業的企業數位轉型與資訊安全服務。
+  title: APS 先進規劃排程系統 | 智慧生產排程與資源優化 - 鎰威科技
+  description: >-
+    鎰威科技 APS 先進規劃排程系統，運用 AI 演算法優化生產排程與資源配置。
+    整合 MES、ERP 系統數據，即時調整排程因應插單與設備異常，
+    縮短交期、提升產能利用率，是智慧製造的核心決策引擎。
   keywords:
-    - APS 智慧生產核心
-    - 鎰威科技
+    - APS
+    - APS 系統
+    - 先進規劃排程
+    - Advanced Planning and Scheduling
+    - 生產排程
+    - 資源優化
+    - 智慧排程
 url_mapping:
   current_url: /aps/
   old_url: /aps/

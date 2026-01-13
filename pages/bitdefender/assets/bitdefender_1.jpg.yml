@@ -1,0 +1,8 @@
+id: product_gravityzone_architecture
+alt: Bitdefender GravityZone 企業防禦平台架構圖
+description: >
+  Bitdefender GravityZone 最全面企業入侵防禦平台架構圖，
+  中央顯示產品 Logo，周圍環繞各類防護對象：筆電與工作站（Windows/Mac/Linux）、
+  移動設備（iOS/Android）、虛擬桌面 VDI/DAAS、伺服器、Email、儲存設備、
+  公有與私有雲（AWS/Azure/GCP/Kubernetes），以及軟體定義與超融合架構基礎設備
+  （Citrix/Nutanix/VMware/KVM/Hyper-V）。

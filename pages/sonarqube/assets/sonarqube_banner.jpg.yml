@@ -1,0 +1,8 @@
+id: hero_sonarqube
+alt: SonarQube 產品頁桌機版橫幅
+description: >
+  SonarQube 原始碼分析平台產品頁 Hero Banner，暗色科技背景搭配程式碼畫面，
+  中央顯示 SonarQube Logo 與標語「原始碼分析平台：SonarQube - 提升安全性與維護」。
+variants:
+  desktop: sonarqube_banner.jpg
+  mobile: sonarqube_banner_m.jpg

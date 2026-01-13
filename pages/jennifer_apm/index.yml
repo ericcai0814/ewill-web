@@ -1,9 +1,17 @@
 seo:
-  title: Jennifer APM - 鎰威科技有限公司
-  description: Jennifer APM - 鎰威科技有限公司 相關資訊，鎰威科技提供專業的企業數位轉型與資訊安全服務。
+  title: Jennifer APM 應用效能監控 | 即時交易追蹤與故障診斷 - 鎰威科技
+  description: >-
+    鎰威科技代理 Jennifer APM 應用效能監控平台，即時追蹤應用程式交易效能，
+    自動偵測異常事件並發出警報。提供應用拓撲分析、資料庫效能監控與故障控制，
+    協助 IT 團隊快速定位問題根因，確保系統穩定運行。
   keywords:
-    - jennifer_apm
-    - 鎰威科技
+    - Jennifer APM
+    - APM
+    - 應用效能監控
+    - Application Performance Monitoring
+    - 交易追蹤
+    - 效能分析
+    - 故障診斷
 url_mapping:
   current_url: /jennifer_apm/
   old_url: /jennifer_apm/

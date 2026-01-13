@@ -1,0 +1,6 @@
+id: hero_ubuntu
+alt: Ubuntu 產品頁桌機版橫幅
+description: Ubuntu Linux 作業系統產品頁 Hero Banner，展示企業級 Linux 解決方案。
+variants:
+  desktop: bn-ubuntu-1209-scaled.jpg
+  mobile: bn-ubuntu-m_fix.jpg

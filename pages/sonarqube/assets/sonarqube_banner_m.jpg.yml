@@ -1,0 +1,6 @@
+id: hero_sonarqube_mobile
+alt: SonarQube 產品頁手機版橫幅
+description: SonarQube 原始碼分析平台產品頁手機版 Hero Banner，適配行動裝置螢幕尺寸。
+variants:
+  desktop: sonarqube_banner.jpg
+  mobile: sonarqube_banner_m.jpg

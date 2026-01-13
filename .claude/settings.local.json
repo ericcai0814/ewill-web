@@ -42,7 +42,17 @@
       "Bash(agent-browser scroll:*)",
       "Bash(agent-browser press:*)",
       "Bash(git add:*)",
-      "Bash(pnpm build:*)"
+      "Bash(pnpm build:*)",
+      "Bash(pip install:*)",
+      "Bash(pip3 install:*)",
+      "Bash(xargs:*)",
+      "Skill(run-log)",
+      "mcp__plugin_claude-mem_mcp-search__search",
+      "Skill(check_assets)",
+      "Bash(find:*)",
+      "Bash(do if [ ! -f \"$img.yml\" ])",
+      "Bash(then echo \"$img\")",
+      "Skill(gen_image_meta)"
     ]
   }
 }

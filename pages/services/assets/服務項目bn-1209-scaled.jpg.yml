@@ -1,0 +1,6 @@
+id: hero_services
+alt: 服務項目頁桌機版橫幅
+description: 服務項目頁 Hero Banner，展示鎰威科技完整的資安與 IT 服務。
+variants:
+  desktop: 服務項目bn-1209-scaled.jpg
+  mobile: bn-whatweoffer-m.jpg

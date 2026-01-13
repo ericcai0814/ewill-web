@@ -1,9 +1,17 @@
 seo:
-  title: 防毒與威脅防護 Bitdefender - 鎰威科技
-  description: 防毒與威脅防護 Bitdefender相關資訊，鎰威科技提供專業的企業數位轉型與資訊安全服務。
+  title: Bitdefender GravityZone 企業端點防護 | EDR 威脅偵測回應 - 鎰威科技
+  description: >-
+    鎰威科技代理 Bitdefender GravityZone 企業端點防護平台，整合預防、偵測、回應，
+    全面防護端點、網路與雲端。新世代分層防護架構，雲端主控台即時掌握系統狀態，
+    有效抵禦勒索軟體、APT 進階持續威脅與零日攻擊。
   keywords:
-    - 防毒與威脅防護 Bitdefender
-    - 鎰威科技
+    - Bitdefender
+    - Bitdefender 台灣
+    - GravityZone
+    - 企業端點防護
+    - EDR
+    - 端點偵測回應
+    - 防毒軟體
 url_mapping:
   current_url: /bitdefender/
   old_url: /bitdefender/

@@ -1,0 +1,6 @@
+id: hero_deepinstinct_mobile
+alt: Deep Instinct 產品頁手機版橫幅
+description: Deep Instinct 深度學習防護產品頁手機版 Hero Banner，適配行動裝置螢幕尺寸。
+variants:
+  desktop: deepinstinct_banner.jpg
+  mobile: deepinstinct_banner_m.jpg

@@ -1,0 +1,6 @@
+id: hero_nessus_mobile
+alt: Tenable Nessus 產品頁手機版橫幅
+description: Tenable Nessus 弱點掃描器產品頁手機版 Hero Banner，適配行動裝置螢幕尺寸。
+variants:
+  desktop: tenablenessus_banner.jpg
+  mobile: tenablenessus_banner_m.jpg

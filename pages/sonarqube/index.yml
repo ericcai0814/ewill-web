@@ -1,9 +1,17 @@
 seo:
-  title: 原始碼分析平台 SonarQube - 鎰威科技
-  description: 原始碼分析平台 SonarQube相關資訊，鎰威科技提供專業的企業數位轉型與資訊安全服務。
+  title: SonarQube 程式碼品質分析平台 | DevSecOps 安全審查工具 - 鎰威科技
+  description: >-
+    鎰威科技提供 SonarQube 程式碼品質與安全分析平台，自動化檢測漏洞、技術債務與程式碼異味。
+    整合 GitHub、Jenkins、GitLab CI/CD，支援 AI 生成程式碼審查，品質閘門機制確保程式碼
+    符合 OWASP 等安全標準，助企業提升軟體品質與開發效率。
   keywords:
-    - 原始碼分析平台 SonarQube
-    - 鎰威科技
+    - SonarQube
+    - SonarQube 台灣
+    - 程式碼品質
+    - 原始碼分析
+    - DevSecOps
+    - 技術債務
+    - SAST 靜態分析
 url_mapping:
   current_url: /sonarqube/
   old_url: /sonarqube/

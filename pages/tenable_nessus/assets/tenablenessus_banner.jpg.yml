@@ -1,0 +1,8 @@
+id: hero_nessus
+alt: Tenable Nessus 產品頁桌機版橫幅
+description: >
+  Tenable Nessus 弱點掃描器產品頁 Hero Banner，綠色科技背景搭配手部觸控畫面，
+  中央顯示 Nessus Logo 與標語「精準偵測 7500+ 漏洞，強化風險掌控與資安防護」。
+variants:
+  desktop: tenablenessus_banner.jpg
+  mobile: tenablenessus_banner_m.jpg
