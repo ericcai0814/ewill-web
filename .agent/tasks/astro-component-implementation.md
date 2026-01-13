@@ -26,30 +26,30 @@
 | 元件 | 狀態 | 備註 |
 |------|:----:|------|
 | BaseLayout | ✅ | `Layout.astro` |
-| PageLayout | ⬜ | 整合 Header/Footer |
+| PageLayout | ✅ | 整合 Header/Footer |
 
 ### 共用元件
 
 | 元件 | 狀態 | 備註 |
 |------|:----:|------|
-| Header | ⬜ | ← header.json |
-| Footer | ⬜ | ← footer.json |
-| SEO | ⬜ | 已部分實現於 Layout |
+| Header | ✅ | ← header.json |
+| Footer | ✅ | ← footer.json |
+| SEO | ✅ | 已整合於 Layout |
 
 ### Section 元件
 
 | 元件 | 狀態 | 備註 |
 |------|:----:|------|
-| HeroSection | ⬜ | RWD picture |
-| TextSection | ⬜ | Markdown 渲染 |
-| ImageSection | ⬜ | asset manifest 查詢 |
+| HeroSection | ✅ | RWD picture |
+| TextSection | ✅ | Markdown 渲染 |
+| ImageSection | ✅ | asset manifest 查詢 |
 
 ### 頁面路由
 
 | 頁面 | 狀態 | 備註 |
 |------|:----:|------|
-| index.astro | ✅ | 驗證完成 |
-| [...slug].astro | ⬜ | 20 個內頁 |
+| index.astro | ✅ | 使用 PageLayout |
+| [...slug].astro | ✅ | 20 個內頁 |
 
 ---
 
@@ -80,15 +80,15 @@
 
 ### 功能
 
-- [ ] 22 個頁面正確渲染
-- [ ] Header 導覽運作
-- [ ] Footer 連結正確
+- [x] 20 個頁面正確渲染
+- [x] Header 導覽運作
+- [x] Footer 連結正確
 - [ ] RWD 切換正常 (1024px)
 
 ### 技術
 
-- [ ] TypeScript 無錯誤
-- [ ] Build 成功
+- [x] TypeScript 無錯誤
+- [x] Build 成功
 - [ ] Lighthouse > 90
 
 ### 建置測試

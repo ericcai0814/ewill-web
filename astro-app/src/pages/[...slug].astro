@@ -1,0 +1,30 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { getAllPages, getPageContent } from '../utils/content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const pages = await getAllPages();
+
+  // 過濾掉 index（首頁由 index.astro 處理）
+  const innerPages = pages.filter(slug => slug !== 'index');
+
+  return innerPages.map(slug => ({
+    params: { slug },
+  }));
+};
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect('/404');
+}
+
+const pageData = await getPageContent(slug);
+
+if (!pageData) {
+  return Astro.redirect('/404');
+}
+---
+
+<PageLayout page={pageData} />

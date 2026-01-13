@@ -1,0 +1,137 @@
+---
+export interface Props {
+  content: string;
+  title?: string;
+  label?: string;
+}
+
+const { content, title, label } = Astro.props;
+
+// 簡易 Markdown 轉 HTML
+function parseMarkdown(md: string): string {
+  let html = md
+    // Headers
+    .replace(/^#### (.+)$/gm, '<h4>$1</h4>')
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+    // Bold & Italic
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    // Links
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+    // Line breaks
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/\n/g, '<br>');
+
+  // Wrap in paragraph if not starting with a tag
+  if (!html.startsWith('<')) {
+    html = `<p>${html}</p>`;
+  }
+
+  return html;
+}
+
+const htmlContent = parseMarkdown(content);
+---
+
+<section class="text-section">
+  <div class="text-section__container">
+    {label && <span class="text-section__label">{label}</span>}
+    {title && <h2 class="text-section__title">{title}</h2>}
+    <div class="text-section__content prose" set:html={htmlContent} />
+  </div>
+</section>
+
+<style>
+  .text-section {
+    padding: 60px 0;
+  }
+
+  .text-section__container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .text-section__label {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #3F8696;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+
+  .text-section__title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #3F8696;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .text-section__title {
+      font-size: 40px;
+    }
+  }
+
+  .text-section__content {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+  }
+
+  .text-section__content :global(h1),
+  .text-section__content :global(h2),
+  .text-section__content :global(h3),
+  .text-section__content :global(h4) {
+    color: #3F8696;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+  }
+
+  .text-section__content :global(h2) {
+    font-size: 28px;
+  }
+
+  .text-section__content :global(h3) {
+    font-size: 22px;
+  }
+
+  .text-section__content :global(h4) {
+    font-size: 18px;
+  }
+
+  .text-section__content :global(p) {
+    margin-bottom: 1em;
+  }
+
+  .text-section__content :global(a) {
+    color: #2D9B9B;
+    text-decoration: underline;
+  }
+
+  .text-section__content :global(a:hover) {
+    color: #3F8696;
+  }
+
+  .text-section__content :global(ul),
+  .text-section__content :global(ol) {
+    margin: 1em 0;
+    padding-left: 1.5em;
+  }
+
+  .text-section__content :global(li) {
+    margin-bottom: 0.5em;
+  }
+
+  .text-section__content :global(strong) {
+    font-weight: 600;
+    color: #1A1A2E;
+  }
+</style>

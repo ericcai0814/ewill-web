@@ -1,0 +1,72 @@
+---
+import { getAssetById } from '../utils/content';
+
+export interface Props {
+  image_id: string;
+}
+
+const { image_id } = Astro.props;
+
+// 從 asset-manifest 查詢圖片
+const asset = await getAssetById(image_id);
+---
+
+{asset ? (
+  <section class="image-section">
+    <div class="image-section__container">
+      <picture class="image-section__picture">
+        <source media="(min-width: 1024px)" srcset={asset.variants.desktop} />
+        <source media="(max-width: 1023px)" srcset={asset.variants.mobile} />
+        <img
+          src={asset.variants.desktop}
+          alt={asset.alt}
+          class="image-section__image"
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
+    </div>
+  </section>
+) : (
+  <section class="image-section image-section--error">
+    <div class="image-section__container">
+      <p class="image-section__error">圖片未找到: {image_id}</p>
+    </div>
+  </section>
+)}
+
+<style>
+  .image-section {
+    padding: 40px 0;
+  }
+
+  .image-section__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .image-section__picture {
+    display: block;
+    width: 100%;
+  }
+
+  .image-section__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .image-section--error {
+    background: #fef2f2;
+  }
+
+  .image-section__error {
+    color: #dc2626;
+    font-size: 14px;
+    text-align: center;
+    padding: 20px;
+  }
+</style>

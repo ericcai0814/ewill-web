@@ -1,0 +1,412 @@
+---
+import { getPageContent } from '../utils/content';
+
+interface NavItem {
+  text: string;
+  url: string;
+  is_cta?: boolean;
+  children?: NavItem[];
+}
+
+// 讀取 header.json
+const headerData = await getPageContent('header');
+
+const logo = headerData?.logo || { src: '/assets/logo.png', alt: '鎰威科技', link: '/' };
+const navigation: NavItem[] = headerData?.navigation || [];
+---
+
+<header class="header" id="main-header">
+  <div class="header__container">
+    <!-- Logo -->
+    <a href={logo.link} class="header__logo">
+      <img src={logo.src} alt={logo.alt} width="180" height="40" />
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="header__nav" aria-label="主要導覽列">
+      <ul class="header__menu">
+        {navigation.map((item) => (
+          <li class="header__menu-item">
+            <a
+              href={item.url}
+              class:list={['header__link', { 'header__link--cta': item.is_cta }]}
+            >
+              {item.text}
+            </a>
+            {item.children && item.children.length > 0 && (
+              <ul class="header__submenu">
+                {item.children.map((child) => (
+                  <li class="header__submenu-item">
+                    <a href={child.url} class="header__submenu-link">
+                      {child.text}
+                    </a>
+                    {child.children && child.children.length > 0 && (
+                      <ul class="header__submenu-nested">
+                        {child.children.map((nested) => (
+                          <li>
+                            <a href={nested.url} class="header__submenu-link">
+                              {nested.text}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Mobile Hamburger -->
+    <button
+      class="header__hamburger"
+      id="mobile-menu-toggle"
+      aria-label="開啟選單"
+      aria-expanded="false"
+    >
+      <span class="header__hamburger-line"></span>
+      <span class="header__hamburger-line"></span>
+      <span class="header__hamburger-line"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="header__mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="header__mobile-overlay" id="mobile-overlay"></div>
+    <nav class="header__mobile-nav">
+      <button class="header__mobile-close" id="mobile-menu-close" aria-label="關閉選單">
+        <span>&times;</span>
+      </button>
+      <ul class="header__mobile-list">
+        {navigation.map((item) => (
+          <li class="header__mobile-item">
+            <a href={item.url} class="header__mobile-link">
+              {item.text}
+            </a>
+            {item.children && item.children.length > 0 && (
+              <ul class="header__mobile-submenu">
+                {item.children.map((child) => (
+                  <li>
+                    <a href={child.url} class="header__mobile-sublink">
+                      {child.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: transparent;
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+
+  .header--scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .header--hidden {
+    transform: translateY(-100%);
+  }
+
+  .header__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header__logo img {
+    height: 40px;
+    width: auto;
+  }
+
+  .header__nav {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .header__nav {
+      display: block;
+    }
+  }
+
+  .header__menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header__menu-item {
+    position: relative;
+  }
+
+  .header__link {
+    display: block;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #3F8696;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .header__link:hover {
+    color: #2D9B9B;
+  }
+
+  .header__link--cta {
+    background: #3F8696;
+    color: #fff;
+    border-radius: 24px;
+    padding: 10px 24px;
+  }
+
+  .header__link--cta:hover {
+    background: #2D9B9B;
+    color: #fff;
+  }
+
+  .header__submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
+    padding: 8px 0;
+    list-style: none;
+    margin: 0;
+  }
+
+  .header__menu-item:hover .header__submenu {
+    display: block;
+  }
+
+  .header__submenu-item {
+    position: relative;
+  }
+
+  .header__submenu-link {
+    display: block;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .header__submenu-link:hover {
+    background: #f5f5f5;
+    color: #3F8696;
+  }
+
+  .header__submenu-nested {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    min-width: 180px;
+    padding: 8px 0;
+    list-style: none;
+    margin: 0;
+  }
+
+  .header__submenu-item:hover .header__submenu-nested {
+    display: block;
+  }
+
+  /* Mobile */
+  .header__hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .header__hamburger {
+      display: none;
+    }
+  }
+
+  .header__hamburger-line {
+    width: 24px;
+    height: 2px;
+    background: #3F8696;
+    transition: all 0.3s ease;
+  }
+
+  .header__mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1001;
+  }
+
+  .header__mobile-menu.is-open {
+    display: block;
+  }
+
+  .header__mobile-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .header__mobile-nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80%;
+    max-width: 320px;
+    height: 100%;
+    background: #fff;
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  .header__mobile-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #333;
+    cursor: pointer;
+  }
+
+  .header__mobile-list {
+    list-style: none;
+    margin: 60px 0 0;
+    padding: 0;
+  }
+
+  .header__mobile-item {
+    border-bottom: 1px solid #eee;
+  }
+
+  .header__mobile-link {
+    display: block;
+    padding: 16px 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+  }
+
+  .header__mobile-submenu {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 16px 16px;
+  }
+
+  .header__mobile-sublink {
+    display: block;
+    padding: 8px 0;
+    font-size: 14px;
+    color: #666;
+    text-decoration: none;
+  }
+
+  @media (max-width: 1023px) {
+    .header {
+      height: 64px;
+    }
+
+    .header__logo img {
+      height: 32px;
+    }
+  }
+</style>
+
+<script>
+  // 滾動隱藏 Header
+  let lastScrollY = 0;
+  const header = document.getElementById('main-header');
+
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > 100) {
+      header?.classList.add('header--scrolled');
+      if (currentScrollY > lastScrollY) {
+        header?.classList.add('header--hidden');
+      } else {
+        header?.classList.remove('header--hidden');
+      }
+    } else {
+      header?.classList.remove('header--scrolled');
+      header?.classList.remove('header--hidden');
+    }
+
+    lastScrollY = currentScrollY;
+  });
+
+  // Mobile Menu Toggle
+  const menuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuClose = document.getElementById('mobile-menu-close');
+  const overlay = document.getElementById('mobile-overlay');
+
+  function openMenu() {
+    mobileMenu?.classList.add('is-open');
+    menuToggle?.setAttribute('aria-expanded', 'true');
+    mobileMenu?.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    mobileMenu?.classList.remove('is-open');
+    menuToggle?.setAttribute('aria-expanded', 'false');
+    mobileMenu?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  menuToggle?.addEventListener('click', openMenu);
+  menuClose?.addEventListener('click', closeMenu);
+  overlay?.addEventListener('click', closeMenu);
+</script>

@@ -1,0 +1,65 @@
+---
+import Layout from './Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import HeroSection from '../components/HeroSection.astro';
+import TextSection from '../components/TextSection.astro';
+import ImageSection from '../components/ImageSection.astro';
+import type { PageContent, LayoutSection } from '../utils/content';
+
+export interface Props {
+  page: PageContent;
+  showBreadcrumb?: boolean;
+}
+
+const { page, showBreadcrumb = false } = Astro.props;
+const { seo, layout } = page;
+---
+
+<Layout title={seo.title} description={seo.description} keywords={seo.keywords}>
+  <Header />
+
+  <main class="page-main">
+    <!-- Hero Section -->
+    {layout?.hero?.image && (
+      <HeroSection image={layout.hero.image} />
+    )}
+
+    <!-- Dynamic Sections -->
+    {layout?.sections && layout.sections.map((section: LayoutSection) => {
+      if (section.type === 'text' && section.content) {
+        return (
+          <TextSection
+            content={section.content}
+            title={section.title}
+            label={section.label}
+          />
+        );
+      }
+      if (section.type === 'image' && section.image_id) {
+        return (
+          <ImageSection image_id={section.image_id} />
+        );
+      }
+      return null;
+    })}
+
+    <!-- Slot for custom content -->
+    <slot />
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .page-main {
+    min-height: 100vh;
+    padding-top: 80px; /* Header height */
+  }
+
+  @media (max-width: 1023px) {
+    .page-main {
+      padding-top: 64px; /* Mobile header height */
+    }
+  }
+</style>
