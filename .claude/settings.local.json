@@ -26,7 +26,22 @@
       "Bash(git rev-parse:*)",
       "Bash(timeout 10 pnpm dev:*)",
       "Bash(do grep -o '\"\"\"\"type\"\"\"\": \"\"\"\"[^\"\"\"\"]*\"\"\"\"' \"$file\")",
-      "Bash(uniq:*)"
+      "Bash(uniq:*)",
+      "Bash(npm update:*)",
+      "Bash(claude --version:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "Bash(agent-browser install:*)",
+      "Bash(git commit:*)",
+      "Bash(agent-browser open:*)",
+      "Bash(agent-browser snapshot:*)",
+      "Bash(agent-browser click:*)",
+      "Bash(agent-browser get:*)",
+      "Bash(agent-browser close:*)",
+      "Bash(agent-browser screenshot:*)",
+      "Bash(agent-browser scroll:*)",
+      "Bash(agent-browser press:*)",
+      "Bash(git add:*)"
     ]
   }
 }
