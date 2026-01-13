@@ -23,13 +23,6 @@ layout:
       desktop: hero_services
       mobile: hero_services_mobile
       alt: 服務項目 - 鎰威科技
-  anchors:
-    - id: software_development
-      label: 軟體開發服務
-    - id: security_services
-      label: 資訊安全服務
-    - id: system_planning
-      label: 系統規劃服務
   sections:
     # 軟體開發服務
     - type: anchor
@@ -57,6 +50,12 @@ layout:
         無縫接軌的專業資安策略，整合技術 & 服務，提供最佳防護。
     - type: image
       image_id: services_flow
+    # CTA 按鈕 - 連結至資安整合
+    - type: cta
+      button_text: 連結至「資安整合」
+      button_link: /solutions/#security_assessment
+      variant: secondary
+      align: center
     # 系統規劃服務
     - type: anchor
       id: system_planning
@@ -79,7 +78,7 @@ layout:
           image_id: card_proxmox
           title: Proxmox VE
           description: Proxmox VE 提供高性價比的開源虛擬化解決方案，支持 KVM 和 LXC 技術，具備集中化管理工具與多種存儲選項，滿足不同業務需求。
-          link: /proxmox-ve/
+          link: /proxmox_ve/
           link_text: 了解更多
 aio:
   webpage:

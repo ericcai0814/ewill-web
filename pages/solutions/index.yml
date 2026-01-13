@@ -29,15 +29,6 @@ layout:
       desktop: bn1209_scaled
       mobile: bn_solutions_m
       alt: 資訊安全解決方案 - 鎰威科技
-  anchors:
-    - id: security_assessment
-      label: 資安評估
-    - id: security_testing
-      label: 資安檢測
-    - id: security_defense
-      label: 資安防禦
-    - id: security_enhancement
-      label: 資安強化
   sections:
     # 服務介紹
     - type: text
