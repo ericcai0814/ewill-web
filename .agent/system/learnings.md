@@ -40,7 +40,13 @@
 - 不要使用絕對路徑引用圖片
 - 不要在 MD 檔案中放技術參數
 
-### 4. Git Commit 規範
+### 4. 爬蟲與 sync-content 整合
+- 爬蟲可能使用 `./images/` 路徑，但實際圖片存於 `assets/`
+- `sync-content.ts` 的 `getImageId` 需處理 `images/` 和 `assets/` 兩種前綴
+- 圖片 `.yml` 描述檔應包含語義化 `id`（如 `event_20251021_photo`），而非檔名格式
+- 跨頁面引用圖片時，需將圖片複製到對應頁面的 `assets/` 目錄
+
+### 5. Git Commit 規範
 - **顆粒度**：一個 commit 只做一件事，按功能邊界拆分
 - **Scope 分離**：不同 scope 的變更應分開 commit
   - `docs` - 文件變更

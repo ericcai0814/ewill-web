@@ -8,6 +8,31 @@
 
 ## [2026-01-13]
 
+### 統一 image_id 格式，修正爬蟲路徑處理
+
+修復爬蟲生成的 `images_xxx` 格式 image_id 與 `.yml` 描述檔中定義的語義化 id 不匹配問題。
+
+**問題根因**：
+- 爬蟲生成的 Markdown 使用 `./images/xxx.jpg` 路徑
+- `sync-content.ts` 的 `getImageId` 函數只處理 `assets/` 前綴
+- 導致找不到 `.yml` 描述檔，使用 fallback 產生 `images_xxx` 格式 id
+
+**修改檔案**：
+- `.claude/skills/content-build/scripts/sync-content.ts`：新增 `images/` 前綴處理
+- `pages/header/assets/logo.png.yml`：補全 id 和 alt 欄位
+- `pages/cms_568/index.md`：修正錯誤的圖片引用
+- 14 個 `pages/*/index.yml`：移除 `images_` 前綴，更新為語義化 id
+
+**新增圖片資源**：
+- `pages/contact/assets/`：複製 5 個共用圖片 + .yml
+- `pages/event_information/assets/`：複製 2 個共用圖片 + .yml
+
+**驗證結果**：
+- 所有 37 個頁面 sync-content.ts 同步成功，無警告
+- 無 `images_` 前綴的錯誤 image_id
+
+---
+
 ### Astro 元件設計規格與任務追蹤
 
 建立 Astro 元件開發的設計規格與進度追蹤文件。
