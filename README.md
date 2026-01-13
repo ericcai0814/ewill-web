@@ -136,6 +136,7 @@ npx tsx .claude/skills/content-build/scripts/build.ts
 npx tsx .claude/skills/content-build/scripts/build.ts --target=static  # → static-app/
 npx tsx .claude/skills/content-build/scripts/build.ts --target=next    # → next-app/public/
 npx tsx .claude/skills/content-build/scripts/build.ts --target=nuxt    # → nuxt-app/public/
+npx tsx .claude/skills/content-build/scripts/build.ts --target=astro   # → astro-app/public/
 ```
 
 建置流程：

@@ -8,6 +8,55 @@
 
 ## [2026-01-13]
 
+### Astro 元件設計規格與任務追蹤
+
+建立 Astro 元件開發的設計規格與進度追蹤文件。
+
+**新增檔案**：
+- `astro-app/src/COMPONENTS.md`：元件設計規格（Props、依賴、品牌色系）
+- `.agent/tasks/astro-component-implementation.md`：實作進度追蹤
+
+**文件職責分離**：
+| 文件 | 職責 |
+|------|------|
+| COMPONENTS.md | 技術設計規格（給開發者） |
+| task file | 進度追蹤（給 AI Agent） |
+
+---
+
+### content-build 整合 Astro SSG
+
+實現 content-build 與 Astro 的完整整合，建立兩階段建置流程。
+
+**修改檔案**：
+- `.claude/skills/content-build/scripts/config.ts`：新增 astro target
+- `astro-app/src/utils/content.ts`：改為讀取 content-build JSON 輸出
+- `astro-app/src/pages/index.astro`：使用新 API 與 RWD picture 標籤
+- `astro-app/.gitignore`：排除 content-build 輸出
+- `astro-app/README.md`：完整建置流程文件
+
+**content-build astro 支援**：
+```typescript
+// config.ts 新增
+export type OutputTarget = 'next' | 'nuxt' | 'astro' | 'static'
+
+// 自動偵測 astro.config.mjs/ts
+// 輸出到 astro-app/public/
+```
+
+**建置流程**：
+```
+npm run build          # content-build → astro-app/public/
+cd astro-app && pnpm build  # Astro SSG → dist/
+```
+
+**產出**：
+- `public/assets/` — 正規化圖片（ASCII 檔名 + hash + RWD 變體）
+- `public/asset-manifest.json` — 圖片清單
+- `public/content/pages/*.json` — 編譯後頁面（22 頁）
+
+---
+
 ### 新增 AI 執行計畫文件系統
 
 建立跨對話可執行的多階段計畫，確保 AI 協作者遵循一致的工作流程。

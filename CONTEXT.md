@@ -7,7 +7,7 @@
 - **最後更新時間**: 2026-01-13
 - **目前階段**: Astro 專案初始化完成，可從 pages/ 讀取內容並建置靜態網站
 - **專案類型**: 網站內容庫 (Content Repository) + Astro SSG 靜態網站
-- **前端技術**: Astro 4.x + TypeScript + Tailwind CSS
+- **前端技術**: Astro 5.x + TypeScript + Tailwind CSS
 - **頁面數量**: 20 個頁面目錄 + 2 個共用元件 (Header, Footer)
 - **圖片覆蓋率**: 231 張圖片，全部 100% 有 `.yml` 描述檔
 - **圖片結構**: 所有頁面圖片統一存放於 `pages/{page}/assets/`
@@ -72,6 +72,7 @@ ewill-web/
 npx tsx .claude/skills/content-build/scripts/build.ts --target=static  # → static-app/
 npx tsx .claude/skills/content-build/scripts/build.ts --target=next    # → next-app/public/
 npx tsx .claude/skills/content-build/scripts/build.ts --target=nuxt    # → nuxt-app/public/
+npx tsx .claude/skills/content-build/scripts/build.ts --target=astro   # → astro-app/public/
 ```
 
 ### Commands（明確呼叫）
