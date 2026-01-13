@@ -1,14 +1,33 @@
 ---
+/**
+ * BaseLayout
+ * HTML 文檔基礎結構，整合 SEO 元件
+ */
+import SEO, { type JsonLdItem } from '../components/SEO.astro';
 import '../styles/global.css';
 
 export interface Props {
+  // SEO 相關
   title: string;
   description?: string;
   keywords?: string[];
+  canonical?: string;
+  ogType?: 'website' | 'article' | 'product';
+  ogImage?: string;
+  jsonLd?: JsonLdItem[];
+  noindex?: boolean;
 }
 
-const { title, description, keywords } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const {
+  title,
+  description,
+  keywords,
+  canonical,
+  ogType,
+  ogImage,
+  jsonLd,
+  noindex,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -17,25 +36,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={canonicalURL} />
 
-    <!-- SEO Meta Tags -->
-    <title>{title}</title>
-    {description && <meta name="description" content={description} />}
-    {keywords && <meta name="keywords" content={keywords.join(', ')} />}
-
-    <!-- Open Graph -->
-    <meta property="og:title" content={title} />
-    {description && <meta property="og:description" content={description} />}
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:site_name" content="鎰威科技" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="zh_TW" />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    {description && <meta name="twitter:description" content={description} />}
+    <!-- SEO Meta Tags & JSON-LD -->
+    <SEO
+      title={title}
+      description={description}
+      keywords={keywords}
+      canonical={canonical}
+      ogType={ogType}
+      ogImage={ogImage}
+      jsonLd={jsonLd}
+      noindex={noindex}
+    />
 
     <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

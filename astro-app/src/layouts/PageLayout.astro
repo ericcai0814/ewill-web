@@ -16,7 +16,8 @@ import FeatureShowcaseSection from '../components/FeatureShowcaseSection.astro';
 import TimelineSection from '../components/TimelineSection.astro';
 import GallerySection from '../components/GallerySection.astro';
 import { getAssetById } from '../utils/content';
-import type { PageContent, LayoutSection } from '../utils/content';
+import type { PageContent, LayoutSection, AioData } from '../utils/content';
+import type { JsonLdItem } from '../components/SEO.astro';
 
 export interface Props {
   page: PageContent;
@@ -24,7 +25,7 @@ export interface Props {
 }
 
 const { page, showBreadcrumb = true } = Astro.props;
-const { seo, layout } = page;
+const { seo, layout, aio } = page;
 
 // 首頁不顯示 Breadcrumb
 const shouldShowBreadcrumb = showBreadcrumb && page.slug !== 'index';
@@ -41,9 +42,53 @@ if (layout?.popup?.image_id) {
     };
   }
 }
+
+// 建構 JSON-LD 資料
+function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
+  if (!aioData) return [];
+
+  const items: JsonLdItem[] = [];
+
+  if (aioData.organization) {
+    items.push({
+      type: 'Organization',
+      data: aioData.organization
+    });
+  }
+
+  if (aioData.website) {
+    items.push({
+      type: 'WebSite',
+      data: aioData.website
+    });
+  }
+
+  if (aioData.webpage) {
+    items.push({
+      type: 'WebPage',
+      data: aioData.webpage
+    });
+  }
+
+  if (aioData.faq && aioData.faq.length > 0) {
+    items.push({
+      type: 'FAQPage',
+      data: { items: aioData.faq }
+    });
+  }
+
+  return items;
+}
+
+const jsonLdItems = buildJsonLd(aio);
 ---
 
-<Layout title={seo.title} description={seo.description} keywords={seo.keywords}>
+<Layout
+  title={seo.title}
+  description={seo.description}
+  keywords={seo.keywords}
+  jsonLd={jsonLdItems}
+>
   <Header />
 
   <main class="page-main">

@@ -1,0 +1,211 @@
+---
+/**
+ * SEO Component
+ * 完整的 SEO meta tags 和 JSON-LD 結構化資料
+ */
+
+export interface JsonLdItem {
+  type: 'Organization' | 'WebSite' | 'WebPage' | 'Article' | 'Product' | 'FAQPage' | 'BreadcrumbList';
+  data: Record<string, unknown>;
+}
+
+export interface Props {
+  // 基礎 SEO
+  title: string;
+  description?: string;
+  keywords?: string[];
+  canonical?: string;
+
+  // Open Graph
+  ogType?: 'website' | 'article' | 'product';
+  ogImage?: string;
+  ogImageAlt?: string;
+
+  // JSON-LD 結構化資料
+  jsonLd?: JsonLdItem[];
+
+  // 控制
+  noindex?: boolean;
+  nofollow?: boolean;
+}
+
+const {
+  title,
+  description,
+  keywords,
+  canonical,
+  ogType = 'website',
+  ogImage,
+  ogImageAlt,
+  jsonLd = [],
+  noindex = false,
+  nofollow = false,
+} = Astro.props;
+
+const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
+const siteName = '鎰威科技';
+
+// 產生 robots meta content
+const robotsContent = [
+  noindex ? 'noindex' : 'index',
+  nofollow ? 'nofollow' : 'follow',
+].join(', ');
+
+// 轉換 JSON-LD 資料為 schema.org 格式
+function convertToJsonLd(item: JsonLdItem): object {
+  const { type, data } = item;
+
+  switch (type) {
+    case 'Organization':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: data.name,
+        alternateName: data.alternateName,
+        url: data.url,
+        logo: data.logo,
+        description: data.description,
+        foundingDate: data.foundingDate,
+        address: data.address ? {
+          '@type': 'PostalAddress',
+          addressLocality: (data.address as Record<string, unknown>).addressLocality,
+          addressRegion: (data.address as Record<string, unknown>).addressRegion,
+          addressCountry: (data.address as Record<string, unknown>).addressCountry,
+        } : undefined,
+        contactPoint: data.contactPoint ? {
+          '@type': 'ContactPoint',
+          contactType: (data.contactPoint as Record<string, unknown>).contactType,
+          availableLanguage: (data.contactPoint as Record<string, unknown>).availableLanguage,
+        } : undefined,
+        sameAs: data.sameAs,
+      };
+
+    case 'WebSite':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: data.name,
+        url: data.url,
+        potentialAction: data.potentialAction ? {
+          '@type': 'SearchAction',
+          target: {
+            '@type': 'EntryPoint',
+            urlTemplate: (data.potentialAction as Record<string, unknown>).target,
+          },
+          'query-input': (data.potentialAction as Record<string, unknown>).query_input,
+        } : undefined,
+      };
+
+    case 'WebPage':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: data.name,
+        description: data.description,
+        primaryImageOfPage: data.primaryImageOfPage,
+        url: canonicalURL,
+      };
+
+    case 'Article':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: data.headline || title,
+        description: data.description || description,
+        image: data.image || ogImage,
+        author: data.author ? {
+          '@type': 'Organization',
+          name: (data.author as Record<string, unknown>).name || siteName,
+        } : { '@type': 'Organization', name: siteName },
+        publisher: {
+          '@type': 'Organization',
+          name: siteName,
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://www.ewill.com.tw/assets/logo.png',
+          },
+        },
+        datePublished: data.datePublished,
+        dateModified: data.dateModified,
+      };
+
+    case 'Product':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: data.name || title,
+        description: data.description || description,
+        image: data.image || ogImage,
+        brand: {
+          '@type': 'Brand',
+          name: data.brand || siteName,
+        },
+        offers: data.offers,
+      };
+
+    case 'FAQPage':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: (data.items as Array<{ question: string; answer: string }>)?.map(faq => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.answer,
+          },
+        })),
+      };
+
+    case 'BreadcrumbList':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: (data.items as Array<{ name: string; url: string; position: number }>)?.map(item => ({
+          '@type': 'ListItem',
+          position: item.position,
+          name: item.name,
+          item: item.url,
+        })),
+      };
+
+    default:
+      return {
+        '@context': 'https://schema.org',
+        ...data,
+      };
+  }
+}
+
+// 產生所有 JSON-LD scripts
+const jsonLdScripts = jsonLd.map(item => convertToJsonLd(item));
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+{description && <meta name="description" content={description} />}
+{keywords && keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
+<meta name="robots" content={robotsContent} />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+{description && <meta property="og:description" content={description} />}
+{ogImage && <meta property="og:image" content={ogImage} />}
+{ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content="zh_TW" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={title} />
+{description && <meta name="twitter:description" content={description} />}
+{ogImage && <meta name="twitter:image" content={ogImage} />}
+
+<!-- JSON-LD Structured Data -->
+{jsonLdScripts.map(script => (
+  <script type="application/ld+json" set:html={JSON.stringify(script, null, 0)} />
+))}

@@ -103,6 +103,62 @@ export interface LayoutSection {
 }
 
 /**
+ * AIO (All-In-One) JSON-LD 結構化資料型別
+ */
+export interface AioData {
+  organization?: {
+    type: string;
+    name: string;
+    alternateName?: string;
+    url: string;
+    logo?: string;
+    description?: string;
+    foundingDate?: string;
+    address?: {
+      type: string;
+      addressLocality: string;
+      addressRegion: string;
+      addressCountry: string;
+    };
+    contactPoint?: {
+      type: string;
+      contactType: string;
+      availableLanguage: string[];
+    };
+    sameAs?: string[];
+  };
+  website?: {
+    type: string;
+    name: string;
+    url: string;
+    potentialAction?: {
+      type: string;
+      target: string;
+      query_input: string;
+    };
+  };
+  webpage?: {
+    type: string;
+    name: string;
+    description?: string;
+    primaryImageOfPage?: string;
+    breadcrumb?: {
+      type: string;
+      itemListElement: {
+        type: string;
+        position: number;
+        name: string;
+        item: string;
+      }[];
+    };
+  };
+  faq?: {
+    question: string;
+    answer: string;
+  }[];
+}
+
+/**
  * 頁面內容型別（來自 content/pages/*.json）
  */
 export interface PageContent {
@@ -128,6 +184,7 @@ export interface PageContent {
       trigger: string;
     };
   };
+  aio?: AioData;
   content: string;
   generated_at: string;
 }

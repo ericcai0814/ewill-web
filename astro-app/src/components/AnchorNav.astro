@@ -1,0 +1,316 @@
+---
+/**
+ * AnchorNav Component
+ * 錨點導航元件，用於 services, solutions 等錨點頁面
+ * 支援滾動自動高亮、平滑滾動、響應式設計
+ */
+
+export interface AnchorItem {
+  id: string;
+  label: string;
+  icon?: string;
+}
+
+export interface Props {
+  items: AnchorItem[];
+  position?: 'sidebar' | 'top';
+  sticky?: boolean;
+  scrollOffset?: number;
+}
+
+const {
+  items,
+  position = 'sidebar',
+  sticky = true,
+  scrollOffset = 100,
+} = Astro.props;
+
+const navId = `anchor-nav-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<nav
+  id={navId}
+  class:list={[
+    'anchor-nav',
+    `anchor-nav--${position}`,
+    { 'anchor-nav--sticky': sticky }
+  ]}
+  aria-label="頁面導航"
+  data-scroll-offset={scrollOffset}
+>
+  <ul class="anchor-nav__list" role="list">
+    {items.map((item, index) => (
+      <li class="anchor-nav__item">
+        <a
+          href={`#${item.id}`}
+          class="anchor-nav__link"
+          data-anchor-id={item.id}
+          aria-current={index === 0 ? 'true' : undefined}
+        >
+          {item.icon && (
+            <span class="anchor-nav__icon" aria-hidden="true">
+              {item.icon}
+            </span>
+          )}
+          <span class="anchor-nav__text">{item.label}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  /* 基礎樣式 */
+  .anchor-nav {
+    --nav-bg: #ffffff;
+    --nav-text: #4A4A4A;
+    --nav-text-hover: #2D9B9B;
+    --nav-active-bg: rgba(45, 155, 155, 0.05);
+    --nav-active-border: #2D9B9B;
+    --nav-border: #E5E5E5;
+  }
+
+  .anchor-nav__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .anchor-nav__link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+  }
+
+  .anchor-nav__link:hover {
+    color: var(--nav-text-hover);
+  }
+
+  .anchor-nav__link[aria-current="true"],
+  .anchor-nav__link.is-active {
+    color: var(--nav-active-border);
+    border-left-color: var(--nav-active-border);
+    background: var(--nav-active-bg);
+  }
+
+  .anchor-nav__icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .anchor-nav__text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Sidebar 模式 (桌面版) */
+  .anchor-nav--sidebar {
+    width: 200px;
+    background: var(--nav-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .anchor-nav--sidebar.anchor-nav--sticky {
+    position: sticky;
+    top: 100px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+  }
+
+  /* Top 模式 (手機版或指定) */
+  .anchor-nav--top {
+    width: 100%;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--nav-border);
+  }
+
+  .anchor-nav--top .anchor-nav__list {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .anchor-nav--top .anchor-nav__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .anchor-nav--top .anchor-nav__item {
+    flex-shrink: 0;
+  }
+
+  .anchor-nav--top .anchor-nav__link {
+    border-left: none;
+    border-bottom: 3px solid transparent;
+    padding: 12px 20px;
+  }
+
+  .anchor-nav--top .anchor-nav__link[aria-current="true"],
+  .anchor-nav--top .anchor-nav__link.is-active {
+    border-left-color: transparent;
+    border-bottom-color: var(--nav-active-border);
+  }
+
+  .anchor-nav--top.anchor-nav--sticky {
+    position: sticky;
+    top: 64px;
+    z-index: 10;
+  }
+
+  /* 響應式：桌面版預設 sidebar，手機版自動變 top */
+  @media (max-width: 1023px) {
+    .anchor-nav--sidebar {
+      width: 100%;
+      position: sticky;
+      top: 64px;
+      z-index: 10;
+      border-radius: 0;
+      box-shadow: none;
+      border-bottom: 1px solid var(--nav-border);
+    }
+
+    .anchor-nav--sidebar .anchor-nav__list {
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .anchor-nav--sidebar .anchor-nav__list::-webkit-scrollbar {
+      display: none;
+    }
+
+    .anchor-nav--sidebar .anchor-nav__item {
+      flex-shrink: 0;
+    }
+
+    .anchor-nav--sidebar .anchor-nav__link {
+      border-left: none;
+      border-bottom: 3px solid transparent;
+      padding: 12px 16px;
+    }
+
+    .anchor-nav--sidebar .anchor-nav__link[aria-current="true"],
+    .anchor-nav--sidebar .anchor-nav__link.is-active {
+      border-left-color: transparent;
+      border-bottom-color: var(--nav-active-border);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .anchor-nav--top.anchor-nav--sticky {
+      top: 80px;
+    }
+  }
+</style>
+
+<script define:vars={{ navId, scrollOffset }}>
+  // 錨點導航互動邏輯
+  document.addEventListener('DOMContentLoaded', () => {
+    const nav = document.getElementById(navId);
+    if (!nav) return;
+
+    const links = nav.querySelectorAll('.anchor-nav__link');
+    const sections = [];
+    const offset = parseInt(nav.dataset.scrollOffset || '100', 10);
+
+    // 收集所有對應的 section
+    links.forEach(link => {
+      const id = link.dataset.anchorId;
+      if (id) {
+        const section = document.getElementById(id);
+        if (section) {
+          sections.push({ id, element: section, link });
+        }
+      }
+    });
+
+    if (sections.length === 0) return;
+
+    // 平滑滾動
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = link.dataset.anchorId;
+        const section = document.getElementById(id);
+        if (section) {
+          const top = section.offsetTop - offset;
+          window.scrollTo({
+            top,
+            behavior: 'smooth'
+          });
+          // 更新 URL hash
+          history.pushState(null, '', `#${id}`);
+        }
+      });
+    });
+
+    // 使用 IntersectionObserver 監聽區塊可見性
+    const observerOptions = {
+      root: null,
+      rootMargin: `-${offset}px 0px -50% 0px`,
+      threshold: 0
+    };
+
+    let currentActive = null;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const sectionData = sections.find(s => s.element === entry.target);
+          if (sectionData && currentActive !== sectionData.link) {
+            // 移除舊的 active
+            links.forEach(l => {
+              l.classList.remove('is-active');
+              l.removeAttribute('aria-current');
+            });
+            // 設定新的 active
+            sectionData.link.classList.add('is-active');
+            sectionData.link.setAttribute('aria-current', 'true');
+            currentActive = sectionData.link;
+
+            // 確保 active 項目可見（水平捲動）
+            if (nav.classList.contains('anchor-nav--top') ||
+                window.innerWidth < 1024) {
+              sectionData.link.scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+                inline: 'center'
+              });
+            }
+          }
+        }
+      });
+    }, observerOptions);
+
+    // 開始觀察所有 section
+    sections.forEach(({ element }) => {
+      observer.observe(element);
+    });
+
+    // 初始檢查 URL hash
+    if (window.location.hash) {
+      const id = window.location.hash.slice(1);
+      const section = document.getElementById(id);
+      if (section) {
+        setTimeout(() => {
+          const top = section.offsetTop - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  });
+</script>
