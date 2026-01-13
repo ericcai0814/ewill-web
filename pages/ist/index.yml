@@ -89,85 +89,55 @@ layout:
     image:
       id: bn_ist_1209_scaled
   sections:
-    # 產品介紹
-    - type: product_intro
-      label: 端點安全管理
-      title: 三面向落實端點安全
-      description: >-
-        IST 端點安全管理系統，提供 14 項功能模組，協助企業管控內部資安風險。
-        透過即時警報、操作紀錄、DLP 資料外洩防護與軟體控管，全面守護企業端點安全與機敏資料。
-      align: center
+    - type: image
+      image_id: bn_ist_1209_scaled
+    - type: image
+      image_id: bn_ist_m_fix
+    - type: text
+      content: |-
+        #### 端點安全管理
 
-    # 三面向功能展示
-    - type: feature_showcase
-      title: 端點安全三大面向
-      layout: alternating
-      features:
-        - id: feature_1
-          image_id: ist_1
-          title: 行為監控
-          description: 完整記錄使用者應用程式、網頁瀏覽活動，即時掌控風險。
+        ### 三面向落實端點安全
+      title: IST
+    - type: image
+      image_id: ist_1
+    - type: image
+      image_id: ist_p1_1
+    - type: image
+      image_id: ist_p1_2
+    - type: image
+      image_id: ist_p1_3
+    - type: image
+      image_id: ist_p1_4
+    - type: text
+      content: |-
+        ### IST 系統功能
 
-    # 功能模組圖庫
-    - type: gallery
-      title: IST 系統功能
-      description: 端點安全系統主要有以下五大功能，透過策略設定積極預防、操作歷程完整記錄、即時警報掌控風險、統計分析準確稽核等功能機制，全面性管控端點安全。
-      columns: 4
-      gap: medium
-      lightbox: true
-      images:
-        - id: p1_1
-          image_id: ist_p1_1
-        - id: p1_2
-          image_id: ist_p1_2
-        - id: p1_3
-          image_id: ist_p1_3
-        - id: p1_4
-          image_id: ist_p1_4
+        端點安全系統主要有以下五大功能，透過策略設定積極預防、操作歷程完整記錄、即時警報掌控風險、統計分析準確稽核等功能機制，全面性管控端點安全。
+    - type: image
+      image_id: ist_2
+    - type: image
+      image_id: ist_p2
+    - type: text
+      content: |-
+        ### IST 模組一覽
 
-    # 模組架構展示
-    - type: feature_showcase
-      title: IST 系統架構
-      layout: image-left
-      features:
-        - id: feature_2
-          image_id: ist_2
-          title: 全面性管控機制
-          description: 策略設定積極預防、操作歷程完整記錄、即時警報掌控風險、統計分析準確稽核。
-
-    # 14 項模組圖庫
-    - type: gallery
-      title: IST 模組一覽
-      description: 14 項全功能端點安全模組，可依企業需求彈性搭配。
-      columns: 3
-      gap: medium
-      lightbox: true
-      images:
-        - id: p3_1
-          image_id: ist_p3_1
-        - id: p3_2
-          image_id: ist_p3_2_fix
-        - id: p3_3
-          image_id: ist_p3_3
-        - id: p3_4
-          image_id: ist_p3_4
-        - id: p3_5
-          image_id: ist_p3_5
-
-    # 系統優勢
-    - type: feature_showcase
-      title: IST 端點安全系統優勢
-      layout: image-right
-      features:
-        - id: feature_3
-          image_id: ist_4
-          title: 全方位端點防護
-          description: 操作紀錄、螢幕側錄、USB 控管、列印控管、軟體控管、網站控管、檔案加密、資產管理、遠端控制、異常警報等完整功能。
-
-    # 行動呼籲
-    - type: cta
-      title: 立即體驗 IST 端點安全管理
-      description: 讓專業顧問協助您評估端點安全需求
-      button_text: 聯繫我們
-      button_link: /contact/
-      variant: primary
+        14項全功能端點安全模組 可依企業需求彈性搭配。
+    - type: image
+      image_id: ist_3
+    - type: image
+      image_id: ist_p3_1
+    - type: image
+      image_id: ist_p3_2_fix
+    - type: image
+      image_id: ist_p3_3
+    - type: image
+      image_id: ist_p3_4
+    - type: image
+      image_id: ist_p3_5
+    - type: text
+      content: "### IST 端點安全系統優勢"
+    - type: image
+      image_id: ist_4
+    - type: image
+      image_id: ist_p4_fix_scaled

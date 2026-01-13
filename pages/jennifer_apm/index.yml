@@ -18,50 +18,57 @@ layout:
     image:
       id: hero_jennifer
   sections:
-    # 產品介紹
-    - type: product_intro
-      label: 應用效能監控
-      title: 強大的實時應用性能管理器
-      description: >-
-        Jennifer APM 提供即時的應用程式效能監控與分析，協助 IT 團隊快速定位問題根因，
-        確保系統穩定運行並提升使用者體驗。
-      align: center
+    - type: text
+      content: |-
+        ---
+        crawled_at: '2026-01-13T11:57:31.970475+08:00'
+        source_url: https://www.ewill.com.tw/jennifer_apm/
+        ---
 
-    # 功能展示 - 交錯圖文
-    - type: feature_showcase
-      layout: alternating
-      features:
-        - id: feature_1
-          image_id: feature_jennifer_bd_2
-          title: 即時事件警報
-          description: >-
-            JENNIFER 會擷取異常應用程式交易事件，例如回應時間錯誤的交易、交易錯誤/異常和錯誤的 SQL 語句等，
-            並即時發出警報。
-        - id: feature_2
-          image_id: feature_jennifer_bd_3
-          title: 即時故障控制
-          description: JENNIFER 的即時故障控制功能保證了網路系統在突發災難情況下的穩定運作。
+        # Jennifer APM - 鎰威科技有限公司
+    - type: image
+      image_id: hero_jennifer
+    - type: image
+      image_id: hero_jennifer_mobile
+    - type: text
+      content: |-
+        #### 應用效能監控
 
-    # 支援平台圖庫
-    - type: gallery
-      title: 支援的平台
-      columns: 4
-      gap: medium
-      lightbox: false
-      images:
-        - id: platform_1
-          image_id: partner_jennifer_1
-        - id: platform_2
-          image_id: partner_jennifer_2
-        - id: platform_3
-          image_id: partner_jennifer_3
-        - id: platform_4
-          image_id: partner_jennifer_4
+        ### 強大的實時應用性能管理器​
+      title: Jennifer APM
+    - type: image
+      image_id: product_jennifer_main
+    - type: text
+      content: |-
+        ### 即時事件警報​
 
-    # 行動呼籲
-    - type: cta
-      title: 立即體驗 Jennifer APM 應用效能監控
-      description: 讓專業顧問協助您評估應用程式效能監控需求
-      button_text: 聯繫我們
-      button_link: /contact/
-      variant: primary
+        JENNIFER 會擷取異常應用程式交易事件，例如回應時間錯誤的交易、交易錯誤/異常和錯誤的 SQL 語句等，並即時發出警報。
+    - type: image
+      image_id: feature_jennifer_bd_2
+    - type: image
+      image_id: feature_jennifer_p2_1
+    - type: image
+      image_id: feature_jennifer_p2_2
+    - type: text
+      content: |-
+        ### 即時故障控制
+
+        JENNIFER 的即時故障控制功能保證了網路系統在突發災難情況下的穩定運作。
+    - type: image
+      image_id: feature_jennifer_bd_3
+    - type: image
+      image_id: feature_jennifer_p3_1
+    - type: image
+      image_id: feature_jennifer_p3_2
+    - type: text
+      content: "### 支援的平台"
+    - type: image
+      image_id: feature_jennifer_bd_4
+    - type: image
+      image_id: partner_jennifer_1
+    - type: image
+      image_id: partner_jennifer_2
+    - type: image
+      image_id: partner_jennifer_3
+    - type: image
+      image_id: partner_jennifer_4

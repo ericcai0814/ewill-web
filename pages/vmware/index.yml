@@ -94,54 +94,51 @@ layout:
     image:
       id: bn_vmware_1209_scaled
   sections:
-    # 產品介紹
-    - type: product_intro
-      label: 虛擬化解決方案
-      title: VMware vSphere 主機虛擬化
-      description: >-
-        VMware vSphere 是領先的雲端作業系統，通過虛擬化簡化運算，提升資源安全性和靈活性，降低成本。
-        支持任意作業系統和硬體，靈活整合內外部資源。將硬體使用率從5-15%提升至80%，
-        並在單一硬體上虛擬化10台以上伺服器，有效降低硬體投資成本。
-      align: center
+    - type: image
+      image_id: bn_vmware_1209_scaled
+    - type: image
+      image_id: bn_vmware_m_fix
+    - type: text
+      content: |-
+        #### 虛擬化解決方案
 
-    # 功能展示 - 交錯圖文
-    - type: feature_showcase
-      layout: alternating
-      features:
-        - id: feature_1
-          image_id: vmware_1_1
-          title: VMware Data Center 基礎架構
-          description: 完整的軟體定義資料中心架構，整合運算、儲存、網路虛擬化。
-        - id: feature_2
-          image_id: vmware_2
-          title: 簡化管理與維運
-          description: >-
-            VMware 可從單一控制點管理整個虛擬基礎設施，縮短50-70%佈建時間，
-            集中管理所有虛擬機，並即時監控虛擬機與主機效能。
-        - id: feature_3
-          image_id: vmware_3_1
-          title: 提升 IT 服務的可用性與可靠性
-          description: >-
-            搭配 VMware vCenter、vMotion 和 DRS，可實現虛擬機即時移轉，大幅提高IT服務的可用性。
-            利用自動負載平衡功能，優化IT資源配置，減少重覆設定和維護工作。
+        ### VMware vSphere 主機虛擬化
 
-    # 特色網格
-    - type: feature_grid
-      title: 核心功能
-      columns: 2
-      variant: minimal
-      features:
-        - id: func_1
-          title: VMware vMotion
-          description: 線上動態遷移功能，實現虛擬機不停機遷移。
-        - id: func_2
-          title: VMware DRS
-          description: 自動負載平衡調整功能，優化資源配置。
+        VMware vSphere 是領先的雲端作業系統，通過虛擬化簡化運算，提升資源安全性和靈活性，降低成本。支持任意作業系統和硬體，靈活整合內外部資源。
 
-    # 行動呼籲
-    - type: cta
-      title: 立即了解 VMware 虛擬化解決方案
-      description: 讓專業顧問協助您評估伺服器虛擬化與私有雲建置需求
-      button_text: 聯繫我們
-      button_link: /contact/
-      variant: primary
+        ### 提升伺服器使用率，降低成本
+
+        將硬體使用率從5-15%提升至80%，並在單一硬體上虛擬化10台以上伺服器，有效降低硬體投資成本。
+      title: VMware
+    - type: image
+      image_id: vmware_1_1
+    - type: text
+      content: VMware Data Center 基礎架構
+    - type: image
+      image_id: vmware_1_2
+    - type: text
+      content: |-
+        VMware 主機虛擬化模組階層架構
+
+        ### 簡化管理與維運
+
+        VMware 可從單一控制點管理整個虛擬基礎設施，縮短50-70%佈建時間，集中管理所有虛擬機，並即時監控虛擬機與主機效能。
+    - type: image
+      image_id: vmware_2
+    - type: text
+      content: |-
+        ### 提升 IT 服務的可用性與可靠性
+
+        搭配 VMware vCenter、vMotion 和 DRS，可實現虛擬機即時移轉，大幅提高IT服務的可用性。利用自動負載平衡功能，優化IT資源配置，減少重覆設定和維護工作。
+    - type: image
+      image_id: vmware_3_1
+    - type: image
+      image_id: vmware_p3_1_fix
+    - type: text
+      content: VMware vMotion (線上動態遷移功能)
+    - type: image
+      image_id: vmware_3_2
+    - type: image
+      image_id: vmware_p3_2_fix
+    - type: text
+      content: VMware DRS (自動負載平衡調整功能)
