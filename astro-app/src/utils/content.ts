@@ -1,22 +1,56 @@
 import fs from 'fs/promises';
 import path from 'path';
-import yaml from 'js-yaml';
-import matter from 'gray-matter';
 
 /**
- * 頁面內容型別定義
+ * 圖片資源型別（來自 asset-manifest.json）
  */
-export interface PageContent {
-  slug: string;
-  markdown: string;
-  config: PageConfig;
-  html?: string;
+export interface AssetEntry {
+  id: string;
+  original_path: string;
+  normalized_path: string;
+  variants: {
+    desktop: string;
+    mobile: string;
+  };
+  alt: string;
 }
 
 /**
- * 頁面配置型別 (從 index.yml 讀取)
+ * 圖片清單型別
  */
-export interface PageConfig {
+export interface AssetManifest {
+  generated_at: string;
+  target: string;
+  assets: AssetEntry[];
+}
+
+/**
+ * 解析後的圖片（用於 layout）
+ */
+export interface ResolvedImage {
+  id: string;
+  desktop: string;
+  mobile: string;
+  alt: string;
+}
+
+/**
+ * Layout section 型別
+ */
+export interface LayoutSection {
+  type: 'image' | 'text';
+  image_id?: string;
+  content?: string;
+  label?: string;
+  title?: string;
+}
+
+/**
+ * 頁面內容型別（來自 content/pages/*.json）
+ */
+export interface PageContent {
+  slug: string;
+  module: string;
   seo: {
     title: string;
     description: string;
@@ -24,39 +58,82 @@ export interface PageConfig {
   };
   url_mapping: {
     current_url: string;
-    old_url?: string;
-    redirect?: boolean;
+    new_url?: string;
   };
-  layout?: any;
+  layout?: {
+    hero?: {
+      image?: ResolvedImage;
+    };
+    sections?: LayoutSection[];
+    popup?: {
+      image_id: string;
+      link: string;
+      trigger: string;
+    };
+  };
+  content: string;
+  generated_at: string;
 }
 
 /**
- * 讀取單一頁面內容 (md + yml)
- * @param pagePath - 頁面目錄路徑，例如 'index'、'about_us'
- * @returns 頁面內容物件
+ * 內容清單型別（來自 content/manifest.json）
+ */
+export interface ContentManifest {
+  generated_at: string;
+  pages: {
+    slug: string;
+    module: string;
+    path: string;
+  }[];
+}
+
+// 快取
+let assetManifestCache: AssetManifest | null = null;
+let contentManifestCache: ContentManifest | null = null;
+
+/**
+ * 取得 asset manifest
+ */
+export async function getAssetManifest(): Promise<AssetManifest | null> {
+  if (assetManifestCache) return assetManifestCache;
+
+  try {
+    const manifestPath = path.join(process.cwd(), 'public', 'asset-manifest.json');
+    const content = await fs.readFile(manifestPath, 'utf-8');
+    assetManifestCache = JSON.parse(content);
+    return assetManifestCache;
+  } catch (error) {
+    console.error('無法讀取 asset-manifest.json', error);
+    return null;
+  }
+}
+
+/**
+ * 取得 content manifest
+ */
+export async function getContentManifest(): Promise<ContentManifest | null> {
+  if (contentManifestCache) return contentManifestCache;
+
+  try {
+    const manifestPath = path.join(process.cwd(), 'public', 'content', 'manifest.json');
+    const content = await fs.readFile(manifestPath, 'utf-8');
+    contentManifestCache = JSON.parse(content);
+    return contentManifestCache;
+  } catch (error) {
+    console.error('無法讀取 content/manifest.json', error);
+    return null;
+  }
+}
+
+/**
+ * 讀取單一頁面內容
+ * @param pagePath - 頁面 slug，例如 'index'、'about_us'
  */
 export async function getPageContent(pagePath: string): Promise<PageContent | null> {
   try {
-    // 從專案根目錄的 pages/ 讀取
-    const contentDir = path.join(process.cwd(), '..', 'pages', pagePath);
-
-    // 讀取 index.md
-    const mdPath = path.join(contentDir, 'index.md');
-    const mdContent = await fs.readFile(mdPath, 'utf-8');
-
-    // 使用 gray-matter 解析 markdown (支援 frontmatter)
-    const { content: markdown, data: frontmatter } = matter(mdContent);
-
-    // 讀取 index.yml
-    const ymlPath = path.join(contentDir, 'index.yml');
-    const ymlContent = await fs.readFile(ymlPath, 'utf-8');
-    const config = yaml.load(ymlContent) as PageConfig;
-
-    return {
-      slug: pagePath,
-      markdown,
-      config,
-    };
+    const jsonPath = path.join(process.cwd(), 'public', 'content', 'pages', `${pagePath}.json`);
+    const content = await fs.readFile(jsonPath, 'utf-8');
+    return JSON.parse(content) as PageContent;
   } catch (error) {
     console.error(`無法讀取頁面內容: ${pagePath}`, error);
     return null;
@@ -65,20 +142,18 @@ export async function getPageContent(pagePath: string): Promise<PageContent | nu
 
 /**
  * 取得所有可用頁面清單
- * @returns 頁面 slug 陣列
+ * @returns 頁面 slug 陣列（排除 header、footer 等共用元件）
  */
 export async function getAllPages(): Promise<string[]> {
   try {
-    const pagesDir = path.join(process.cwd(), '..', 'pages');
-    const entries = await fs.readdir(pagesDir, { withFileTypes: true });
+    const manifest = await getContentManifest();
+    if (!manifest) return [];
 
-    // 過濾出目錄（排除 header、footer 等共用元件）
-    const pages = entries
-      .filter(entry => entry.isDirectory())
-      .filter(entry => !['header', 'footer'].includes(entry.name))
-      .map(entry => entry.name);
-
-    return pages;
+    // 過濾出實際頁面（排除 header、footer 等共用元件）
+    const excludeModules = ['header', 'footer'];
+    return manifest.pages
+      .filter(page => !excludeModules.includes(page.module))
+      .map(page => page.slug);
   } catch (error) {
     console.error('無法讀取頁面清單', error);
     return [];
@@ -86,21 +161,21 @@ export async function getAllPages(): Promise<string[]> {
 }
 
 /**
- * 取得圖片資源路徑
- * @param pagePath - 頁面路徑
- * @param imageName - 圖片檔名 (不含副檔名)
- * @returns 圖片相對路徑
+ * 根據 image_id 取得圖片資源
+ * @param imageId - 圖片 ID
  */
-export function getImagePath(pagePath: string, imageName: string): string {
-  // 根據您的專案結構，圖片位於 pages/{pagePath}/assets/
-  return `/pages/${pagePath}/assets/${imageName}`;
+export async function getAssetById(imageId: string): Promise<AssetEntry | null> {
+  const manifest = await getAssetManifest();
+  if (!manifest) return null;
+
+  return manifest.assets.find(asset => asset.id === imageId) || null;
 }
 
 /**
- * 將 Markdown 轉換為 HTML (使用 Astro 內建功能更好，此函式備用)
+ * 取得圖片路徑（相容舊 API）
+ * @deprecated 改用 getAssetById
  */
-export async function markdownToHtml(markdown: string): Promise<string> {
-  // 在 Astro 中建議使用 <Content /> 元件
-  // 此函式僅作為備用參考
-  return markdown;
+export function getImagePath(_pagePath: string, imageName: string): string {
+  // 相容舊 API，但建議改用 asset manifest
+  return `/assets/${imageName}`;
 }
