@@ -24,7 +24,9 @@
       "Bash(wc:*)",
       "Bash(git ls-tree:*)",
       "Bash(git rev-parse:*)",
-      "Bash(timeout 10 pnpm dev:*)"
+      "Bash(timeout 10 pnpm dev:*)",
+      "Bash(do grep -o '\"\"\"\"type\"\"\"\": \"\"\"\"[^\"\"\"\"]*\"\"\"\"' \"$file\")",
+      "Bash(uniq:*)"
     ]
   }
 }
