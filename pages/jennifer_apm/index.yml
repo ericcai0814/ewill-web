@@ -1,9 +1,6 @@
 seo:
   title: Jennifer APM 應用效能監控 | 即時交易追蹤與故障診斷 - 鎰威科技
-  description: >-
-    鎰威科技代理 Jennifer APM 應用效能監控平台，即時追蹤應用程式交易效能，
-    自動偵測異常事件並發出警報。提供應用拓撲分析、資料庫效能監控與故障控制，
-    協助 IT 團隊快速定位問題根因，確保系統穩定運行。
+  description: 鎰威科技代理 Jennifer APM 應用效能監控平台，即時追蹤應用程式交易效能， 自動偵測異常事件並發出警報。提供應用拓撲分析、資料庫效能監控與故障控制， 協助 IT 團隊快速定位問題根因，確保系統穩定運行。
   keywords:
     - Jennifer APM
     - APM
@@ -27,9 +24,9 @@ layout:
 
         # Jennifer APM - 鎰威科技有限公司
     - type: image
-      image_id: images___bn_jen_1209_scaled
+      image_id: hero_jennifer
     - type: image
-      image_id: images_bn_jennifer_apm_m_fix
+      image_id: hero_jennifer_mobile
     - type: text
       content: |-
         #### 應用效能監控
@@ -37,38 +34,38 @@ layout:
         ### 強大的實時應用性能管理器​
       title: Jennifer APM
     - type: image
-      image_id: images_jenniferapm_1_fix
+      image_id: product_jennifer_main
     - type: text
       content: |-
         ### 即時事件警報​
 
         JENNIFER 會擷取異常應用程式交易事件，例如回應時間錯誤的交易、交易錯誤/異常和錯誤的 SQL 語句等，並即時發出警報。
     - type: image
-      image_id: images_bitdefender_2
+      image_id: feature_jennifer_bd_2
     - type: image
-      image_id: images_jenniferapm_p2_1
+      image_id: feature_jennifer_p2_1
     - type: image
-      image_id: images_jenniferapm_p2_2
+      image_id: feature_jennifer_p2_2
     - type: text
       content: |-
         ### 即時故障控制
 
         JENNIFER 的即時故障控制功能保證了網路系統在突發災難情況下的穩定運作。
     - type: image
-      image_id: images_bitdefender_3
+      image_id: feature_jennifer_bd_3
     - type: image
-      image_id: images_jenniferapm_p3_1
+      image_id: feature_jennifer_p3_1
     - type: image
-      image_id: images_jenniferapm_p3_2
+      image_id: feature_jennifer_p3_2
     - type: text
       content: "### 支援的平台"
     - type: image
-      image_id: images_bitdefender_4
+      image_id: feature_jennifer_bd_4
     - type: image
-      image_id: images_jenniferapm_p4_1
+      image_id: partner_jennifer_1
     - type: image
-      image_id: images_jenniferapm_p4_2
+      image_id: partner_jennifer_2
     - type: image
-      image_id: images_jenniferapm_p4_3
+      image_id: partner_jennifer_3
     - type: image
-      image_id: images_jenniferapm_p4_4
+      image_id: partner_jennifer_4

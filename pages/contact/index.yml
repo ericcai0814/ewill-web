@@ -1,9 +1,6 @@
 seo:
   title: 聯絡我們 | 資安與智慧製造諮詢服務 - 鎰威科技
-  description: >-
-    聯絡鎰威科技，獲取資訊安全與智慧製造解決方案諮詢。
-    我們提供免費需求評估、產品展示與技術支援服務，
-    協助企業規劃數位轉型策略，歡迎來電或填寫表單洽詢。
+  description: 聯絡鎰威科技，獲取資訊安全與智慧製造解決方案諮詢。 我們提供免費需求評估、產品展示與技術支援服務， 協助企業規劃數位轉型策略，歡迎來電或填寫表單洽詢。
   keywords:
     - 聯絡我們
     - 鎰威科技
@@ -60,7 +57,7 @@ layout:
         - 智慧製造及AIAPS 智慧生產核心MES 製造系統SCM 智慧供應鏈WMS 智慧倉儲承攬商管理系統AI Agent 解決方案AI 數據分析預測數據中台
         - 聯絡鎰威
     - type: image
-      image_id: __banner1209
+      image_id: banner1209
     - type: image
       image_id: bn_home_m
     - type: text

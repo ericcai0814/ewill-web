@@ -1,9 +1,6 @@
 seo:
   title: Deep Instinct 深度學習防護 | 預測式惡意程式攔截 - 鎰威科技
-  description: >-
-    鎰威科技代理 Deep Instinct 深度學習資安防護平台，執行前預測並攔截惡意程式，
-    有效防堵未知威脅與零日攻擊。AI 驅動的預防式防護架構，大幅降低誤報率，
-    為企業端點提供最先進的惡意程式防禦能力。
+  description: 鎰威科技代理 Deep Instinct 深度學習資安防護平台，執行前預測並攔截惡意程式， 有效防堵未知威脅與零日攻擊。AI 驅動的預防式防護架構，大幅降低誤報率， 為企業端點提供最先進的惡意程式防禦能力。
   keywords:
     - Deep Instinct
     - Deep Instinct 台灣
@@ -27,9 +24,9 @@ layout:
 
         # Deep instinct - 鎰威科技有限公司
     - type: image
-      image_id: images_deepinstinct_banner
+      image_id: hero_deepinstinct
     - type: image
-      image_id: images_deepinstinct_banner_m
+      image_id: hero_deepinstinct_mobile
     - type: text
       content: >-
         #### 深度學習防護
@@ -42,25 +39,25 @@ layout:
         驅動的進階攻擊行為。
       title: Deep instinct
     - type: image
-      image_id: images_deepinstinct
+      image_id: product_deepinstinct_main
     - type: text
       content: |-
         ### 保護您的全域資料資產
 
         Deep Instinct DSX 提供靈活的部署方式，確保無論您的資料位於本地、雲端或混合環境中，都能獲得全面且一致的防護。無論存取方式為何，皆能為整個資料基礎架構帶來無縫且高效的安全保障。
     - type: image
-      image_id: images_deepinstinct_1_fix
+      image_id: feature_deepinstinct_1
     - type: image
-      image_id: images_deepinstinct_1_m
+      image_id: feature_deepinstinct_1_mobile
     - type: text
       content: |-
         ### 深度學習驅動，打造全新資安防禦力
 
         Deep Instinct 採用深度學習技術，無需倚賴資安領域專家進行特徵工程，即可直接利用 100% 原始資料進行訓練，有效提升偵測準確度與資料涵蓋率，並能彈性支援更多檔案格式，實現更全面且高效率的威脅防護。
     - type: image
-      image_id: images_deepinstinct_3
+      image_id: feature_deepinstinct_3
     - type: image
-      image_id: images_deepinstinct_3_m
+      image_id: feature_deepinstinct_3_mobile
     - type: text
       content: >-
         ### 以深度學習為核心的即時端點防護架構
@@ -69,4 +66,4 @@ layout:
         Deep Instinct 採用預先訓練的深度學習模型，無需連接雲端即可在端點即時封鎖未知威脅，反應時間低於 20 毫秒。透過 D-Client Agent 輕量部署，即可與現有 EDR、SIEM、SOAR
         整合，管理平台同步提供警報與報告，全面提升資安效能與管理效率。
     - type: image
-      image_id: images_deepinstinct_5
+      image_id: feature_deepinstinct_5

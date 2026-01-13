@@ -72,10 +72,11 @@ Examples:
 
 // 從圖片路徑取得 image_id
 function getImageId(pagePath: string, imagePath: string): string | null {
-  // 處理相對路徑 assets/xxx.jpg 或 ./assets/xxx.jpg
+  // 處理相對路徑：./assets/xxx.jpg, ./images/xxx.jpg, assets/xxx.jpg, images/xxx.jpg
   let normalizedPath = imagePath
     .replace(/^\.\//, '')
     .replace(/^assets\//, '')
+    .replace(/^images\//, '')  // 爬蟲可能使用 images/ 目錄
 
   // 嘗試多種可能的檔名格式
   const possiblePaths = [

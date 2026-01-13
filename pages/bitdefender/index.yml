@@ -1,9 +1,6 @@
 seo:
   title: Bitdefender GravityZone 企業端點防護 | EDR 威脅偵測回應 - 鎰威科技
-  description: >-
-    鎰威科技代理 Bitdefender GravityZone 企業端點防護平台，整合預防、偵測、回應，
-    全面防護端點、網路與雲端。新世代分層防護架構，雲端主控台即時掌握系統狀態，
-    有效抵禦勒索軟體、APT 進階持續威脅與零日攻擊。
+  description: 鎰威科技代理 Bitdefender GravityZone 企業端點防護平台，整合預防、偵測、回應， 全面防護端點、網路與雲端。新世代分層防護架構，雲端主控台即時掌握系統狀態， 有效抵禦勒索軟體、APT 進階持續威脅與零日攻擊。
   keywords:
     - Bitdefender
     - Bitdefender 台灣
@@ -27,9 +24,9 @@ layout:
 
         # Bitdefender - 鎰威科技有限公司
     - type: image
-      image_id: images___bn_bit_1209_scaled
+      image_id: hero_bitdefender
     - type: image
-      image_id: images_bn_bitdefender_m_fix
+      image_id: hero_bitdefender_mobile
     - type: text
       content: |-
         #### 防毒與威脅防護
@@ -39,32 +36,32 @@ layout:
         最全面企業入侵防禦平台，統一的預防、偵測、回應 全面防護端點、網路、雲端。
       title: Bitdefender
     - type: image
-      image_id: images_bitdefender_1
+      image_id: product_gravityzone_architecture
     - type: text
       content: |-
         ### Bitdefender 分層的新世代端點保護平台
 
         使用自動調整分層體系結構，其中包括端點控制、預防、偵測、修復與能見性。
     - type: image
-      image_id: images_bitdefender_2
+      image_id: product_bitdefender_2
     - type: text
       content: |-
         ### GravityZone 雲端主控台
 
         具備多達36個圖表輪播功能，完整協助管理者快速了解系統防護狀態。
     - type: image
-      image_id: images_bitdefender_3
+      image_id: product_bitdefender_3
     - type: text
       content: "### 為什麼選擇 Bitdefender"
     - type: image
-      image_id: images_bitdefender_4
+      image_id: product_bitdefender_4
     - type: image
-      image_id: images_bitdefender_p4_1
+      image_id: partner_bitdefender_1
     - type: image
-      image_id: images_bitdefender_p4_2
+      image_id: partner_bitdefender_2
     - type: image
-      image_id: images_bitdefender_p4_3_fix
+      image_id: partner_bitdefender_3
     - type: image
-      image_id: images_bitdefender_p4_4
+      image_id: partner_bitdefender_4
     - type: image
-      image_id: images_bitdefender_p4_5
+      image_id: partner_bitdefender_5

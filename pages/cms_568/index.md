@@ -7,7 +7,7 @@ source_url: https://www.ewill.com.tw/cms_568/
 
 ![](./images/568_banner.jpg)
 
-![](./assets/568_banner-1.jpg)
+![](./assets/568_banner.jpg)
 
 ## 承商568
 

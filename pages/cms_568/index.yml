@@ -1,9 +1,6 @@
 seo:
   title: 承攬商管理系統 CMS 568 | 合規管理與進出場控管 - 鎰威科技
-  description: >-
-    鎰威科技承攬商管理系統 CMS 568，符合勞動部職安法規要求，提供承攬商資格審查、
-    人員進出場管理、安全教育訓練紀錄與工安稽核功能。數位化承攬商管理流程，
-    降低職災風險，確保廠區作業安全合規。
+  description: 鎰威科技承攬商管理系統 CMS 568，符合勞動部職安法規要求，提供承攬商資格審查、 人員進出場管理、安全教育訓練紀錄與工安稽核功能。數位化承攬商管理流程， 降低職災風險，確保廠區作業安全合規。
   keywords:
     - 承攬商管理系統
     - CMS 568
@@ -27,9 +24,9 @@ layout:
 
         # CMS 568 - 鎰威科技有限公司
     - type: image
-      image_id: images_568_banner
+      image_id: hero_568
     - type: image
-      image_id: 568_banner_1
+      image_id: hero_568
     - type: text
       content: |-
         #### 承攬商管理系統
@@ -47,42 +44,42 @@ layout:
         透過多因子認證、遠端監控、數位化管理與即時數據分析，全面提升承攬商管理效率，確保人員進出管控、工時紀錄及工安稽查合規透明。簡化行政流程，減少人工作業負擔，降低違規與工安風險，打造更安全、高效的施工環境。
       title: 承商568
     - type: image
-      image_id: images_568
+      image_id: product_568_main
     - type: text
       content: |-
         ###### 多因子認證進場
 
         大批人員同時進場，警衛無法負荷，透過多因子認證確保身份驗證，提升效率。
     - type: image
-      image_id: images_568_1
+      image_id: feature_568_1
     - type: text
       content: |-
         ###### 遠端監看人員及設備
 
         即時監控人員出廠狀況，精準計算廠內有效與無效人力，確保工時管理透明化。
     - type: image
-      image_id: images_568_2
+      image_id: feature_568_2
     - type: text
       content: |-
         ###### 承攬商制度化管理
 
         數位化管理上百家承攬商資料，提升合約追蹤與績效評估效率，確保合作品質。
     - type: image
-      image_id: images_568_3
+      image_id: feature_568_3
     - type: text
       content: |-
         ###### 線上點工及審核
 
         即時掌握工地違規行為，提升工安管理效能，並確保意外責任可追溯。
     - type: image
-      image_id: images_568_4
+      image_id: feature_568_4
     - type: text
       content: |-
         ###### 隨機稽查人員
 
         簡化申請與審核流程，減少繁瑣紙本作業，提升行政效率與施工進度。
     - type: image
-      image_id: images_568_5
+      image_id: feature_568_5
     - type: text
       content: >-
         ###### 視覺化數據
@@ -96,7 +93,7 @@ layout:
 
         透過多因子認證與一碼快速身份確認，確保人員身份準確，防止代刷、未授權進入及違規滯留。系統自動記錄進出場狀況，嚴格落實工安規範，避免人數虛報與工時造假，降低安全風險。搭配廠務分析儀表板，即時整合進出數據，提供階層式分析與條件查詢，讓管理決策更精準，高效掌控施工現場，打造安全、透明的作業環境。
     - type: image
-      image_id: images_568_gif_1
+      image_id: demo_568_1
     - type: text
       content: |-
         ###### 多因子認證進場
@@ -105,7 +102,7 @@ layout:
         - 解決無法有效核對人員身份的問題。
         - 阻擋非合格人員進廠，提升工安管控能力。
     - type: image
-      image_id: images_568_gif_2
+      image_id: demo_568_2
     - type: text
       content: |-
         ###### 一碼快速身份確認
@@ -113,7 +110,7 @@ layout:
         - 快速查核人員身份與施工區域，減少管理盲點。
         - 確保進場人員到達指定工作區域，避免偷工減料。
     - type: image
-      image_id: images_568_gif_3
+      image_id: demo_568_3
     - type: text
       content: |-
         ###### 符合工安規範
@@ -122,7 +119,7 @@ layout:
         - 防止承攬商虛報進場人數，確保工時紀錄真實有效。
         - 確認人員離場狀況，避免逾時滯留帶來的安全隱患。
     - type: image
-      image_id: images_568_gif_4
+      image_id: demo_568_4
     - type: text
       content: |-
         ###### 廠務分析儀表板

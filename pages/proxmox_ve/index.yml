@@ -1,9 +1,8 @@
 seo:
   title: Proxmox VE 企業虛擬化平台 | KVM 虛擬機與 LXC 容器管理 - 鎰威科技
   description: >-
-    鎰威科技提供 Proxmox VE 企業虛擬化解決方案，整合 KVM 虛擬機、LXC 容器、ZFS 軟體定義儲存。
-    全網頁式管理介面，支援高可用叢集、快照備份與跨平台操作，大幅降低虛擬化建置成本，
-    是 VMware 替代方案的最佳選擇。
+    鎰威科技提供 Proxmox VE 企業虛擬化解決方案，整合 KVM 虛擬機、LXC 容器、ZFS 軟體定義儲存。 全網頁式管理介面，支援高可用叢集、快照備份與跨平台操作，大幅降低虛擬化建置成本， 是 VMware
+    替代方案的最佳選擇。
   keywords:
     - Proxmox VE
     - Proxmox 台灣
@@ -27,9 +26,9 @@ layout:
 
         # Proxmox VE - 鎰威科技有限公司
     - type: image
-      image_id: images_bn_proxmox_1209_scaled
+      image_id: hero_proxmox
     - type: image
-      image_id: images_bn_proxmox_m_fix
+      image_id: hero_proxmox_mobile
     - type: text
       content: >-
         #### 伺服器虛擬化管理
@@ -43,14 +42,14 @@ layout:
         支持高可用性，無需額外管理伺服器，實現了無單點故障的可靠運行。
       title: Proxmox VE
     - type: image
-      image_id: images_proxmoxve_1
+      image_id: product_proxmox_1
     - type: text
       content: |-
         ### Proxmox VE 的強大儲存兼容性
 
         Proxmox VE 支援多種儲存技術，尤其是 ZFS 的整合，提供靈活硬碟配置、快速快照、資料壓縮和重複資料刪除功能，實現過去昂貴設備才能提供的高階儲存技術，大幅降低建置成本。
     - type: image
-      image_id: images_proxmoxve_2
+      image_id: product_proxmox_2
     - type: text
       content: >-
         ### 全網頁式管理的便捷性
@@ -59,17 +58,17 @@ layout:
         Proxmox VE 提供全網頁式管理，無需安裝外掛程式，支援跨平台操作。只要具備 HTML5 瀏覽器的裝置即可管理，內建響應式設計，方便手機和平板使用。透過 noVNC 技術，實現網頁上直接操控本機，大幅提升 IT
         人員的移動管理效率。
     - type: image
-      image_id: images_proxmoxve_3
+      image_id: product_proxmox_3
     - type: text
       content: |-
         ### Proxmox 訂閱方案
 
         Proxmox 訂閱提供穩定的軟體更新、安全增強和企業級技術支援，通過存取 Proxmox Enterprise Repository 保持系統最新。3種靈活訂閱計劃可根據業務需求擴展，訂閱期為一年，提供企業級軟體和服務。
     - type: image
-      image_id: images_proxmoxve_4
+      image_id: product_proxmox_4
     - type: image
-      image_id: images_proxmoxve_p4_1
+      image_id: partner_proxmox_1
     - type: image
-      image_id: images_proxmoxve_p4_2
+      image_id: partner_proxmox_2
     - type: image
-      image_id: images_proxmoxve_p4_3
+      image_id: partner_proxmox_3

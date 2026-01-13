@@ -1,9 +1,6 @@
 seo:
   title: AI Agent 智慧代理解決方案 | 企業自動化與流程優化 - 鎰威科技
-  description: >-
-    鎰威科技 AI Agent 智慧代理解決方案，運用生成式 AI 自動化執行複雜業務流程。
-    整合企業內部系統與數據，實現智慧決策、自動化客服與流程優化，
-    協助企業提升營運效率並加速數位轉型。
+  description: 鎰威科技 AI Agent 智慧代理解決方案，運用生成式 AI 自動化執行複雜業務流程。 整合企業內部系統與數據，實現智慧決策、自動化客服與流程優化， 協助企業提升營運效率並加速數位轉型。
   keywords:
     - AI Agent
     - 智慧代理
@@ -27,9 +24,9 @@ layout:
 
         # AI Agent - 鎰威科技有限公司
     - type: image
-      image_id: images_ai_agnet_banner_2
+      image_id: hero_ai_agent
     - type: image
-      image_id: images_ai_agnet_banner_2
+      image_id: hero_ai_agent
     - type: text
       content: |-
         ### 什麼是 AI Agent？
@@ -50,6 +47,6 @@ layout:
 
         從24小時智能客服、銷售助理，到自動化數據分析與報告生成，全面賦能您的業務核心。如下述應用方案：
     - type: image
-      image_id: images_ai_agent_1_1024x412
+      image_id: product_ai_agent_1
     - type: text
       content: "### 立即諮詢，搶佔智能商機\n\n現在就聯繫我們，了解更多 AI Agent 解決方案。讓我們攜手開啟智能新時代，助您業務一路領先！\n\n聯繫電話：0912083643\_ 張先生\n\nE-mail：Simon.chang@ewill.com.tw"
