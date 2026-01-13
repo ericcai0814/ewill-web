@@ -56,13 +56,15 @@ const htmlContent = parseMarkdown(content);
 
   .text-section__label {
     display: inline-block;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 600;
     color: #3F8696;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-    font-style: italic;
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+    padding: 8px 20px;
+    border: 1px solid #3F8696;
+    border-radius: 20px;
   }
 
   .text-section__title {
@@ -70,6 +72,11 @@ const htmlContent = parseMarkdown(content);
     font-weight: 700;
     color: #3F8696;
     margin-bottom: 24px;
+    text-align: center;
+  }
+
+  /* 讓 label 置中 */
+  .text-section__container {
     text-align: center;
   }
 
@@ -83,6 +90,7 @@ const htmlContent = parseMarkdown(content);
     font-size: 16px;
     line-height: 1.8;
     color: #333;
+    text-align: left;
   }
 
   .text-section__content :global(h1),

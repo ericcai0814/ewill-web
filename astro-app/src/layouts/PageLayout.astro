@@ -228,12 +228,20 @@ const jsonLdItems = buildJsonLd(aio);
 <style>
   .page-main {
     min-height: 100vh;
-    padding-top: 80px; /* Header height */
+    padding-top: 100px; /* Header height */
   }
 
-  @media (max-width: 1023px) {
+  /* 平板 (≤921px) */
+  @media (max-width: 921px) {
     .page-main {
-      padding-top: 64px; /* Mobile header height */
+      padding-top: 74px;
+    }
+  }
+
+  /* 小手機 (≤544px) */
+  @media (max-width: 544px) {
+    .page-main {
+      padding-top: 60px;
     }
   }
 </style>
