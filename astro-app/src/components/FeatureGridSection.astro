@@ -1,0 +1,284 @@
+---
+import { getAssetById } from '../utils/content';
+
+export interface Feature {
+  id: string;
+  image_id?: string;
+  icon?: string;  // SVG icon string or icon name
+  title: string;
+  subtitle?: string;
+  description: string;
+}
+
+export interface Props {
+  label?: string;
+  title?: string;
+  columns?: 3 | 4;
+  variant?: 'default' | 'icon' | 'minimal';
+  features: Feature[];
+}
+
+const {
+  label,
+  title,
+  columns = 3,
+  variant = 'default',
+  features
+} = Astro.props;
+
+// 解析所有 feature 的圖片
+const featuresWithImages = await Promise.all(
+  features.map(async (feature) => {
+    let image = null;
+    if (feature.image_id) {
+      const asset = await getAssetById(feature.image_id);
+      if (asset) {
+        image = {
+          desktop: asset.variants.desktop,
+          mobile: asset.variants.mobile,
+          alt: asset.alt
+        };
+      }
+    }
+    return { ...feature, image };
+  })
+);
+
+const columnClass = `feature-grid--cols-${columns}`;
+const variantClass = `feature-grid--${variant}`;
+---
+
+<section class="feature-grid-section">
+  <div class="feature-grid-section__container">
+    <!-- Section Header -->
+    {(label || title) && (
+      <header class="feature-grid-section__header">
+        {label && <span class="feature-grid-section__label">{label}</span>}
+        {title && <h2 class="feature-grid-section__title">{title}</h2>}
+      </header>
+    )}
+
+    <!-- Features Grid -->
+    <div class:list={['feature-grid', columnClass, variantClass]}>
+      {featuresWithImages.map((feature) => (
+        <article class="feature-item" data-feature-id={feature.id}>
+          {feature.image && (
+            <div class="feature-item__image-wrapper">
+              <img
+                src={feature.image.desktop}
+                alt={feature.image.alt}
+                class="feature-item__image"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          )}
+          {feature.icon && !feature.image && (
+            <div class="feature-item__icon" set:html={feature.icon} />
+          )}
+          <div class="feature-item__content">
+            <h3 class="feature-item__title">{feature.title}</h3>
+            {feature.subtitle && (
+              <span class="feature-item__subtitle">{feature.subtitle}</span>
+            )}
+            <p class="feature-item__description">{feature.description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .feature-grid-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+  }
+
+  .feature-grid-section__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .feature-grid-section__header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .feature-grid-section__label {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #3F8696;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+
+  .feature-grid-section__title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1A1A2E;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  /* Feature Grid */
+  .feature-grid {
+    display: grid;
+    gap: 24px;
+  }
+
+  .feature-grid--cols-3 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .feature-grid--cols-4 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @media (min-width: 768px) {
+    .feature-grid--cols-3 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .feature-grid--cols-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .feature-grid--cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .feature-grid--cols-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  /* Feature Item - Default */
+  .feature-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 32px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  }
+
+  .feature-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  }
+
+  .feature-item__image-wrapper {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .feature-item__image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .feature-item__icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #3F8696 0%, #2D9B9B 100%);
+    border-radius: 16px;
+    color: #fff;
+  }
+
+  .feature-item__icon :global(svg) {
+    width: 32px;
+    height: 32px;
+  }
+
+  .feature-item__title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1A1A2E;
+    margin: 0 0 8px;
+    line-height: 1.4;
+  }
+
+  .feature-item__subtitle {
+    display: block;
+    font-size: 14px;
+    color: #3F8696;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  .feature-item__description {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* Variant: Icon - smaller, icon-focused */
+  .feature-grid--icon .feature-item {
+    padding: 24px;
+  }
+
+  .feature-grid--icon .feature-item__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+  }
+
+  .feature-grid--icon .feature-item__title {
+    font-size: 18px;
+  }
+
+  /* Variant: Minimal - no background */
+  .feature-grid--minimal .feature-item {
+    background: transparent;
+    box-shadow: none;
+    padding: 24px 16px;
+  }
+
+  .feature-grid--minimal .feature-item:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 1023px) {
+    .feature-grid-section {
+      padding: 60px 0;
+    }
+
+    .feature-grid-section__container {
+      padding: 0 16px;
+    }
+
+    .feature-grid-section__header {
+      margin-bottom: 32px;
+    }
+
+    .feature-grid-section__title {
+      font-size: 28px;
+    }
+
+    .feature-item {
+      padding: 24px;
+    }
+
+    .feature-item__title {
+      font-size: 18px;
+    }
+  }
+</style>

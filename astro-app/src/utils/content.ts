@@ -46,16 +46,39 @@ export interface CardData {
   link_text?: string;
 }
 
+export interface FeatureData {
+  id: string;
+  image_id?: string;
+  icon?: string;
+  title: string;
+  subtitle?: string;
+  description: string;
+  bullets?: string[];
+}
+
 export interface LayoutSection {
-  type: 'image' | 'text' | 'card_list';
+  type: 'image' | 'text' | 'card_list' | 'anchor' | 'feature_grid' | 'cta' | 'product_intro' | 'feature_showcase';
+  // Common
+  id?: string;
   image_id?: string;
   content?: string;
   label?: string;
   title?: string;
+  subtitle?: string;
   description?: string;
+  // card_list / anchor
   columns?: 3 | 4 | 5;
   layout_variant?: '3-2' | 'equal';
   cards?: CardData[];
+  // feature_grid
+  variant?: string;
+  features?: FeatureData[];
+  // cta
+  button_text?: string;
+  button_link?: string;
+  align?: 'center' | 'left';
+  // feature_showcase
+  layout?: 'alternating' | 'image-left' | 'image-right';
 }
 
 /**

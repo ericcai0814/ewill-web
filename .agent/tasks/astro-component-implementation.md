@@ -67,13 +67,13 @@
 | 元件 | 狀態 | 備註 |
 |------|:----:|------|
 | CardListSection | ✅ | 卡片列表 (3/4/5 欄 + 3-2 變體) |
-| AnchorSection | ⬜ | 可錨點定位區塊（解決方案頁各類別） |
-| FeatureGridSection | ⬜ | 特色網格（核心價值、認證等） |
+| AnchorSection | ✅ | 可錨點定位區塊 + scroll-margin |
+| FeatureGridSection | ✅ | 特色網格 (3/4 欄 + icon/minimal 變體) |
+| CTASection | ✅ | 行動呼籲 (primary/secondary/dark) |
+| ProductIntroSection | ✅ | 產品介紹 + 功能列表 |
+| FeatureShowcaseSection | ✅ | 圖文交錯展示 (alternating) |
 | TimelineSection | ⬜ | 時間軸/沿革展示 |
 | GallerySection | ⬜ | 圖片圖庫展示（證書、案例等） |
-| ProductIntroSection | ⬜ | 產品介紹區塊 |
-| FeatureShowcaseSection | ⬜ | 功能展示（圖文交錯） |
-| CTASection | ⬜ | 行動呼籲區塊 |
 
 ---
 

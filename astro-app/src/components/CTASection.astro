@@ -1,0 +1,196 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  button_text: string;
+  button_link: string;
+  variant?: 'primary' | 'secondary' | 'dark';
+  align?: 'center' | 'left';
+}
+
+const {
+  title,
+  description,
+  button_text,
+  button_link,
+  variant = 'primary',
+  align = 'center'
+} = Astro.props;
+
+const variantClass = `cta-section--${variant}`;
+const alignClass = `cta-section--${align}`;
+---
+
+<section class:list={['cta-section', variantClass, alignClass]}>
+  <div class="cta-section__container">
+    <div class="cta-section__content">
+      <h2 class="cta-section__title">{title}</h2>
+      {description && <p class="cta-section__description">{description}</p>}
+      <a href={button_link} class="cta-section__button">
+        {button_text}
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    padding: 80px 0;
+  }
+
+  .cta-section__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .cta-section__content {
+    max-width: 800px;
+  }
+
+  /* Alignment */
+  .cta-section--center .cta-section__content {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .cta-section--left .cta-section__content {
+    text-align: left;
+  }
+
+  .cta-section__title {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 16px;
+    line-height: 1.3;
+  }
+
+  .cta-section__description {
+    font-size: 18px;
+    margin: 0 0 32px;
+    line-height: 1.6;
+    opacity: 0.9;
+  }
+
+  .cta-section__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+  }
+
+  .cta-section__button svg {
+    transition: transform 0.3s ease;
+  }
+
+  .cta-section__button:hover svg {
+    transform: translateX(4px);
+  }
+
+  /* Variant: Primary (light background, dark text) */
+  .cta-section--primary {
+    background: linear-gradient(135deg, #f0f9fa 0%, #e6f4f5 100%);
+  }
+
+  .cta-section--primary .cta-section__title {
+    color: #1A1A2E;
+  }
+
+  .cta-section--primary .cta-section__description {
+    color: #666;
+  }
+
+  .cta-section--primary .cta-section__button {
+    background: #3F8696;
+    color: #fff;
+  }
+
+  .cta-section--primary .cta-section__button:hover {
+    background: #2D9B9B;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(63, 134, 150, 0.3);
+  }
+
+  /* Variant: Secondary (white background) */
+  .cta-section--secondary {
+    background: #fff;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+  }
+
+  .cta-section--secondary .cta-section__title {
+    color: #1A1A2E;
+  }
+
+  .cta-section--secondary .cta-section__description {
+    color: #666;
+  }
+
+  .cta-section--secondary .cta-section__button {
+    background: transparent;
+    color: #3F8696;
+    border: 2px solid #3F8696;
+  }
+
+  .cta-section--secondary .cta-section__button:hover {
+    background: #3F8696;
+    color: #fff;
+  }
+
+  /* Variant: Dark (dark background, light text) */
+  .cta-section--dark {
+    background: linear-gradient(135deg, #1A1A2E 0%, #2d2d4a 100%);
+  }
+
+  .cta-section--dark .cta-section__title {
+    color: #fff;
+  }
+
+  .cta-section--dark .cta-section__description {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .cta-section--dark .cta-section__button {
+    background: #2D9B9B;
+    color: #fff;
+  }
+
+  .cta-section--dark .cta-section__button:hover {
+    background: #3ac9c9;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(45, 155, 155, 0.4);
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 1023px) {
+    .cta-section {
+      padding: 60px 0;
+    }
+
+    .cta-section__container {
+      padding: 0 16px;
+    }
+
+    .cta-section__title {
+      font-size: 28px;
+    }
+
+    .cta-section__description {
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
+
+    .cta-section__button {
+      padding: 14px 28px;
+      font-size: 15px;
+    }
+  }
+</style>

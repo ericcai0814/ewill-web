@@ -8,6 +8,11 @@ import HeroSection from '../components/HeroSection.astro';
 import TextSection from '../components/TextSection.astro';
 import ImageSection from '../components/ImageSection.astro';
 import CardListSection from '../components/CardListSection.astro';
+import AnchorSection from '../components/AnchorSection.astro';
+import FeatureGridSection from '../components/FeatureGridSection.astro';
+import CTASection from '../components/CTASection.astro';
+import ProductIntroSection from '../components/ProductIntroSection.astro';
+import FeatureShowcaseSection from '../components/FeatureShowcaseSection.astro';
 import { getAssetById } from '../utils/content';
 import type { PageContent, LayoutSection } from '../utils/content';
 
@@ -73,6 +78,60 @@ if (layout?.popup?.image_id) {
             columns={section.columns}
             layout_variant={section.layout_variant}
             cards={section.cards}
+          />
+        );
+      }
+      if (section.type === 'anchor' && section.cards && section.id) {
+        return (
+          <AnchorSection
+            id={section.id}
+            title={section.title || ''}
+            description={section.description}
+            cards={section.cards}
+          />
+        );
+      }
+      if (section.type === 'feature_grid' && section.features) {
+        return (
+          <FeatureGridSection
+            label={section.label}
+            title={section.title}
+            columns={section.columns as 3 | 4}
+            variant={section.variant as 'default' | 'icon' | 'minimal'}
+            features={section.features}
+          />
+        );
+      }
+      if (section.type === 'cta' && section.button_text && section.button_link) {
+        return (
+          <CTASection
+            title={section.title || ''}
+            description={section.description}
+            button_text={section.button_text}
+            button_link={section.button_link}
+            variant={section.variant as 'primary' | 'secondary' | 'dark'}
+            align={section.align}
+          />
+        );
+      }
+      if (section.type === 'product_intro') {
+        return (
+          <ProductIntroSection
+            label={section.label}
+            title={section.title || ''}
+            subtitle={section.subtitle}
+            description={section.description || ''}
+            align={section.align}
+          />
+        );
+      }
+      if (section.type === 'feature_showcase' && section.features) {
+        return (
+          <FeatureShowcaseSection
+            label={section.label}
+            title={section.title}
+            layout={section.layout}
+            features={section.features}
           />
         );
       }
