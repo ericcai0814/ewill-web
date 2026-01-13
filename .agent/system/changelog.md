@@ -6,6 +6,84 @@
 
 ---
 
+## [2026-01-14]
+
+### sync-content 保護機制重構
+
+解決 sync-content 覆蓋手動配置頁面佈局的問題。
+
+**問題背景**：
+- 原本的「智慧合併」邏輯會把手動 sections 移到最後，破壞精心設計的佈局順序
+- 例如 services 頁面的 anchor sections 被移到所有 text/image 之後
+
+**解決方案**：
+- 若頁面 yml 包含任何手動類型 section，**完全跳過同步**
+- 手動類型：`product_intro`, `feature_showcase`, `cta`, `feature_grid`, `anchor`, `card_list`, `gallery`, `contact_form`, `timeline`
+- 可同步類型：`text`, `image`
+
+**修改檔案**：
+- `.claude/skills/content-build/scripts/sync-content.ts`：移除 smartMergeSections，新增 hasManualSections 檢查
+- `.agent/system/learnings.md`：更新 4.1 節文件
+
+**影響**：
+- 37 個頁面中，大部分含手動 sections 的頁面會被跳過
+- 僅純 text/image 頁面（如 event_* 活動頁）才會被同步
+- 手動配置的頁面需直接編輯 yml
+
+---
+
+### 活動訊息頁面重構
+
+將 `/event_information/` 頁面重構為 card_list 佈局，參照舊官網設計。
+
+**修改檔案**：
+- `pages/event_information/index.yml`：改用 card_list section
+- `pages/event_information/index.md`：簡化為標題與描述
+
+**佈局結構**：
+- Hero Banner
+- card_list section（3 欄，4 張活動卡片）
+- 每張卡片：圖片、標題「活動新聞」、描述、「了解更多」連結
+
+---
+
+### Contact 頁面修復
+
+修復 Contact 頁面的 ContactFormSection 元件整合。
+
+**修改檔案**：
+- `astro-app/src/layouts/PageLayout.astro`：新增 contact_form section 渲染邏輯
+- `astro-app/src/utils/content.ts`：新增 ContactField 介面與 contact_form type
+- `pages/contact/index.yml`：重構為 contact_form section
+- `pages/contact/assets/`：清理並重新組織圖片資源
+
+---
+
+### 內容一致性稽核報告
+
+建立並更新內容一致性稽核報告。
+
+**新增檔案**：
+- `.agent/tasks/content-consistency-audit.md`：稽核任務文件
+- `.agent/tasks/content-consistency-audit-report.md`：稽核結果報告
+
+**稽核結果**：
+- 缺失 image_id：1 個（`array_1_fix`）
+- Section Type：11 種類型都已實作
+- 重複 yml 檔案：105 個（舊格式，無影響）
+
+---
+
+### AnchorNav 側邊導航（新增後移除）
+
+嘗試新增 AnchorNav 側邊導航功能，但經用戶確認後移除。
+
+**教訓記錄**：
+- 新增 UI 功能前應先確認需求
+- 已記錄到 learnings.md「設計決策確認流程」
+
+---
+
 ## [2026-01-13]
 
 ### 統一 image_id 格式，修正爬蟲路徑處理

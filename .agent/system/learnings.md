@@ -56,6 +56,38 @@
 - **pre-commit hook**：當 index.md 變更時自動執行 sync-content
 - **重要**：手動配置的頁面需直接編輯 yml，md 檔案僅作為原始內容參考
 
+**頁面類型與編輯指南**：
+| 頁面類型 | 範例 | 編輯方式 | 說明 |
+|----------|------|----------|------|
+| 產品頁 | acunetix, logsec | 直接編輯 yml | 複雜佈局，使用 product_intro + feature_* |
+| 列表頁 | index, event_information | 直接編輯 yml | 卡片列表，使用 card_list |
+| 服務頁 | services, solutions | 直接編輯 yml | 錨點導航，使用 anchor + cta |
+| 活動頁 | event_2025* | 編輯 md，自動同步 | 純內容，使用 text + image |
+| 靜態頁 | about_us, esg | 編輯 md，自動同步 | 純內容，使用 text + image |
+
+### 4.2 Section Type 使用指南
+
+**11 種可用的 Section Types**：
+
+| Type | 使用次數 | 適用場景 | 必填欄位 |
+|------|:--------:|----------|----------|
+| `product_intro` | 30 | 產品頁 Hero 區塊 | title, description, image_id |
+| `feature_showcase` | 29 | 功能展示（圖文並排） | title, items[] |
+| `cta` | 26 | Call to Action 按鈕 | button_text, button_link |
+| `text` | 23 | 純文字內容 | content |
+| `feature_grid` | 15 | 多欄功能卡片 | items[] |
+| `image` | 50 | 單張圖片 | image_id |
+| `gallery` | 6 | 圖片輪播 | images[] |
+| `anchor` | 6 | 錨點導航區塊 | id, title, cards[] |
+| `card_list` | 3 | 卡片列表 | cards[], columns |
+| `contact_form` | 1 | 聯絡表單 | fields[], button_text |
+| `timeline` | - | 時間軸 | items[] |
+
+**選擇指南**：
+- 新建產品頁：`product_intro` → `feature_showcase` → `feature_grid` → `cta`
+- 新建列表頁：`card_list`（設定 columns: 3 或 4）
+- 新建活動頁：純 `text` + `image`，可由 md 同步
+
 ### 5. Git Commit 規範
 - **顆粒度**：一個 commit 只做一件事，按功能邊界拆分
 - **Scope 分離**：不同 scope 的變更應分開 commit

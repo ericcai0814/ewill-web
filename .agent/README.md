@@ -23,8 +23,11 @@
 | 檔案                                 | 說明                       |
 | ------------------------------------ | -------------------------- |
 | [specs/](./tasks/specs/)             | 網站重建專案規格文件       |
-| [astro-component-implementation.md](./tasks/astro-component-implementation.md) | Astro 元件實作進度追蹤 |
-| [fix-contact-page.md](./tasks/fix-contact-page.md) | 🔴 Contact 頁面內容修復（待處理） |
+| [astro-component-implementation.md](./tasks/astro-component-implementation.md) | ✅ Astro 元件實作進度追蹤 |
+| [fix-contact-page.md](./tasks/fix-contact-page.md) | ✅ Contact 頁面內容修復 |
+| [refactor-event-information-page.md](./tasks/refactor-event-information-page.md) | ✅ 活動訊息頁面重構 |
+| [content-consistency-audit.md](./tasks/content-consistency-audit.md) | ✅ 內容一致性稽核任務 |
+| [content-consistency-audit-report.md](./tasks/content-consistency-audit-report.md) | 📊 內容一致性稽核報告 |
 | [website-validation-react-src.md](./tasks/website-validation-react-src.md) | React 驗證網站實作記錄 |
 
 ### tasks/specs/ 子目錄
