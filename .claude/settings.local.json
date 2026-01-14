@@ -78,7 +78,14 @@
       "Bash(git revert:*)",
       "Bash(git checkout:*)",
       "Bash(npm cache clean:*)",
-      "Skill(check_docs)"
+      "Skill(check_docs)",
+      "Bash(git check-ignore:*)",
+      "Bash(do)",
+      "Bash(if ! grep -q \"interface Props\" \"$f\")",
+      "Bash(then)",
+      "Bash(basename:*)",
+      "Bash(npx astro check)",
+      "Bash(npx tsc:*)"
     ]
   }
 }
