@@ -18,15 +18,15 @@ const asset = await getAssetById(image_id);
 
 <!-- Vitesse Style: Simple image section -->
 {asset ? (
-  <section class="py-10 md:py-12">
+  <section class="py-6 md:py-8">
     <div class="container-wide">
-      <picture class="block w-full aspect-video bg-[var(--bg-tertiary)] rounded-md overflow-hidden">
+      <picture class="block w-full">
         <source media="(min-width: 1024px)" srcset={asset.variants.desktop} />
         <source media="(max-width: 1023px)" srcset={asset.variants.mobile} />
         <img
           src={asset.variants.desktop}
           alt={asset.alt}
-          class="block w-full h-full object-cover"
+          class="block w-full h-auto"
           loading="lazy"
           decoding="async"
         />
