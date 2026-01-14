@@ -1,25 +1,28 @@
 # 鎰威科技 Design Guideline
 
-本文件定義鎰威科技的視覺設計規範，作為 AI Agent 生成 UI 元件、頁面設計時的參考依據，確保產出與品牌視覺一致。
+本文件定義鎰威科技的視覺設計規範（Vitesse Style），作為 AI Agent 生成 UI 元件、頁面設計時的參考依據，確保產出與品牌視覺一致。
 
 ---
 
-## 1. 品牌識別 (Brand Identity)
+## 1. 設計哲學 (Design Philosophy)
 
-### 1.1 品牌核心價值
+### 1.1 Vitesse Style 核心原則
 
-| 關鍵字 | 英文 | 視覺表現 |
-|--------|------|----------|
-| 專業 | Profession | 乾淨俐落的線條、專業的藍綠色調 |
-| 專注 | Focus | 聚焦的視覺層次、明確的資訊架構 |
-| 專精 | Specialization | 精緻的細節處理、高質感的設計元素 |
+Vitesse Style 是一種極簡主義的開發者導向設計美學，強調：
+
+| 原則 | 說明 |
+|------|------|
+| **極簡優先** | 移除所有非必要的視覺元素 |
+| **內容為王** | 設計服務於內容，而非裝飾 |
+| **無漸層** | 使用純色，不使用任何漸層效果 |
+| **無重陰影** | 僅使用極淺或無陰影 |
+| **功能導向** | 每個元素都有其目的 |
 
 ### 1.2 品牌視覺風格
 
-- **整體調性**：專業、現代、科技感
-- **設計語言**：扁平化設計 + 微立體效果
-- **品牌圖形**：3D 莫比烏斯環帶（Möbius Strip）— 象徵無限循環與專業深度
-- **視覺氛圍**：信任感、穩定性、創新力
+- **整體調性**：專業、簡潔、現代
+- **設計語言**：扁平化設計，極簡主義
+- **視覺氛圍**：乾淨、專注、高效
 
 ### 1.3 品牌標語
 
@@ -32,86 +35,83 @@ PROFESSION · FOCUS · SPECIALIZATION
 
 ## 2. 色彩系統 (Color System)
 
-### 2.1 主色調 (Primary Colors)
+### 2.1 主色調 - Emerald (祖母綠)
 
 | 名稱 | 色碼 | 用途 |
 |------|------|------|
-| **Teal-500** (主色) | `#2D9B9B` | 按鈕、連結、重點元素 |
-| **Teal-400** | `#3AA8A8` | Hover 狀態、漸層終點 |
-| **Teal-600** | `#1E7B7B` | Active 狀態、深色變體 |
-| **Teal-700** | `#1A6B6B` | 深色背景、Footer |
-| **Teal-300** | `#4FB8B8` | 淺色強調、圖示填充 |
+| **Accent** (Light Mode) | `#10b981` | 按鈕、連結、重點元素 |
+| **Accent Hover** (Light Mode) | `#059669` | Hover 狀態 |
+| **Accent** (Dark Mode) | `#34d399` | 按鈕、連結、重點元素 |
+| **Accent Hover** (Dark Mode) | `#6ee7b7` | Hover 狀態 |
 
-### 2.2 漸層色 (Gradients)
-
-```css
-/* 主要漸層 - Banner 背景 */
---gradient-primary: linear-gradient(135deg, #1E7B7B 0%, #2D9B9B 50%, #4FB8B8 100%);
-
-/* 深色漸層 - 科技感背景 */
---gradient-dark: linear-gradient(180deg, #1A6B6B 0%, #0D4A4A 100%);
-
-/* 卡片漸層 - 微妙層次 */
---gradient-card: linear-gradient(145deg, #2D9B9B 0%, #3AA8A8 100%);
-```
-
-### 2.3 輔助色 (Secondary Colors)
+### 2.2 Light Mode 配色
 
 | 名稱 | 色碼 | 用途 |
 |------|------|------|
-| **Purple-500** | `#7B61FF` | 次要強調、CTA 變體 |
-| **Purple-400** | `#9580FF` | Hover 狀態 |
+| **Background Primary** | `#ffffff` | 主要背景 |
+| **Background Secondary** | `#fafafa` | 次要背景、區塊交替 |
+| **Background Tertiary** | `#f5f5f5` | 卡片填充、佔位符 |
+| **Text Primary** | `#1a1a1a` | 主要文字 |
+| **Text Secondary** | `#525252` | 次要文字 |
+| **Text Tertiary** | `#a3a3a3` | 輔助文字、placeholder |
+| **Border** | `#e5e5e5` | 邊框、分隔線 |
 
-### 2.4 中性色 (Neutral Colors)
-
-| 名稱 | 色碼 | 用途 |
-|------|------|------|
-| **Gray-900** | `#1A1A1A` | 主要文字 |
-| **Gray-700** | `#4A4A4A` | 次要文字 |
-| **Gray-500** | `#808080` | 輔助文字、Placeholder |
-| **Gray-200** | `#E5E5E5` | 分隔線、邊框 |
-| **Gray-100** | `#F5F5F5` | 淺色背景 |
-| **Gray-50** | `#FAFAFA` | 卡片背景 |
-| **White** | `#FFFFFF` | 主要背景、白色文字 |
-
-### 2.5 語意色 (Semantic Colors)
+### 2.3 Dark Mode 配色
 
 | 名稱 | 色碼 | 用途 |
 |------|------|------|
-| **Success** | `#10B981` | 成功狀態 |
-| **Warning** | `#F59E0B` | 警告提示 |
-| **Error** | `#EF4444` | 錯誤狀態 |
-| **Info** | `#3B82F6` | 資訊提示 |
+| **Background Primary** | `#121212` | 主要背景 |
+| **Background Secondary** | `#1a1a1a` | 次要背景 |
+| **Background Tertiary** | `#262626` | 卡片填充 |
+| **Text Primary** | `#f5f5f5` | 主要文字 |
+| **Text Secondary** | `#a3a3a3` | 次要文字 |
+| **Text Tertiary** | `#737373` | 輔助文字 |
+| **Border** | `#404040` | 邊框、分隔線 |
 
-### 2.6 CSS 變數定義
+### 2.4 語意色 (Semantic Colors)
+
+| 名稱 | 色碼 | 用途 |
+|------|------|------|
+| **Success** | `#10b981` | 成功狀態 |
+| **Warning** | `#f59e0b` | 警告提示 |
+| **Error** | `#ef4444` | 錯誤狀態 |
+| **Info** | `#3b82f6` | 資訊提示 |
+
+### 2.5 CSS 變數定義
 
 ```css
 :root {
-  /* Primary */
-  --color-primary-300: #4FB8B8;
-  --color-primary-400: #3AA8A8;
-  --color-primary-500: #2D9B9B;
-  --color-primary-600: #1E7B7B;
-  --color-primary-700: #1A6B6B;
-  
-  /* Secondary */
-  --color-secondary-400: #9580FF;
-  --color-secondary-500: #7B61FF;
-  
-  /* Neutral */
-  --color-gray-50: #FAFAFA;
-  --color-gray-100: #F5F5F5;
-  --color-gray-200: #E5E5E5;
-  --color-gray-500: #808080;
-  --color-gray-700: #4A4A4A;
-  --color-gray-900: #1A1A1A;
-  --color-white: #FFFFFF;
-  
-  /* Semantic */
-  --color-success: #10B981;
-  --color-warning: #F59E0B;
-  --color-error: #EF4444;
-  --color-info: #3B82F6;
+  /* 背景 */
+  --bg-primary: #ffffff;
+  --bg-secondary: #fafafa;
+  --bg-tertiary: #f5f5f5;
+
+  /* 文字 */
+  --text-primary: #1a1a1a;
+  --text-secondary: #525252;
+  --text-tertiary: #a3a3a3;
+
+  /* 邊框 */
+  --border-color: #e5e5e5;
+
+  /* 強調色 */
+  --accent: #10b981;
+  --accent-hover: #059669;
+}
+
+.dark {
+  --bg-primary: #121212;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #262626;
+
+  --text-primary: #f5f5f5;
+  --text-secondary: #a3a3a3;
+  --text-tertiary: #737373;
+
+  --border-color: #404040;
+
+  --accent: #34d399;
+  --accent-hover: #6ee7b7;
 }
 ```
 
@@ -123,65 +123,42 @@ PROFESSION · FOCUS · SPECIALIZATION
 
 | 類型 | 字型 | 備用字型 |
 |------|------|----------|
-| **英文標題** | Poppins | Arial, sans-serif |
-| **中文內文** | Noto Sans TC | Microsoft JhengHei, sans-serif |
-| **數字/數據** | Roboto Mono | monospace |
+| **主要字型** | Inter | ui-sans-serif, system-ui, sans-serif |
+| **等寬字型** | ui-monospace | SFMono-Regular, Menlo, monospace |
 
-### 3.2 字體大小比例
+### 3.2 字體大小
+
+採用相對保守的字體尺寸，確保閱讀舒適：
 
 | 名稱 | 大小 | 行高 | 用途 |
 |------|------|------|------|
-| **Display** | 48px / 3rem | 1.2 | 大標題、Hero |
-| **H1** | 36px / 2.25rem | 1.3 | 頁面標題 |
-| **H2** | 28px / 1.75rem | 1.35 | 區塊標題 |
-| **H3** | 22px / 1.375rem | 1.4 | 小節標題 |
-| **H4** | 18px / 1.125rem | 1.45 | 卡片標題 |
-| **Body** | 16px / 1rem | 1.6 | 內文 |
-| **Small** | 14px / 0.875rem | 1.5 | 輔助文字 |
-| **Caption** | 12px / 0.75rem | 1.4 | 標籤、註解 |
+| **H1** | 2xl-3xl (24-30px) | 1.3 | 頁面標題 |
+| **H2** | xl-2xl (20-24px) | 1.4 | 區塊標題 |
+| **H3** | lg (18px) | 1.5 | 卡片標題 |
+| **Body** | base (16px) | 1.6-1.75 | 內文 |
+| **Small** | sm (14px) | 1.5 | 描述文字 |
+| **XSmall** | xs (12px) | 1.4 | 標籤、註解 |
 
 ### 3.3 字重
 
 | 名稱 | 字重 | 用途 |
 |------|------|------|
-| **Light** | 300 | 大標題裝飾 |
 | **Regular** | 400 | 內文 |
-| **Medium** | 500 | 強調文字 |
-| **SemiBold** | 600 | 小標題 |
-| **Bold** | 700 | 標題、按鈕 |
+| **Medium** | 500 | 強調、連結 |
+| **SemiBold** | 600 | 標題、按鈕 |
 
-### 3.4 特殊樣式
+### 3.4 Section Label 樣式
 
 ```css
-/* 英文標題 - 大寫字母間距 */
-.heading-en {
-  font-family: 'Poppins', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 300;
-}
-
-/* 區塊小標籤 (Section Label) - 斜體英文 */
+/* 區塊標籤 - 大寫、追蹤字距 */
 .section-label {
-  font-family: 'Poppins', serif;
-  font-size: 16px;
-  font-style: italic;           /* 關鍵：斜體樣式 */
-  font-weight: 400;
-  color: var(--color-gray-700);
-  text-align: center;
-  margin-bottom: 8px;
-}
-
-/* 中文標題 */
-.heading-zh {
-  font-family: 'Noto Sans TC', sans-serif;
-  font-weight: 700;
-  color: var(--color-gray-900);
-  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
 }
 ```
-
-> **截圖參考**: Section Label 在官網呈現為斜體英文（如 "About Us"、"What We Offer"、"Solutions"），置中對齊，位於中文標題上方。
 
 ---
 
@@ -191,32 +168,23 @@ PROFESSION · FOCUS · SPECIALIZATION
 
 基準單位：**4px**
 
-### 4.2 間距比例
+### 4.2 區塊間距
 
-| Token | 大小 | 用途 |
-|-------|------|------|
-| `space-1` | 4px | 最小間距 |
-| `space-2` | 8px | 元素內間距 |
-| `space-3` | 12px | 緊湊間距 |
-| `space-4` | 16px | 標準間距 |
-| `space-5` | 20px | 中等間距 |
-| `space-6` | 24px | 區塊內間距 |
-| `space-8` | 32px | 區塊間距 |
-| `space-10` | 40px | 大區塊間距 |
-| `space-12` | 48px | 章節間距 |
-| `space-16` | 64px | 大章節間距 |
-| `space-20` | 80px | 頁面區塊間距 |
-| `space-24` | 96px | 最大間距 |
-
-### 4.3 常用間距應用
+Vitesse Style 使用較緊湊的間距：
 
 | 場景 | 間距 |
 |------|------|
-| 按鈕內間距 | `12px 24px` |
-| 卡片內間距 | `24px` |
-| 區塊標題與內容 | `16px` |
-| 區塊之間 | `64px ~ 96px` |
-| 表單欄位間距 | `16px` |
+| Section 上下間距 | `48px (py-12)` ~ `64px (py-16)` |
+| 區塊標題與內容 | `40px (mb-10)` |
+| 卡片間距 | `24px (gap-6)` |
+| 卡片內間距 | `20px (p-5)` ~ `24px (p-6)` |
+
+### 4.3 頁面寬度
+
+| 類型 | 最大寬度 | 用途 |
+|------|----------|------|
+| **container-vitesse** | 768px | 閱讀內容、表單 |
+| **container-wide** | 1024px | 卡片網格、列表 |
 
 ---
 
@@ -228,21 +196,22 @@ PROFESSION · FOCUS · SPECIALIZATION
 
 ```css
 .btn-primary {
-  background: linear-gradient(135deg, #2D9B9B 0%, #3AA8A8 100%);
-  color: #FFFFFF;
-  padding: 12px 24px;
-  border-radius: 24px;
-  font-weight: 600;
-  font-size: 16px;
+  background-color: var(--accent);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 14px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 150ms ease-out;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #3AA8A8 0%, #4FB8B8 100%);
-  box-shadow: 0 4px 12px rgba(45, 155, 155, 0.3);
-  transform: translateY(-2px);
+  background-color: var(--accent-hover);
 }
 ```
 
@@ -250,138 +219,92 @@ PROFESSION · FOCUS · SPECIALIZATION
 
 ```css
 .btn-secondary {
-  background: transparent;
-  color: #2D9B9B;
-  padding: 12px 24px;
-  border-radius: 24px;
-  font-weight: 600;
-  font-size: 16px;
-  border: 2px solid #2D9B9B;
+  background-color: transparent;
+  color: var(--accent);
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  border: 1px solid var(--accent);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 150ms ease-out;
 }
 
 .btn-secondary:hover {
-  background: #2D9B9B;
-  color: #FFFFFF;
+  background-color: var(--accent);
+  color: white;
 }
 ```
-
-#### 按鈕尺寸
-
-| 尺寸 | Padding | 字體大小 | 圓角 |
-|------|---------|----------|------|
-| Small | `8px 16px` | 14px | 16px |
-| Medium | `12px 24px` | 16px | 24px |
-| Large | `16px 32px` | 18px | 28px |
 
 ### 5.2 卡片 (Cards)
 
-#### 服務/方案卡片
+#### 基本卡片
 
 ```css
-.card-service {
-  background: #FFFFFF;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
+.card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 20px;
+  transition: border-color 200ms ease-out;
 }
 
-.card-service:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-}
-
-.card-service__icon {
-  width: 64px;
-  height: 64px;
-  background: linear-gradient(135deg, #2D9B9B 0%, #3AA8A8 100%);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 16px;
-}
-
-.card-service__title {
-  font-size: 18px;
-  font-weight: 700;
-  color: #1A1A1A;
-  margin-bottom: 8px;
-}
-
-.card-service__description {
-  font-size: 14px;
-  color: #4A4A4A;
-  line-height: 1.6;
+.card:hover {
+  border-color: var(--accent);
 }
 ```
 
-#### 圖片卡片（科技風格）
+#### 填充卡片
 
 ```css
-.card-tech {
-  position: relative;
-  background: linear-gradient(145deg, #2D9B9B 0%, #3AA8A8 100%);
-  border-radius: 12px;
-  overflow: hidden;
-  aspect-ratio: 16 / 9;
+.card-filled {
+  background-color: var(--bg-secondary);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 20px;
+  transition: border-color 200ms ease-out;
 }
 
-.card-tech__overlay {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center bottom, rgba(79, 184, 184, 0.4) 0%, transparent 60%);
-}
-
-.card-tech__pattern {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-  background-size: 20px 20px;
+.card-filled:hover {
+  border-color: var(--accent);
 }
 ```
 
-### 5.3 圖示 (Icons)
-
-#### 圖示風格
-
-- **風格**：線條圖示 (Outline) + 扁平填充
-- **線條粗細**：2px
-- **顏色**：白色 (深色背景) / Teal-500 (淺色背景)
-- **尺寸**：24px (預設) / 32px (中) / 48px (大)
-
-#### 常用圖示類別
-
-| 類別 | 代表元素 |
-|------|----------|
-| 安全類 | 盾牌、鎖頭、雲端 |
-| 技術類 | 筆電、伺服器、齒輪 |
-| 數據類 | 圖表、儀表板、文件 |
-| 服務類 | 握手、對話、支援 |
-
-### 5.4 表單元件 (Form Elements)
+### 5.3 表單元件 (Form Elements)
 
 ```css
-.input {
+input, textarea {
   width: 100%;
   padding: 12px 16px;
-  border: 1px solid #E5E5E5;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: all 0.2s ease;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: border-color 200ms ease-out;
 }
 
-.input:focus {
+input:focus, textarea:focus {
   outline: none;
-  border-color: #2D9B9B;
-  box-shadow: 0 0 0 3px rgba(45, 155, 155, 0.1);
+  border-color: var(--accent);
 }
 
-.input::placeholder {
-  color: #808080;
+input::placeholder, textarea::placeholder {
+  color: var(--text-tertiary);
+}
+```
+
+### 5.4 連結樣式
+
+```css
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 150ms ease-out;
+}
+
+a:hover {
+  color: var(--accent-hover);
 }
 ```
 
@@ -389,383 +312,197 @@ PROFESSION · FOCUS · SPECIALIZATION
 
 ## 6. 版面結構 (Layout)
 
-### 6.1 網格系統
+### 6.1 Header
 
-| 斷點名稱 | 最小寬度 | 容器最大寬度 | 欄數 |
-|----------|----------|--------------|------|
-| Mobile | 0px | 100% | 4 |
-| Tablet | 768px | 720px | 8 |
-| Desktop | 1024px | 960px | 12 |
-| Wide | 1280px | 1200px | 12 |
-| Ultra | 1536px | 1400px | 12 |
-
-### 6.2 頁面結構
-
-```
-┌─────────────────────────────────────┐
-│              Header                  │ 高度: 80px (Desktop) / 64px (Mobile)
-├─────────────────────────────────────┤
-│              Banner                  │ 高度: 400-600px
-│  ┌─────────────────────────────┐    │
-│  │     Hero Content            │    │
-│  │     (文字置左/中)           │    │
-│  └─────────────────────────────┘    │
-├─────────────────────────────────────┤
-│           Section 1                  │ 上下 padding: 80px
-│  ┌─────────────────────────────┐    │
-│  │   Section Label (小標)      │    │
-│  │   Section Title (大標)      │    │
-│  │   Content / Cards           │    │
-│  └─────────────────────────────┘    │
-├─────────────────────────────────────┤
-│           Section 2                  │
-│              ...                     │
-├─────────────────────────────────────┤
-│              Footer                  │ 背景: Teal-700
-└─────────────────────────────────────┘
-```
-
-### 6.3 導覽列 (Navbar)
+- 高度：64px (固定)
+- 背景：`var(--bg-primary)` + 底部邊框
+- 無 backdrop-filter 或 glassmorphism
+- Logo 高度：28px
 
 ```css
-.navbar {
+.header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 80px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  height: 64px;
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
   z-index: 1000;
-}
-
-.navbar__logo {
-  height: 40px;
-}
-
-.navbar__link {
-  font-size: 16px;
-  font-weight: 500;
-  color: #1A1A1A;
-  padding: 8px 16px;
-  transition: color 0.2s ease;
-}
-
-.navbar__link:hover {
-  color: #2D9B9B;
-}
-
-.navbar__link--active {
-  color: #2D9B9B;
 }
 ```
 
-### 6.4 頁尾 (Footer)
+### 6.2 Footer
+
+- 背景：`var(--bg-secondary)` + 頂部邊框
+- 無漸層
+- 4 欄式佈局
 
 ```css
 .footer {
-  background: linear-gradient(180deg, #1A6B6B 0%, #0D4A4A 100%);
-  color: #FFFFFF;
-  padding: 64px 0 32px;
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  padding: 48px 0;
 }
+```
 
-.footer__title {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
+### 6.3 頁面結構
 
-.footer__link {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.8);
-  transition: color 0.2s ease;
-}
-
-.footer__link:hover {
-  color: #FFFFFF;
-}
-
-.footer__copyright {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.6);
-  text-align: center;
-  padding-top: 32px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
+```
+┌─────────────────────────────────────┐
+│       Header (64px, fixed)          │
+├─────────────────────────────────────┤
+│              Hero                    │
+├─────────────────────────────────────┤
+│           Section 1                  │ py-12 ~ py-16
+│  ┌─────────────────────────────┐    │
+│  │   Label (xs, uppercase)     │    │
+│  │   Title (2xl semibold)      │    │
+│  │   Content / Cards           │    │
+│  └─────────────────────────────┘    │
+├─────────────────────────────────────┤
+│           Section 2                  │
+├─────────────────────────────────────┤
+│              Footer                  │
+└─────────────────────────────────────┘
 ```
 
 ---
 
-## 7. 圖片風格 (Imagery)
+## 7. 動效規範 (Motion)
 
-### 7.1 Banner 圖片
+### 7.1 過渡時間
 
-| 類型 | 尺寸 | 風格 |
-|------|------|------|
-| Desktop Banner | 1920 x 600px | 漸層背景 + 3D 元素 |
-| Mobile Banner | 750 x 600px | 簡化構圖，文字加大 |
-| Product Banner | 1920 x 500px | 產品標誌 + 標語膠囊 |
-
-#### Banner 設計原則
-
-1. **背景**：使用 Teal 漸層，可加入科技感紋理（電路板、粒子）
-2. **主視覺**：3D 莫比烏斯環帶或相關產品圖示
-3. **文字區**：通常位於左側 1/3 到 1/2 區域
-4. **標語膠囊**：深色 (黑/紫) 圓角矩形，內含白色中文說明
-
-### 7.2 卡片插圖
-
-| 特徵 | 規範 |
-|------|------|
-| 背景 | Teal 漸層 (#2D9B9B → #3AA8A8) |
-| 主體 | 白色/淺色扁平化圖示 |
-| 底部光暈 | 青色圓形漸層發光效果 |
-| 紋理 | 同心圓波紋 + 幾何線條 |
-| 比例 | 16:9 或 4:3 |
-
-### 7.3 圖示插圖風格
-
-```
-┌───────────────────────────────────┐
-│  ╭──────────────────────────────╮ │
-│  │                              │ │
-│  │    🖥️  主要圖示 (白色)        │ │
-│  │      ╭─────────────────╮     │ │
-│  │      │  圓形光暈效果   │     │ │
-│  │      ╰─────────────────╯     │ │
-│  │                              │ │
-│  │  ☁️ 小元素    🛡️ 小元素      │ │
-│  │                              │ │
-│  ╰──────────────────────────────╯ │
-│     背景: Teal 漸層 + 波紋紋理     │
-└───────────────────────────────────┘
-```
-
----
-
-## 8. 動效規範 (Motion)
-
-### 8.1 過渡時間
+Vitesse Style 偏好快速、精準的過渡：
 
 | 類型 | 時長 | 用途 |
 |------|------|------|
-| Fast | 150ms | 按鈕 hover、圖示 |
-| Normal | 300ms | 卡片 hover、展開/收合 |
-| Slow | 500ms | 頁面轉場、大區塊動畫 |
+| **Fast** | 150ms | 按鈕、連結、色彩變化 |
+| **Normal** | 200ms | 卡片 hover、展開收合 |
+| **Slow** | 300ms | Modal 開關 |
 
-### 8.2 緩動函數
+### 7.2 緩動函數
 
 ```css
-/* 預設緩動 */
---ease-default: cubic-bezier(0.4, 0, 0.2, 1);
-
-/* 進入動畫 */
---ease-in: cubic-bezier(0.4, 0, 1, 1);
-
-/* 離開動畫 */
---ease-out: cubic-bezier(0, 0, 0.2, 1);
-
-/* 彈性效果 */
---ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+/* 主要緩動 */
+--transition-fast: 150ms ease-out;
+--transition-normal: 200ms ease-out;
 ```
 
-### 8.3 常用動效
+### 7.3 禁止的動效
 
-#### Hover 上浮效果
+| 禁止 | 原因 |
+|------|------|
+| ❌ `translateY(-4px)` 上浮效果 | 過於花俏 |
+| ❌ `scale(1.05)` 放大效果 | 干擾閱讀 |
+| ❌ Box-shadow 變化動畫 | 效能影響 |
+| ❌ 複雜的 keyframe 動畫 | 不符極簡原則 |
 
-```css
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-  transition: all 0.3s var(--ease-default);
-}
-```
+### 7.4 允許的動效
 
-#### Fade In Up (進場動畫)
+| 允許 | 用途 |
+|------|------|
+| ✅ `border-color` 變化 | Hover 狀態指示 |
+| ✅ `background-color` 變化 | 按鈕 hover |
+| ✅ `opacity` 變化 | 淡入淡出 |
+| ✅ `color` 變化 | 連結 hover |
 
-```css
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+---
 
-.animate-fadeInUp {
-  animation: fadeInUp 0.5s var(--ease-out) forwards;
-}
-```
+## 8. 圖片風格 (Imagery)
 
-#### 按鈕點擊效果
+### 8.1 圖片處理
 
-```css
-.btn:active {
-  transform: scale(0.98);
-  transition: transform 0.1s ease;
-}
+- 圓角：6px (rounded-md)
+- 背景佔位：`var(--bg-tertiary)`
+- 無陰影
+- 無邊框裝飾
+
+### 8.2 響應式圖片
+
+使用 `<picture>` 元素提供桌面/手機版本：
+
+```html
+<picture>
+  <source media="(min-width: 1024px)" srcset="desktop.jpg" />
+  <source media="(max-width: 1023px)" srcset="mobile.jpg" />
+  <img src="desktop.jpg" alt="描述" />
+</picture>
 ```
 
 ---
 
 ## 9. AI 生成指引 (AI Prompt Guide)
 
-### 9.1 元件生成 Prompt 範本
-
-#### 生成按鈕元件
+### 9.1 生成元件時的關鍵字
 
 ```
-請生成一個符合鎰威科技設計規範的 Primary Button：
-- 背景使用漸層：#2D9B9B → #3AA8A8
-- 文字顏色：白色
-- 圓角：24px（膠囊形）
-- 內距：12px 24px
-- Hover 效果：上浮 2px + 陰影加深
-- 字體：16px, font-weight 600
+請生成符合 Vitesse Style 的元件：
+- 無漸層，使用純色
+- 無陰影或僅使用極淺陰影
+- 圓角 6px
+- 過渡時間 150-200ms
+- 使用 CSS 變數 (--bg-primary, --accent 等)
+- 字型 Inter/system-ui
+- 緊湊的間距
 ```
 
-#### 生成服務卡片
-
-```
-請生成一個符合鎰威科技設計規範的服務卡片：
-- 白色背景，圓角 12px
-- 陰影：0 4px 20px rgba(0,0,0,0.08)
-- 內距：24px
-- 包含：圖示區（64x64，Teal 漸層背景）、標題（18px 粗體）、描述（14px 灰色）
-- Hover 效果：上浮 4px
-```
-
-#### 生成 Banner
-
-```
-請生成一個符合鎰威科技設計規範的產品頁 Banner：
-- 尺寸：1920x500px
-- 背景：Teal 漸層 (#1E7B7B → #2D9B9B → #4FB8B8)
-- 可加入：科技感紋理（電路板線條、粒子效果）
-- 主視覺：產品 Logo 置中
-- 標語：深色膠囊框 + 白色中文
-- 預留左側 1/3 區域給文字內容
-```
-
-### 9.2 頁面生成 Prompt 範本
-
-#### 生成產品頁面
-
-```
-請生成一個符合鎰威科技設計規範的產品介紹頁面，包含：
-
-1. Banner 區塊
-   - 高度 500px，Teal 漸層背景
-   - 產品名稱 + 一句話說明
-
-2. 產品特色區塊
-   - 區塊標籤："Product Features"
-   - 標題：產品特色
-   - 3-4 個特色卡片，使用科技風格插圖
-
-3. 功能說明區塊
-   - 左圖右文或右圖左文交錯排列
-   - 圖片使用產品截圖或示意圖
-
-4. FAQ 區塊
-   - 手風琴展開式設計
-   - 3-5 個常見問題
-
-5. CTA 區塊
-   - 深色背景
-   - 行動呼籲按鈕
-
-請遵循以下設計規範：
-- 主色：#2D9B9B
-- 字體：Poppins (英文), Noto Sans TC (中文)
-- 區塊間距：80px
-- 卡片圓角：12px
-```
-
-### 9.3 風格關鍵字速查
-
-| 需求 | 關鍵字 |
-|------|--------|
-| 整體風格 | 專業科技感、現代簡約、企業級、信任感 |
-| 色彩風格 | Teal 青綠色系、藍綠漸層、深色對比 |
-| 圖形風格 | 3D 莫比烏斯環、扁平化圖示、幾何紋理 |
-| 動效風格 | 微妙上浮、平滑過渡、淡入淡出 |
-| 排版風格 | 左對齊、卡片式佈局、清晰層次 |
-
-### 9.4 不要做的事 (Don'ts)
+### 9.2 不要做的事 (Don'ts)
 
 | 避免 | 原因 |
 |------|------|
-| ❌ 使用鮮豔螢光色 | 與品牌專業調性衝突 |
-| ❌ 過多裝飾元素 | 干擾資訊傳達 |
-| ❌ 尖銳直角 | 與品牌圓潤風格不符 |
-| ❌ 過小字體 (<12px) | 影響可讀性 |
-| ❌ 低對比度配色 | 影響無障礙性 |
-| ❌ 過度動畫 | 影響效能與專業感 |
+| ❌ 使用漸層背景 | Vitesse 風格禁止 |
+| ❌ 使用深陰影 (box-shadow) | 過於立體 |
+| ❌ 使用 hover 上浮效果 | 過於花俏 |
+| ❌ 使用 glassmorphism | 不符極簡原則 |
+| ❌ 使用大字體 (>30px) | 保持謙遜 |
+| ❌ 使用裝飾性元素 | 專注於內容 |
+| ❌ 使用 Teal (#2D9B9B) 舊品牌色 | 已改為 Emerald |
+
+### 9.3 要做的事 (Do's)
+
+| 執行 | 原因 |
+|------|------|
+| ✅ 使用 CSS 變數 | 支援主題切換 |
+| ✅ 使用 border 顯示 hover 狀態 | 精準、不干擾 |
+| ✅ 使用 emerald (#10b981) 作為強調色 | 當前品牌色 |
+| ✅ 保持緊湊間距 | 內容密度適中 |
+| ✅ 使用 container-vitesse/container-wide | 統一頁面寬度 |
 
 ---
 
 ## 10. 設計資源 (Resources)
 
-### 10.1 截圖參考
+### 10.1 CSS 框架
 
-官網截圖存放於 `design/screenshots/`，供 AI 分析與設計還原：
+- Tailwind CSS v4 (with @theme)
+- 使用 CSS 變數進行主題管理
 
-```
-design/screenshots/
-├── index/                       # 首頁截圖
-│   ├── screencapture-ewill-tw-desktop.png
-│   └── screencapture-ewill-tw-index-mobile.png
-├── about/                       # 關於我們截圖
-│   ├── screencapture-ewill-tw-about-desktop.png
-│   └── screencapture-ewill-tw-about-mobile.png
-└── event-information/           # 活動訊息截圖
-    ├── screencapture-ewill-tw-event-information-desktop.png
-    └── screencapture-ewill-tw-event-information-mobile.png
-```
+### 10.2 Tailwind 自訂 Class
 
-### 10.2 從截圖提取的設計規範
+```css
+/* 容器 */
+.container-vitesse { max-width: 768px; margin: 0 auto; padding: 0 24px; }
+.container-wide { max-width: 1024px; margin: 0 auto; padding: 0 24px; }
 
-| 元素 | 規範 |
-|------|------|
-| **Section Label** | 斜體英文（如 "About Us"）、Teal 色、置中 |
-| **Section Title** | 中文粗體（如 "關於我們"）、Teal 色、置中 |
-| **卡片** | 圖片上方 → 標題 → 描述 → 按鈕 |
-| **按鈕** | 圓角膠囊、Teal 漸層、白色文字 "了解更多" |
-| **Footer** | 深 Teal 漸層、7 欄式佈局、Logo 左上 |
+/* 按鈕 */
+.btn { ... }
+.btn-primary { ... }
+.btn-secondary { ... }
 
-### 10.2 圖片資源位置
+/* 卡片 */
+.card { ... }
+.card-filled { ... }
 
-專案圖片資源統一存放於各模組的 `assets/` 目錄：
-
-```
-module_name/
-├── index.md
-├── index.yml
-└── assets/
-    ├── banner.jpg
-    ├── banner.jpg.yml
-    └── ...
+/* 排版 */
+.prose { ... }
 ```
 
-### 10.3 推薦工具
-
-| 用途 | 工具 |
-|------|------|
-| 設計稿 | Figma |
-| 圖示 | Heroicons, Lucide |
-| 漸層生成 | CSS Gradient |
-| 色彩工具 | Coolors, Adobe Color |
-
-### 10.4 參考連結
+### 10.3 參考連結
 
 - 官方網站：https://www.ewill.com.tw/
+- Vitesse 參考：https://vitesse.netlify.app/
 - 品牌核心價值：專業 · 專注 · 專精
-- 截圖參考：[design_reference/](./design_reference/)
 
 ---
 
@@ -773,5 +510,5 @@ module_name/
 
 | 版本 | 日期 | 更新內容 |
 |------|------|----------|
-| 1.0.0 | 2026-01-06 | 初版建立，包含完整設計規範 |
-
+| 1.0.0 | 2026-01-06 | 初版建立 |
+| 2.0.0 | 2026-01-14 | 重構為 Vitesse Style，移除漸層、更新色彩系統為 Emerald |

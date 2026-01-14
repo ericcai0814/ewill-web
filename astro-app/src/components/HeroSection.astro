@@ -10,12 +10,13 @@ export interface Props {
 const { image, overlay = false, height = 'auto' } = Astro.props;
 ---
 
+<!-- Vitesse Style: Clean hero, minimal overlay -->
 <section class:list={[
   'relative w-full overflow-hidden',
   height === 'full' && 'h-screen min-h-[600px]'
 ]}>
   <picture class:list={[
-    'block w-full h-full aspect-[16/5] bg-dark-900',
+    'block w-full h-full aspect-[16/5] bg-[var(--bg-tertiary)]',
     overlay && 'absolute inset-0'
   ]}>
     <source media="(min-width: 1024px)" srcset={image.desktop} />
@@ -31,7 +32,7 @@ const { image, overlay = false, height = 'auto' } = Astro.props;
     />
   </picture>
   {overlay && (
-    <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/40 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-black/30 pointer-events-none"></div>
   )}
   <slot />
 </section>

@@ -81,27 +81,40 @@ const jsonLd = {
 };
 ---
 
-<nav class="breadcrumb" aria-label="麵包屑導覽">
-  <ol class="breadcrumb__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+<!-- Vitesse Style: Minimal breadcrumb -->
+<nav class="py-3 text-sm" aria-label="麵包屑導覽">
+  <ol
+    class="container-wide flex flex-wrap items-center gap-2 list-none m-0 p-0"
+    itemscope
+    itemtype="https://schema.org/BreadcrumbList"
+  >
     {breadcrumbItems.map((item, index) => (
       <li
-        class="breadcrumb__item"
+        class="flex items-center gap-2"
         itemprop="itemListElement"
         itemscope
         itemtype="https://schema.org/ListItem"
       >
         {item.href ? (
-          <a href={item.href} class="breadcrumb__link" itemprop="item">
+          <a
+            href={item.href}
+            class="text-[var(--text-tertiary)] hover:text-[var(--accent)] transition-colors"
+            itemprop="item"
+          >
             <span itemprop="name">{item.label}</span>
           </a>
         ) : (
-          <span class="breadcrumb__current" itemprop="name" aria-current="page">
+          <span
+            class="text-[var(--text-primary)] font-medium"
+            itemprop="name"
+            aria-current="page"
+          >
             {item.label}
           </span>
         )}
         <meta itemprop="position" content={String(index + 1)} />
         {index < breadcrumbItems.length - 1 && (
-          <span class="breadcrumb__separator" aria-hidden="true">/</span>
+          <span class="text-[var(--border-color)]" aria-hidden="true">/</span>
         )}
       </li>
     ))}
@@ -109,60 +122,3 @@ const jsonLd = {
 </nav>
 
 <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-
-<style>
-  .breadcrumb {
-    padding: 16px 0;
-    font-size: 14px;
-  }
-
-  .breadcrumb__list {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  .breadcrumb__item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .breadcrumb__link {
-    color: #666;
-    text-decoration: none;
-    transition: color 0.2s ease;
-  }
-
-  .breadcrumb__link:hover {
-    color: #3F8696;
-    text-decoration: underline;
-  }
-
-  .breadcrumb__current {
-    color: #333;
-    font-weight: 500;
-  }
-
-  .breadcrumb__separator {
-    color: #ccc;
-  }
-
-  @media (max-width: 1023px) {
-    .breadcrumb {
-      padding: 12px 0;
-      font-size: 13px;
-    }
-
-    .breadcrumb__list {
-      padding: 0 16px;
-    }
-  }
-</style>

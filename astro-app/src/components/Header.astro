@@ -23,143 +23,146 @@ const logo = {
 const navigation: NavItem[] = headerData?.navigation || [];
 ---
 
+<!-- Vitesse Style Header: Clean, minimal, no glassmorphism -->
 <header
-  class="fixed top-0 left-0 right-0 min-h-[100px] bg-transparent z-[1000] transition-all duration-300
-         max-md:min-h-[74px] max-sm:min-h-[60px]"
+  class="fixed top-0 left-0 right-0 h-16 bg-[var(--bg-primary)] border-b border-[var(--border-color)] z-[1000] transition-all duration-200"
   id="main-header"
 >
-  <div class="max-w-[1240px] mx-auto px-6 h-full min-h-[inherit] flex items-center justify-between
-              max-md:px-8 max-sm:px-4">
+  <div class="container-wide h-full flex items-center justify-between">
     <!-- Logo -->
-    <a href={logo.link} class="block">
+    <a href={logo.link} class="flex items-center">
       <img
         src={logo.src}
         alt={logo.alt}
-        width="180"
-        height="40"
-        class="h-[50px] w-auto max-md:h-10 max-sm:h-8"
+        width="140"
+        height="32"
+        class="h-8 w-auto"
       />
     </a>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden min-[922px]:block" aria-label="主要導覽列">
-      <ul class="flex items-center gap-2 list-none m-0 p-0">
-        {navigation.map((item) => (
-          <li class="relative group">
-            {item.is_cta ? (
-              <a
-                href={item.url}
-                class="block px-6 py-2.5 text-base font-medium bg-brand text-white rounded-full
-                       hover:bg-brand-hover transition-colors"
-              >
-                {item.text}
-              </a>
-            ) : (
-              <a
-                href={item.url}
-                class="block px-4 py-2 text-base font-medium text-brand hover:text-brand-hover
-                       dark:text-[var(--brand)] dark:hover:text-[var(--brand-hover)] transition-colors"
-              >
-                {item.text}
-              </a>
-            )}
-            {item.children && item.children.length > 0 && (
-              <ul class="hidden group-hover:block absolute top-full left-0 bg-white dark:bg-dark-800
-                         rounded-lg shadow-popup min-w-[200px] py-2 list-none m-0">
+    <nav class="hidden md:flex items-center gap-1" aria-label="主要導覽列">
+      {navigation.map((item) => (
+        <div class="relative group">
+          {item.is_cta ? (
+            <a
+              href={item.url}
+              class="btn btn-primary text-sm"
+            >
+              {item.text}
+            </a>
+          ) : (
+            <a
+              href={item.url}
+              class="px-3 py-2 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
+            >
+              {item.text}
+            </a>
+          )}
+          {item.children && item.children.length > 0 && (
+            <div class="hidden group-hover:block absolute top-full left-0 pt-2">
+              <ul class="bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-md min-w-[180px] py-1 list-none m-0">
                 {item.children.map((child) => (
                   <li class="relative group/child">
                     <a
                       href={child.url}
-                      class="block px-5 py-2.5 text-sm text-primary dark:text-gray-200
-                             hover:bg-secondary dark:hover:bg-dark-700 hover:text-brand transition-all"
+                      class="block px-4 py-2 text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] hover:bg-[var(--bg-secondary)] transition-colors"
                     >
                       {child.text}
                     </a>
                     {child.children && child.children.length > 0 && (
-                      <ul class="hidden group-hover/child:block absolute top-0 left-full bg-white dark:bg-dark-800
-                                 rounded-lg shadow-popup min-w-[180px] py-2 list-none m-0">
-                        {child.children.map((nested) => (
-                          <li>
-                            <a
-                              href={nested.url}
-                              class="block px-5 py-2.5 text-sm text-primary dark:text-gray-200
-                                     hover:bg-secondary dark:hover:bg-dark-700 hover:text-brand transition-all"
-                            >
-                              {nested.text}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
+                      <div class="hidden group-hover/child:block absolute top-0 left-full pl-1">
+                        <ul class="bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-md min-w-[160px] py-1 list-none m-0">
+                          {child.children.map((nested) => (
+                            <li>
+                              <a
+                                href={nested.url}
+                                class="block px-4 py-2 text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] hover:bg-[var(--bg-secondary)] transition-colors"
+                              >
+                                {nested.text}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     )}
                   </li>
                 ))}
               </ul>
-            )}
-          </li>
-        ))}
-      </ul>
+            </div>
+          )}
+        </div>
+      ))}
     </nav>
 
-    <!-- Dark Mode Toggle + Mobile Hamburger -->
-    <div class="flex items-center gap-2">
+    <!-- Actions: Dark Mode + Mobile Menu -->
+    <div class="flex items-center gap-1">
       <!-- Dark Mode Toggle -->
       <button
         class="dark-mode-toggle"
         onclick="window.toggleDarkMode()"
         aria-label="切換深色模式"
       >
-        <svg class="icon-sun w-5 h-5 text-brand dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        <!-- Sun Icon (Light Mode) -->
+        <svg class="dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                 d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
         </svg>
-        <svg class="icon-moon w-5 h-5 text-brand hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        <!-- Moon Icon (Dark Mode) -->
+        <svg class="hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                 d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
         </svg>
       </button>
 
-      <!-- Mobile Hamburger -->
+      <!-- Mobile Menu Toggle -->
       <button
-        class="flex flex-col justify-center gap-[5px] w-8 h-8 bg-transparent border-none cursor-pointer p-0
-               min-[922px]:hidden"
+        class="md:hidden dark-mode-toggle"
         id="mobile-menu-toggle"
         aria-label="開啟選單"
         aria-expanded="false"
       >
-        <span class="w-6 h-0.5 bg-brand transition-all duration-300"></span>
-        <span class="w-6 h-0.5 bg-brand transition-all duration-300"></span>
-        <span class="w-6 h-0.5 bg-brand transition-all duration-300"></span>
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
       </button>
     </div>
   </div>
 
-  <!-- Mobile Menu -->
+  <!-- Mobile Menu (Vitesse Style: Slide from right) -->
   <div class="mobile-menu hidden fixed inset-0 z-[1001]" id="mobile-menu" aria-hidden="true">
-    <div class="absolute inset-0 bg-black/50" id="mobile-overlay"></div>
-    <nav class="absolute top-0 right-0 w-4/5 max-w-[320px] h-full bg-primary dark:bg-dark-900 p-5 overflow-y-auto">
-      <button
-        class="absolute top-4 right-4 w-10 h-10 bg-transparent border-none text-[32px] text-primary cursor-pointer"
-        id="mobile-menu-close"
-        aria-label="關閉選單"
-      >
-        <span>&times;</span>
-      </button>
-      <ul class="list-none mt-[60px] p-0">
+    <div class="absolute inset-0 bg-black/20" id="mobile-overlay"></div>
+    <nav class="absolute top-0 right-0 w-[280px] h-full bg-[var(--bg-primary)] border-l border-[var(--border-color)] overflow-y-auto">
+      <!-- Close Button -->
+      <div class="flex justify-end p-4">
+        <button
+          class="dark-mode-toggle"
+          id="mobile-menu-close"
+          aria-label="關閉選單"
+        >
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Navigation Links -->
+      <ul class="list-none m-0 p-4 pt-0">
         {navigation.map((item) => (
-          <li class="border-b border-default">
+          <li class="border-b border-[var(--border-color-light)]">
             <a
               href={item.url}
-              class="block py-4 text-base font-medium text-primary no-underline"
+              class="block py-3 text-sm font-medium text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors"
             >
               {item.text}
             </a>
             {item.children && item.children.length > 0 && (
-              <ul class="list-none m-0 pb-4 pl-4">
+              <ul class="list-none m-0 pb-3 pl-4">
                 {item.children.map((child) => (
                   <li>
                     <a
                       href={child.url}
-                      class="block py-2 text-sm text-secondary no-underline"
+                      class="block py-2 text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
                     >
                       {child.text}
                     </a>
@@ -175,30 +178,6 @@ const navigation: NavItem[] = headerData?.navigation || [];
 </header>
 
 <script>
-  // 滾動隱藏 Header
-  let lastScrollY = 0;
-  const header = document.getElementById('main-header');
-
-  window.addEventListener('scroll', () => {
-    const currentScrollY = window.scrollY;
-    const isDark = document.documentElement.classList.contains('dark');
-
-    if (currentScrollY > 100) {
-      // 滾動後添加背景
-      header?.classList.add('bg-white/95', 'dark:bg-[#1a1a2e]/95', 'backdrop-blur-sm', 'shadow-sm');
-      if (currentScrollY > lastScrollY) {
-        header?.classList.add('-translate-y-full');
-      } else {
-        header?.classList.remove('-translate-y-full');
-      }
-    } else {
-      header?.classList.remove('bg-white/95', 'dark:bg-[#1a1a2e]/95', 'backdrop-blur-sm', 'shadow-sm');
-      header?.classList.remove('-translate-y-full');
-    }
-
-    lastScrollY = currentScrollY;
-  });
-
   // Mobile Menu Toggle
   const menuToggle = document.getElementById('mobile-menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
@@ -207,7 +186,6 @@ const navigation: NavItem[] = headerData?.navigation || [];
 
   function openMenu() {
     mobileMenu?.classList.remove('hidden');
-    mobileMenu?.classList.add('block');
     menuToggle?.setAttribute('aria-expanded', 'true');
     mobileMenu?.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -215,7 +193,6 @@ const navigation: NavItem[] = headerData?.navigation || [];
 
   function closeMenu() {
     mobileMenu?.classList.add('hidden');
-    mobileMenu?.classList.remove('block');
     menuToggle?.setAttribute('aria-expanded', 'false');
     mobileMenu?.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';

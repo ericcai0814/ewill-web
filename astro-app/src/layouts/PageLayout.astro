@@ -238,22 +238,9 @@ const jsonLdItems = buildJsonLd(aio);
 </Layout>
 
 <style>
+  /* Vitesse Style: Consistent header height */
   .page-main {
     min-height: 100vh;
-    padding-top: 100px; /* Header height */
-  }
-
-  /* 平板 (≤921px) */
-  @media (max-width: 921px) {
-    .page-main {
-      padding-top: 74px;
-    }
-  }
-
-  /* 小手機 (≤544px) */
-  @media (max-width: 544px) {
-    .page-main {
-      padding-top: 60px;
-    }
+    padding-top: 64px; /* Fixed header height (h-16) */
   }
 </style>

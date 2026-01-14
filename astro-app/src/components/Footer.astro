@@ -31,40 +31,43 @@ const contact = footerData?.contact || {
 const quickLinks: FooterLink[] = footerData?.quick_links || [];
 const solutions: FooterLink[] = footerData?.solutions || [];
 const social: SocialLink[] = footerData?.social || [];
-const copyright = footerData?.copyright?.text || `Copyright © ${new Date().getFullYear()} 鎰威科技 EWILL Technology. All rights reserved.`;
+const copyright = footerData?.copyright?.text || `© ${new Date().getFullYear()} 鎰威科技 EWILL Technology`;
 ---
 
-<footer class="bg-dark-900 text-white py-[60px] pb-[30px]">
-  <div class="max-w-[1280px] mx-auto px-6">
-    <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.5fr]">
-      <!-- 公司資訊 -->
-      <div>
+<!-- Vitesse Style Footer: Clean, minimal, no gradient -->
+<footer class="bg-[var(--bg-secondary)] border-t border-[var(--border-color)] py-12">
+  <div class="container-wide">
+    <!-- Main Grid -->
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <!-- Company Info -->
+      <div class="lg:col-span-1">
         <img
           src={company.logo}
           alt={company.name}
-          class="h-9 w-auto mb-4 brightness-0 invert"
-          width="160"
-          height="36"
+          class="h-7 w-auto mb-4 dark:brightness-0 dark:invert"
+          width="120"
+          height="28"
         />
-        <p class="text-sm text-gray-400 leading-relaxed mb-5">{company.description}</p>
+        <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+          {company.description}
+        </p>
         {social.length > 0 && (
-          <div class="flex gap-3">
+          <div class="flex gap-2">
             {social.map((item) => (
               <a
                 href={item.url}
-                class="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full text-gray-400
-                       hover:bg-brand-hover hover:text-white transition-all"
+                class="flex items-center justify-center w-8 h-8 rounded-md text-[var(--text-tertiary)] hover:text-[var(--accent)] hover:bg-[var(--bg-tertiary)] transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={item.platform}
               >
                 {item.icon === 'facebook' && (
-                  <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                   </svg>
                 )}
                 {item.icon === 'linkedin' && (
-                  <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                   </svg>
                 )}
@@ -74,13 +77,16 @@ const copyright = footerData?.copyright?.text || `Copyright © ${new Date().getF
         )}
       </div>
 
-      <!-- 快速連結 -->
+      <!-- Quick Links -->
       <div>
-        <h3 class="text-lg font-semibold mb-5 text-white">快速連結</h3>
-        <ul class="list-none m-0 p-0">
+        <h3 class="text-sm font-semibold text-[var(--text-primary)] mb-4">快速連結</h3>
+        <ul class="list-none m-0 p-0 space-y-2">
           {quickLinks.map((link) => (
             <li>
-              <a href={link.url} class="block py-1.5 text-sm text-gray-400 no-underline hover:text-brand-hover transition-colors">
+              <a
+                href={link.url}
+                class="text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
+              >
                 {link.text}
               </a>
             </li>
@@ -88,13 +94,16 @@ const copyright = footerData?.copyright?.text || `Copyright © ${new Date().getF
         </ul>
       </div>
 
-      <!-- 解決方案 -->
+      <!-- Solutions -->
       <div>
-        <h3 class="text-lg font-semibold mb-5 text-white">解決方案</h3>
-        <ul class="list-none m-0 p-0">
+        <h3 class="text-sm font-semibold text-[var(--text-primary)] mb-4">解決方案</h3>
+        <ul class="list-none m-0 p-0 space-y-2">
           {solutions.map((link) => (
             <li>
-              <a href={link.url} class="block py-1.5 text-sm text-gray-400 no-underline hover:text-brand-hover transition-colors">
+              <a
+                href={link.url}
+                class="text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
+              >
                 {link.text}
               </a>
             </li>
@@ -102,28 +111,34 @@ const copyright = footerData?.copyright?.text || `Copyright © ${new Date().getF
         </ul>
       </div>
 
-      <!-- 聯絡我們 -->
+      <!-- Contact -->
       <div>
-        <h3 class="text-lg font-semibold mb-5 text-white">聯絡我們</h3>
-        <address class="not-italic">
-          <div class="flex items-start gap-3 mb-3 text-sm text-gray-400">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" class="shrink-0 mt-0.5">
+        <h3 class="text-sm font-semibold text-[var(--text-primary)] mb-4">聯絡我們</h3>
+        <address class="not-italic space-y-3">
+          <div class="flex items-center gap-2 text-sm text-[var(--text-secondary)]">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" class="shrink-0 opacity-60">
               <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
             </svg>
-            <a href={`tel:${contact.phone.replace(/[^0-9]/g, '')}`} class="text-gray-400 no-underline hover:text-brand-hover transition-colors">
+            <a
+              href={`tel:${contact.phone.replace(/[^0-9]/g, '')}`}
+              class="hover:text-[var(--accent)] transition-colors"
+            >
               {contact.phone}
             </a>
           </div>
-          <div class="flex items-start gap-3 mb-3 text-sm text-gray-400">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" class="shrink-0 mt-0.5">
+          <div class="flex items-center gap-2 text-sm text-[var(--text-secondary)]">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" class="shrink-0 opacity-60">
               <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
             </svg>
-            <a href={`mailto:${contact.email}`} class="text-gray-400 no-underline hover:text-brand-hover transition-colors">
+            <a
+              href={`mailto:${contact.email}`}
+              class="hover:text-[var(--accent)] transition-colors"
+            >
               {contact.email}
             </a>
           </div>
-          <div class="flex items-start gap-3 mb-3 text-sm text-gray-400">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" class="shrink-0 mt-0.5">
+          <div class="flex items-start gap-2 text-sm text-[var(--text-secondary)]">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" class="shrink-0 mt-0.5 opacity-60">
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
             </svg>
             <span>{contact.address}</span>
@@ -133,8 +148,10 @@ const copyright = footerData?.copyright?.text || `Copyright © ${new Date().getF
     </div>
 
     <!-- Copyright -->
-    <div class="border-t border-dark-600 pt-5 mt-10 text-center">
-      <p class="text-sm text-gray-400 m-0">{copyright}</p>
+    <div class="border-t border-[var(--border-color)] pt-6 mt-8">
+      <p class="text-xs text-[var(--text-tertiary)] text-center">
+        {copyright}
+      </p>
     </div>
   </div>
 </footer>

@@ -33,7 +33,7 @@ ewill-web/
 │   └── skills/
 │       └── content-build/  # 內容建置流水線
 │
-├── astro-app/          # ⭐ Astro 4.x 靜態網站（主要前端專案）
+├── astro-app/          # ⭐ Astro 5.x 靜態網站（主要前端專案）
 │   ├── src/
 │   │   ├── layouts/    # 版型 (Layout.astro)
 │   │   ├── components/ # 元件

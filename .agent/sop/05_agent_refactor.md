@@ -143,7 +143,7 @@ sop_audit:
 **執行步驟**：
 
 1. 讀取 `GUIDELINES.md` 了解當前規範
-2. 讀取 `System/changelog.md` 了解最近結構變更
+2. 讀取 `system/changelog.md` 了解最近結構變更
 3. 逐一檢查 `.agent/sop/` 下所有 SOP 檔案
 4. 輸出檢查報告，列出需要更新的 SOP
 5. 詢問是否執行更新

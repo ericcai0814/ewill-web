@@ -53,28 +53,29 @@ const gridCols = {
 // Gap class
 const gapClass = {
   small: 'gap-3',
-  medium: 'gap-6',
-  large: 'gap-8'
+  medium: 'gap-5',
+  large: 'gap-6'
 }[gap];
 ---
 
-<section class="py-20 max-lg:py-[60px]">
-  <div class="max-w-[1280px] mx-auto px-6 max-lg:px-4">
+<!-- Vitesse Style: Clean gallery grid -->
+<section class="py-12 md:py-16">
+  <div class="container-wide">
     <!-- Section Header -->
     {(label || title || description) && (
-      <header class="text-center mb-12 max-lg:mb-8">
+      <header class="text-center mb-10">
         {label && (
-          <span class="inline-block text-sm font-semibold text-brand uppercase tracking-[0.1em] mb-3">
+          <span class="inline-block text-xs font-medium text-[var(--accent)] uppercase tracking-wider mb-3">
             {label}
           </span>
         )}
         {title && (
-          <h2 class="text-4xl max-lg:text-[28px] font-bold text-primary dark:text-white mb-4 leading-tight">
+          <h2 class="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] mb-3">
             {title}
           </h2>
         )}
         {description && (
-          <p class="text-lg text-secondary dark:text-gray-300 m-0 max-w-[600px] mx-auto leading-relaxed">
+          <p class="text-[var(--text-secondary)] max-w-2xl mx-auto">
             {description}
           </p>
         )}
@@ -85,31 +86,31 @@ const gapClass = {
     <div class:list={['grid grid-cols-1', gridCols, gapClass]} data-lightbox={lightbox}>
       {imagesWithAssets.map((item) => item.image && (
         <figure class="m-0" data-gallery-id={item.id}>
-          <div class="relative aspect-[4/3] overflow-hidden rounded-xl bg-secondary dark:bg-dark-700 group">
+          <div class="relative aspect-[4/3] overflow-hidden rounded-md bg-[var(--bg-tertiary)] group">
             <picture class="block w-full h-full">
               <source media="(min-width: 1024px)" srcset={item.image.desktop} />
               <source media="(max-width: 1023px)" srcset={item.image.mobile} />
               <img
                 src={item.image.desktop}
                 alt={item.image.alt}
-                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                class="w-full h-full object-cover"
                 loading="lazy"
                 decoding="async"
               />
             </picture>
             {lightbox && (
               <button
-                class="gallery-zoom absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[0.8] opacity-0
-                       w-14 h-14 max-lg:w-12 max-lg:h-12 flex items-center justify-center
-                       bg-white/95 border-none rounded-full cursor-pointer text-brand
-                       transition-all duration-300 shadow-popup
+                class="gallery-zoom absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-90 opacity-0
+                       w-12 h-12 flex items-center justify-center
+                       bg-white/90 dark:bg-black/80 border-none rounded-full cursor-pointer
+                       text-[var(--text-primary)] transition-all duration-200
                        group-hover:opacity-100 group-hover:scale-100
-                       hover:bg-brand hover:text-white"
+                       hover:bg-[var(--accent)] hover:text-white"
                 data-src={item.image.desktop}
                 data-alt={item.image.alt}
                 aria-label="放大檢視"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <circle cx="11" cy="11" r="8"/>
                   <path d="M21 21l-4.35-4.35"/>
                   <path d="M11 8v6M8 11h6"/>
@@ -118,9 +119,9 @@ const gapClass = {
             )}
           </div>
           {(item.title || item.caption) && (
-            <figcaption class="py-4 text-center">
-              {item.title && <h3 class="text-base font-semibold text-primary dark:text-white mb-1">{item.title}</h3>}
-              {item.caption && <p class="text-sm text-secondary dark:text-gray-400 m-0">{item.caption}</p>}
+            <figcaption class="py-3 text-center">
+              {item.title && <h3 class="text-sm font-semibold text-[var(--text-primary)] mb-1">{item.title}</h3>}
+              {item.caption && <p class="text-xs text-[var(--text-secondary)] m-0">{item.caption}</p>}
             </figcaption>
           )}
         </figure>
@@ -145,12 +146,12 @@ const gapClass = {
                bg-transparent border-none text-white cursor-pointer transition-transform hover:scale-110"
         aria-label="關閉"
       >
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="18" y1="6" x2="6" y2="18"/>
           <line x1="6" y1="6" x2="18" y2="18"/>
         </svg>
       </button>
-      <img class="lightbox-image block max-w-full max-h-[85vh] rounded-lg shadow-popup" src="" alt="" />
+      <img class="lightbox-image block max-w-full max-h-[85vh] rounded-md" src="" alt="" />
     </div>
   </div>
 )}

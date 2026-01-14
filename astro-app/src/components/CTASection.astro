@@ -1,6 +1,4 @@
 ---
-import { cn } from '../utils/cn';
-
 export interface Props {
   title: string;
   description?: string;
@@ -19,61 +17,42 @@ const {
   align = 'center'
 } = Astro.props;
 
-// 背景樣式
+// Vitesse Style: Simple background variants (no gradients)
 const bgClass = {
-  primary: 'bg-gradient-to-br from-[#f0f9fa] to-[#e6f4f5] dark:from-dark-800 dark:to-dark-700',
-  secondary: 'bg-primary border-y border-default',
-  dark: 'bg-gradient-to-br from-dark-900 to-[#2d2d4a]'
+  primary: 'bg-[var(--bg-secondary)]',
+  secondary: 'bg-[var(--bg-primary)] border-y border-[var(--border-color)]',
+  dark: 'bg-[var(--bg-tertiary)]'
 }[variant];
 
-// 標題樣式
-const titleClass = {
-  primary: 'text-dark-900 dark:text-white',
-  secondary: 'text-dark-900 dark:text-white',
-  dark: 'text-white'
-}[variant];
+// Text colors
+const titleClass = 'text-[var(--text-primary)]';
+const descClass = 'text-[var(--text-secondary)]';
 
-// 描述樣式
-const descClass = {
-  primary: 'text-secondary dark:text-gray-300',
-  secondary: 'text-secondary dark:text-gray-300',
-  dark: 'text-white/80'
-}[variant];
-
-// 按鈕樣式
+// Button style based on variant
 const btnClass = {
-  primary: 'bg-brand text-white hover:bg-brand-hover hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(63,134,150,0.3)]',
-  secondary: 'bg-transparent text-brand border-2 border-brand hover:bg-brand hover:text-white',
-  dark: 'bg-brand-hover text-white hover:bg-[#3ac9c9] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(45,155,155,0.4)]'
+  primary: 'btn btn-primary',
+  secondary: 'btn btn-secondary',
+  dark: 'btn btn-primary'
 }[variant];
+
+const alignClass = align === 'center' ? 'text-center mx-auto' : 'text-left';
 ---
 
-<section class={cn('py-20 max-lg:py-[60px]', bgClass)}>
-  <div class="max-w-[1280px] mx-auto px-6 max-lg:px-4">
-    <div class={cn(
-      'max-w-[800px]',
-      align === 'center' ? 'mx-auto text-center' : 'text-left'
-    )}>
-      <h2 class={cn('text-4xl max-lg:text-[28px] font-bold mb-4 leading-tight', titleClass)}>
+<!-- Vitesse Style: Clean CTA, no gradients -->
+<section class={`py-12 md:py-16 ${bgClass}`}>
+  <div class="container-wide">
+    <div class={`max-w-2xl ${alignClass}`}>
+      <h2 class={`text-xl md:text-2xl font-semibold mb-3 ${titleClass}`}>
         {title}
       </h2>
       {description && (
-        <p class={cn('text-lg max-lg:text-base mb-8 max-lg:mb-6 leading-relaxed opacity-90', descClass)}>
+        <p class={`text-base mb-6 ${descClass}`}>
           {description}
         </p>
       )}
-      <a
-        href={button_link}
-        class={cn(
-          'inline-flex items-center gap-2 px-8 py-4 max-lg:px-7 max-lg:py-3.5',
-          'text-base max-lg:text-[15px] font-semibold no-underline rounded-[30px]',
-          'transition-all duration-300',
-          '[&_svg]:transition-transform [&_svg]:duration-300 [&:hover_svg]:translate-x-1',
-          btnClass
-        )}
-      >
+      <a href={button_link} class={btnClass}>
         {button_text}
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M5 12h14M12 5l7 7-7 7"/>
         </svg>
       </a>

@@ -45,20 +45,21 @@ const eventsWithImages = await Promise.all(
 const isHorizontal = layout === 'horizontal';
 ---
 
-<section class="py-20 max-lg:py-[60px] bg-secondary dark:bg-dark-800">
-  <div class="max-w-[1280px] mx-auto px-6 max-lg:px-4">
+<!-- Vitesse Style: Clean timeline, no gradient markers -->
+<section class="py-12 md:py-16 bg-[var(--bg-secondary)]">
+  <div class="container-wide">
     <!-- Section Header -->
-    <header class="text-center mb-[60px] max-lg:mb-10">
+    <header class="text-center mb-12">
       {label && (
-        <span class="inline-block text-sm font-semibold text-brand uppercase tracking-[0.1em] mb-3">
+        <span class="inline-block text-xs font-medium text-[var(--accent)] uppercase tracking-wider mb-3">
           {label}
         </span>
       )}
-      <h2 class="text-4xl max-lg:text-[28px] font-bold text-primary dark:text-white mb-4 leading-tight">
+      <h2 class="text-2xl md:text-3xl font-semibold text-[var(--text-primary)] mb-3">
         {title}
       </h2>
       {description && (
-        <p class="text-lg text-secondary dark:text-gray-300 m-0 max-w-[600px] mx-auto leading-relaxed">
+        <p class="text-[var(--text-secondary)] max-w-2xl mx-auto">
           {description}
         </p>
       )}
@@ -69,15 +70,15 @@ const isHorizontal = layout === 'horizontal';
       'relative',
       isHorizontal
         ? 'flex overflow-x-auto gap-6 py-5 max-w-none'
-        : 'max-w-[900px] mx-auto'
+        : 'max-w-3xl mx-auto'
     ]}>
       <!-- Timeline Line -->
       <div
         class:list={[
-          'absolute bg-gradient-to-b from-brand to-brand-hover',
+          'absolute bg-[var(--accent)]',
           isHorizontal
             ? 'top-10 left-0 right-0 h-0.5 w-auto'
-            : 'left-1/2 max-lg:left-10 top-0 bottom-0 w-0.5 -translate-x-1/2 max-lg:translate-x-0'
+            : 'left-1/2 md:left-10 top-0 bottom-0 w-0.5 -translate-x-1/2 md:translate-x-0'
         ]}
         aria-hidden="true"
       ></div>
@@ -89,10 +90,7 @@ const isHorizontal = layout === 'horizontal';
             isHorizontal
               ? 'flex flex-col shrink-0 w-[280px]'
               : [
-                  'flex mb-12 last:mb-0 max-lg:flex-col max-lg:pl-[100px]',
-                  index % 2 === 0
-                    ? 'flex-row pr-[calc(50%+40px)] max-lg:pr-0'
-                    : 'flex-row-reverse pl-[calc(50%+40px)] max-lg:pl-[100px]'
+                  'flex mb-10 last:mb-0 flex-col md:flex-row md:pl-24',
                 ]
           ]}
           data-event-id={event.id}
@@ -101,23 +99,22 @@ const isHorizontal = layout === 'horizontal';
           <div class:list={[
             isHorizontal
               ? 'relative mb-6'
-              : 'absolute left-1/2 max-lg:left-10 top-0 -translate-x-1/2 max-lg:translate-x-[-50%] z-[2]'
+              : 'absolute left-1/2 md:left-10 top-0 -translate-x-1/2 md:translate-x-[-50%] z-[2]'
           ]}>
             <span class:list={[
-              'flex items-center justify-center bg-gradient-to-br from-brand to-brand-hover text-white font-bold rounded-full shadow-[0_4px_20px_rgba(63,134,150,0.3)]',
+              'flex items-center justify-center bg-[var(--accent)] text-white font-semibold rounded-full',
               isHorizontal
-                ? 'w-16 h-16 text-base'
-                : 'w-20 h-20 max-lg:w-[60px] max-lg:h-[60px] text-lg max-lg:text-sm'
+                ? 'w-14 h-14 text-sm'
+                : 'w-16 h-16 md:w-14 md:h-14 text-sm'
             ]}>
               {event.year}
             </span>
           </div>
 
           <!-- Content -->
-          <div class="w-full bg-primary dark:bg-dark-700 rounded-xl overflow-hidden shadow-card
-                      transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
+          <div class="w-full card-filled overflow-hidden mt-20 md:mt-0">
             {event.image && (
-              <div class="aspect-video overflow-hidden bg-secondary dark:bg-dark-600">
+              <div class="aspect-video overflow-hidden bg-[var(--bg-tertiary)]">
                 <img
                   src={event.image.src}
                   alt={event.image.alt}
@@ -127,12 +124,12 @@ const isHorizontal = layout === 'horizontal';
                 />
               </div>
             )}
-            <div class="p-6 max-lg:p-5">
-              <h3 class="text-xl max-lg:text-lg font-semibold text-primary dark:text-white mb-2 leading-relaxed">
+            <div class="p-5">
+              <h3 class="text-base font-semibold text-[var(--text-primary)] mb-2">
                 {event.title}
               </h3>
               {event.description && (
-                <p class="text-sm text-secondary dark:text-gray-400 m-0 leading-relaxed">
+                <p class="text-sm text-[var(--text-secondary)] m-0">
                   {event.description}
                 </p>
               )}

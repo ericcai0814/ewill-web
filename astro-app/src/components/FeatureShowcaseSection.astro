@@ -39,18 +39,19 @@ const featuresWithImages = await Promise.all(
 );
 ---
 
-<section class="py-20 max-lg:py-[60px]">
-  <div class="max-w-[1280px] mx-auto px-6 max-lg:px-4">
+<!-- Vitesse Style: Clean alternating feature showcase -->
+<section class="py-12 md:py-16">
+  <div class="container-wide">
     <!-- Section Header -->
     {(label || title) && (
-      <header class="text-center mb-[60px] max-lg:mb-10">
+      <header class="text-center mb-12">
         {label && (
-          <span class="inline-block text-sm font-semibold text-brand uppercase tracking-[0.1em] mb-3">
+          <span class="inline-block text-xs font-medium text-[var(--accent)] uppercase tracking-wider mb-3">
             {label}
           </span>
         )}
         {title && (
-          <h2 class="text-4xl max-lg:text-[28px] font-bold text-primary dark:text-white m-0 leading-tight">
+          <h2 class="text-2xl md:text-3xl font-semibold text-[var(--text-primary)]">
             {title}
           </h2>
         )}
@@ -58,7 +59,7 @@ const featuresWithImages = await Promise.all(
     )}
 
     <!-- Features -->
-    <div class="flex flex-col gap-20 max-lg:gap-12">
+    <div class="flex flex-col gap-16 md:gap-20">
       {featuresWithImages.map((feature, index) => {
         // 判斷圖片位置
         const isImageLeft = layout === 'image-left' ||
@@ -67,13 +68,13 @@ const featuresWithImages = await Promise.all(
         return (
           <article
             class:list={[
-              'grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-[60px] items-center',
+              'grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center',
               !isImageLeft && 'lg:[direction:rtl] lg:[&>*]:[direction:ltr]'
             ]}
             data-feature-id={feature.id}
           >
             {feature.image && (
-              <div class="relative rounded-2xl overflow-hidden aspect-[4/3] bg-secondary dark:bg-dark-800 shadow-[0_20px_60px_rgba(0,0,0,0.1)]">
+              <div class="relative rounded-md overflow-hidden aspect-[4/3] bg-[var(--bg-tertiary)]">
                 <picture class="block w-full h-full">
                   <source media="(min-width: 1024px)" srcset={feature.image.desktop} />
                   <source media="(max-width: 1023px)" srcset={feature.image.mobile} />
@@ -87,18 +88,18 @@ const featuresWithImages = await Promise.all(
                 </picture>
               </div>
             )}
-            <div class="lg:py-5">
-              <h3 class="text-[28px] max-lg:text-2xl font-bold text-primary dark:text-white mb-4 leading-tight">
+            <div>
+              <h3 class="text-xl md:text-2xl font-semibold text-[var(--text-primary)] mb-4">
                 {feature.title}
               </h3>
-              <p class="text-base max-lg:text-[15px] text-secondary dark:text-gray-300 mb-6 leading-relaxed">
+              <p class="text-[var(--text-secondary)] mb-4 leading-relaxed">
                 {feature.description}
               </p>
               {feature.bullets && feature.bullets.length > 0 && (
-                <ul class="list-none m-0 p-0 flex flex-col gap-3">
+                <ul class="list-none m-0 p-0 flex flex-col gap-2">
                   {feature.bullets.map((bullet) => (
-                    <li class="flex items-start gap-3 text-[15px] text-primary dark:text-gray-200 leading-normal">
-                      <span class="shrink-0 w-1.5 h-1.5 mt-2 bg-brand rounded-full"></span>
+                    <li class="flex items-start gap-2 text-sm text-[var(--text-primary)]">
+                      <span class="shrink-0 w-1.5 h-1.5 mt-2 bg-[var(--accent)] rounded-full"></span>
                       {bullet}
                     </li>
                   ))}

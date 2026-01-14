@@ -77,7 +77,8 @@
       "Bash(do echo \"=== $id ===\" grep -rn \"image_id: $id\" pages/*/index.yml)",
       "Bash(git revert:*)",
       "Bash(git checkout:*)",
-      "Bash(npm cache clean:*)"
+      "Bash(npm cache clean:*)",
+      "Skill(check_docs)"
     ]
   }
 }
