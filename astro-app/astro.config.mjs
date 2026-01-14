@@ -4,8 +4,8 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
-// 網站 URL：優先使用環境變數，預設為生產網址
-const siteUrl = process.env.SITE_URL || 'https://www.ewill.com.tw';
+// 網站 URL（正式上線時改為 https://www.ewill.com.tw）
+const siteUrl = 'https://ewill-web.pages.dev';
 
 // https://astro.build/config
 export default defineConfig({
