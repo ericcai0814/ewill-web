@@ -357,6 +357,21 @@ section-schema.ts  ← 單一來源
 - ❌ 更新了 Astro 元件，沒更新 sync-content.ts
 - ❌ 新增 section 屬性（如 `display`），但 `hasManualSections` 沒有處理
 
+### 8.2 同步啟發式
+
+變更任何文件時，問自己：
+
+| 變更類型 | 需要同步的文件 |
+|----------|----------------|
+| 影響專案結構？ | → 更新 `README.md`、`CONTEXT.md` |
+| 重大決策？ | → 記錄到 `.agent/system/decisions.md` |
+| 新的教訓？ | → 加入 `.agent/system/learnings.md` |
+| 新增 SOP/Command/Skill？ | → 更新 `changelog.md` 與對應索引 |
+| 修改 yml schema？ | → 更新 `section-schema.ts` 與依賴檔案 |
+| 修改元件介面？ | → 同步 `types/components.ts` |
+
+**核心原則**：修改 Target 時，必須同步更新 Source 與 Dependency。
+
 ## 9. 文件更新規範
 
 ### 同步更新原則

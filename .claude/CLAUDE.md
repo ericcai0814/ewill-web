@@ -15,6 +15,8 @@
 - 新的教訓？→ 加入 `.agent/system/learnings.md`
 - 新增 SOP/Command/Skill？→ 更新 `changelog.md` 與對應索引
 
+> 完整清單見 `GUIDELINES.md` 第 8.2 節
+
 ## Content Build 規則
 
 **重要：** 修改 `pages/*/index.yml` 後，必須執行 content build 才能生效！
