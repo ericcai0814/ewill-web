@@ -67,7 +67,7 @@
 
 ### 4.2 Section Type 使用指南
 
-**11 種可用的 Section Types**：
+**12 種可用的 Section Types**：
 
 | Type | 使用次數 | 適用場景 | 必填欄位 |
 |------|:--------:|----------|----------|
@@ -77,7 +77,8 @@
 | `text` | 23 | 純文字內容 | content |
 | `feature_grid` | 15 | 多欄功能卡片 | items[] |
 | `image` | 50 | 單張圖片 | image_id |
-| `gallery` | 6 | 圖片輪播 | images[] |
+| `carousel` | 3 | 圖片輪播（含 RWD） | items[], display? |
+| `gallery` | 6 | 圖片網格 | images[] |
 | `anchor` | 6 | 錨點導航區塊 | id, title, cards[] |
 | `card_list` | 3 | 卡片列表 | cards[], columns |
 | `contact_form` | 1 | 聯絡表單 | fields[], button_text |

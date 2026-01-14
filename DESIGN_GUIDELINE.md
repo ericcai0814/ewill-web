@@ -366,6 +366,41 @@ a:hover {
 └─────────────────────────────────────┘
 ```
 
+### 6.4 Hero Banner
+
+頁面頂部主視覺橫幅，統一高度確保視覺一致性。
+
+| 高度模式 | 手機版 | 桌面版 (≥768px) | 說明 |
+|----------|--------|-----------------|------|
+| `fixed` (預設) | 300px | 500px | 固定高度，圖片 `object-cover` |
+| `full` | 100vh | 100vh | 全螢幕，min-height: 600px |
+| `auto` | 依圖片 | 依圖片 | 圖片原始比例 |
+
+```css
+/* Fixed 模式 */
+.hero-fixed {
+  height: 300px;  /* mobile */
+}
+@media (min-width: 768px) {
+  .hero-fixed {
+    height: 500px;  /* desktop */
+  }
+}
+
+/* 圖片填滿 */
+.hero-fixed img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+```
+
+**使用指南**：
+- 預設使用 `fixed` 模式，確保所有頁面 Banner 高度一致
+- 若圖片重要內容在邊緣，可改用 `auto` 避免裁切
+- `full` 適用於 Landing Page 首屏效果
+
 ---
 
 ## 7. 動效規範 (Motion)

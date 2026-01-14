@@ -247,6 +247,8 @@ export interface PageContent {
   layout?: {
     hero?: {
       image?: ResolvedImage;
+      /** 高度模式 @default 'fixed' */
+      height?: 'full' | 'fixed' | 'auto';
     };
     anchors?: AnchorItem[];  // AnchorNav 導航項目
     sections?: LayoutSection[];

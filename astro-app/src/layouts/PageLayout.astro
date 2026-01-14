@@ -134,7 +134,10 @@ const lcpImage = layout?.hero?.image ? {
 
     <!-- Hero Section -->
     {layout?.hero?.image && (
-      <HeroSection image={layout.hero.image} />
+      <HeroSection
+        image={layout.hero.image}
+        height={layout.hero.height as 'full' | 'fixed' | 'auto'}
+      />
     )}
 
     <!-- Dynamic Sections -->

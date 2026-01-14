@@ -10,28 +10,32 @@ export interface Props {
   image: ImageAsset;
   /** 是否顯示暗色疊加層 @default false */
   overlay?: boolean;
-  /** 高度模式 @default 'auto' */
-  height?: 'full' | 'auto';
+  /** 高度模式 @default 'fixed' */
+  height?: 'full' | 'fixed' | 'auto';
 }
 
-const { image, overlay = false, height = 'auto' } = Astro.props;
+const { image, overlay = false, height = 'fixed' } = Astro.props;
 ---
 
 <!-- Vitesse Style: Clean hero, minimal overlay -->
 <section class:list={[
   'relative w-full overflow-hidden',
-  height === 'full' && 'h-screen min-h-[600px]'
+  height === 'full' && 'h-screen min-h-[600px]',
+  height === 'fixed' && 'h-[300px] md:h-[500px]'
 ]}>
   <picture class:list={[
-    'block w-full bg-[var(--bg-tertiary)]',
-    overlay && 'absolute inset-0'
+    'block w-full h-full bg-[var(--bg-tertiary)]',
+    (overlay || height !== 'auto') && 'absolute inset-0'
   ]}>
     <source media="(min-width: 768px)" srcset={image.desktop} />
     <source media="(max-width: 767px)" srcset={image.mobile} />
     <img
       src={image.desktop}
       alt={image.alt}
-      class="block w-full h-auto"
+      class:list={[
+        'block w-full',
+        height === 'auto' ? 'h-auto' : 'h-full object-cover object-center'
+      ]}
       loading="eager"
       decoding="async"
     />
