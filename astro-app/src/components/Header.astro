@@ -36,7 +36,7 @@ const navigation: NavItem[] = headerData?.navigation || [];
         alt={logo.alt}
         width="140"
         height="32"
-        class="h-8 w-auto"
+        class="h-8 w-auto dark:brightness-0 dark:invert"
       />
     </a>
 
@@ -117,7 +117,9 @@ const navigation: NavItem[] = headerData?.navigation || [];
 
       <!-- Mobile Menu Toggle -->
       <button
-        class="md:hidden dark-mode-toggle"
+        class="hidden max-md:flex items-center justify-center w-10 h-10 rounded-md
+               text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)]
+               transition-colors"
         id="mobile-menu-toggle"
         aria-label="開啟選單"
         aria-expanded="false"
