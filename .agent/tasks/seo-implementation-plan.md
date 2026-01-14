@@ -386,3 +386,23 @@ function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
 | `src/utils/content.ts` | 修改 | AioData 新增類型 |
 | `src/layouts/PageLayout.astro` | 修改 | buildJsonLd 新增類型 |
 | `pages/*/index.yml` | 修改 | 新增 aio.product/service/event |
+
+---
+
+## 部署後待辦
+
+### 301 Redirect 配置
+- [ ] 部署新網站後，確認舊 URL 清單
+- [ ] 在需要重定向的頁面 `index.yml` 中設定：
+  ```yaml
+  url_mapping:
+    current_url: /new-path/
+    old_url: /old-path/
+    redirect: true
+  ```
+- [ ] 重新執行 `build-content` 並部署
+
+### 驗證
+- [ ] Google Rich Results Test 驗證
+- [ ] Lighthouse SEO 分數 > 90
+- [ ] Google Search Console 提交 sitemap

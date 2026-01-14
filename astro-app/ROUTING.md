@@ -100,13 +100,28 @@ src/pages/
 
 ## 內容讀取 API
 
+### PageContent 結構
+
+`getPageContent()` 返回的資料結構：
+
+| 欄位 | 型別 | 說明 |
+|------|------|------|
+| `slug` | `string` | 頁面識別碼 |
+| `module` | `string` | 模組名稱 |
+| `seo` | `object` | SEO metadata（title、description、keywords） |
+| `url_mapping` | `object` | URL 對應設定 |
+| `layout` | `object` | 頁面版面配置（hero、sections） |
+| `aio` | `object?` | JSON-LD 結構化資料（可選，供 AI/搜尋引擎優化） |
+| `content` | `string` | Markdown 原始內容 |
+| `generated_at` | `string` | 建置時間戳 |
+
 ### getPageContent(slug)
 
 讀取單一頁面的完整內容。
 
 ```typescript
 const page = await getPageContent('about_us');
-// 返回 PageContent 物件，包含 seo、layout、content 等
+// 返回 PageContent 物件
 ```
 
 ### getAllPages()
