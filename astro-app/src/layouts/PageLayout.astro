@@ -120,7 +120,7 @@ const lcpImage = layout?.hero?.image ? {
 
 // OG Image 優先順序：seo.og_image > hero.image.desktop > 預設圖片
 const DEFAULT_OG_IMAGE = '/assets/og-default.jpg';
-const siteUrl = Astro.site?.origin || 'https://www.ewill.com.tw';
+const siteUrl = Astro.url.origin;
 
 function getOgImageUrl(): string {
   // 1. 優先使用 seo.og_image
