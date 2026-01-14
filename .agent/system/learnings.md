@@ -51,10 +51,26 @@
 - **手動類型**：`card_list`, `cta`, `contact_form`, `anchor`, `product_intro`, `feature_grid`, `feature_showcase`, `timeline`, `gallery` 等（在 yml 手動配置）
 - **保護邏輯**：
   - 若頁面 yml 包含任何手動類型 section，**完全跳過同步**
+  - 若 image section 有 `display` 屬性（RWD 配置），**也跳過同步**
   - 這確保精心設計的佈局不會被覆蓋
   - 僅同步純 text/image 頁面（如 event_* 活動頁）
 - **pre-commit hook**：當 index.md 變更時自動執行 sync-content
 - **重要**：手動配置的頁面需直接編輯 yml，md 檔案僅作為原始內容參考
+
+**RWD display 屬性**（2026-01-14 新增）：
+- `image` section 可設定 `display: desktop | mobile | all`
+- 用於分離桌面版與手機版圖片
+- **有 display 屬性的頁面會被視為手動配置，跳過 sync-content**
+- 範例：
+  ```yaml
+  sections:
+    - type: image
+      image_id: esg_1
+      display: desktop  # 只在桌面顯示
+    - type: image
+      image_id: esg_p1_fix
+      display: mobile   # 只在手機顯示
+  ```
 
 **頁面類型與編輯指南**：
 | 頁面類型 | 範例 | 編輯方式 | 說明 |
@@ -63,7 +79,8 @@
 | 列表頁 | index, event_information | 直接編輯 yml | 卡片列表，使用 card_list |
 | 服務頁 | services, solutions | 直接編輯 yml | 錨點導航，使用 anchor + cta |
 | 活動頁 | event_2025* | 編輯 md，自動同步 | 純內容，使用 text + image |
-| 靜態頁 | about_us, esg | 編輯 md，自動同步 | 純內容，使用 text + image |
+| 靜態頁 | about_us | 編輯 md，自動同步 | 純內容，使用 text + image |
+| RWD 靜態頁 | esg | 直接編輯 yml | 有 RWD display 配置，不可同步 |
 
 ### 4.2 Section Type 使用指南
 
