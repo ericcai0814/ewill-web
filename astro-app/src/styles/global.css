@@ -115,16 +115,8 @@ body {
 }
 
 /* ========================================
-   Container - Vitesse narrow width
+   Container
    ======================================== */
-
-.container-vitesse {
-  max-width: 768px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: var(--spacing-content);
-  padding-right: var(--spacing-content);
-}
 
 .container-wide {
   max-width: 1024px;

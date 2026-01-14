@@ -36,9 +36,9 @@ function parseMarkdown(md: string): string {
 const htmlContent = parseMarkdown(content);
 ---
 
-<!-- Vitesse Style: Clean typography, narrow width -->
+<!-- Vitesse Style: Clean typography -->
 <section class="py-12 md:py-16" id={id}>
-  <div class="container-vitesse">
+  <div class="container-wide">
     {label && (
       <span class="inline-block text-xs font-medium text-[var(--accent)] uppercase tracking-wider mb-4">
         {label}

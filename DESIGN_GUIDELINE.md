@@ -183,8 +183,7 @@ Vitesse Style 使用較緊湊的間距：
 
 | 類型 | 最大寬度 | 用途 |
 |------|----------|------|
-| **container-vitesse** | 768px | 閱讀內容、表單 |
-| **container-wide** | 1024px | 卡片網格、列表 |
+| **container-wide** | 1024px | 統一頁面寬度 |
 
 ---
 
@@ -467,7 +466,7 @@ Vitesse Style 偏好快速、精準的過渡：
 | ✅ 使用 border 顯示 hover 狀態 | 精準、不干擾 |
 | ✅ 使用 emerald (#10b981) 作為強調色 | 當前品牌色 |
 | ✅ 保持緊湊間距 | 內容密度適中 |
-| ✅ 使用 container-vitesse/container-wide | 統一頁面寬度 |
+| ✅ 使用 container-wide | 統一頁面寬度 |
 
 ---
 
@@ -482,7 +481,6 @@ Vitesse Style 偏好快速、精準的過渡：
 
 ```css
 /* 容器 */
-.container-vitesse { max-width: 768px; margin: 0 auto; padding: 0 24px; }
 .container-wide { max-width: 1024px; margin: 0 auto; padding: 0 24px; }
 
 /* 按鈕 */
