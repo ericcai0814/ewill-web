@@ -247,6 +247,8 @@ export interface PageContent {
   layout?: {
     hero?: {
       image?: ResolvedImage;
+      /** 是否顯示暗色疊加層 @default false */
+      overlay?: boolean;
       /** 高度模式 @default 'fixed' */
       height?: 'full' | 'fixed' | 'auto';
     };

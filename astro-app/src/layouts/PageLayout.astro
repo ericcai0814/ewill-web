@@ -136,6 +136,7 @@ const lcpImage = layout?.hero?.image ? {
     {layout?.hero?.image && (
       <HeroSection
         image={layout.hero.image}
+        overlay={layout.hero.overlay}
         height={layout.hero.height as 'full' | 'fixed' | 'auto'}
       />
     )}

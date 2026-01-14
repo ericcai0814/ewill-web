@@ -132,6 +132,10 @@ export interface FormField {
 export interface HeroSectionProps {
   /** 圖片資源 */
   image: ImageAsset;
+  /** 是否顯示暗色疊加層 @default false */
+  overlay?: boolean;
+  /** 高度模式 @default 'fixed' */
+  height?: 'full' | 'fixed' | 'auto';
 }
 
 /** TextSection Props */
