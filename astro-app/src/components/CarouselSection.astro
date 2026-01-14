@@ -1,0 +1,277 @@
+---
+import { getAssetById } from '../utils/content';
+
+/**
+ * CarouselSection
+ * 圖片輪播區塊，使用原生 CSS scroll-snap
+ */
+export interface CarouselItem {
+  /** 圖片資源 ID */
+  image_id: string;
+  /** 標題（選填） */
+  title?: string;
+  /** 說明文字（選填） */
+  caption?: string;
+}
+
+export interface Props {
+  /** 錨點 ID */
+  id?: string;
+  /** 小標籤 */
+  label?: string;
+  /** 標題 */
+  title?: string;
+  /** 描述 */
+  description?: string;
+  /** 輪播項目 */
+  items: CarouselItem[];
+  /** 自動播放間隔（毫秒），0 為不自動播放 @default 0 */
+  autoplay?: number;
+  /** 是否顯示指示點 @default true */
+  dots?: boolean;
+  /** 是否顯示前後箭頭 @default true */
+  arrows?: boolean;
+}
+
+const {
+  id,
+  label,
+  title,
+  description,
+  items,
+  autoplay = 0,
+  dots = true,
+  arrows = true,
+} = Astro.props;
+
+// 產生唯一 ID 給這個輪播
+const carouselId = id || `carousel-${Math.random().toString(36).slice(2, 9)}`;
+
+// 解析所有項目的圖片
+const itemsWithImages = await Promise.all(
+  items.map(async (item) => {
+    const asset = await getAssetById(item.image_id);
+    return {
+      ...item,
+      image: asset ? {
+        desktop: asset.variants.desktop,
+        mobile: asset.variants.mobile,
+        alt: asset.alt
+      } : null
+    };
+  })
+);
+---
+
+<!-- Vitesse Style: Clean carousel with CSS scroll-snap -->
+<section class="py-12 md:py-16 scroll-mt-20" id={id}>
+  <div class="container-wide">
+    <!-- Section Header -->
+    {(label || title) && (
+      <header class="text-center mb-8">
+        {label && (
+          <span class="inline-block text-xs font-medium text-[var(--accent)] uppercase tracking-wider mb-3">
+            {label}
+          </span>
+        )}
+        {title && (
+          <h2 class="text-2xl md:text-3xl font-semibold text-[var(--text-primary)]">
+            {title}
+          </h2>
+        )}
+        {description && (
+          <p class="text-[var(--text-secondary)] mt-3 max-w-2xl mx-auto">
+            {description}
+          </p>
+        )}
+      </header>
+    )}
+
+    <!-- Carousel Container -->
+    <div class="relative group">
+      <!-- Carousel Track -->
+      <div
+        class="carousel-track flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-4"
+        id={carouselId}
+        data-autoplay={autoplay}
+      >
+        {itemsWithImages.map((item, index) => (
+          <div
+            class="carousel-slide snap-center shrink-0 w-full md:w-[calc(100%-2rem)]"
+            data-index={index}
+          >
+            {item.image ? (
+              <picture class="block w-full">
+                <source media="(min-width: 1024px)" srcset={item.image.desktop} />
+                <source media="(max-width: 1023px)" srcset={item.image.mobile} />
+                <img
+                  src={item.image.desktop}
+                  alt={item.image.alt}
+                  class="block w-full h-auto rounded-md"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+            ) : (
+              <div class="w-full aspect-video bg-[var(--bg-tertiary)] rounded-md flex items-center justify-center">
+                <span class="text-[var(--text-tertiary)] text-sm">圖片載入失敗</span>
+              </div>
+            )}
+            {(item.title || item.caption) && (
+              <div class="mt-3 text-center">
+                {item.title && (
+                  <h3 class="text-base font-semibold text-[var(--text-primary)]">{item.title}</h3>
+                )}
+                {item.caption && (
+                  <p class="text-sm text-[var(--text-secondary)] mt-1">{item.caption}</p>
+                )}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <!-- Navigation Arrows -->
+      {arrows && items.length > 1 && (
+        <>
+          <button
+            type="button"
+            class="carousel-prev absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[var(--bg-primary)]/80 border border-[var(--border-color)] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[var(--bg-secondary)]"
+            aria-label="上一張"
+            data-carousel={carouselId}
+            data-direction="prev"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="carousel-next absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[var(--bg-primary)]/80 border border-[var(--border-color)] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[var(--bg-secondary)]"
+            aria-label="下一張"
+            data-carousel={carouselId}
+            data-direction="next"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+        </>
+      )}
+    </div>
+
+    <!-- Dots Indicator -->
+    {dots && items.length > 1 && (
+      <div class="carousel-dots flex justify-center gap-2 mt-4">
+        {items.map((_, index) => (
+          <button
+            type="button"
+            class="w-2 h-2 rounded-full bg-[var(--border-color)] transition-colors hover:bg-[var(--accent)] data-[active]:bg-[var(--accent)]"
+            aria-label={`前往第 ${index + 1} 張`}
+            data-carousel={carouselId}
+            data-dot={index}
+          />
+        ))}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+
+<script>
+  // Carousel functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const carousels = document.querySelectorAll('.carousel-track');
+
+    carousels.forEach((carousel) => {
+      const id = carousel.id;
+      const slides = carousel.querySelectorAll('.carousel-slide');
+      const dots = document.querySelectorAll(`[data-carousel="${id}"][data-dot]`);
+      const prevBtn = document.querySelector(`[data-carousel="${id}"][data-direction="prev"]`);
+      const nextBtn = document.querySelector(`[data-carousel="${id}"][data-direction="next"]`);
+      const autoplayInterval = parseInt(carousel.dataset.autoplay || '0');
+
+      let currentIndex = 0;
+      let autoplayTimer: ReturnType<typeof setInterval> | null = null;
+
+      // Update active dot
+      function updateDots() {
+        dots.forEach((dot, i) => {
+          if (i === currentIndex) {
+            dot.setAttribute('data-active', '');
+          } else {
+            dot.removeAttribute('data-active');
+          }
+        });
+      }
+
+      // Scroll to slide
+      function goToSlide(index: number) {
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+        currentIndex = index;
+
+        const slide = slides[index] as HTMLElement;
+        carousel.scrollTo({
+          left: slide.offsetLeft - carousel.offsetLeft,
+          behavior: 'smooth'
+        });
+
+        updateDots();
+      }
+
+      // Arrow navigation
+      prevBtn?.addEventListener('click', () => goToSlide(currentIndex - 1));
+      nextBtn?.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+      // Dot navigation
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => goToSlide(index));
+      });
+
+      // Track scroll position to update current index
+      carousel.addEventListener('scroll', () => {
+        const scrollLeft = carousel.scrollLeft;
+        slides.forEach((slide, index) => {
+          const slideElement = slide as HTMLElement;
+          if (Math.abs(slideElement.offsetLeft - carousel.offsetLeft - scrollLeft) < 50) {
+            if (currentIndex !== index) {
+              currentIndex = index;
+              updateDots();
+            }
+          }
+        });
+      });
+
+      // Autoplay
+      if (autoplayInterval > 0) {
+        autoplayTimer = setInterval(() => {
+          goToSlide(currentIndex + 1);
+        }, autoplayInterval);
+
+        // Pause on hover
+        carousel.addEventListener('mouseenter', () => {
+          if (autoplayTimer) clearInterval(autoplayTimer);
+        });
+        carousel.addEventListener('mouseleave', () => {
+          autoplayTimer = setInterval(() => {
+            goToSlide(currentIndex + 1);
+          }, autoplayInterval);
+        });
+      }
+
+      // Initialize
+      updateDots();
+    });
+  });
+</script>

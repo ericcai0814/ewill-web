@@ -226,6 +226,28 @@ export interface ContactFormSectionProps extends SectionBaseProps {
   fields: FormField[];
 }
 
+/** 輪播項目 */
+export interface CarouselItem {
+  /** 圖片資源 ID */
+  image_id: string;
+  /** 標題 */
+  title?: string;
+  /** 說明文字 */
+  caption?: string;
+}
+
+/** CarouselSection Props */
+export interface CarouselSectionProps extends SectionBaseProps {
+  /** 輪播項目 */
+  items: CarouselItem[];
+  /** 自動播放間隔（毫秒），0 為不自動播放 @default 0 */
+  autoplay?: number;
+  /** 是否顯示指示點 @default true */
+  dots?: boolean;
+  /** 是否顯示前後箭頭 @default true */
+  arrows?: boolean;
+}
+
 /** ProductIntroSection Props */
 export interface ProductIntroSectionProps {
   /** 小標籤 */

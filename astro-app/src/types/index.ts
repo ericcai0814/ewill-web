@@ -15,6 +15,7 @@ export type {
   TimelineEvent,
   GalleryItem,
   FormField,
+  CarouselItem,
   // 元件 Props
   HeroSectionProps,
   TextSectionProps,
@@ -27,6 +28,7 @@ export type {
   TimelineSectionProps,
   GallerySectionProps,
   ContactFormSectionProps,
+  CarouselSectionProps,
   ProductIntroSectionProps,
   PopupModalProps,
   BreadcrumbProps,

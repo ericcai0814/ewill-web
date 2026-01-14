@@ -16,6 +16,7 @@ import FeatureShowcaseSection from '../components/FeatureShowcaseSection.astro';
 import TimelineSection from '../components/TimelineSection.astro';
 import GallerySection from '../components/GallerySection.astro';
 import ContactFormSection from '../components/ContactFormSection.astro';
+import CarouselSection from '../components/CarouselSection.astro';
 import { getAssetById } from '../utils/content';
 import type { PageContent, LayoutSection, AioData } from '../utils/content';
 import type { JsonLdItem } from '../components/SEO.astro';
@@ -215,6 +216,20 @@ const jsonLdItems = buildJsonLd(aio);
             title={section.title || ''}
             fields={section.fields}
             button_text={section.button_text || '送出'}
+          />
+        );
+      }
+      if (section.type === 'carousel' && section.items) {
+        return (
+          <CarouselSection
+            id={section.id}
+            label={section.label}
+            title={section.title}
+            description={section.description}
+            items={section.items}
+            autoplay={section.autoplay}
+            dots={section.dots}
+            arrows={section.arrows}
           />
         );
       }

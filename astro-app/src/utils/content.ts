@@ -79,8 +79,14 @@ export interface ContactField {
   type?: 'text' | 'email' | 'tel' | 'textarea';
 }
 
+export interface CarouselItem {
+  image_id: string;
+  title?: string;
+  caption?: string;
+}
+
 export interface LayoutSection {
-  type: 'image' | 'text' | 'card_list' | 'anchor' | 'feature_grid' | 'cta' | 'product_intro' | 'feature_showcase' | 'timeline' | 'gallery' | 'contact_form';
+  type: 'image' | 'text' | 'card_list' | 'anchor' | 'feature_grid' | 'cta' | 'product_intro' | 'feature_showcase' | 'timeline' | 'gallery' | 'contact_form' | 'carousel';
   // Common
   id?: string;
   image_id?: string;
@@ -110,6 +116,11 @@ export interface LayoutSection {
   lightbox?: boolean;
   // contact_form
   fields?: ContactField[];
+  // carousel
+  items?: CarouselItem[];
+  autoplay?: number;
+  dots?: boolean;
+  arrows?: boolean;
 }
 
 /**
@@ -289,6 +300,50 @@ export async function getPageContent(pagePath: string): Promise<PageContent | nu
 }
 
 /**
+ * 頁面類型定義
+ */
+export type PageType =
+  | 'security'        // 資安產品
+  | 'infrastructure'  // 基礎架構
+  | 'manufacturing'   // 智慧製造
+  | 'event'           // 活動頁面
+  | 'general';        // 一般頁面
+
+/**
+ * 頁面分類映射
+ */
+const PAGE_TYPE_MAP: Record<string, PageType> = {
+  // 資安產品
+  acunetix: 'security',
+  array: 'security',
+  bitdefender: 'security',
+  deep_instinct: 'security',
+  fortinet: 'security',
+  ist: 'security',
+  logsec: 'security',
+  palo_alto: 'security',
+  security_scorecard: 'security',
+  sonarqube: 'security',
+  tenable_nessus: 'security',
+  vicarius_vrx: 'security',
+  // 基礎架構
+  proxmox_ve: 'infrastructure',
+  ubuntu: 'infrastructure',
+  vmware: 'infrastructure',
+  // 智慧製造
+  ai_agent: 'manufacturing',
+  ai_forecasting: 'manufacturing',
+  aps: 'manufacturing',
+  cms_568: 'manufacturing',
+  data_middleware: 'manufacturing',
+  jennifer_apm: 'manufacturing',
+  mes: 'manufacturing',
+  scm: 'manufacturing',
+  wms: 'manufacturing',
+  smartmanufacturing_ai: 'manufacturing',
+};
+
+/**
  * 取得所有可用頁面清單
  * @returns 頁面 slug 陣列（排除 header、footer 等共用元件）
  */
@@ -306,6 +361,46 @@ export async function getAllPages(): Promise<string[]> {
     console.error('無法讀取頁面清單', error);
     return [];
   }
+}
+
+/**
+ * 依類型取得頁面清單
+ * @param type - 頁面類型
+ * @returns 符合類型的頁面 slug 陣列
+ */
+export async function getPagesByType(type: PageType): Promise<string[]> {
+  try {
+    const allPages = await getAllPages();
+
+    if (type === 'event') {
+      // 活動頁面以 event_ 開頭
+      return allPages.filter(slug => slug.startsWith('event_'));
+    }
+
+    if (type === 'general') {
+      // 一般頁面：不在任何分類中的頁面
+      const categorizedPages = new Set(Object.keys(PAGE_TYPE_MAP));
+      return allPages.filter(slug =>
+        !categorizedPages.has(slug) && !slug.startsWith('event_')
+      );
+    }
+
+    // 其他類型：根據映射表篩選
+    return allPages.filter(slug => PAGE_TYPE_MAP[slug] === type);
+  } catch (error) {
+    console.error(`無法取得 ${type} 類型頁面`, error);
+    return [];
+  }
+}
+
+/**
+ * 取得頁面的類型
+ * @param slug - 頁面 slug
+ * @returns 頁面類型
+ */
+export function getPageType(slug: string): PageType {
+  if (slug.startsWith('event_')) return 'event';
+  return PAGE_TYPE_MAP[slug] || 'general';
 }
 
 /**
