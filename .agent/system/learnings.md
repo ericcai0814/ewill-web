@@ -102,6 +102,9 @@
   chore(agent): 建立 run-log 系統
   ```
 - **禁止 Co-Authored-By**：本專案不使用 Co-Authored-By 標記
+- **Gitignore 目錄**：以下目錄被 gitignore，變更不需 commit：
+  - `astro-app/public/content/` - 動態生成的頁面 JSON 內容
+  - `.claude/settings.local.json` - 本地 Claude 設定
 
 ### 6. 設計決策確認流程
 - **UI/UX 變更前必須確認**：新增、修改、移除任何視覺元件前，使用 `AskUserQuestion` 確認
