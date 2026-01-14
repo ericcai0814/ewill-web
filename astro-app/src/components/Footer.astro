@@ -121,7 +121,7 @@ const copyright = footerData?.copyright?.text || `© ${new Date().getFullYear()}
             </svg>
             <a
               href={`tel:${contact.phone.replace(/[^0-9]/g, '')}`}
-              class="hover:text-[var(--accent)] transition-colors"
+              class="text-inherit hover:text-[var(--accent)] transition-colors"
             >
               {contact.phone}
             </a>
@@ -132,7 +132,7 @@ const copyright = footerData?.copyright?.text || `© ${new Date().getFullYear()}
             </svg>
             <a
               href={`mailto:${contact.email}`}
-              class="hover:text-[var(--accent)] transition-colors"
+              class="text-inherit hover:text-[var(--accent)] transition-colors"
             >
               {contact.email}
             </a>
