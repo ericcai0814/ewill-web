@@ -95,7 +95,7 @@ content_summary:
 layout:
   hero:
     image:
-      id: esg_1
+      id: bn_esg
   content_images:
     - id: esg_p1_fix
     - id: esg_2

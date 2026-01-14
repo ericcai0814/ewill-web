@@ -23,17 +23,15 @@ const { image, overlay = false, height = 'auto' } = Astro.props;
   height === 'full' && 'h-screen min-h-[600px]'
 ]}>
   <picture class:list={[
-    'block w-full h-full aspect-[16/5] bg-[var(--bg-tertiary)]',
+    'block w-full bg-[var(--bg-tertiary)]',
     overlay && 'absolute inset-0'
   ]}>
-    <source media="(min-width: 1024px)" srcset={image.desktop} />
-    <source media="(max-width: 1023px)" srcset={image.mobile} />
+    <source media="(min-width: 768px)" srcset={image.desktop} />
+    <source media="(max-width: 767px)" srcset={image.mobile} />
     <img
       src={image.desktop}
       alt={image.alt}
-      class="block w-full h-full object-cover"
-      width="1920"
-      height="600"
+      class="block w-full h-auto"
       loading="eager"
       decoding="async"
     />
