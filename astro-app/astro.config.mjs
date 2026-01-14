@@ -4,10 +4,12 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
+// 網站 URL：優先使用環境變數，預設為生產網址
+const siteUrl = process.env.SITE_URL || 'https://www.ewill.com.tw';
+
 // https://astro.build/config
 export default defineConfig({
-  // 網站 URL (部署時需修改為實際網址)
-  site: 'https://www.ewill.com.tw',
+  site: siteUrl,
 
   // SSG 靜態生成模式
   output: 'static',
@@ -26,7 +28,7 @@ export default defineConfig({
       filter: (page) => !page.includes('/api/'),
       serialize: (item) => {
         // 首頁最高優先級
-        if (item.url === 'https://www.ewill.com.tw/') {
+        if (item.url === `${siteUrl}/`) {
           item.priority = 1.0;
           item.changefreq = 'daily';
         }
