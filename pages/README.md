@@ -16,6 +16,54 @@ pages/
 │       └── banner.jpg.yml
 ```
 
+### 頁面目錄對照表
+
+| 目錄 | 頁面名稱 | 分類 |
+|------|----------|------|
+| `index` | 首頁 | - |
+| `about_us` | 關於鎰威 | - |
+| `contact` | 聯絡鎰威 | - |
+| `esg` | ESG 永續發展 | - |
+| `event_information` | 活動訊息 | - |
+| `services` | 服務項目 | - |
+| `solutions` | 產品解決方案 | - |
+| `smartmanufacturing_ai` | 智慧製造及 AI | - |
+| **資安產品** |||
+| `acunetix` | Acunetix 網站安全掃描 | 資安檢測 |
+| `array` | Array Networks SSL VPN | 資安強化 |
+| `bitdefender` | Bitdefender 防毒防護 | 資安防護 |
+| `deep_instinct` | Deep Instinct 深度學習防護 | 資安防護 |
+| `fortinet` | Fortinet 整合式資安平台 | 資安防護 |
+| `ist` | IST 端點安全管理 | 資安強化 |
+| `logsec` | LOGSEC 資安預警 | 資安強化 |
+| `palo_alto` | Palo Alto 次世代防火牆 | 資安防護 |
+| `security_scorecard` | SecurityScorecard 資安評級 | 資安評估 |
+| `sonarqube` | SonarQube 原始碼分析 | 資安檢測 |
+| `tenable_nessus` | Tenable Nessus 弱點掃描 | 資安檢測 |
+| `vicarius_vrx` | Vicarius vRx 漏洞風險管理 | 資安強化 |
+| **基礎架構** |||
+| `proxmox_ve` | Proxmox VE 虛擬化管理 | 系統規劃 |
+| `ubuntu` | Ubuntu 開源作業系統 | 系統規劃 |
+| `vmware` | VMware 虛擬化方案 | 系統規劃 |
+| **智慧製造** |||
+| `ai_agent` | AI Agent 解決方案 | 智慧製造 |
+| `ai_forecasting` | AI 數據分析預測 | 智慧製造 |
+| `aps` | APS 智慧生產核心 | 智慧製造 |
+| `cms_568` | 承攬商管理系統 | 智慧製造 |
+| `data_middleware` | 數據中台 | 智慧製造 |
+| `jennifer_apm` | Jennifer APM 效能監控 | 智慧製造 |
+| `mes` | MES 製造執行系統 | 智慧製造 |
+| `scm` | SCM 智慧供應鏈 | 智慧製造 |
+| `wms` | WMS 智慧倉儲 | 智慧製造 |
+| **活動頁面** |||
+| `event_20251021` | 活動 2025/10/21 | 活動 |
+| `event_20251118` | 活動 2025/11/18 | 活動 |
+| `event_20251119` | 活動 2025/11/19 | 活動 |
+| `event_20251124` | 活動 2025/11/24 | 活動 |
+| **共用元件** |||
+| `header` | 網站導覽列 | 元件 |
+| `footer` | 網站頁尾 | 元件 |
+
 ## 檔案說明
 
 ### index.md（內容來源）
