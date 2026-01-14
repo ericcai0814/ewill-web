@@ -328,6 +328,35 @@ content_summary:
 - 頁面內容應編輯 `index.md`，再執行 `npm run sync-content` 同步至 `index.yml`。
 - 不應手動編輯 `index.yml` 的 `layout.sections`，該區塊由腳本自動產生。
 
+### 8.1 Section Schema 類型同步流程
+
+當需要修改 yml schema（如新增 section 屬性）時，必須同步更新相關的 TypeScript 類型定義。
+
+**單一來源**：`.claude/skills/content-build/types/section-schema.ts`
+
+**依賴圖譜**：
+
+```
+section-schema.ts  ← 單一來源
+    │
+    ├──► scripts/sync-content.ts    （直接 import）
+    ├──► scripts/build-content.ts   （直接 import）
+    └──► astro-app/src/utils/content.ts  （手動同步）
+```
+
+**變更流程**：
+
+1. **更新 `section-schema.ts`**：修改共用類型定義
+2. **確認 scripts 無錯誤**：執行 `pnpm run build` 確認 sync-content.ts 和 build-content.ts 正常
+3. **同步 `content.ts`**：手動更新 `astro-app/src/utils/content.ts` 的對應類型
+4. **更新 `learnings.md`**：記錄變更內容
+
+**常見陷阱**：
+
+- ❌ 只改了 yml 檔案，沒更新 TypeScript 介面
+- ❌ 更新了 Astro 元件，沒更新 sync-content.ts
+- ❌ 新增 section 屬性（如 `display`），但 `hasManualSections` 沒有處理
+
 ## 9. 文件更新規範
 
 ### 同步更新原則
