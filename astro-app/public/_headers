@@ -1,0 +1,30 @@
+# Cache-Control Headers for Netlify/Cloudflare Pages
+
+# Static assets - aggressive caching (1 year, immutable)
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fonts
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML pages - revalidate on each request
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# JSON content data
+/content/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+# Sitemap and robots
+/sitemap*.xml
+  Cache-Control: public, max-age=86400
+
+/robots.txt
+  Cache-Control: public, max-age=86400

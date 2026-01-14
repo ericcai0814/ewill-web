@@ -88,7 +88,7 @@ const gapClass = {
         <figure class="m-0" data-gallery-id={item.id}>
           <div class="relative aspect-[4/3] overflow-hidden rounded-md bg-[var(--bg-tertiary)] group">
             <picture class="block w-full h-full">
-              <source media="(min-width: 1024px)" srcset={item.image.desktop} />
+              <source media="(min-width: 768px)" srcset={item.image.desktop} />
               <source media="(max-width: 1023px)" srcset={item.image.mobile} />
               <img
                 src={item.image.desktop}

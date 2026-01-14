@@ -16,6 +16,11 @@ export interface Props {
   ogImage?: string;
   jsonLd?: JsonLdItem[];
   noindex?: boolean;
+  // 效能優化
+  lcpImage?: {
+    desktop: string;
+    mobile: string;
+  };
 }
 
 const {
@@ -27,6 +32,7 @@ const {
   ogImage,
   jsonLd,
   noindex,
+  lcpImage,
 } = Astro.props;
 ---
 
@@ -53,8 +59,32 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Google Fonts (non-blocking) -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    </noscript>
+
+    <!-- LCP Image Preload -->
+    {lcpImage && (
+      <link
+        rel="preload"
+        as="image"
+        href={lcpImage.desktop}
+        imagesrcset={`${lcpImage.mobile} 767w, ${lcpImage.desktop} 1200w`}
+        imagesizes="100vw"
+      />
+    )}
 
     <!-- Dark Mode Script (prevent FOUC) -->
     <script is:inline>

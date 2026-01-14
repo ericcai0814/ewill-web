@@ -1,0 +1,67 @@
+---
+/**
+ * ResponsiveImage
+ * 統一的響應式圖片元件，支援 desktop/mobile 變體
+ */
+
+export interface Props {
+  desktop: string;
+  mobile: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  loading?: 'eager' | 'lazy';
+  decoding?: 'sync' | 'async' | 'auto';
+  class?: string;
+  breakpoint?: number;
+  // WebP 支援（未來擴展）
+  desktopWebp?: string;
+  mobileWebp?: string;
+}
+
+const {
+  desktop,
+  mobile,
+  alt,
+  width,
+  height,
+  loading = 'lazy',
+  decoding = 'async',
+  class: className = '',
+  breakpoint = 768,
+  desktopWebp,
+  mobileWebp,
+} = Astro.props;
+---
+
+<picture class="block w-full">
+  {/* WebP sources (優先) */}
+  {desktopWebp && (
+    <source
+      media={`(min-width: ${breakpoint}px)`}
+      srcset={desktopWebp}
+      type="image/webp"
+    />
+  )}
+  {mobileWebp && (
+    <source
+      media={`(max-width: ${breakpoint - 1}px)`}
+      srcset={mobileWebp}
+      type="image/webp"
+    />
+  )}
+
+  {/* 原始格式 fallback */}
+  <source media={`(min-width: ${breakpoint}px)`} srcset={desktop} />
+  <source media={`(max-width: ${breakpoint - 1}px)`} srcset={mobile} />
+
+  <img
+    src={desktop}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    decoding={decoding}
+    class={className}
+  />
+</picture>

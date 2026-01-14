@@ -76,7 +76,7 @@ const featuresWithImages = await Promise.all(
             {feature.image && (
               <div class="relative rounded-md overflow-hidden aspect-[4/3] bg-[var(--bg-tertiary)]">
                 <picture class="block w-full h-full">
-                  <source media="(min-width: 1024px)" srcset={feature.image.desktop} />
+                  <source media="(min-width: 768px)" srcset={feature.image.desktop} />
                   <source media="(max-width: 1023px)" srcset={feature.image.mobile} />
                   <img
                     src={feature.image.desktop}

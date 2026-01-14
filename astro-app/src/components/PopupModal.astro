@@ -40,7 +40,7 @@ const { image, link, trigger = 'first_visit', delay = 3000 } = Astro.props;
     </button>
     <a href={link} class="block w-full h-full" target="_blank" rel="noopener noreferrer">
       <picture class="block w-full h-full">
-        <source media="(min-width: 1024px)" srcset={image.desktop} />
+        <source media="(min-width: 768px)" srcset={image.desktop} />
         <source media="(max-width: 1023px)" srcset={image.mobile} />
         <img
           src={image.desktop}

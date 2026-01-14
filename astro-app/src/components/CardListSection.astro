@@ -94,7 +94,7 @@ const is32Variant = columns === 5 && layout_variant === '3-2';
           {card.image && (
             <div class="relative overflow-hidden aspect-[16/10] rounded-md mb-4 bg-[var(--bg-tertiary)]">
               <picture class="block w-full h-full">
-                <source media="(min-width: 1024px)" srcset={card.image.desktop} />
+                <source media="(min-width: 768px)" srcset={card.image.desktop} />
                 <source media="(max-width: 1023px)" srcset={card.image.mobile} />
                 <img
                   src={card.image.desktop}

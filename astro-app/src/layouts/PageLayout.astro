@@ -111,6 +111,12 @@ function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
 }
 
 const jsonLdItems = buildJsonLd(aio);
+
+// LCP Image for preload (Hero Banner)
+const lcpImage = layout?.hero?.image ? {
+  desktop: layout.hero.image.desktop,
+  mobile: layout.hero.image.mobile
+} : undefined;
 ---
 
 <Layout
@@ -118,6 +124,7 @@ const jsonLdItems = buildJsonLd(aio);
   description={seo.description}
   keywords={seo.keywords}
   jsonLd={jsonLdItems}
+  lcpImage={lcpImage}
 >
   <Header />
 
