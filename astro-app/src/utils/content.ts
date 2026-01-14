@@ -2,6 +2,21 @@ import fs from 'fs/promises';
 import path from 'path';
 
 /**
+ * Astro Runtime 內容類型定義
+ *
+ * 這些類型定義用於 Astro 執行期間讀取 JSON 內容。
+ *
+ * 【重要】類型同步說明：
+ * - 單一來源：.claude/skills/content-build/types/section-schema.ts
+ * - 本檔案的類型應與 section-schema.ts 保持一致
+ * - 當 section-schema.ts 變更時，此檔案也需要同步更新
+ *
+ * 差異說明：
+ * - section-schema.ts：build-time 類型（使用 image_id）
+ * - 本檔案：runtime 類型（使用解析後的 ResolvedImage）
+ */
+
+/**
  * 圖片資源型別（來自 asset-manifest.json）
  */
 export interface AssetEntry {

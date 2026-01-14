@@ -16,26 +16,16 @@ import * as yaml from 'js-yaml'
 const parseYaml = (content: string) => yaml.load(content) as Record<string, unknown>
 import { BuildConfig, detectTarget, getConfig, parseArgs, printHelp } from './config'
 
-// ============================================================================
-// Types
-// ============================================================================
+// 從共用 schema 匯入類型定義（單一來源）
+import {
+  AssetEntry,
+  AssetManifest,
+  ResolvedImage,
+} from '../types/section-schema'
 
-interface AssetEntry {
-  id: string
-  original_path: string
-  normalized_path: string
-  variants: {
-    desktop: string
-    mobile: string
-  }
-  alt: string
-}
-
-interface AssetManifest {
-  generated_at: string
-  target: string
-  assets: AssetEntry[]
-}
+// ============================================================================
+// Types（本地專用，不匯出）
+// ============================================================================
 
 interface ImageRef {
   id: string
@@ -67,13 +57,6 @@ interface PageYml {
   }
   layout?: LayoutConfig
   [key: string]: unknown
-}
-
-interface ResolvedImage {
-  id: string
-  desktop: string
-  mobile: string
-  alt: string
 }
 
 interface PageJson {
