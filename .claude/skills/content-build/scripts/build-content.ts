@@ -281,7 +281,7 @@ function buildPage(moduleName: string, resolver: AssetResolver, config: BuildCon
   }
 
   // Regular pages use standard structure
-  return {
+  const page: Record<string, unknown> = {
     slug: moduleName,
     module: moduleName,
     seo: {
@@ -297,6 +297,13 @@ function buildPage(moduleName: string, resolver: AssetResolver, config: BuildCon
     content,
     generated_at: new Date().toISOString(),
   }
+
+  // Include aio (All-In-One SEO structured data) if present
+  if (yml.aio) {
+    page.aio = yml.aio
+  }
+
+  return page
 }
 
 export async function buildContent(config: BuildConfig): Promise<ContentManifest> {

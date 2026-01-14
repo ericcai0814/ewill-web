@@ -5,7 +5,7 @@
  */
 
 export interface JsonLdItem {
-  type: 'Organization' | 'WebSite' | 'WebPage' | 'Article' | 'Product' | 'FAQPage' | 'BreadcrumbList';
+  type: 'Organization' | 'WebSite' | 'WebPage' | 'Article' | 'Product' | 'FAQPage' | 'BreadcrumbList' | 'Service' | 'Event';
   data: Record<string, unknown>;
 }
 
@@ -20,6 +20,10 @@ export interface Props {
   ogType?: 'website' | 'article' | 'product';
   ogImage?: string;
   ogImageAlt?: string;
+
+  // Article Meta (for ogType='article')
+  publishedTime?: string;
+  modifiedTime?: string;
 
   // JSON-LD 結構化資料
   jsonLd?: JsonLdItem[];
@@ -37,6 +41,8 @@ const {
   ogType = 'website',
   ogImage,
   ogImageAlt,
+  publishedTime,
+  modifiedTime,
   jsonLd = [],
   noindex = false,
   nofollow = false,
@@ -169,6 +175,49 @@ function convertToJsonLd(item: JsonLdItem): object {
         })),
       };
 
+    case 'Service':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        serviceType: data.serviceType,
+        name: data.name,
+        description: data.description,
+        provider: {
+          '@type': 'Organization',
+          name: siteName,
+        },
+        areaServed: {
+          '@type': 'Country',
+          name: 'Taiwan',
+        },
+        offers: data.offers ? (data.offers as Array<{ name: string; description: string }>)?.map(offer => ({
+          '@type': 'Offer',
+          name: offer.name,
+          description: offer.description,
+        })) : undefined,
+      };
+
+    case 'Event':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Event',
+        name: data.name,
+        description: data.description,
+        startDate: data.startDate,
+        endDate: data.endDate,
+        location: data.location ? {
+          '@type': 'Place',
+          name: (data.location as Record<string, unknown>).name,
+          address: (data.location as Record<string, unknown>).address,
+        } : undefined,
+        organizer: {
+          '@type': 'Organization',
+          name: siteName,
+        },
+        eventStatus: 'https://schema.org/EventScheduled',
+        eventAttendanceMode: data.attendanceMode || 'https://schema.org/OfflineEventAttendanceMode',
+      };
+
     default:
       return {
         '@context': 'https://schema.org',
@@ -193,13 +242,30 @@ const jsonLdScripts = jsonLd.map(item => convertToJsonLd(item));
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 {description && <meta property="og:description" content={description} />}
-{ogImage && <meta property="og:image" content={ogImage} />}
+{ogImage && (
+  <>
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+  </>
+)}
 {ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
 <meta property="og:site_name" content={siteName} />
 <meta property="og:locale" content="zh_TW" />
 
+<!-- Article Meta (for blog posts, news, events) -->
+{ogType === 'article' && publishedTime && (
+  <>
+    <meta property="article:published_time" content={publishedTime} />
+    <meta property="article:modified_time" content={modifiedTime || publishedTime} />
+    <meta property="article:author" content={siteName} />
+  </>
+)}
+
 <!-- Twitter Card -->
 <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+<meta name="twitter:site" content="@ewilltechnology" />
 <meta name="twitter:url" content={canonicalURL} />
 <meta name="twitter:title" content={title} />
 {description && <meta name="twitter:description" content={description} />}

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.ewill.com.tw/sitemap-index.xml
+
+# Disallow crawling of system paths
+Disallow: /api/
+Disallow: /_astro/

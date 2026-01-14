@@ -179,6 +179,45 @@ export interface AioData {
     question: string;
     answer: string;
   }[];
+  product?: {
+    type: string;
+    name: string;
+    description?: string;
+    brand?: string;
+    category?: string;
+    image?: string;
+    offers?: {
+      type: string;
+      availability?: string;
+      priceCurrency?: string;
+      seller?: {
+        type: string;
+        name: string;
+      };
+    };
+  };
+  service?: {
+    type: string;
+    name: string;
+    serviceType?: string;
+    description?: string;
+    offers?: {
+      name: string;
+      description: string;
+    }[];
+  };
+  event?: {
+    type: string;
+    name: string;
+    description?: string;
+    startDate?: string;
+    endDate?: string;
+    location?: {
+      name: string;
+      address?: string;
+    };
+    attendanceMode?: string;
+  };
 }
 
 /**

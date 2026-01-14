@@ -51,6 +51,7 @@ function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
 
   const items: JsonLdItem[] = [];
 
+  // Organization (僅首頁)
   if (aioData.organization) {
     items.push({
       type: 'Organization',
@@ -58,6 +59,7 @@ function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
     });
   }
 
+  // WebSite (僅首頁)
   if (aioData.website) {
     items.push({
       type: 'WebSite',
@@ -65,6 +67,7 @@ function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
     });
   }
 
+  // WebPage (每頁)
   if (aioData.webpage) {
     items.push({
       type: 'WebPage',
@@ -72,10 +75,35 @@ function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
     });
   }
 
+  // FAQ
   if (aioData.faq && aioData.faq.length > 0) {
     items.push({
       type: 'FAQPage',
       data: { items: aioData.faq }
+    });
+  }
+
+  // Product (產品頁)
+  if (aioData.product) {
+    items.push({
+      type: 'Product',
+      data: aioData.product
+    });
+  }
+
+  // Service (服務頁)
+  if (aioData.service) {
+    items.push({
+      type: 'Service',
+      data: aioData.service
+    });
+  }
+
+  // Event (活動頁)
+  if (aioData.event) {
+    items.push({
+      type: 'Event',
+      data: aioData.event
     });
   }
 

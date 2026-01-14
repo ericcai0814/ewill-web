@@ -20,10 +20,33 @@ export default defineConfig({
   // 整合插件
   integrations: [
     sitemap({
-      // Sitemap 配置
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
+      filter: (page) => !page.includes('/api/'),
+      serialize: (item) => {
+        // 首頁最高優先級
+        if (item.url === 'https://www.ewill.com.tw/') {
+          item.priority = 1.0;
+          item.changefreq = 'daily';
+        }
+        // 解決方案與服務頁面
+        else if (item.url.includes('/solutions/') || item.url.includes('/services/')) {
+          item.priority = 0.9;
+        }
+        // 產品頁面
+        else if (
+          item.url.includes('/acunetix/') ||
+          item.url.includes('/graylog/') ||
+          item.url.includes('/bitdefender/') ||
+          item.url.includes('/ist/') ||
+          item.url.includes('/securityscorecard/') ||
+          item.url.includes('/vicarius/')
+        ) {
+          item.priority = 0.8;
+        }
+        return item;
+      },
     })
   ],
 
