@@ -31,6 +31,8 @@ export interface Props {
   dots?: boolean;
   /** 是否顯示前後箭頭 @default true */
   arrows?: boolean;
+  /** 顯示裝置 @default 'all' */
+  display?: 'all' | 'desktop' | 'mobile';
 }
 
 const {
@@ -42,7 +44,15 @@ const {
   autoplay = 0,
   dots = true,
   arrows = true,
+  display = 'all',
 } = Astro.props;
+
+// 根據 display 決定 CSS class
+const displayClass = display === 'desktop'
+  ? 'hidden md:block'
+  : display === 'mobile'
+    ? 'block md:hidden'
+    : 'block';
 
 // 產生唯一 ID 給這個輪播
 const carouselId = id || `carousel-${Math.random().toString(36).slice(2, 9)}`;
@@ -64,7 +74,7 @@ const itemsWithImages = await Promise.all(
 ---
 
 <!-- Vitesse Style: Clean carousel with CSS scroll-snap -->
-<section class="py-12 md:py-16 scroll-mt-20" id={id}>
+<section class:list={["py-12 md:py-16 scroll-mt-20", displayClass]} id={id}>
   <div class="container-wide">
     <!-- Section Header -->
     {(label || title) && (

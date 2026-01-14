@@ -107,16 +107,26 @@ type: 'carousel'
 </div>
 ```
 
-## 待使用的圖片
+## 圖片配置（已確認）
 
-### 公司沿革
+### 公司沿革 (Milestones)
 
+**桌面版** (`display: desktop`)
 | 圖片 ID | 用途 |
 |---------|------|
-| `about_us_2_1_fix2_1` | 沿革圖 1 |
-| `about_us_2_2_fix2_1` | 沿革圖 2 |
+| `about_us_2_1_fix2_1` | 沿革合併圖 1 |
+| `about_us_2_2_fix2_1` | 沿革合併圖 2 |
 
-### 資格證書
+**手機版** (`display: mobile`) - 含年份標籤
+| 圖片 ID | 年份 |
+|---------|------|
+| `about_us_2_1_m` | 2006 |
+| `about_us_2_2_m` | 2012 |
+| `about_us_2_3_m` | 2018 |
+| `about_us_2_4_m` | 2022 |
+| `about_us_2_5_m` | 2025 |
+
+### 資格證書 (Certification) - 7 張
 
 | 圖片 ID | 說明 |
 |---------|------|
@@ -128,38 +138,33 @@ type: 'carousel'
 | `ttqs_qij2pgiie7h3g971auik5oadgzp758nbm1puv3xw5c` | TTQS 證書 |
 | `11410171161016_rdlwpft05l34thpa49vumpm5rkxfoythj7hy9gnlds` | 人才發展品質認證 |
 
-## 待確認圖片
-
-以下圖片可能為手機版專用，需確認原官網是否使用：
-
-- `about_us_2_2_m`
-- `about_us_2_3_m`
-- `about_us_2_4_m`
-
 ## 實作步驟
 
-### Phase 1: 元件建立
+### Phase 1: 元件建立 ✅
 
-- [ ] 建立 `CarouselSection.astro`
-- [ ] 新增 Props 類型到 `types/components.ts`
-- [ ] 實作 CSS scroll-snap 輪播
-- [ ] 實作指示點與箭頭
+- [x] 建立 `CarouselSection.astro`
+- [x] 新增 Props 類型（內嵌於元件）
+- [x] 實作 CSS scroll-snap 輪播
+- [x] 實作指示點與箭頭
+- [x] 新增 `display` 屬性支援 RWD
 
-### Phase 2: 整合
+### Phase 2: 整合 ✅
 
-- [ ] 更新 `content.ts` 新增 carousel type
-- [ ] 更新 `PageLayout.astro` 渲染邏輯
-- [ ] 更新 `about_us.json` 使用 carousel section
+- [x] 更新 `content.ts` 新增 carousel type
+- [x] 更新 `PageLayout.astro` 渲染邏輯
+- [x] 更新 `about_us/index.yml` 使用 carousel section
+- [x] **CI/CD 依賴**：確認 `deploy.yml` 包含 `pnpm run build`（根目錄）步驟
 
 ### Phase 3: 驗證
 
 - [ ] 測試桌面版輪播
 - [ ] 測試手機版觸控滑動
 - [ ] 測試自動播放功能
+- [ ] 測試錨點連結 (#milestones, #certification)
 
 ## 狀態
 
 - **建立日期**：2026-01-14
-- **目前狀態**：待執行
+- **完成日期**：2026-01-14
+- **目前狀態**：待驗證
 - **優先級**：中
-- **預估工時**：2-3 小時
