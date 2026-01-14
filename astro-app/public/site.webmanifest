@@ -1,6 +1,6 @@
 {
-  "name": "鎰威科技",
-  "short_name": "鎰威",
+  "name": "MyWebSite",
+  "short_name": "MySite",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
