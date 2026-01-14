@@ -79,3 +79,6 @@ directoryList.md
 # Claude MCP 記憶標記（自動生成，不需版本控制）
 **/CLAUDE.md
 
+# Claude Code 本地設定（不需版本控制）
+.claude/settings.local.json
+
