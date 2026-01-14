@@ -84,6 +84,69 @@
 
 ---
 
+### Vitesse Style 設計系統重構
+
+全面重構 Astro 元件，從原本的 Teal 漸層風格轉換為 Vitesse 極簡設計系統。
+
+**設計理念**：
+- 移除漸層背景，改用純色 CSS 變數
+- 減少裝飾性元素，強調內容本身
+- 統一使用 `container-wide` 容器類別
+- 元件間距與字體縮小，更緊湊的視覺
+
+**修改元件**：
+- `HeroSection.astro`：移除漸層疊加層
+- `TextSection.astro`：簡化樣式，使用 CSS 變數
+- `CardListSection.astro`：移除 shadow，統一 card-filled 樣式
+- `FeatureGridSection.astro`：移除 gradient icon 背景
+- `CTASection.astro`：改用 btn-primary/secondary 類別
+- `ProductIntroSection.astro`：簡化 badge 與 checkmark 樣式
+- `Header.astro`：重構導航與 mobile menu
+- `Footer.astro`：簡化佈局與連結樣式
+
+**CSS 變數系統**（global.css）：
+```css
+--bg-primary, --bg-secondary, --bg-tertiary
+--text-primary, --text-secondary, --text-tertiary
+--accent, --accent-hover
+--border-color
+```
+
+---
+
+### Dark Mode 實作與修正
+
+實作 class-based dark mode，並修正 logo 顯示問題。
+
+**Dark Mode Toggle**：
+- 使用 `<html class="dark">` 切換（非 prefers-color-scheme）
+- localStorage 持久化使用者偏好
+- 新增 toggle 按鈕於 Header
+
+**Logo 處理**：
+- 新增 `.logo-adaptive` CSS class
+- Light mode：保持原始樣式
+- Dark mode：套用 `filter: brightness(0) invert(1)` 變白
+
+**修正歷程**：
+1. 初始使用 Tailwind `brightness-0 dark:invert` → light mode logo 變黑
+2. 改用 CSS class，僅在 `.dark .logo-adaptive` 套用 filter
+
+---
+
+### 統一卡片圖片比例
+
+將 CardListSection 的圖片比例從 `4/3` 改為 `16/10`，與 AnchorSection 一致。
+
+**修改檔案**：
+- `astro-app/src/components/CardListSection.astro`
+
+**影響**：
+- 首頁「服務項目」與「產品解決方案」區塊
+- 其他使用 card_list type 的頁面
+
+---
+
 ## [2026-01-13]
 
 ### 統一 image_id 格式，修正爬蟲路徑處理
