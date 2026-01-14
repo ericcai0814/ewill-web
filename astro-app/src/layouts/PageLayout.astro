@@ -116,7 +116,7 @@ const jsonLdItems = buildJsonLd(aio);
       }
       if (section.type === 'image' && section.image_id) {
         return (
-          <ImageSection image_id={section.image_id} />
+          <ImageSection image_id={section.image_id} display={section.display} />
         );
       }
       if (section.type === 'card_list' && section.cards) {

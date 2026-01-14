@@ -91,6 +91,8 @@ export interface LayoutSection {
   id?: string;
   image_id?: string;
   content?: string;
+  // image
+  display?: 'all' | 'desktop' | 'mobile';
   label?: string;
   title?: string;
   subtitle?: string;

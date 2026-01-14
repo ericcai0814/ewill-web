@@ -8,21 +8,30 @@ import { getAssetById } from '../utils/content';
 export interface Props {
   /** 圖片資源 ID（對應 asset-manifest） */
   image_id: string;
+  /** 顯示裝置 @default 'all' */
+  display?: 'all' | 'desktop' | 'mobile';
 }
 
-const { image_id } = Astro.props;
+const { image_id, display = 'all' } = Astro.props;
 
 // 從 asset-manifest 查詢圖片
 const asset = await getAssetById(image_id);
+
+// 根據 display 決定 CSS class (md = 768px)
+const displayClass = display === 'desktop'
+  ? 'hidden md:block'
+  : display === 'mobile'
+    ? 'block md:hidden'
+    : 'block';
 ---
 
 <!-- Vitesse Style: Simple image section -->
 {asset ? (
-  <section class="py-6 md:py-8">
+  <section class:list={["py-6 md:py-8", displayClass]}>
     <div class="container-wide">
       <picture class="block w-full">
-        <source media="(min-width: 1024px)" srcset={asset.variants.desktop} />
-        <source media="(max-width: 1023px)" srcset={asset.variants.mobile} />
+        <source media="(min-width: 768px)" srcset={asset.variants.desktop} />
+        <source media="(max-width: 767px)" srcset={asset.variants.mobile} />
         <img
           src={asset.variants.desktop}
           alt={asset.alt}
