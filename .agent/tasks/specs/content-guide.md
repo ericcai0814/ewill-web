@@ -72,6 +72,16 @@ pages/
 3. 取得 `id` 欄位
 4. 產生 `{ type: "image", image_id: "xxx" }`
 
+#### 爬蟲產生的頁面
+
+由 web-crawler 產生的頁面可能使用 `./images/` 路徑格式：
+
+```markdown
+![](./images/product_banner.jpg)
+```
+
+`sync-content` 腳本會自動將兩種格式（`assets/` 和 `./images/`）都對應到 `assets/` 目錄下的圖片描述檔。實際圖片檔案統一存放於 `assets/` 目錄。
+
 ## 轉換結果範例
 
 ### 輸入：index.md
@@ -130,10 +140,23 @@ const { pageContent, findAssetById } = useContent('logsec')
 
 ### Section 類型
 
+**自動同步類型**（由 `sync-content` 從 md 產生）：
+
 | type | 欄位 | 說明 |
 |------|------|------|
 | `text` | `label`, `title`, `content` | 文字區塊 |
 | `image` | `image_id` | 圖片區塊 |
+
+**手動配置類型**（需在 yml 手動編輯）：
+
+| type | 說明 |
+|------|------|
+| `anchor` | 錨點區塊（含 cards） |
+| `cta` | 行動呼籲按鈕 |
+| `card_list` | 卡片列表 |
+| `feature_grid` | 功能格狀展示 |
+
+> ⚠️ 含手動類型的頁面不會被 `sync-content` 修改
 
 ## index.yml 其他區塊
 

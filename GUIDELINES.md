@@ -56,13 +56,18 @@ layout:
 ### 描述檔 (.yml) 規範
 
 - **格式**: 標準 YAML 格式。
-- **必要欄位**: `description`。
+- **必要欄位**:
+  - `id`：圖片唯一識別碼，供 `layout.sections` 中的 `image_id` 引用
+  - `alt`：圖片替代文字（無障礙用途）
+  - `description`：圖片詳細描述
 - **內容語言**: **繁體中文** (Traditional Chinese)。
 - **撰寫風格**:
   - 簡潔明瞭，描述圖片的核心視覺元素與傳達的訊息。
   - 若圖片包含文字（如 Banner），請將關鍵文字包含在描述中。
   - 範例：
     ```yaml
+    id: homepage_banner
+    alt: 鎰威科技首頁橫幅
     description: "首頁橫幅，背景為藍色科技風格，文字顯示 '智慧製造與資安整合專家'。"
     ```
 
@@ -105,10 +110,28 @@ layout:
 
 #### Section 類型說明
 
+**自動同步類型**（由 `npm run sync-content` 從 `index.md` 產生）：
+
 | type | 必要欄位 | 說明 |
 |------|----------|------|
-| `text` | `content` | Markdown 格式的文字內容 |
+| `text` | `content` | Markdown 格式的文字內容，可含 `label`、`title` |
 | `image` | `image_id` | 圖片 ID，對應 `assets/*.yml` 中的 `id` |
+
+**手動配置類型**（需在 `index.yml` 手動編輯，不會被 sync-content 覆蓋）：
+
+| type | 說明 |
+|------|------|
+| `anchor` | 錨點區塊，含 `id`、`title`、`description`、`cards` |
+| `cta` | 行動呼籲按鈕，含 `button_text`、`button_link`、`variant` |
+| `card_list` | 卡片列表 |
+| `feature_grid` | 功能格狀展示 |
+| `product_intro` | 產品介紹區塊 |
+| `feature_showcase` | 功能展示區塊 |
+| `timeline` | 時間軸 |
+| `gallery` | 圖片集 |
+| `contact_form` | 聯絡表單 |
+
+> ⚠️ 若頁面含有手動配置類型的 sections，`sync-content` 會完全跳過該頁面以保護佈局設計。
 
 #### 範例（完整頁面結構）
 

@@ -123,16 +123,22 @@ pages/{page_name}/
 
 | 區塊              | 說明                                     |
 | ----------------- | ---------------------------------------- |
+| `layout`          | 頁面內容結構（hero + sections）          |
 | `seo`             | Title、Description、Keywords             |
 | `url_mapping`     | 新舊 URL 對應與 redirect 設定            |
 | `aio`             | AI Optimization 結構化資料（Schema.org） |
 | `content_summary` | 內容摘要，供 AI 爬蟲理解                 |
 
+> 📝 `layout.sections` 由 `npm run sync-content` 從 `index.md` 自動產生，詳見 `GUIDELINES.md`
+
 ### 圖片資源
 
 - 專案中包含 231 張 `.jpg` 與 `.png` 圖片
 - 各頁面圖片存放於 `pages/{page}/assets/` 目錄
-- 每張圖片都對應一個 `.yml` 描述檔（如 `banner.jpg.yml`）
+- 每張圖片都對應一個 `.yml` 描述檔（如 `banner.jpg.yml`），包含：
+  - `id`：圖片唯一識別碼（供 `layout.sections` 引用）
+  - `alt`：替代文字
+  - `description`：詳細描述
 
 ## Content Build（內容建置）
 
