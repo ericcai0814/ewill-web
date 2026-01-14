@@ -328,6 +328,59 @@ ewill-web/
 
 ---
 
+## 部署
+
+本專案使用 **Cloudflare Pages** 進行靜態網站托管，透過 **GitHub Actions** 自動部署。
+
+### 自動部署
+
+當 `master` 分支有新的 commit 時，GitHub Actions 會自動：
+
+1. 執行 `pnpm run sync-content` 同步內容
+2. 執行 `cd astro-app && pnpm run build` 建置靜態網站
+3. 使用 Wrangler 部署到 Cloudflare Pages
+
+### 手動觸發部署
+
+前往 GitHub Repository > **Actions** > **Deploy to Cloudflare Pages** > **Run workflow**
+
+### 環境變數
+
+部署需要以下 GitHub Secrets：
+
+| Secret | 說明 |
+|--------|------|
+| `CLOUDFLARE_API_TOKEN` | Cloudflare API Token（需 Pages Edit 權限）|
+| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare 帳戶 ID |
+
+### Cloudflare 設定步驟
+
+1. **建立 Pages 專案**：Workers & Pages > Create project > Direct Upload，專案名稱 `ewill-web`
+2. **建立 API Token**：My Profile > API Tokens > 使用「Edit Cloudflare Workers」模板
+3. **設定 GitHub Secrets**：Repository Settings > Secrets and variables > Actions
+
+### 本機預覽
+
+```bash
+# 安裝依賴
+pnpm install
+cd astro-app && pnpm install
+
+# 同步內容並建置
+cd .. && pnpm run sync-content
+cd astro-app && pnpm run build
+
+# 預覽建置結果
+pnpm run preview
+```
+
+### 部署網址
+
+- Cloudflare Pages：https://ewill-web.pages.dev
+- 正式網站：https://www.ewill.com.tw（需設定自訂網域）
+
+---
+
 ## 相關文件
 
 - [GUIDELINES.md](./GUIDELINES.md) - 開發與維護規範
