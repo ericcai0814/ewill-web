@@ -28,6 +28,7 @@ interface TextSection {
 interface ImageSection {
   type: 'image'
   image_id: string
+  display?: 'all' | 'desktop' | 'mobile'
 }
 
 // 手動配置的 section 類型（不會被 sync-content 覆蓋）
@@ -238,9 +239,23 @@ function sectionsEqual(a: Section[], b: Section[]): boolean {
 /**
  * 檢查是否有手動配置的 sections
  * 有手動 sections 的頁面不應被 sync-content 修改，以保留完整的佈局設計
+ *
+ * 手動配置的判斷條件：
+ * 1. 有非 text/image 類型的 section（如 card_list, anchor 等）
+ * 2. image section 有 display 屬性（RWD 手動配置）
  */
 function hasManualSections(sections: Section[]): boolean {
-  return sections.some(s => !SYNCABLE_TYPES.includes(s.type as SyncableType))
+  return sections.some(s => {
+    // 非 text/image 類型視為手動配置
+    if (!SYNCABLE_TYPES.includes(s.type as SyncableType)) {
+      return true
+    }
+    // image section 有 display 屬性也視為手動配置
+    if (s.type === 'image' && (s as ImageSection).display) {
+      return true
+    }
+    return false
+  })
 }
 
 // 讀取現有 yml 的 sections
@@ -339,7 +354,19 @@ function syncPage(pageName: string, checkOnly: boolean): 'synced' | 'skipped' | 
       .filter(s => !SYNCABLE_TYPES.includes(s.type as SyncableType))
       .map(s => s.type)
     const uniqueTypes = [...new Set(manualTypes)]
-    console.log(`  🔒 跳過: 含手動 sections (${uniqueTypes.join(', ')})`)
+
+    // 檢查是否有 RWD display 配置
+    const hasRwdConfig = existingSections.some(
+      s => s.type === 'image' && (s as ImageSection).display
+    )
+
+    if (uniqueTypes.length > 0 && hasRwdConfig) {
+      console.log(`  🔒 跳過: 含手動 sections (${uniqueTypes.join(', ')}) + RWD 配置`)
+    } else if (uniqueTypes.length > 0) {
+      console.log(`  🔒 跳過: 含手動 sections (${uniqueTypes.join(', ')})`)
+    } else if (hasRwdConfig) {
+      console.log(`  🔒 跳過: 含 RWD display 配置`)
+    }
     return 'skipped'
   }
 
