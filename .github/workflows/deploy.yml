@@ -35,6 +35,9 @@ jobs:
       - name: Sync content
         run: pnpm run sync-content
 
+      - name: Build content (generate JSON)
+        run: pnpm run build
+
       - name: Build Astro site
         working-directory: astro-app
         run: pnpm run build
