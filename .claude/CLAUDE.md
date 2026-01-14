@@ -15,6 +15,37 @@
 - 新的教訓？→ 加入 `.agent/system/learnings.md`
 - 新增 SOP/Command/Skill？→ 更新 `changelog.md` 與對應索引
 
+## Content Build 規則
+
+**重要：** 修改 `pages/*/index.yml` 後，必須執行 content build 才能生效！
+
+```bash
+# 在專案根目錄執行（/Users/ericcai/project/ewill-web/）
+pnpm run build          # 執行 package.json 的 build script → 生成 JSON
+
+# 然後啟動 Astro 開發伺服器
+cd astro-app && pnpm run dev
+```
+
+**注意區分兩個 build：**
+| 位置 | 指令 | 作用 |
+|------|------|------|
+| **根目錄** | `pnpm run build` | 執行 content-build，生成 `astro-app/public/content/*.json` |
+| astro-app/ | `pnpm run build` | 建置 Astro 靜態網站到 `dist/` |
+
+### 內容流程
+
+```
+pages/*.yml  →  根目錄 pnpm run build  →  astro-app/public/content/*.json  →  Astro 渲染
+```
+
+### CI/CD 流程
+
+deploy.yml 需要包含以下步驟（順序重要）：
+1. `pnpm run sync-content` - 同步 md → yml（根目錄）
+2. `pnpm run build` - 生成 JSON 內容（**根目錄** ⚠️）
+3. `pnpm run build` (astro-app/) - 建置 Astro 網站
+
 ## Commit 流程
 
 1. 完成任務後詢問：「是否需要 commit？」

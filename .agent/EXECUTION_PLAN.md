@@ -814,34 +814,56 @@ ls -la .agent/run-logs/$(date +%Y-%m-%d).md
 
 #### 5C. 內容建置驗證
 
-```bash
-# 執行內容建置（測試）
-npx tsx .claude/skills/content-build/scripts/build.ts --target=static
+**重要：兩階段建置流程**
 
-# 檢查輸出:
-# - static-app/ 目錄結構
-# - 圖片正規化結果
-# - HTML 生成結果
+```
+pages/*.yml  →  根目錄 pnpm run build  →  astro-app/public/content/*.json  →  Astro 渲染
+```
+
+| 位置 | 指令 | 作用 |
+|------|------|------|
+| **根目錄** | `pnpm run build` | 執行 content-build，生成 JSON |
+| astro-app/ | `pnpm run build` | 建置 Astro 靜態網站到 `dist/` |
+
+```bash
+# Step 1: 執行內容建置（根目錄）
+pnpm run build
+
+# 檢查 JSON 是否生成
+ls -la astro-app/public/content/
 
 # 驗證建置成功
-if [ -d "static-app" ]; then
-    echo "✅ 建置成功"
+if [ -d "astro-app/public/content" ]; then
+    echo "✅ Content build 成功"
 
-    # 檢查關鍵檔案是否生成
-    [ -f "static-app/index.html" ] && echo "✅ index.html 已生成"
+    # 檢查 JSON 檔案數量
+    find astro-app/public/content/ -name "*.json" | wc -l
 
-    # 檢查圖片是否正確複製
-    find static-app/ -type f \( -name "*.png" -o -name "*.jpg" \) | wc -l
-
-    # 檢查 JSON 資料是否生成（如有）
-    find static-app/ -name "*.json" | head -5
+    # 檢查 assets 是否正確複製
+    find astro-app/public/assets/ -type f \( -name "*.png" -o -name "*.jpg" \) | wc -l
 else
-    echo "❌ 建置失敗，檢查錯誤訊息"
+    echo "❌ Content build 失敗，檢查錯誤訊息"
 fi
 
+# Step 2: 執行 Astro 建置（可選，CI/CD 會自動執行）
+cd astro-app && pnpm run build
+
 # 可選：啟動本地預覽
-# cd static-app && python3 -m http.server 8000
-# 在瀏覽器開啟 http://localhost:8000 驗證
+cd astro-app && pnpm run dev
+# 在瀏覽器開啟 http://localhost:4321 驗證
+```
+
+**CI/CD 必要步驟**（順序重要）：
+```yaml
+- name: Sync content
+  run: pnpm run sync-content      # 1. md → yml（根目錄）
+
+- name: Build content
+  run: pnpm run build              # 2. yml → JSON（根目錄）⚠️ 關鍵
+
+- name: Build Astro site
+  working-directory: astro-app
+  run: pnpm run build              # 3. JSON → HTML
 ```
 
 #### 5D. 文件一致性
@@ -912,9 +934,9 @@ Git 配置:
 └── pages/logsec/assets/*.yml          # 圖片描述檔範例
 
 建置輸出:
-├── static-app/                        # 靜態網站輸出
-├── next-app/public/                   # Next.js 公開資源
-└── nuxt-app/public/                   # Nuxt 3 公開資源
+├── astro-app/public/content/          # Content build JSON 輸出（⚠️ gitignored）
+├── astro-app/public/assets/           # 正規化後的圖片資源
+└── astro-app/dist/                    # Astro 靜態網站輸出
 ```
 
 ### A2. 常用檢查指令
@@ -1062,6 +1084,7 @@ cat .agent/system/changelog.md | head -50
 
 | 版本 | 日期 | 變更內容 |
 |------|------|----------|
+| v1.2 | 2026-01-14 | 更新 Phase 5C 內容建置流程，區分根目錄與 astro-app 兩個 build，新增 CI/CD 必要步驟 |
 | v1.1 | 2026-01-12 | 補充檢查項目：圖片格式、依賴項、圖片引用完整性、描述檔欄位、分支保護、PR 流程、pre-commit hooks、建置驗證 |
 | v1.0 | 2026-01-12 | 初版建立，涵蓋完整 5 個 Phase |
 

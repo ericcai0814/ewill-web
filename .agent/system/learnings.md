@@ -115,6 +115,49 @@
   ✅ 正確：詢問「是否需要 AnchorNav 側邊導航？」→ 確認後再實作
   ```
 
+### 7. Content Build 工作流程（2026-01-14 新增）
+
+**問題背景**：修改 `pages/*/index.yml` 後，本地預覽沒有更新；部署後頁面顯示 404 或內容遺失。
+
+**根本原因**：
+1. 內容系統有兩層轉換：`yml → JSON → Astro 渲染`
+2. 修改 yml 後必須執行 `pnpm run build`（根目錄）才能生成 JSON
+3. CI/CD 原本缺少 content build 步驟，導致 `public/content/` 為空
+
+**正確的內容流程**：
+```
+pages/*.yml  →  根目錄 pnpm run build  →  astro-app/public/content/*.json  →  Astro 渲染
+```
+
+**兩個 build 的區別**：
+| 位置 | 指令 | package.json script | 作用 |
+|------|------|---------------------|------|
+| **根目錄** | `pnpm run build` | `npx tsx .claude/skills/content-build/scripts/build.ts` | yml → JSON |
+| astro-app/ | `pnpm run build` | `astro build` | JSON → HTML |
+
+**CI/CD 必要步驟**（順序重要）：
+```yaml
+- name: Sync content
+  run: pnpm run sync-content      # 1. md → yml（根目錄）
+
+- name: Build content
+  run: pnpm run build              # 2. yml → JSON（根目錄）⚠️ 關鍵步驟
+
+- name: Build Astro site
+  working-directory: astro-app
+  run: pnpm run build              # 3. JSON → HTML（astro-app/）
+```
+
+**開發流程提醒**：
+- 修改 yml 後，**在根目錄**執行 `pnpm run build`
+- 如果本地預覽沒更新，先檢查是否執行了 content build
+- 新增 Section Type 或 Component 時，確認 CI/CD 流程完整
+
+**任務規劃必須包含**：
+- [ ] 元件實作
+- [ ] 整合到 PageLayout
+- [ ] **CI/CD 依賴確認** ← 容易遺漏！
+
 ---
 
 ## 待探索
