@@ -254,6 +254,8 @@ export interface PageContent {
     title: string;
     description: string;
     keywords: string[];
+    /** Open Graph 圖片 URL（建議 1200x630） */
+    og_image?: string;
   };
   url_mapping: {
     current_url: string;

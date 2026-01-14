@@ -117,6 +117,25 @@ const lcpImage = layout?.hero?.image ? {
   desktop: layout.hero.image.desktop,
   mobile: layout.hero.image.mobile
 } : undefined;
+
+// OG Image 優先順序：seo.og_image > hero.image.desktop > 預設圖片
+const DEFAULT_OG_IMAGE = '/assets/og-default.jpg';
+const siteUrl = Astro.site?.origin || 'https://www.ewill.com.tw';
+
+function getOgImageUrl(): string {
+  // 1. 優先使用 seo.og_image
+  if (seo.og_image) {
+    return seo.og_image.startsWith('http') ? seo.og_image : `${siteUrl}${seo.og_image}`;
+  }
+  // 2. 使用 Hero banner desktop 版
+  if (layout?.hero?.image?.desktop) {
+    return `${siteUrl}${layout.hero.image.desktop}`;
+  }
+  // 3. 使用預設圖片
+  return `${siteUrl}${DEFAULT_OG_IMAGE}`;
+}
+
+const ogImage = getOgImageUrl();
 ---
 
 <Layout
@@ -125,6 +144,7 @@ const lcpImage = layout?.hero?.image ? {
   keywords={seo.keywords}
   jsonLd={jsonLdItems}
   lcpImage={lcpImage}
+  ogImage={ogImage}
 >
   <Header />
 
