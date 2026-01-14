@@ -44,4 +44,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy astro-app/dist --project-name=wispy-recipe-f9c8
+          command: pages deploy astro-app/dist --project-name=ewill-web
