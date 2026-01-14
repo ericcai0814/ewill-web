@@ -1,14 +1,22 @@
 ---
 import { getPageContent } from '../utils/content';
+import type { LinkItem } from '../types';
 
-interface FooterLink {
-  text: string;
-  url: string;
+/**
+ * Footer
+ * 全站共用頁尾元件
+ */
+export interface Props {
+  // 目前從 content 讀取，保留供未來擴充
 }
 
+/** 社群連結 */
 interface SocialLink {
+  /** 平台名稱 */
   platform: string;
+  /** 連結網址 */
   url: string;
+  /** 圖示名稱 */
   icon: string;
 }
 
@@ -28,8 +36,8 @@ const contact = footerData?.contact || {
   address: '台北市內湖區行善路 398 號 3 樓'
 };
 
-const quickLinks: FooterLink[] = footerData?.quick_links || [];
-const solutions: FooterLink[] = footerData?.solutions || [];
+const quickLinks: LinkItem[] = footerData?.quick_links || [];
+const solutions: LinkItem[] = footerData?.solutions || [];
 const social: SocialLink[] = footerData?.social || [];
 const copyright = footerData?.copyright?.text || `© ${new Date().getFullYear()} 鎰威科技 EWILL Technology`;
 ---

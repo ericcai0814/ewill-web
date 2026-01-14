@@ -1,9 +1,16 @@
 ---
-import type { ResolvedImage } from '../utils/content';
+import type { ImageAsset } from '../types';
 
+/**
+ * HeroSection
+ * 頁面頂部主視覺橫幅
+ */
 export interface Props {
-  image: ResolvedImage;
+  /** 圖片資源（含桌面版/手機版） */
+  image: ImageAsset;
+  /** 是否顯示暗色疊加層 @default false */
   overlay?: boolean;
+  /** 高度模式 @default 'auto' */
   height?: 'full' | 'auto';
 }
 

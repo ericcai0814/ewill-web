@@ -1,8 +1,16 @@
 ---
+/**
+ * TextSection
+ * Markdown 文字內容區塊
+ */
 export interface Props {
-  id?: string;       // 錨點 ID
+  /** 錨點 ID */
+  id?: string;
+  /** Markdown 內容 */
   content: string;
+  /** 標題 */
   title?: string;
+  /** 小標籤（通常為英文） */
   label?: string;
 }
 

@@ -1,22 +1,24 @@
 ---
 import { getAssetById } from '../utils/content';
+import type { CardItem } from '../types';
 
-export interface Card {
-  id: string;
-  image_id: string;
-  title: string;
-  description: string;
-  link?: string;
-  link_text?: string;
-}
-
+/**
+ * CardListSection
+ * 卡片列表區塊，支援 3/4/5 欄及特殊佈局
+ */
 export interface Props {
+  /** 小標籤（通常為英文） */
   label?: string;
+  /** 標題 */
   title: string;
+  /** 描述文字 */
   description?: string;
+  /** 欄數 @default 3 */
   columns?: 3 | 4 | 5;
+  /** 佈局變體 @default 'equal' */
   layout_variant?: '3-2' | 'equal';
-  cards: Card[];
+  /** 卡片清單 */
+  cards: CardItem[];
 }
 
 const {

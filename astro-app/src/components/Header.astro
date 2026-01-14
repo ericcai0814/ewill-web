@@ -1,11 +1,18 @@
 ---
 import { getPageContent, getAssetById } from '../utils/content';
+import type { NavItem } from '../types';
 
-interface NavItem {
-  text: string;
-  url: string;
+/**
+ * Header
+ * 全站共用頁首導航元件
+ */
+export interface Props {
+  // 目前從 content 讀取，保留供未來擴充
+}
+
+interface HeaderNavItem extends NavItem {
+  /** 是否為 CTA 按鈕樣式 */
   is_cta?: boolean;
-  children?: NavItem[];
 }
 
 // 讀取 header.json
@@ -20,7 +27,7 @@ const logo = {
   link: headerData?.logo?.link || '/'
 };
 
-const navigation: NavItem[] = headerData?.navigation || [];
+const navigation: HeaderNavItem[] = headerData?.navigation || [];
 ---
 
 <!-- Vitesse Style Header: Clean, minimal, no glassmorphism -->
