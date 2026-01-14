@@ -176,6 +176,38 @@ pages/*.yml  →  根目錄 pnpm run build  →  astro-app/public/content/*.json
 - [ ] 整合到 PageLayout
 - [ ] **CI/CD 依賴確認** ← 容易遺漏！
 
+### 8. Section Schema 類型同步（2026-01-14 新增）
+
+**問題背景**：修改 yml schema（如新增 `display` 屬性）後，相關的 TypeScript 介面沒有同步更新，導致 CI/CD 時屬性被覆蓋或遺失。
+
+**根本原因**：Source（yml schema）變更時，未同步更新 Dependency（TypeScript 介面）。
+
+**解決方案**：建立共用的 section-schema.ts 作為類型定義的單一來源。
+
+**依賴圖譜**：
+```
+.claude/skills/content-build/types/section-schema.ts  ← 單一來源
+    │
+    ├──► scripts/sync-content.ts    （import）
+    ├──► scripts/build-content.ts   （import）
+    └──► astro-app/src/utils/content.ts  （手動同步）
+```
+
+**變更 yml schema 時的檢查清單**：
+| 檢查項目 | 位置 | 說明 |
+|----------|------|------|
+| ☐ section-schema.ts | `.claude/skills/content-build/types/` | 更新共用類型定義 |
+| ☐ sync-content.ts | `.claude/skills/content-build/scripts/` | 確認 import 無錯誤 |
+| ☐ build-content.ts | `.claude/skills/content-build/scripts/` | 確認 import 無錯誤 |
+| ☐ content.ts | `astro-app/src/utils/` | 手動同步類型定義 |
+| ☐ PageLayout.astro | `astro-app/src/layouts/` | 若涉及渲染邏輯 |
+| ☐ learnings.md | `.agent/system/` | 記錄變更 |
+
+**常見陷阱**：
+- ❌ 只改了 yml 檔案，沒更新 TypeScript 介面
+- ❌ 更新了 Astro 元件，沒更新 sync-content.ts
+- ❌ 新增 section 屬性，但 hasManualSections 沒有處理
+
 ---
 
 ## 待探索

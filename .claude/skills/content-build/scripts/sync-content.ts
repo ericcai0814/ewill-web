@@ -13,36 +13,25 @@ import { readFileSync, writeFileSync, existsSync, readdirSync } from 'fs'
 import { join } from 'path'
 import * as yaml from 'js-yaml'
 
+// 從共用 schema 匯入類型定義（單一來源）
+import {
+  TextSection,
+  ImageSection,
+  LayoutSection,
+  SYNCABLE_SECTION_TYPES,
+  SyncableSectionType,
+  isSyncableType,
+  hasManualSections as schemaHasManualSections,
+} from '../types/section-schema'
+
 // 專案根目錄
 const ROOT_DIR = process.cwd()
 const PAGES_DIR = join(ROOT_DIR, 'pages')
 
-// Section 類型定義
-interface TextSection {
-  type: 'text'
-  label?: string
-  title?: string
-  content: string
-}
-
-interface ImageSection {
-  type: 'image'
-  image_id: string
-  display?: 'all' | 'desktop' | 'mobile'
-}
-
-// 手動配置的 section 類型（不會被 sync-content 覆蓋）
-interface ManualSection {
-  type: 'card_list' | 'anchor' | 'feature_grid' | 'cta' | 'product_intro' |
-        'feature_showcase' | 'timeline' | 'gallery' | 'contact_form'
-  [key: string]: unknown
-}
-
-type Section = TextSection | ImageSection | ManualSection
-
-// 可從 md 同步的 section types
-const SYNCABLE_TYPES = ['text', 'image'] as const
-type SyncableType = typeof SYNCABLE_TYPES[number]
+// 為相容性保留的別名
+type Section = LayoutSection
+const SYNCABLE_TYPES = SYNCABLE_SECTION_TYPES
+type SyncableType = SyncableSectionType
 
 
 // 解析命令列參數
@@ -236,27 +225,8 @@ function sectionsEqual(a: Section[], b: Section[]): boolean {
   return true
 }
 
-/**
- * 檢查是否有手動配置的 sections
- * 有手動 sections 的頁面不應被 sync-content 修改，以保留完整的佈局設計
- *
- * 手動配置的判斷條件：
- * 1. 有非 text/image 類型的 section（如 card_list, anchor 等）
- * 2. image section 有 display 屬性（RWD 手動配置）
- */
-function hasManualSections(sections: Section[]): boolean {
-  return sections.some(s => {
-    // 非 text/image 類型視為手動配置
-    if (!SYNCABLE_TYPES.includes(s.type as SyncableType)) {
-      return true
-    }
-    // image section 有 display 屬性也視為手動配置
-    if (s.type === 'image' && (s as ImageSection).display) {
-      return true
-    }
-    return false
-  })
-}
+// 使用共用 schema 的 hasManualSections 函式
+const hasManualSections = schemaHasManualSections
 
 // 讀取現有 yml 的 sections
 function getExistingSections(ymlPath: string): Section[] {
