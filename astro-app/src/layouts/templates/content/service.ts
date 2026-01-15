@@ -1,0 +1,95 @@
+/**
+ * 服務頁硬編碼內容
+ * Template 自主決定所有顯示內容
+ */
+
+export const SERVICE_CONTENT = {
+  // 軟體開發服務
+  software_development: {
+    id: 'software_development',
+    label: 'Software Development',
+    title: '軟體開發服務',
+    text: `軟體開發服務涵蓋「SSDLC 安全應用系統開發周期」與「V-Model」兩大開發流程，
+確保系統安全性與高品質。SSDLC 強調安全測試貫穿開發各階段，
+而 V-Model 則在每個開發階段後進行測試驗證，
+雙重保證系統的穩定性、可靠性與安全性，協助客戶實現高效且安全的數位轉型。`,
+
+    ssdlc: {
+      id: 'ssdlc',
+      label: 'SSDLC',
+      title: 'SSDLC 安全應用系統開發周期',
+      text: `SSDLC 安全應用系統開發周期旨在通過安全設計的原則提升應用開發的穩定性和安全性。
+此周期涵蓋需求分析、設計、開發、測試及部署階段，確保在每個環節中加入安全性考量。
+透過 SSDLC 流程，開發團隊能有效識別和管理潛在風險，最終提供更安全且可靠的應用系統。`,
+    },
+
+    vmodel: {
+      id: 'vmodel',
+      label: 'V-Model',
+      title: 'V 模型',
+      text: `V-Model 開發模型是一種軟體開發流程，強調在每個開發階段後立即進行測試。
+從需求訪談、規格制定到系統分析和程式開發，逐步進行驗證與測試，確保品質。
+各階段的測試驗證結果可回饋至上一階段，提升系統的穩定性與可靠性，
+最終確保上線使用的高品質。`,
+    },
+  },
+
+  // 資訊安全服務
+  security_services: {
+    id: 'security_services',
+    label: 'Security Services',
+    title: '資訊安全服務',
+    text: `資訊安全服務項目涵蓋「資安評估」、「資安檢測」、「資安防禦」和「資安強化」四大服務。
+透過 SecurityScorecard 進行資安檢測，協助企業全面了解安全狀況，
+並使用 IST、Acunetix、Graylog、Bitdefender 及 Vicarius vRX 等工具提升資安等級，
+確保系統安全、穩定，提供企業可靠的資安服務。`,
+    subtitle: '服務項目',
+    subtitle_text: '無縫接軌的專業資安策略，整合技術 & 服務，提供最佳防護。',
+    cta: {
+      button_text: '前往「資安整合」',
+      button_link: '/solutions/#security_assessment',
+    },
+  },
+
+  // 系統規劃服務
+  system_planning: {
+    id: 'system_planning',
+    label: 'System Planning',
+    title: '系統規劃服務',
+    text: `我們的系統規劃服務包含 Ubuntu、VMware 和 Proxmox VE 三大方案，
+提供靈活、穩定及高效的虛擬化解決方案。Ubuntu 提供高度的可定制性與安全性，
+VMware 則具備強大的虛擬化管理與高可用性功能，
+而 Proxmox VE 以開源平台為基礎，實現資源高效利用與成本控制，滿足不同企業需求。`,
+    items: [
+      {
+        id: 'ubuntu',
+        title: 'Ubuntu',
+        description: 'Ubuntu 是一個開源系統，擁有強大社群支持和高度安全性，具備靈活性和穩定性，可依需求定制，適應多變的專案需求，提供高效資源管理和卓越性能。',
+        link: '/ubuntu/',
+        link_text: '了解更多',
+      },
+      {
+        id: 'vmware',
+        title: 'VMware',
+        description: 'VMware 提供強大虛擬化技術，高效利用硬體資源，具備高可用性和容錯機制，保障系統穩定。透過集中管理工具和優異的安全功能，提供靈活高效的系統服務。',
+        link: '/vmware/',
+        link_text: '了解更多',
+      },
+      {
+        id: 'proxmox',
+        title: 'Proxmox VE',
+        description: 'Proxmox VE 提供高性價比的開源虛擬化解決方案，支持 KVM 和 LXC 技術，具備集中化管理工具與多種存儲選項，滿足不同業務需求。',
+        link: '/proxmox_ve/',
+        link_text: '了解更多',
+      },
+    ],
+  },
+
+  // 圖片 ID
+  images: {
+    hero: 'bn_services',
+    hero_mobile: 'bn_services_m',
+    ssdlc: 'ssdlc_flow',
+    vmodel: 'vmodel_flow',
+  },
+};

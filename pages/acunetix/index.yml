@@ -1,5 +1,3 @@
-# Template 類型（佈局分離重構）
-template: product
 seo:
   title: Acunetix 網站弱點掃描 | Web 應用程式安全檢測工具 - 鎰威科技
   description: >-
@@ -66,60 +64,3 @@ aio:
         等現代 API 架構的安全檢測。
     - question: 多久應該執行一次弱點掃描？
       answer: 建議在每次程式碼變更後執行掃描，或至少每月定期掃描一次。Acunetix 支援 CI/CD 整合，可在開發流程中自動執行掃描，實現 DevSecOps。
-content_summary:
-  main_topic: Web 應用程式安全檢測
-  vulnerability_categories:
-    - 注入攻擊 (SQL/NoSQL/OS/LDAP Injection)
-    - 跨站腳本攻擊 (XSS)
-    - 身份驗證漏洞
-    - 敏感資料洩露
-    - API 安全漏洞
-  compliance_standards:
-    - OWASP Top 10
-    - PCI DSS
-    - HIPAA
-    - GDPR
-    - ISO 27001
-layout:
-  hero:
-    image:
-      id: bn_acu_1209_scaled
-  sections:
-    # 產品介紹
-    - type: product_intro
-      label: 網站安全掃描
-      title: 網絡應用程序和 API 安全
-      description: 您不需要投入更多時間來處理應用安全，您只需要 Acunetix。通過六個簡單的步驟，即可自動化您的網絡應用程序和 API 安全管理。
-      align: center
-
-    # 功能展示 - 交錯圖文
-    - type: feature_showcase
-      layout: alternating
-      features:
-        - id: feature_1
-          image_id: acunetix_1
-          title: 確保全面掃描與安全防護
-          description: >-
-            Acunetix 會自動創建並更新您的所有網站、應用程序和 API 的列表，確保發現所有需要掃描的內容。
-            這意味著您不會遺漏任何未掃描且容易受到攻擊的潛在入口點。
-        - id: feature_2
-          image_id: acunetix_2
-          title: 深入掃描應用程序的每個角落
-          description: >-
-            輕鬆掃描大多數其他漏洞掃描器無法觸及的區域。無論是單頁應用（SPAs）、腳本密集型網站，還是使用 HTML5 及 JavaScript 構建的應用程序，Acunetix 都能有效進行掃描。
-            此外，您還可以錄製巨集以自動掃描受密碼保護的區域和難以觸及的部分，並檢測其他掃描器無法看到的未鏈接文件和 API 端點。
-        - id: feature_3
-          image_id: acunetix_3
-          title: 檢測漏洞
-          description: >-
-            快速找到使您面臨風險的安全漏洞，偵測超過 12,000 個漏洞，包括零日漏洞。
-            使用世界上最準確的掃描器找出您的安全漏洞，立即揭示發現的漏洞。
-            同時掃描多個環境，通過結合 DAST + IAST 掃描獲得更全面的覆蓋範圍。
-
-    # 行動呼籲
-    - type: cta
-      title: 立即體驗 Acunetix 網站弱點掃描
-      description: 讓專業顧問協助您評估 Web 應用程式安全需求
-      button_text: 聯繫我們
-      button_link: /contact/
-      variant: primary

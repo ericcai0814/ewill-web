@@ -198,6 +198,45 @@ function loadModuleMd(moduleName: string, config: BuildConfig): string {
   return fs.readFileSync(mdPath, 'utf-8')
 }
 
+/**
+ * 遞迴解析 content 結構中的 image_id
+ * 將 image_id 轉換為實際的圖片路徑
+ */
+function resolveContent(content: Record<string, unknown> | undefined, resolver: AssetResolver): Record<string, unknown> | undefined {
+  if (!content) return undefined
+
+  const resolved: Record<string, unknown> = {}
+
+  for (const [key, value] of Object.entries(content)) {
+    if (key === 'image_id' && typeof value === 'string') {
+      // 解析單一圖片 ID
+      const asset = resolver.resolveById(value)
+      if (asset) {
+        resolved['image'] = asset
+      }
+    } else if (key === 'image_mobile_id' && typeof value === 'string') {
+      // 解析手機版圖片 ID
+      const asset = resolver.resolveById(value)
+      if (asset) {
+        resolved['image_mobile'] = asset
+      }
+    } else if (key === 'image_mobile_ids' && Array.isArray(value)) {
+      // 解析多個手機版圖片 ID
+      resolved['images_mobile'] = value
+        .map(id => resolver.resolveById(id as string))
+        .filter((img): img is ResolvedImage => img !== null)
+    } else if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+      // 遞迴處理巢狀物件
+      resolved[key] = resolveContent(value as Record<string, unknown>, resolver)
+    } else {
+      // 保留其他值
+      resolved[key] = value
+    }
+  }
+
+  return resolved
+}
+
 function resolveLayout(layout: LayoutConfig | undefined, resolver: AssetResolver): PageJson['layout'] {
   if (!layout) return {}
   

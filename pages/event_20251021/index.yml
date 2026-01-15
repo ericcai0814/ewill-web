@@ -1,5 +1,3 @@
-# Template 類型（佈局分離重構）
-template: event
 seo:
   title: 鎰威科技 × Dell Technologies 活動回顧 | 2025/10/21 - 鎰威科技
   description: 鎰威科技與 Dell Technologies 聯合舉辦活動回顧。分享企業 IT 基礎架構、虛擬化與資料保護最新趨勢，協助企業建構現代化資料中心與混合雲環境。
@@ -11,10 +9,15 @@ seo:
     - 虛擬化
     - 企業活動
     - 2025 活動
+
 url_mapping:
   current_url: /event_20251021/
   old_url: /event_20251021/
   redirect: false
+
+# ============================================================================
+# AIO 結構化資料
+# ============================================================================
 aio:
   webpage:
     type: EventPage
@@ -34,18 +37,3 @@ aio:
         - type: ListItem
           position: 3
           name: Dell Technologies 活動回顧
-layout:
-  hero:
-    type: hero_banner
-    image:
-      id: event_20251021_photo
-      desktop: event_20251021_photo
-      mobile: event_20251021_photo
-      alt: 鎰威科技 × Dell Technologies 活動現場照片
-  sections:
-    - type: text
-      content: >-
-        ### 鎰威科技 × Dell Technologies 成功舉辦
-
-
-        鎰威科技與 Dell Technologies 聯合舉辦活動，分享企業 IT 基礎架構、虛擬化與資料保護最新趨勢，協助企業建構現代化資料中心與混合雲環境。

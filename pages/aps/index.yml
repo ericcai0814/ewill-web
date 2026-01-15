@@ -1,6 +1,3 @@
-# Template 類型（佈局分離重構）
-template: solution
-
 seo:
   title: APS 先進規劃排程系統 | 智慧生產排程與資源優化 - 鎰威科技
   description: 鎰威科技 APS 先進規劃排程系統，運用 AI 演算法優化生產排程與資源配置。 整合 MES、ERP 系統數據，即時調整排程因應插單與設備異常， 縮短交期、提升產能利用率，是智慧製造的核心決策引擎。
@@ -16,57 +13,3 @@ url_mapping:
   current_url: /aps/
   old_url: /aps/
   redirect: false
-layout:
-  hero:
-    image:
-      id: hero_aps
-  sections:
-    # 產品介紹
-    - type: product_intro
-      label: 智慧排程系統
-      title: 什麼是 APS 系統？
-      description: >-
-        APS（Advanced Planning & Scheduling，先進規劃與排程）系統，是一種以「決策支援」為核心的製造業先進智能生產排程系統。
-        是現代製造業邁向智慧化、數位化不可或缺的關鍵利器。透過先進的演算法，APS 系統能夠在極短時間內完成複雜生產計畫的自動排程，
-        實現資源最佳分配，協助企業於快速變化的市場中立於不敗之地。
-      align: center
-
-    # 核心優勢特色網格
-    - type: feature_grid
-      title: APS 系統的核心優勢
-      columns: 3
-      variant: icon
-      features:
-        - id: advantage_1
-          title: 提升生產效率
-          description: 即時分析產線狀況，自動調整生產排程，降低等待與閒置時間，顯著提升整體產能。
-        - id: advantage_2
-          title: 精準交期控管
-          description: 根據訂單需求與資源狀況，精確預測並承諾交期，增強客戶信賴。
-        - id: advantage_3
-          title: 彈性應變能力
-          description: 快速因應突發訂單變更或設備異常，自動重排最佳生產流程，減少損失。
-        - id: advantage_4
-          title: 全面資源整合
-          description: 整合人力、設備、物料等資源，達到最大利用率，降低營運成本。
-        - id: advantage_5
-          title: 數據即時可視化
-          description: 提供即時、動態的生產數據儀表板，管理層能隨時掌握現場狀況，做出精準決策。
-
-    # 功能展示
-    - type: feature_showcase
-      title: 為什麼選擇我們的 APS 解決方案？
-      layout: alternating
-      features:
-        - id: feature_1
-          image_id: product_aps_2
-          title: 專業顧問服務
-          description: 由專業顧問為您規劃專屬 APS 解決方案，助您的企業實現智慧生產、效率翻倍、營運升級！
-
-    # 行動呼籲
-    - type: cta
-      title: 立即行動，搶佔智慧製造先機！
-      description: 讓專業顧問為您規劃專屬 APS 解決方案
-      button_text: 聯繫我們
-      button_link: /contact/
-      variant: primary

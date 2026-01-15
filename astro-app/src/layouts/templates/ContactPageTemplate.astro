@@ -2,28 +2,28 @@
 /**
  * ContactPageTemplate.astro
  *
- * 聯絡頁面固定佈局 Template
- * 適用：contact
+ * 聯絡頁面 Template
  *
- * 佈局結構：
- * 1. Hero Banner
- * 2. Contact Form
+ * 設計原則：
+ * - 佈局完全由 Template 決定
+ * - yml 只提供 seo 和 aio
+ * - 內容由 Template 硬編碼（從 content/contact.ts 載入）
  */
 import Layout from '../Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import HeroSection from '../../components/HeroSection.astro';
-import ContactFormSection from '../../components/ContactFormSection.astro';
+import { getAssetById } from '../../utils/content';
 import type { PageContent, AioData } from '../../utils/content';
 import type { JsonLdItem } from '../../components/SEO.astro';
+import { CONTACT_CONTENT } from './content/contact';
 
 export interface Props {
   page: PageContent;
 }
 
 const { page } = Astro.props;
-const { seo, layout, aio, content } = page;
+const { seo, aio } = page;
 
 // Breadcrumb
 const breadcrumbItems = aio?.webpage?.breadcrumb?.itemListElement?.map((item: { name: string; item?: string }) => ({
@@ -43,21 +43,41 @@ function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
 
 const jsonLdItems = buildJsonLd(aio);
 
-// LCP & OG Image
-const lcpImage = layout?.hero?.image ? {
-  desktop: layout.hero.image.desktop,
-  mobile: layout.hero.image.mobile
+// ============================================================================
+// Template 自主決定的圖片
+// ============================================================================
+const heroAsset = await getAssetById('contact_banner');
+const heroMobileAsset = await getAssetById('contact_banner_mobile');
+
+// ============================================================================
+// 硬編碼內容
+// ============================================================================
+const introData = CONTACT_CONTENT.intro;
+const formData = CONTACT_CONTENT.form;
+
+// ============================================================================
+// SEO / LCP / OG
+// ============================================================================
+
+const lcpImage = heroAsset ? {
+  desktop: heroAsset.variants.desktop,
+  mobile: heroMobileAsset?.variants.mobile || heroAsset.variants.mobile
 } : undefined;
 
 const siteUrl = Astro.url.origin;
 const DEFAULT_OG_IMAGE = '/assets/og-default.jpg';
-const ogImage = seo.og_image
-  ? (seo.og_image.startsWith('http') ? seo.og_image : `${siteUrl}${seo.og_image}`)
-  : (layout?.hero?.image?.desktop ? `${siteUrl}${layout.hero.image.desktop}` : `${siteUrl}${DEFAULT_OG_IMAGE}`);
 
-// 內容資料
-const heroData = content?.hero || layout?.hero;
-const formData = content?.form || layout?.sections?.find((s: any) => s.type === 'contact_form');
+function getOgImageUrl(): string {
+  if (seo.og_image) {
+    return seo.og_image.startsWith('http') ? seo.og_image : `${siteUrl}${seo.og_image}`;
+  }
+  if (heroAsset?.variants.desktop) {
+    return `${siteUrl}${heroAsset.variants.desktop}`;
+  }
+  return `${siteUrl}${DEFAULT_OG_IMAGE}`;
+}
+
+const ogImage = getOgImageUrl();
 ---
 
 <Layout
@@ -70,35 +90,320 @@ const formData = content?.form || layout?.sections?.find((s: any) => s.type === 
 >
   <Header />
 
-  <main class="page-main">
+  <main class="contact-template">
     <Breadcrumb items={breadcrumbItems} />
 
-    <!-- 1. Hero Banner -->
-    {heroData?.image && (
-      <HeroSection
-        image={heroData.image}
-        overlay={heroData.overlay}
-        height={heroData.height as 'full' | 'fixed' | 'auto'}
-      />
+    <!-- ================================================================== -->
+    <!-- 1. HERO SECTION -->
+    <!-- ================================================================== -->
+    {heroAsset && (
+      <section class="hero-section">
+        <picture class="hero-picture">
+          <source media="(min-width: 768px)" srcset={heroAsset.variants.desktop} />
+          {heroMobileAsset && (
+            <source media="(max-width: 767px)" srcset={heroMobileAsset.variants.mobile} />
+          )}
+          <img
+            src={heroAsset.variants.desktop}
+            alt={heroAsset.alt}
+            class="hero-image"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
+        <div class="hero-overlay"></div>
+      </section>
     )}
 
-    <!-- 2. Contact Form -->
-    {formData && (
-      <ContactFormSection
-        label={formData.label}
-        title={formData.title || '聯絡我們'}
-        fields={formData.fields}
-        button_text={formData.button_text || '送出'}
-      />
-    )}
+    <!-- ================================================================== -->
+    <!-- 2. INTRO SECTION -->
+    <!-- ================================================================== -->
+    <section class="intro-section fade-in-section">
+      <div class="container">
+        <h1 class="intro-title">{introData.title}</h1>
+        <div class="intro-description" set:html={introData.description} />
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 3. CONTACT FORM SECTION -->
+    <!-- ================================================================== -->
+    <section class="form-section fade-in-section">
+      <div class="container">
+        <span class="form-label">{formData.label}</span>
+        <h2 class="form-title">{formData.title}</h2>
+
+        <form class="contact-form" action="/api/contact" method="POST">
+          {formData.fields.map((field) => (
+            <div class="form-group">
+              <label for={field.name} class="form-field-label">
+                {field.label}
+                {field.required && <span class="required">*</span>}
+              </label>
+              {field.type === 'textarea' ? (
+                <textarea
+                  id={field.name}
+                  name={field.name}
+                  placeholder={field.placeholder}
+                  required={field.required}
+                  class="form-textarea"
+                  rows="5"
+                ></textarea>
+              ) : (
+                <input
+                  type={field.type || 'text'}
+                  id={field.name}
+                  name={field.name}
+                  placeholder={field.placeholder}
+                  required={field.required}
+                  class="form-input"
+                />
+              )}
+            </div>
+          ))}
+
+          <button type="submit" class="form-button">
+            {formData.button_text}
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </section>
   </main>
 
   <Footer />
 </Layout>
 
 <style>
-  .page-main {
+  /* ========================================
+     Apple-like Design - Contact Template
+     ======================================== */
+
+  .contact-template {
     min-height: 100vh;
     padding-top: 64px;
   }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ----------------------------------------
+     Hero Section
+     ---------------------------------------- */
+  .hero-section {
+    position: relative;
+    width: 100%;
+    height: 40vw;
+    max-height: 400px;
+    min-height: 240px;
+    overflow: hidden;
+    background: var(--bg-tertiary);
+  }
+
+  .hero-picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.3) 100%);
+    pointer-events: none;
+  }
+
+  /* ----------------------------------------
+     Intro Section
+     ---------------------------------------- */
+  .intro-section {
+    padding: 64px 0 32px;
+    text-align: center;
+  }
+
+  .intro-title {
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin: 0 0 16px;
+  }
+
+  .intro-description {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    white-space: pre-line;
+  }
+
+  /* ----------------------------------------
+     Form Section
+     ---------------------------------------- */
+  .form-section {
+    padding: 0 0 80px;
+  }
+
+  .form-label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .form-title {
+    font-size: clamp(20px, 4vw, 28px);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 32px;
+    text-align: center;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-field-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .required {
+    color: var(--accent);
+    margin-left: 4px;
+  }
+
+  .form-input,
+  .form-textarea {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+
+  .form-input:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(var(--accent-rgb, 0, 122, 255), 0.15);
+  }
+
+  .form-input::placeholder,
+  .form-textarea::placeholder {
+    color: var(--text-tertiary);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-size: 17px;
+    font-weight: 500;
+    color: white;
+    background: var(--accent);
+    border: none;
+    border-radius: 980px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 16px;
+    align-self: center;
+  }
+
+  .form-button:hover {
+    background: var(--accent-hover, var(--accent));
+    transform: scale(1.02);
+  }
+
+  .form-button svg {
+    transition: transform 0.3s ease;
+  }
+
+  .form-button:hover svg {
+    transform: translateX(4px);
+  }
+
+  /* ----------------------------------------
+     Fade-in Animation
+     ---------------------------------------- */
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ----------------------------------------
+     Dark Mode
+     ---------------------------------------- */
+  :global(.dark) .hero-overlay {
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.5) 100%);
+  }
+
+  :global(.dark) .form-input,
+  :global(.dark) .form-textarea {
+    background: var(--bg-tertiary);
+  }
 </style>
+
+<script>
+  // Intersection Observer for fade-in animation
+  document.addEventListener('DOMContentLoaded', () => {
+    const fadeElements = document.querySelectorAll('.fade-in-section');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    fadeElements.forEach((el) => observer.observe(el));
+  });
+</script>

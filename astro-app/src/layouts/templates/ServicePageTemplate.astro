@@ -1,23 +1,19 @@
 ---
 /**
- * EventPageTemplate.astro
+ * ServicePageTemplate.astro
  *
- * 活動頁面 Template
+ * 服務項目頁面 Template
  *
  * 設計原則：
  * - 佈局完全由 Template 決定
  * - yml 只提供 seo 和 aio
- * - 內容由 Template 硬編碼（從 content/event.ts 載入）
- *
- * 支援兩種模式：
- * - list: 活動列表頁（slug === 'event_information'）
- * - detail: 單一活動頁（根據 slug 顯示對應活動）
+ * - 內容由 Template 硬編碼（從 content/service.ts 載入）
  *
  * 固定佈局：
- * 1. Hero Banner - banner1209 (desktop) / bn_home_m (mobile)
- * 2. Event Content / Card List
- * 3. Gallery（如有）
- * 4. CTA（如有）
+ * 1. Hero Banner - hero_services
+ * 2. Software Development Section (SSDLC + V-Model)
+ * 3. Security Services Section
+ * 4. System Planning Section (Cards)
  */
 import Layout from '../Layout.astro';
 import Header from '../../components/Header.astro';
@@ -26,7 +22,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getAssetById } from '../../utils/content';
 import type { PageContent, AioData } from '../../utils/content';
 import type { JsonLdItem } from '../../components/SEO.astro';
-import { EVENT_LIST_CONTENT, EVENT_DETAIL_CONTENT, EVENT_IMAGES } from './content/event';
+import { SERVICE_CONTENT } from './content/service';
 
 export interface Props {
   page: PageContent;
@@ -48,32 +44,32 @@ function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
   if (!aioData) return [];
   const items: JsonLdItem[] = [];
   if (aioData.webpage) items.push({ type: 'WebPage', data: aioData.webpage });
-  if (aioData.event) items.push({ type: 'Event', data: aioData.event });
   return items;
 }
 
 const jsonLdItems = buildJsonLd(aio);
 
 // ============================================================================
-// 判斷模式（根據 slug）
-// ============================================================================
-const isListMode = page.slug === 'event_information';
-const eventDetail = !isListMode ? EVENT_DETAIL_CONTENT[page.slug] : null;
-
-// ============================================================================
 // Template 自主決定的圖片（不從 yml 讀取）
 // ============================================================================
 
 // Hero Banner
-const heroAsset = await getAssetById('banner1209');
-const heroMobileAsset = await getAssetById('bn_home_m');
+const heroAsset = await getAssetById('hero_services');
+const heroMobileAsset = await getAssetById('hero_services_mobile');
 
-// Event Card 圖片映射（根據 card id 對應圖片）
-const eventCardImages: Record<string, any> = {
-  event_passwordless: await getAssetById('event_info_passwordless'),
-  event_logsec: await getAssetById('event_info_news_m'),
-  event_smartmfg: await getAssetById('event_info_smartmfg'),
-  event_proxmox: await getAssetById('event_info_photo_1'),
+// Software Development 圖片
+const ssdlcImage = await getAssetById('service_offer_1');
+const vmodelImage = await getAssetById('service_offer_2');
+
+// Security Services 圖片
+const securityFlowDesktop = await getAssetById('services_flow');
+const securityFlowMobile = await getAssetById('services_flow_mobile');
+
+// System Planning 卡片圖片
+const systemImages: Record<string, any> = {
+  ubuntu: await getAssetById('card_ubuntu'),
+  vmware: await getAssetById('card_vmware'),
+  proxmox: await getAssetById('card_proxmox'),
 };
 
 // ============================================================================
@@ -103,10 +99,9 @@ const ogImage = getOgImageUrl();
 // ============================================================================
 // 硬編碼內容
 // ============================================================================
-const cardListData = isListMode ? EVENT_LIST_CONTENT.card_list : null;
-const textSections = eventDetail?.sections || [];
-const galleryData = eventDetail?.images?.gallery;
-const ctaData = null; // 活動頁不需要 CTA
+const softwareDev = SERVICE_CONTENT.software_development;
+const securitySvc = SERVICE_CONTENT.security_services;
+const systemPlan = SERVICE_CONTENT.system_planning;
 ---
 
 <Layout
@@ -119,7 +114,7 @@ const ctaData = null; // 活動頁不需要 CTA
 >
   <Header />
 
-  <main class="event-template">
+  <main class="service-template">
     <Breadcrumb items={breadcrumbItems} />
 
     <!-- ================================================================== -->
@@ -145,89 +140,157 @@ const ctaData = null; // 活動頁不需要 CTA
     )}
 
     <!-- ================================================================== -->
-    <!-- 2. CONTENT HEADER -->
+    <!-- 2. SOFTWARE DEVELOPMENT SECTION -->
     <!-- ================================================================== -->
-    <article class="content-section fade-in-section">
-      <div class="container">
-        <header class="content-header">
-          <h1 class="content-title">{seo.title.split('|')[0].trim()}</h1>
-          {seo.description && (
-            <p class="content-lead">{seo.description}</p>
-          )}
-        </header>
-      </div>
-    </article>
-
-    <!-- ================================================================== -->
-    <!-- 2a. LIST MODE - 活動卡片列表 -->
-    <!-- ================================================================== -->
-    {isListMode && cardListData && (
-      <section class="card-section fade-in-section">
+    {softwareDev && (
+      <section id={softwareDev.id} class="content-section fade-in-section">
         <div class="container">
-          {cardListData.label && (
-            <span class="section-label">{cardListData.label}</span>
+          {softwareDev.label && (
+            <span class="section-label">{softwareDev.label}</span>
           )}
-          {cardListData.title && (
-            <h2 class="section-title">{cardListData.title}</h2>
-          )}
+          <h1 class="section-title">{softwareDev.title}</h1>
+          <p class="section-text">{softwareDev.text}</p>
         </div>
-        <div class="card-grid columns-3">
-          {cardListData.items?.map((item: any) => {
-            const image = eventCardImages[item.id];
-            return (
-              <a href={item.link} class="card">
-                {image && (
-                  <div class="card-image">
-                    <img
-                      src={image.variants.desktop}
-                      alt={image.alt}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-                )}
-                <div class="card-content">
-                  <span class="card-category">{item.title}</span>
-                  <p class="card-description">{item.description}</p>
-                  <span class="card-link">{item.link_text} →</span>
-                </div>
-              </a>
-            );
-          })}
-        </div>
+
+        <!-- SSDLC -->
+        {softwareDev.ssdlc && (
+          <div id={softwareDev.ssdlc.id} class="subsection">
+            <div class="container">
+              {softwareDev.ssdlc.label && (
+                <span class="subsection-label">{softwareDev.ssdlc.label}</span>
+              )}
+              <h2 class="subsection-title">{softwareDev.ssdlc.title}</h2>
+              <p class="section-text">{softwareDev.ssdlc.text}</p>
+            </div>
+            {ssdlcImage && (
+              <div class="section-image">
+                <img
+                  src={ssdlcImage.variants.desktop}
+                  alt={ssdlcImage.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            )}
+          </div>
+        )}
+
+        <!-- V-Model -->
+        {softwareDev.vmodel && (
+          <div id={softwareDev.vmodel.id} class="subsection">
+            <div class="container">
+              {softwareDev.vmodel.label && (
+                <span class="subsection-label">{softwareDev.vmodel.label}</span>
+              )}
+              <h2 class="subsection-title">{softwareDev.vmodel.title}</h2>
+              <p class="section-text">{softwareDev.vmodel.text}</p>
+            </div>
+            {vmodelImage && (
+              <div class="section-image">
+                <img
+                  src={vmodelImage.variants.desktop}
+                  alt={vmodelImage.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            )}
+          </div>
+        )}
       </section>
     )}
 
     <!-- ================================================================== -->
-    <!-- 2b. DETAIL MODE - 活動內容 -->
+    <!-- 3. SECURITY SERVICES SECTION -->
     <!-- ================================================================== -->
-    {!isListMode && textSections.length > 0 && (
-      <div class="content-body fade-in-section">
+    {securitySvc && (
+      <section id={securitySvc.id} class="content-section alt-bg fade-in-section">
         <div class="container">
-          {textSections.map((section: any) => (
-            <div class="text-block" set:html={section.content} />
-          ))}
+          {securitySvc.label && (
+            <span class="section-label">{securitySvc.label}</span>
+          )}
+          <h2 class="section-title">{securitySvc.title}</h2>
+          <p class="section-text">{securitySvc.text}</p>
+
+          {securitySvc.subtitle && (
+            <h3 class="subsection-title">{securitySvc.subtitle}</h3>
+          )}
+          {securitySvc.subtitle_text && (
+            <p class="section-text">{securitySvc.subtitle_text}</p>
+          )}
         </div>
-      </div>
+
+        {(securityFlowDesktop || securityFlowMobile) && (
+          <div class="section-image">
+            <picture>
+              {securityFlowDesktop && (
+                <source media="(min-width: 768px)" srcset={securityFlowDesktop.variants.desktop} />
+              )}
+              {securityFlowMobile && (
+                <source media="(max-width: 767px)" srcset={securityFlowMobile.variants.mobile} />
+              )}
+              <img
+                src={securityFlowDesktop?.variants.desktop || securityFlowMobile?.variants.mobile}
+                alt={securityFlowDesktop?.alt || securityFlowMobile?.alt || ''}
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </div>
+        )}
+
+        {securitySvc.cta && (
+          <div class="cta-container">
+            <a href={securitySvc.cta.button_link} class="cta-button secondary">
+              {securitySvc.cta.button_text}
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        )}
+      </section>
     )}
 
     <!-- ================================================================== -->
-    <!-- 3. CTA SECTION -->
+    <!-- 4. SYSTEM PLANNING SECTION -->
     <!-- ================================================================== -->
-    {ctaData && (
-      <section class="cta-section fade-in-section">
+    {systemPlan && (
+      <section id={systemPlan.id} class="content-section fade-in-section">
         <div class="container">
-          <h2 class="cta-title">{ctaData.title}</h2>
-          {ctaData.description && (
-            <p class="cta-description">{ctaData.description}</p>
+          {systemPlan.label && (
+            <span class="section-label">{systemPlan.label}</span>
           )}
-          <a href={ctaData.button_link} class="cta-button">
-            {ctaData.button_text}
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
+          <h2 class="section-title">{systemPlan.title}</h2>
+          <p class="section-text">{systemPlan.text}</p>
         </div>
+
+        {systemPlan.items && (
+          <div class="card-grid columns-3">
+            {systemPlan.items.map((item: any) => {
+              const image = systemImages[item.id];
+              return (
+                <a href={item.link} class="card">
+                  {image && (
+                    <div class="card-image">
+                      <img
+                        src={image.variants.desktop}
+                        alt={image.alt}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  )}
+                  <div class="card-content">
+                    <h3 class="card-title">{item.title}</h3>
+                    <p class="card-description">{item.description}</p>
+                    <span class="card-link">{item.link_text} →</span>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        )}
       </section>
     )}
   </main>
@@ -237,10 +300,10 @@ const ctaData = null; // 活動頁不需要 CTA
 
 <style>
   /* ========================================
-     Apple-like Design - Event Template
+     Apple-like Design - Service Template
      ======================================== */
 
-  .event-template {
+  .service-template {
     min-height: 100vh;
     padding-top: 64px;
   }
@@ -286,51 +349,16 @@ const ctaData = null; // 活動頁不需要 CTA
   }
 
   /* ----------------------------------------
-     Content Section
+     Content Sections
      ---------------------------------------- */
   .content-section {
-    padding: 64px 0 32px;
+    padding: 80px 0;
   }
 
-  .content-header {
-    margin-bottom: 32px;
+  .content-section.alt-bg {
+    background: var(--bg-secondary);
   }
 
-  .content-title {
-    font-size: clamp(28px, 5vw, 42px);
-    font-weight: 600;
-    line-height: 1.2;
-    color: var(--text-primary);
-    margin: 0 0 16px;
-  }
-
-  .content-lead {
-    font-size: 17px;
-    line-height: 1.6;
-    color: var(--text-secondary);
-    margin: 0;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
-  .content-body {
-    padding: 0 0 64px;
-  }
-
-  .content-body .container {
-    text-align: left;
-  }
-
-  .text-block {
-    font-size: 17px;
-    line-height: 1.8;
-    color: var(--text-secondary);
-    margin-bottom: 24px;
-  }
-
-  /* ----------------------------------------
-     Section Labels
-     ---------------------------------------- */
   .section-label {
     display: inline-block;
     font-size: 12px;
@@ -342,20 +370,99 @@ const ctaData = null; // 活動頁不需要 CTA
   }
 
   .section-title {
-    font-size: clamp(24px, 4vw, 36px);
+    font-size: clamp(28px, 5vw, 42px);
     font-weight: 600;
     line-height: 1.2;
     color: var(--text-primary);
-    margin: 0 0 40px;
+    margin: 0 0 24px;
+  }
+
+  .section-text {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin: 0 auto 40px;
+    max-width: 700px;
+  }
+
+  /* Subsection */
+  .subsection {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .subsection-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 12px;
+  }
+
+  .subsection-title {
+    font-size: clamp(22px, 4vw, 32px);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin: 0 0 20px;
+  }
+
+  /* Section Image */
+  .section-image {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .section-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  /* CTA */
+  .cta-container {
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-size: 17px;
+    font-weight: 500;
+    color: white;
+    background: var(--accent);
+    border-radius: 980px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .cta-button.secondary {
+    background: var(--text-secondary);
+  }
+
+  .cta-button:hover {
+    transform: scale(1.02);
+    opacity: 0.9;
+  }
+
+  .cta-button svg {
+    transition: transform 0.3s ease;
+  }
+
+  .cta-button:hover svg {
+    transform: translateX(4px);
   }
 
   /* ----------------------------------------
-     Card Section
+     Card Grid
      ---------------------------------------- */
-  .card-section {
-    padding: 0 0 80px;
-  }
-
   .card-grid {
     display: grid;
     gap: 24px;
@@ -420,16 +527,13 @@ const ctaData = null; // 活動頁不需要 CTA
     flex: 1;
     display: flex;
     flex-direction: column;
-    text-align: left;
   }
 
-  .card-category {
-    font-size: 12px;
+  .card-title {
+    font-size: 18px;
     font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 12px;
+    color: var(--text-primary);
+    margin: 0 0 12px;
   }
 
   .card-description {
@@ -449,58 +553,6 @@ const ctaData = null; // 活動頁不需要 CTA
 
   .card:hover .card-link {
     color: var(--accent-hover, var(--accent));
-  }
-
-  /* ----------------------------------------
-     CTA Section
-     ---------------------------------------- */
-  .cta-section {
-    padding: 80px 0;
-    text-align: center;
-    background: var(--bg-tertiary);
-  }
-
-  .cta-title {
-    font-size: clamp(24px, 4vw, 36px);
-    font-weight: 600;
-    line-height: 1.2;
-    color: var(--text-primary);
-    margin: 0 0 16px;
-  }
-
-  .cta-description {
-    font-size: 17px;
-    line-height: 1.6;
-    color: var(--text-secondary);
-    max-width: 600px;
-    margin: 0 auto 32px;
-  }
-
-  .cta-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 28px;
-    font-size: 17px;
-    font-weight: 500;
-    color: white;
-    background: var(--accent);
-    border-radius: 980px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-
-  .cta-button:hover {
-    background: var(--accent-hover, var(--accent));
-    transform: scale(1.02);
-  }
-
-  .cta-button svg {
-    transition: transform 0.3s ease;
-  }
-
-  .cta-button:hover svg {
-    transform: translateX(4px);
   }
 
   /* ----------------------------------------
@@ -526,6 +578,10 @@ const ctaData = null; // 活動頁不需要 CTA
 
   :global(.dark) .card {
     background: var(--bg-secondary);
+  }
+
+  :global(.dark) .subsection {
+    border-top-color: var(--border-color);
   }
 </style>
 

@@ -2,33 +2,35 @@
 /**
  * HomePageTemplate.astro
  *
- * 首頁固定佈局 Template
- * 適用：index
+ * 首頁 Template
  *
- * 佈局結構：
- * 1. Hero Banner
- * 2. Text（關於我們）
- * 3. CardList（服務項目）
- * 4. CardList（產品解決方案）
- * 5. Popup Modal
+ * 設計原則：
+ * - 佈局完全由 Template 決定
+ * - yml 只提供 seo 和 aio
+ * - 內容由 Template 硬編碼（從 content/home.ts 載入）
+ *
+ * 固定佈局：
+ * 1. Hero Banner - hero_banner (desktop) / bn_home_m (mobile)
+ * 2. About Section - 純文字
+ * 3. Services CardList - 3 張卡片
+ * 4. Solutions CardList - 5 張卡片 (3+2 佈局)
+ * 5. Popup Modal - popup_logsec
  */
 import Layout from '../Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import HeroSection from '../../components/HeroSection.astro';
-import TextSection from '../../components/TextSection.astro';
-import CardListSection from '../../components/CardListSection.astro';
 import PopupModal from '../../components/PopupModal.astro';
 import { getAssetById } from '../../utils/content';
 import type { PageContent, AioData } from '../../utils/content';
 import type { JsonLdItem } from '../../components/SEO.astro';
+import { HOME_CONTENT } from './content/home';
 
 export interface Props {
   page: PageContent;
 }
 
 const { page } = Astro.props;
-const { seo, layout, aio, content } = page;
+const { seo, aio } = page;
 
 // JSON-LD
 function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
@@ -43,36 +45,64 @@ function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
 
 const jsonLdItems = buildJsonLd(aio);
 
-// LCP & OG Image
-const lcpImage = layout?.hero?.image ? {
-  desktop: layout.hero.image.desktop,
-  mobile: layout.hero.image.mobile
+// ============================================================================
+// Template 自主決定的圖片
+// ============================================================================
+
+// Hero Banner
+const heroAsset = await getAssetById('hero_banner');
+const heroMobileAsset = await getAssetById('bn_home_m');
+
+// Services 卡片圖片
+const serviceImages: Record<string, any> = {
+  service_software: await getAssetById('service_software'),
+  service_security: await getAssetById('service_security'),
+  service_system: await getAssetById('service_system'),
+};
+
+// Solutions 卡片圖片
+const solutionImages: Record<string, any> = {
+  solution_smart: await getAssetById('solution_smart'),
+  solution_assess: await getAssetById('solution_assess'),
+  solution_testing: await getAssetById('service_software'),
+  solution_defense: await getAssetById('service_security'),
+  solution_enhance: await getAssetById('service_system'),
+};
+
+// Popup
+const popupAsset = await getAssetById('popup_logsec');
+
+// ============================================================================
+// 硬編碼內容
+// ============================================================================
+const aboutData = HOME_CONTENT.about;
+const servicesData = HOME_CONTENT.services;
+const solutionsData = HOME_CONTENT.solutions;
+const popupData = HOME_CONTENT.popup;
+
+// ============================================================================
+// SEO / LCP / OG
+// ============================================================================
+
+const lcpImage = heroAsset ? {
+  desktop: heroAsset.variants.desktop,
+  mobile: heroMobileAsset?.variants.mobile || heroAsset.variants.mobile
 } : undefined;
 
 const siteUrl = Astro.url.origin;
 const DEFAULT_OG_IMAGE = '/assets/og-default.jpg';
-const ogImage = seo.og_image
-  ? (seo.og_image.startsWith('http') ? seo.og_image : `${siteUrl}${seo.og_image}`)
-  : (layout?.hero?.image?.desktop ? `${siteUrl}${layout.hero.image.desktop}` : `${siteUrl}${DEFAULT_OG_IMAGE}`);
 
-// 內容資料
-const heroData = content?.hero || layout?.hero;
-const aboutData = content?.about || layout?.sections?.find((s: any) => s.type === 'text');
-const servicesData = content?.services || layout?.sections?.find((s: any) => s.type === 'card_list' && s.label === 'What We Offer');
-const solutionsData = content?.solutions || layout?.sections?.filter((s: any) => s.type === 'card_list')?.[1];
-
-// Popup
-let popupImage = null;
-if (layout?.popup?.image_id) {
-  const asset = await getAssetById(layout.popup.image_id);
-  if (asset) {
-    popupImage = {
-      desktop: asset.variants.desktop,
-      mobile: asset.variants.mobile,
-      alt: asset.alt
-    };
+function getOgImageUrl(): string {
+  if (seo.og_image) {
+    return seo.og_image.startsWith('http') ? seo.og_image : `${siteUrl}${seo.og_image}`;
   }
+  if (heroAsset?.variants.desktop) {
+    return `${siteUrl}${heroAsset.variants.desktop}`;
+  }
+  return `${siteUrl}${DEFAULT_OG_IMAGE}`;
 }
+
+const ogImage = getOgImageUrl();
 ---
 
 <Layout
@@ -85,65 +115,375 @@ if (layout?.popup?.image_id) {
 >
   <Header />
 
-  <main class="page-main">
-    <!-- 1. Hero Banner -->
-    {heroData?.image && (
-      <HeroSection
-        image={heroData.image}
-        overlay={heroData.overlay}
-        height={heroData.height as 'full' | 'fixed' | 'auto'}
-      />
+  <main class="home-template">
+    <!-- ================================================================== -->
+    <!-- 1. HERO SECTION -->
+    <!-- ================================================================== -->
+    {heroAsset && (
+      <section class="hero-section">
+        <picture class="hero-picture">
+          <source media="(min-width: 768px)" srcset={heroAsset.variants.desktop} />
+          {heroMobileAsset && (
+            <source media="(max-width: 767px)" srcset={heroMobileAsset.variants.mobile} />
+          )}
+          <img
+            src={heroAsset.variants.desktop}
+            alt={heroAsset.alt}
+            class="hero-image"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
+        <div class="hero-overlay"></div>
+      </section>
     )}
 
-    <!-- 2. About Us -->
-    {aboutData && (
-      <TextSection
-        content={aboutData.content}
-        title={aboutData.title}
-        label={aboutData.label}
-      />
-    )}
+    <!-- ================================================================== -->
+    <!-- 2. ABOUT SECTION -->
+    <!-- ================================================================== -->
+    <section class="content-section fade-in-section">
+      <div class="container">
+        <span class="section-label">{aboutData.label}</span>
+        <h1 class="section-title">{aboutData.title}</h1>
+        <p class="section-text">{aboutData.text}</p>
+      </div>
+    </section>
 
-    <!-- 3. Services -->
-    {servicesData && (
-      <CardListSection
-        label={servicesData.label}
-        title={servicesData.title || ''}
-        description={servicesData.description}
-        columns={servicesData.columns}
-        layout_variant={servicesData.layout_variant}
-        cards={servicesData.cards}
-      />
-    )}
+    <!-- ================================================================== -->
+    <!-- 3. SERVICES SECTION -->
+    <!-- ================================================================== -->
+    <section class="content-section alt-bg fade-in-section">
+      <div class="container">
+        <span class="section-label">{servicesData.label}</span>
+        <h2 class="section-title">{servicesData.title}</h2>
+        <p class="section-text">{servicesData.description}</p>
+      </div>
+      <div class="card-grid columns-3">
+        {servicesData.items.map((item) => {
+          const image = serviceImages[item.id];
+          return (
+            <a href={item.link} class="card">
+              {image && (
+                <div class="card-image">
+                  <img
+                    src={image.variants.desktop}
+                    alt={image.alt}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              )}
+              <div class="card-content">
+                <h3 class="card-title">{item.title}</h3>
+                <p class="card-description">{item.description}</p>
+                <span class="card-link">{item.link_text} →</span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </section>
 
-    <!-- 4. Solutions -->
-    {solutionsData && (
-      <CardListSection
-        label={solutionsData.label}
-        title={solutionsData.title || ''}
-        description={solutionsData.description}
-        columns={solutionsData.columns}
-        layout_variant={solutionsData.layout_variant}
-        cards={solutionsData.cards}
-      />
-    )}
+    <!-- ================================================================== -->
+    <!-- 4. SOLUTIONS SECTION -->
+    <!-- ================================================================== -->
+    <section class="content-section fade-in-section">
+      <div class="container">
+        <span class="section-label">{solutionsData.label}</span>
+        <h2 class="section-title">{solutionsData.title}</h2>
+        <p class="section-text">{solutionsData.description}</p>
+      </div>
+      <div class="card-grid columns-5 layout-3-2">
+        {solutionsData.items.map((item) => {
+          const image = solutionImages[item.id];
+          return (
+            <a href={item.link} class="card">
+              {image && (
+                <div class="card-image">
+                  <img
+                    src={image.variants.desktop}
+                    alt={image.alt}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              )}
+              <div class="card-content">
+                <h3 class="card-title">{item.title}</h3>
+                <p class="card-description">{item.description}</p>
+                <span class="card-link">{item.link_text} →</span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </section>
   </main>
 
   <Footer />
 
   <!-- Popup Modal -->
-  {popupImage && layout?.popup && (
+  {popupAsset && (
     <PopupModal
-      image={popupImage}
-      link={layout.popup.link}
-      trigger={layout.popup.trigger as 'first_visit' | 'scroll' | 'time'}
+      image={{
+        desktop: popupAsset.variants.desktop,
+        mobile: popupAsset.variants.mobile,
+        alt: popupAsset.alt
+      }}
+      link={popupData.link}
+      trigger={popupData.trigger as 'first_visit' | 'scroll' | 'time'}
     />
   )}
 </Layout>
 
 <style>
-  .page-main {
+  /* ========================================
+     Apple-like Design - Home Template
+     ======================================== */
+
+  .home-template {
     min-height: 100vh;
     padding-top: 64px;
   }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+  }
+
+  /* ----------------------------------------
+     Hero Section
+     ---------------------------------------- */
+  .hero-section {
+    position: relative;
+    width: 100%;
+    height: 60vw;
+    max-height: 600px;
+    min-height: 320px;
+    overflow: hidden;
+    background: var(--bg-tertiary);
+  }
+
+  .hero-picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.3) 100%);
+    pointer-events: none;
+  }
+
+  /* ----------------------------------------
+     Content Sections
+     ---------------------------------------- */
+  .content-section {
+    padding: 80px 0;
+  }
+
+  .content-section.alt-bg {
+    background: var(--bg-secondary);
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin: 0 0 24px;
+  }
+
+  .section-text {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin: 0 auto 40px;
+    max-width: 700px;
+    white-space: pre-line;
+  }
+
+  /* ----------------------------------------
+     Card Grid
+     ---------------------------------------- */
+  .card-grid {
+    display: grid;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .card-grid.columns-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card-grid.columns-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .card-grid.columns-5.layout-3-2 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card-grid.columns-5.layout-3-2 .card:nth-child(4),
+  .card-grid.columns-5.layout-3-2 .card:nth-child(5) {
+    grid-column: span 1;
+  }
+
+  @media (max-width: 1024px) {
+    .card-grid.columns-3,
+    .card-grid.columns-5 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card-grid.columns-5.layout-3-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .card-grid.columns-3,
+    .card-grid.columns-5,
+    .card-grid.columns-5.layout-3-2 {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ----------------------------------------
+     Cards
+     ---------------------------------------- */
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-primary);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .card-image {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover .card-image img {
+    transform: scale(1.05);
+  }
+
+  .card-content {
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 12px;
+  }
+
+  .card-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 0 0 16px;
+    flex: 1;
+  }
+
+  .card-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+    transition: color 0.2s ease;
+  }
+
+  .card:hover .card-link {
+    color: var(--accent-hover, var(--accent));
+  }
+
+  /* ----------------------------------------
+     Fade-in Animation
+     ---------------------------------------- */
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ----------------------------------------
+     Dark Mode
+     ---------------------------------------- */
+  :global(.dark) .hero-overlay {
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.5) 100%);
+  }
+
+  :global(.dark) .card {
+    background: var(--bg-secondary);
+  }
 </style>
+
+<script>
+  // Intersection Observer for fade-in animation
+  document.addEventListener('DOMContentLoaded', () => {
+    const fadeElements = document.querySelectorAll('.fade-in-section');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    fadeElements.forEach((el) => observer.observe(el));
+  });
+</script>

@@ -12,6 +12,9 @@ import GeneralPageTemplate from './templates/GeneralPageTemplate.astro';
 import AboutPageTemplate from './templates/AboutPageTemplate.astro';
 import ContactPageTemplate from './templates/ContactPageTemplate.astro';
 import HomePageTemplate from './templates/HomePageTemplate.astro';
+import EsgPageTemplate from './templates/EsgPageTemplate.astro';
+import ServicePageTemplate from './templates/ServicePageTemplate.astro';
+import SmartManufacturingTemplate from './templates/SmartManufacturingTemplate.astro';
 import type { PageContent } from '../utils/content';
 
 export interface Props {
@@ -20,19 +23,80 @@ export interface Props {
 
 const { page } = Astro.props;
 
-// 取得 template 設定（yml 中的 template 欄位）
-const template = page.template || page.layout?.template;
+// ============================================================================
+// slug → template 映射（集中管理，不再從 yml 讀取）
+// ============================================================================
+const SLUG_TEMPLATE_MAP: Record<string, string> = {
+  // 首頁
+  'index': 'home',
+
+  // 關於我們
+  'about_us': 'about',
+
+  // 服務
+  'services': 'service',
+
+  // 解決方案（資訊安全）
+  'solutions': 'solution',
+
+  // 智慧製造
+  'smartmanufacturing_ai': 'smart-manufacturing',
+  'mes': 'smart-manufacturing',
+  'wms': 'smart-manufacturing',
+  'scm': 'smart-manufacturing',
+  'aps': 'smart-manufacturing',
+  'cms_568': 'smart-manufacturing',
+
+  // 產品頁
+  'logsec': 'product',
+  'acunetix': 'product',
+  'bitdefender': 'product',
+  'palo_alto': 'product',
+  'fortinet': 'product',
+  'security_scorecard': 'product',
+  'tenable_nessus': 'product',
+  'deep_instinct': 'product',
+  'sonarqube': 'product',
+  'ist': 'product',
+  'array': 'product',
+  'vicarius_vrx': 'product',
+  'ubuntu': 'product',
+  'vmware': 'product',
+  'proxmox_ve': 'product',
+  'ai_agent': 'product',
+  'ai_forecasting': 'product',
+  'data_middleware': 'product',
+  'jennifer_apm': 'product',
+
+  // 活動頁
+  'event_information': 'event',
+  'event_20251021': 'event',
+  'event_20251118': 'event',
+  'event_20251119': 'event',
+  'event_20251124': 'event',
+
+  // 聯絡我們
+  'contact': 'contact',
+
+  // ESG
+  'esg': 'esg',
+};
+
+// 取得 template（從常數映射，不再從 yml 讀取）
+const template = SLUG_TEMPLATE_MAP[page.slug] || 'general';
 
 // Template 映射表
 const TEMPLATE_MAP: Record<string, any> = {
   'product': ProductPageTemplate,
   'solution': SolutionPageTemplate,
+  'smart-manufacturing': SmartManufacturingTemplate,
   'event': EventPageTemplate,
   'general': GeneralPageTemplate,
   'about': AboutPageTemplate,
-  'service': GeneralPageTemplate,  // 暫用 GeneralPageTemplate
+  'service': ServicePageTemplate,
   'contact': ContactPageTemplate,
   'home': HomePageTemplate,
+  'esg': EsgPageTemplate,
 };
 
 // 選擇 Template（有指定則用指定的，否則 fallback 到 GeneralPageTemplate）

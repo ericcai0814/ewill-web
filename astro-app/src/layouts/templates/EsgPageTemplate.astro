@@ -1,19 +1,20 @@
 ---
 /**
- * ProductPageTemplate.astro
+ * EsgPageTemplate.astro
  *
- * 產品頁面 Template（Apple-like 科技風）
+ * ESG 永續發展頁面 Template
  *
  * 設計原則：
  * - 佈局完全由 Template 決定
  * - yml 只提供 seo 和 aio
- * - 內容由 Template 硬編碼（從 content/products.ts 載入）
+ * - 內容由 Template 硬編碼（從 content/esg.ts 載入）
  *
  * 固定佈局：
- * 1. Hero Banner（全幅大圖）
- * 2. Product Intro（產品介紹）
- * 3. Feature Showcase（功能展示，左右交錯）
- * 4. CTA（行動呼籲）
+ * 1. Hero Banner - bn_esg
+ * 2. Intro Section - esg_1 (desktop) / esg_p1_fix (mobile)
+ * 3. Focus Areas - esg_2 (desktop) / esg_p2_1, esg_p2_2, esg_p2_3 (mobile)
+ * 4. Practice Section - esg_3 (desktop) / esg_p3 (mobile)
+ * 5. CTA Section
  */
 import Layout from '../Layout.astro';
 import Header from '../../components/Header.astro';
@@ -22,7 +23,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getAssetById } from '../../utils/content';
 import type { PageContent, AioData } from '../../utils/content';
 import type { JsonLdItem } from '../../components/SEO.astro';
-import { getProductContent } from './content/products';
+import { ESG_CONTENT } from './content/esg';
 
 export interface Props {
   page: PageContent;
@@ -30,9 +31,6 @@ export interface Props {
 
 const { page } = Astro.props;
 const { seo, aio } = page;
-
-// 根據 page.slug 取得硬編碼內容
-const productContent = getProductContent(page.slug);
 
 // Breadcrumb
 const breadcrumbItems = aio?.webpage?.breadcrumb?.itemListElement?.map((item: { name: string; item?: string }) => ({
@@ -47,41 +45,33 @@ function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
   if (!aioData) return [];
   const items: JsonLdItem[] = [];
   if (aioData.webpage) items.push({ type: 'WebPage', data: aioData.webpage });
-  if (aioData.product) items.push({ type: 'Product', data: aioData.product });
+  if (aioData.service) items.push({ type: 'Service', data: aioData.service });
+  if (aioData.faq && aioData.faq.length > 0) items.push({ type: 'FAQPage', data: { items: aioData.faq } });
   return items;
 }
 
 const jsonLdItems = buildJsonLd(aio);
 
 // ============================================================================
-// Template 根據硬編碼內容中的 image_id 取得圖片
+// Template 自主決定的圖片（不從 yml 讀取）
 // ============================================================================
 
 // Hero Banner
-const heroImageId = productContent?.hero?.image_id;
-const heroAsset = heroImageId ? await getAssetById(heroImageId) : null;
+const heroAsset = await getAssetById('bn_esg');
 
-// Intro 資料
-const introData = productContent?.intro;
+// Intro Section 圖片
+const introDesktop = await getAssetById('esg_1');
+const introMobile = await getAssetById('esg_p1_fix');
 
-// Features - 解析每個 feature 的 image_id
-const featuresRaw = productContent?.features || [];
-const featuresWithImages = await Promise.all(
-  featuresRaw.map(async (feature) => {
-    const asset = feature.image_id ? await getAssetById(feature.image_id) : null;
-    return {
-      ...feature,
-      image: asset ? {
-        desktop: asset.variants.desktop,
-        mobile: asset.variants.mobile,
-        alt: asset.alt
-      } : null
-    };
-  })
-);
+// Focus Areas 圖片
+const focusDesktop = await getAssetById('esg_2');
+const focusMobile1 = await getAssetById('esg_p2_1');
+const focusMobile2 = await getAssetById('esg_p2_2');
+const focusMobile3 = await getAssetById('esg_p2_3');
 
-// CTA 資料
-const ctaData = productContent?.cta;
+// Practice Section 圖片
+const practiceDesktop = await getAssetById('esg_3');
+const practiceMobile = await getAssetById('esg_p3');
 
 // ============================================================================
 // SEO / LCP / OG
@@ -118,11 +108,11 @@ const ogImage = getOgImageUrl();
 >
   <Header />
 
-  <main class="product-template">
+  <main class="esg-template">
     <Breadcrumb items={breadcrumbItems} />
 
     <!-- ================================================================== -->
-    <!-- 1. HERO SECTION - 全幅大圖 -->
+    <!-- 1. HERO SECTION -->
     <!-- ================================================================== -->
     {heroAsset && (
       <section class="hero-section">
@@ -142,83 +132,112 @@ const ogImage = getOgImageUrl();
     )}
 
     <!-- ================================================================== -->
-    <!-- 2. PRODUCT INTRO - 產品介紹 -->
+    <!-- 2. INTRO SECTION - ESG 架構與目標 -->
     <!-- ================================================================== -->
-    {introData && (
-      <section class="intro-section fade-in-section">
-        <div class="container">
-          {introData.label && (
-            <span class="intro-label">{introData.label}</span>
-          )}
-          <h1 class="intro-title">{introData.title}</h1>
-          <div class="intro-description" set:html={introData.description} />
-        </div>
-      </section>
-    )}
-
-    <!-- ================================================================== -->
-    <!-- 3. FEATURE SHOWCASE - 功能展示（左右交錯） -->
-    <!-- ================================================================== -->
-    {featuresWithImages.length > 0 && (
-      <section class="features-section">
-        {featuresWithImages.map((feature, index) => (
-          <article
-            class:list={[
-              'feature-item fade-in-section',
-              index % 2 === 1 && 'feature-item--reversed'
-            ]}
-            data-feature-id={feature.id}
-          >
-            {feature.image && (
-              <div class="feature-image-wrapper">
-                <picture class="feature-picture">
-                  <source media="(min-width: 768px)" srcset={feature.image.desktop} />
-                  <source media="(max-width: 767px)" srcset={feature.image.mobile} />
-                  <img
-                    src={feature.image.desktop}
-                    alt={feature.image.alt}
-                    class="feature-image"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-              </div>
+    <section class="content-section fade-in-section">
+      <div class="container">
+        {ESG_CONTENT.intro.label && (
+          <span class="section-label">{ESG_CONTENT.intro.label}</span>
+        )}
+        <h1 class="section-title">{ESG_CONTENT.intro.title}</h1>
+        <p class="section-text">{ESG_CONTENT.intro.text}</p>
+      </div>
+      {introDesktop && (
+        <div class="section-image">
+          <picture>
+            <source media="(min-width: 768px)" srcset={introDesktop.variants.desktop} />
+            {introMobile && (
+              <source media="(max-width: 767px)" srcset={introMobile.variants.mobile} />
             )}
-            <div class="feature-content">
-              <h2 class="feature-title">{feature.title}</h2>
-              <p class="feature-description">{feature.description}</p>
-              {feature.bullets && feature.bullets.length > 0 && (
-                <ul class="feature-bullets">
-                  {feature.bullets.map((bullet: string) => (
-                    <li class="feature-bullet">{bullet}</li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          </article>
-        ))}
-      </section>
-    )}
+            <img
+              src={introDesktop.variants.desktop}
+              alt={introDesktop.alt}
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+        </div>
+      )}
+    </section>
 
     <!-- ================================================================== -->
-    <!-- 4. CTA SECTION - 行動呼籲 -->
+    <!-- 3. FOCUS AREAS SECTION - ESG 三大重點領域 -->
     <!-- ================================================================== -->
-    {ctaData && (
-      <section class="cta-section fade-in-section">
-        <div class="container">
-          <h2 class="cta-title">{ctaData.title}</h2>
-          {ctaData.description && (
-            <p class="cta-description">{ctaData.description}</p>
-          )}
-          <a href={ctaData.button_link} class="cta-button">
-            {ctaData.button_text}
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
+    <section class="content-section alt-bg fade-in-section">
+      <div class="container">
+        <h2 class="section-title">{ESG_CONTENT.focus_areas.title}</h2>
+        <p class="section-text">{ESG_CONTENT.focus_areas.text}</p>
+      </div>
+
+      <!-- Desktop: 單張大圖 -->
+      {focusDesktop && (
+        <div class="section-image desktop-only">
+          <img
+            src={focusDesktop.variants.desktop}
+            alt={focusDesktop.alt}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
-      </section>
-    )}
+      )}
+
+      <!-- Mobile: 三張堆疊 -->
+      <div class="section-image-stack mobile-only">
+        {focusMobile1 && (
+          <img src={focusMobile1.variants.mobile} alt={focusMobile1.alt} loading="lazy" />
+        )}
+        {focusMobile2 && (
+          <img src={focusMobile2.variants.mobile} alt={focusMobile2.alt} loading="lazy" />
+        )}
+        {focusMobile3 && (
+          <img src={focusMobile3.variants.mobile} alt={focusMobile3.alt} loading="lazy" />
+        )}
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 4. PRACTICE SECTION - 鎰威科技的永續性實踐 -->
+    <!-- ================================================================== -->
+    <section class="content-section fade-in-section">
+      <div class="container">
+        <h2 class="section-title">{ESG_CONTENT.practice.title}</h2>
+        <p class="section-text">{ESG_CONTENT.practice.text}</p>
+      </div>
+      {practiceDesktop && (
+        <div class="section-image">
+          <picture>
+            <source media="(min-width: 768px)" srcset={practiceDesktop.variants.desktop} />
+            {practiceMobile && (
+              <source media="(max-width: 767px)" srcset={practiceMobile.variants.mobile} />
+            )}
+            <img
+              src={practiceDesktop.variants.desktop}
+              alt={practiceDesktop.alt}
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+        </div>
+      )}
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 5. CTA SECTION -->
+    <!-- ================================================================== -->
+    <section class="cta-section fade-in-section">
+      <div class="container">
+        <h2 class="cta-title">{ESG_CONTENT.cta.title}</h2>
+        {ESG_CONTENT.cta.description && (
+          <p class="cta-description">{ESG_CONTENT.cta.description}</p>
+        )}
+        <a href={ESG_CONTENT.cta.button_link} class="cta-button">
+          {ESG_CONTENT.cta.button_text}
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </section>
   </main>
 
   <Footer />
@@ -226,18 +245,19 @@ const ogImage = getOgImageUrl();
 
 <style>
   /* ========================================
-     Apple-like 科技風樣式
+     Apple-like Design - ESG Template
      ======================================== */
 
-  .product-template {
+  .esg-template {
     min-height: 100vh;
     padding-top: 64px;
   }
 
   .container {
-    max-width: 980px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 0 24px;
+    text-align: center;
   }
 
   /* ----------------------------------------
@@ -246,9 +266,9 @@ const ogImage = getOgImageUrl();
   .hero-section {
     position: relative;
     width: 100%;
-    height: 56.25vw;
-    max-height: 600px;
-    min-height: 300px;
+    height: 50vw;
+    max-height: 500px;
+    min-height: 280px;
     overflow: hidden;
     background: var(--bg-tertiary);
   }
@@ -274,14 +294,17 @@ const ogImage = getOgImageUrl();
   }
 
   /* ----------------------------------------
-     Intro Section
+     Content Sections
      ---------------------------------------- */
-  .intro-section {
-    padding: 80px 0;
-    text-align: center;
+  .content-section {
+    padding: 80px 0 40px;
   }
 
-  .intro-label {
+  .content-section.alt-bg {
+    background: var(--bg-secondary);
+  }
+
+  .section-label {
     display: inline-block;
     font-size: 12px;
     font-weight: 600;
@@ -291,126 +314,64 @@ const ogImage = getOgImageUrl();
     margin-bottom: 16px;
   }
 
-  .intro-title {
-    font-size: clamp(28px, 5vw, 48px);
-    font-weight: 600;
-    line-height: 1.1;
-    color: var(--text-primary);
-    margin: 0 0 16px;
-  }
-
-  .intro-description {
-    font-size: 17px;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    max-width: 680px;
-    margin: 0 auto;
-    white-space: pre-line;
-  }
-
-  /* ----------------------------------------
-     Features Section
-     ---------------------------------------- */
-  .features-section {
-    padding: 40px 0;
-  }
-
-  .feature-item {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 60px 24px;
-    max-width: 1200px;
-    margin: 0 auto;
-    align-items: center;
-  }
-
-  @media (min-width: 768px) {
-    .feature-item {
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      padding: 100px 48px;
-    }
-
-    .feature-item--reversed {
-      direction: rtl;
-    }
-
-    .feature-item--reversed > * {
-      direction: ltr;
-    }
-  }
-
-  .feature-image-wrapper {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    background: var(--bg-tertiary);
-    aspect-ratio: 4 / 3;
-  }
-
-  .feature-picture {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  .feature-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-  }
-
-  .feature-item:hover .feature-image {
-    transform: scale(1.02);
-  }
-
-  .feature-content {
-    padding: 0;
-  }
-
-  .feature-title {
-    font-size: clamp(24px, 3vw, 32px);
+  .section-title {
+    font-size: clamp(28px, 5vw, 42px);
     font-weight: 600;
     line-height: 1.2;
     color: var(--text-primary);
-    margin: 0 0 16px;
+    margin: 0 0 24px;
   }
 
-  .feature-description {
+  .section-text {
     font-size: 17px;
-    line-height: 1.7;
+    line-height: 1.8;
     color: var(--text-secondary);
-    margin: 0;
-    white-space: pre-line;
+    margin: 0 auto 40px;
+    max-width: 700px;
   }
 
-  .feature-bullets {
-    list-style: none;
-    margin: 24px 0 0;
-    padding: 0;
+  .section-image {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .section-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  .section-image-stack {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
+    padding: 0 24px;
   }
 
-  .feature-bullet {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    font-size: 15px;
-    color: var(--text-primary);
+  .section-image-stack img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
   }
 
-  .feature-bullet::before {
-    content: '';
-    flex-shrink: 0;
-    width: 6px;
-    height: 6px;
-    margin-top: 8px;
-    background: var(--accent);
-    border-radius: 50%;
+  /* Responsive visibility */
+  .desktop-only {
+    display: block;
+  }
+
+  .mobile-only {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    .desktop-only {
+      display: none;
+    }
+
+    .mobile-only {
+      display: flex;
+    }
   }
 
   /* ----------------------------------------
@@ -419,11 +380,11 @@ const ogImage = getOgImageUrl();
   .cta-section {
     padding: 100px 0;
     text-align: center;
-    background: var(--bg-secondary);
+    background: var(--bg-tertiary);
   }
 
   .cta-title {
-    font-size: clamp(24px, 4vw, 40px);
+    font-size: clamp(24px, 4vw, 36px);
     font-weight: 600;
     line-height: 1.2;
     color: var(--text-primary);
@@ -480,14 +441,10 @@ const ogImage = getOgImageUrl();
   }
 
   /* ----------------------------------------
-     Dark Mode Support
+     Dark Mode
      ---------------------------------------- */
   :global(.dark) .hero-overlay {
     background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.5) 100%);
-  }
-
-  :global(.dark) .cta-section {
-    background: var(--bg-tertiary);
   }
 </style>
 

@@ -3,20 +3,17 @@
  * SolutionPageTemplate.astro
  *
  * 解決方案頁面 Template（Apple-like 科技風）
- * 適用：aps, cms_568, mes, scm, wms, smartmanufacturing_ai, solutions 等
  *
- * 設計特點：
- * - 大面積留白
- * - 全幅 Hero 大圖
- * - 優勢網格（Benefit Grid）
- * - 滾動淡入動畫
+ * 設計原則：
+ * - 佈局完全由 Template 決定
+ * - yml 只提供 seo 和 aio
+ * - 內容由 Template 硬編碼（從 content/solution.ts 載入）
  *
- * 佈局結構（固定，不依賴 yml.layout.sections）：
+ * 固定佈局：
  * 1. Hero Banner（全幅大圖）
- * 2. Solution Intro（解決方案介紹）
- * 3. Benefit Grid（核心優勢網格）
- * 4. Feature Showcase（功能展示，左右交錯）
- * 5. CTA（行動呼籲）
+ * 2. Intro Section（服務介紹）
+ * 3. Flow Image（服務流程圖）
+ * 4. Service Sections（anchor sections with cards）
  */
 import Layout from '../Layout.astro';
 import Header from '../../components/Header.astro';
@@ -25,13 +22,15 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getAssetById } from '../../utils/content';
 import type { PageContent, AioData } from '../../utils/content';
 import type { JsonLdItem } from '../../components/SEO.astro';
+import { SOLUTION_CONTENT } from './content/solution';
+import { getSmartManufacturingContent } from './content/smart-manufacturing';
 
 export interface Props {
   page: PageContent;
 }
 
 const { page } = Astro.props;
-const { seo, layout, aio, content } = page;
+const { seo, aio } = page;
 
 // Breadcrumb
 const breadcrumbItems = aio?.webpage?.breadcrumb?.itemListElement?.map((item: { name: string; item?: string }) => ({
@@ -53,46 +52,49 @@ function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
 const jsonLdItems = buildJsonLd(aio);
 
 // ============================================================================
-// 內容資料提取（向後兼容：優先 content，fallback 到 layout.sections）
+// Template 自主決定的圖片（不從 yml 讀取）
 // ============================================================================
 
-// Hero
-const heroData = content?.hero || layout?.hero;
+// Hero Banner
+const heroAsset = await getAssetById('bn1209_scaled');
+const heroMobileAsset = await getAssetById('bn_solutions_m');
 
-// Intro（解決方案介紹）
-const introData = content?.intro || layout?.sections?.find((s: any) => s.type === 'product_intro');
+// Service Flow Image
+const flowImageAsset = await getAssetById('img_1');
 
-// Benefits / Feature Grid（核心優勢）
-const benefitsData = content?.benefits || layout?.sections?.find((s: any) => s.type === 'feature_grid');
+// 產品卡片圖片映射（根據 card id 對應圖片）
+const cardImages: Record<string, any> = {
+  // 資安評估
+  securityscorecard: await getAssetById('securityscorecard_card'),
+  // 資安檢測
+  tenablenessus: await getAssetById('tenablenessus_card'),
+  sonarqube: await getAssetById('sonarqube_card'),
+  acunetix: await getAssetById('acunetix_card'),
+  // 資安防禦
+  paloalto: await getAssetById('paloalto_card'),
+  fortinet: await getAssetById('fortinet_card'),
+  deepinstinct: await getAssetById('deepinstinct_card'),
+  bitdefender: await getAssetById('bitdefender_card'),
+  // 資安強化
+  ist: await getAssetById('ist_card'),
+  array: await getAssetById('array_card'),
+  logsec: await getAssetById('logsec_card'),
+  vicariusvrx: await getAssetById('vicariusvrx_card'),
+};
 
-// Features（功能展示）
-const featuresRaw = content?.features || layout?.sections?.find((s: any) => s.type === 'feature_showcase')?.features || [];
-
-// CTA
-const ctaData = content?.cta || layout?.sections?.find((s: any) => s.type === 'cta');
-
-// 解析 feature 圖片
-const featuresWithImages = await Promise.all(
-  featuresRaw.map(async (feature: any) => {
-    const asset = await getAssetById(feature.image_id);
-    return {
-      ...feature,
-      image: asset ? {
-        desktop: asset.variants.desktop,
-        mobile: asset.variants.mobile,
-        alt: asset.alt
-      } : null
-    };
-  })
-);
+// ============================================================================
+// 硬編碼內容
+// ============================================================================
+const introData = SOLUTION_CONTENT.intro;
+const sectionsData = SOLUTION_CONTENT.sections;
 
 // ============================================================================
 // SEO / LCP / OG
 // ============================================================================
 
-const lcpImage = heroData?.image ? {
-  desktop: heroData.image.desktop,
-  mobile: heroData.image.mobile
+const lcpImage = heroAsset ? {
+  desktop: heroAsset.variants.desktop,
+  mobile: heroMobileAsset?.variants.mobile || heroAsset.variants.mobile
 } : undefined;
 
 const siteUrl = Astro.url.origin;
@@ -102,23 +104,13 @@ function getOgImageUrl(): string {
   if (seo.og_image) {
     return seo.og_image.startsWith('http') ? seo.og_image : `${siteUrl}${seo.og_image}`;
   }
-  if (heroData?.image?.desktop) {
-    return `${siteUrl}${heroData.image.desktop}`;
+  if (heroAsset?.variants.desktop) {
+    return `${siteUrl}${heroAsset.variants.desktop}`;
   }
   return `${siteUrl}${DEFAULT_OG_IMAGE}`;
 }
 
 const ogImage = getOgImageUrl();
-
-// SVG Icons for benefits
-const benefitIcons = [
-  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
-  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
-  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>`,
-  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>`,
-  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>`,
-  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>`,
-];
 ---
 
 <Layout
@@ -137,25 +129,27 @@ const benefitIcons = [
     <!-- ================================================================== -->
     <!-- 1. HERO SECTION - 全幅大圖 -->
     <!-- ================================================================== -->
-    {heroData?.image && (
+    {heroAsset && (
       <section class="hero-section">
         <picture class="hero-picture">
-          <source media="(min-width: 768px)" srcset={heroData.image.desktop} />
-          <source media="(max-width: 767px)" srcset={heroData.image.mobile} />
+          <source media="(min-width: 768px)" srcset={heroAsset.variants.desktop} />
+          {heroMobileAsset && (
+            <source media="(max-width: 767px)" srcset={heroMobileAsset.variants.mobile} />
+          )}
           <img
-            src={heroData.image.desktop}
-            alt={heroData.image.alt || seo.title}
+            src={heroAsset.variants.desktop}
+            alt={heroAsset.alt}
             class="hero-image"
             loading="eager"
             decoding="async"
           />
         </picture>
-        {heroData.overlay && <div class="hero-overlay"></div>}
+        <div class="hero-overlay"></div>
       </section>
     )}
 
     <!-- ================================================================== -->
-    <!-- 2. SOLUTION INTRO - 解決方案介紹 -->
+    <!-- 2. INTRO SECTION - 服務介紹 -->
     <!-- ================================================================== -->
     {introData && (
       <section class="intro-section fade-in-section">
@@ -164,99 +158,72 @@ const benefitIcons = [
             <span class="intro-label">{introData.label}</span>
           )}
           <h1 class="intro-title">{introData.title}</h1>
-          {introData.subtitle && (
-            <p class="intro-subtitle">{introData.subtitle}</p>
-          )}
           <div class="intro-description" set:html={introData.description} />
         </div>
       </section>
     )}
 
     <!-- ================================================================== -->
-    <!-- 3. BENEFIT GRID - 核心優勢網格 -->
+    <!-- 3. FLOW IMAGE - 服務流程圖 -->
     <!-- ================================================================== -->
-    {benefitsData && benefitsData.features && benefitsData.features.length > 0 && (
-      <section class="benefits-section fade-in-section">
+    {flowImageAsset && (
+      <section class="flow-section fade-in-section">
         <div class="container-wide">
-          {benefitsData.title && (
-            <h2 class="benefits-title">{benefitsData.title}</h2>
-          )}
-          <div class="benefits-grid">
-            {benefitsData.features.map((benefit: any, index: number) => (
-              <article class="benefit-card" data-benefit-id={benefit.id}>
-                <div class="benefit-icon" set:html={benefitIcons[index % benefitIcons.length]} />
-                <h3 class="benefit-title">{benefit.title}</h3>
-                <p class="benefit-description">{benefit.description}</p>
-              </article>
-            ))}
-          </div>
+          <picture class="flow-picture">
+            <source media="(min-width: 768px)" srcset={flowImageAsset.variants.desktop} />
+            <source media="(max-width: 767px)" srcset={flowImageAsset.variants.mobile} />
+            <img
+              src={flowImageAsset.variants.desktop}
+              alt={flowImageAsset.alt}
+              class="flow-image"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         </div>
       </section>
     )}
 
     <!-- ================================================================== -->
-    <!-- 4. FEATURE SHOWCASE - 功能展示（左右交錯） -->
+    <!-- 4. SERVICE SECTIONS - 服務區塊（anchor + cards） -->
     <!-- ================================================================== -->
-    {featuresWithImages.length > 0 && (
-      <section class="features-section">
-        {featuresWithImages.map((feature, index) => (
-          <article
-            class:list={[
-              'feature-item fade-in-section',
-              index % 2 === 1 && 'feature-item--reversed'
-            ]}
-            data-feature-id={feature.id}
-          >
-            {feature.image && (
-              <div class="feature-image-wrapper">
-                <picture class="feature-picture">
-                  <source media="(min-width: 768px)" srcset={feature.image.desktop} />
-                  <source media="(max-width: 767px)" srcset={feature.image.mobile} />
-                  <img
-                    src={feature.image.desktop}
-                    alt={feature.image.alt}
-                    class="feature-image"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-              </div>
-            )}
-            <div class="feature-content">
-              <h2 class="feature-title">{feature.title}</h2>
-              <p class="feature-description">{feature.description}</p>
-              {feature.bullets && feature.bullets.length > 0 && (
-                <ul class="feature-bullets">
-                  {feature.bullets.map((bullet: string) => (
-                    <li class="feature-bullet">{bullet}</li>
-                  ))}
-                </ul>
-              )}
+    {sectionsData.map((section: any) => (
+      <section class="service-section fade-in-section" id={section.id}>
+        <div class="container-wide">
+          <header class="service-header">
+            <h2 class="service-title">{section.title}</h2>
+            <p class="service-description">{section.description}</p>
+          </header>
+
+          {section.cards && section.cards.length > 0 && (
+            <div class="card-grid">
+              {section.cards.map((card: any) => {
+                const cardImage = cardImages[card.id];
+                return (
+                  <a href={card.link} class="card">
+                    {cardImage && (
+                      <div class="card-image">
+                        <img
+                          src={cardImage.variants.desktop}
+                          alt={cardImage.alt}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                    )}
+                    <div class="card-content">
+                      <h3 class="card-title">{card.title}</h3>
+                      <p class="card-description">{card.description}</p>
+                      <span class="card-link">{card.link_text} →</span>
+                    </div>
+                  </a>
+                );
+              })}
             </div>
-          </article>
-        ))}
-      </section>
-    )}
-
-    <!-- ================================================================== -->
-    <!-- 5. CTA SECTION - 行動呼籲 -->
-    <!-- ================================================================== -->
-    {ctaData && (
-      <section class="cta-section fade-in-section">
-        <div class="container">
-          <h2 class="cta-title">{ctaData.title}</h2>
-          {ctaData.description && (
-            <p class="cta-description">{ctaData.description}</p>
           )}
-          <a href={ctaData.button_link} class="cta-button">
-            {ctaData.button_text}
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
         </div>
       </section>
-    )}
+    ))}
   </main>
 
   <Footer />
@@ -276,6 +243,7 @@ const benefitIcons = [
     max-width: 980px;
     margin: 0 auto;
     padding: 0 24px;
+    text-align: center;
   }
 
   .container-wide {
@@ -290,9 +258,9 @@ const benefitIcons = [
   .hero-section {
     position: relative;
     width: 100%;
-    height: 56.25vw;
-    max-height: 600px;
-    min-height: 300px;
+    height: 50vw;
+    max-height: 500px;
+    min-height: 280px;
     overflow: hidden;
     background: var(--bg-tertiary);
   }
@@ -321,8 +289,7 @@ const benefitIcons = [
      Intro Section
      ---------------------------------------- */
   .intro-section {
-    padding: 80px 0;
-    text-align: center;
+    padding: 80px 0 48px;
   }
 
   .intro-label {
@@ -340,265 +307,157 @@ const benefitIcons = [
     font-weight: 600;
     line-height: 1.1;
     color: var(--text-primary);
-    margin: 0 0 16px;
-  }
-
-  .intro-subtitle {
-    font-size: 21px;
-    font-weight: 500;
-    color: var(--accent);
     margin: 0 0 24px;
   }
 
   .intro-description {
     font-size: 17px;
-    line-height: 1.7;
+    line-height: 1.8;
     color: var(--text-secondary);
-    max-width: 680px;
+    max-width: 800px;
     margin: 0 auto;
   }
 
-  .intro-description :global(p) {
-    margin: 0 0 16px;
+  /* ----------------------------------------
+     Flow Section
+     ---------------------------------------- */
+  .flow-section {
+    padding: 0 0 64px;
   }
 
-  .intro-description :global(p:last-child) {
-    margin-bottom: 0;
+  .flow-picture {
+    display: block;
+    width: 100%;
+  }
+
+  .flow-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
   }
 
   /* ----------------------------------------
-     Benefits Section (Grid)
+     Service Section
      ---------------------------------------- */
-  .benefits-section {
-    padding: 80px 0;
-    background: var(--bg-secondary);
+  .service-section {
+    padding: 64px 0;
+    border-top: 1px solid var(--border-color);
   }
 
-  .benefits-title {
+  .service-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .service-title {
     font-size: clamp(24px, 4vw, 36px);
     font-weight: 600;
-    text-align: center;
+    line-height: 1.2;
     color: var(--text-primary);
-    margin: 0 0 48px;
+    margin: 0 0 16px;
   }
 
-  .benefits-grid {
+  .service-description {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* ----------------------------------------
+     Card Grid
+     ---------------------------------------- */
+  .card-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(1, 1fr);
     gap: 24px;
   }
 
   @media (min-width: 640px) {
-    .benefits-grid {
+    .card-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (min-width: 1024px) {
-    .benefits-grid {
-      grid-template-columns: repeat(3, 1fr);
+    .card-grid {
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 
-  .benefit-card {
+  /* ----------------------------------------
+     Cards
+     ---------------------------------------- */
+  .card {
+    display: flex;
+    flex-direction: column;
     background: var(--bg-primary);
     border: 1px solid var(--border-color);
     border-radius: 16px;
-    padding: 32px;
-    text-align: center;
-    transition: all 0.3s ease;
-  }
-
-  .benefit-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-4px);
-  }
-
-  .benefit-icon {
-    width: 48px;
-    height: 48px;
-    margin: 0 auto 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--accent);
-    border-radius: 12px;
-    color: white;
-  }
-
-  .benefit-icon :global(svg) {
-    width: 24px;
-    height: 24px;
-  }
-
-  .benefit-title {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin: 0 0 12px;
-  }
-
-  .benefit-description {
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--text-secondary);
-    margin: 0;
-  }
-
-  /* ----------------------------------------
-     Features Section
-     ---------------------------------------- */
-  .features-section {
-    padding: 40px 0;
-  }
-
-  .feature-item {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 60px 24px;
-    max-width: 1200px;
-    margin: 0 auto;
-    align-items: center;
-  }
-
-  @media (min-width: 768px) {
-    .feature-item {
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      padding: 100px 48px;
-    }
-
-    .feature-item--reversed {
-      direction: rtl;
-    }
-
-    .feature-item--reversed > * {
-      direction: ltr;
-    }
-  }
-
-  .feature-image-wrapper {
-    position: relative;
-    border-radius: 12px;
     overflow: hidden;
-    background: var(--bg-tertiary);
-    aspect-ratio: 4 / 3;
-  }
-
-  .feature-picture {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  .feature-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-  }
-
-  .feature-item:hover .feature-image {
-    transform: scale(1.02);
-  }
-
-  .feature-content {
-    padding: 0;
-  }
-
-  .feature-title {
-    font-size: clamp(24px, 3vw, 32px);
-    font-weight: 600;
-    line-height: 1.2;
-    color: var(--text-primary);
-    margin: 0 0 16px;
-  }
-
-  .feature-description {
-    font-size: 17px;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    margin: 0;
-  }
-
-  .feature-bullets {
-    list-style: none;
-    margin: 24px 0 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .feature-bullet {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    font-size: 15px;
-    color: var(--text-primary);
-  }
-
-  .feature-bullet::before {
-    content: '';
-    flex-shrink: 0;
-    width: 6px;
-    height: 6px;
-    margin-top: 8px;
-    background: var(--accent);
-    border-radius: 50%;
-  }
-
-  /* ----------------------------------------
-     CTA Section
-     ---------------------------------------- */
-  .cta-section {
-    padding: 100px 0;
-    text-align: center;
-    background: var(--bg-tertiary);
-  }
-
-  .cta-title {
-    font-size: clamp(24px, 4vw, 40px);
-    font-weight: 600;
-    line-height: 1.2;
-    color: var(--text-primary);
-    margin: 0 0 16px;
-  }
-
-  .cta-description {
-    font-size: 17px;
-    line-height: 1.6;
-    color: var(--text-secondary);
-    max-width: 600px;
-    margin: 0 auto 32px;
-  }
-
-  .cta-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 28px;
-    font-size: 17px;
-    font-weight: 500;
-    color: white;
-    background: var(--accent);
-    border-radius: 980px;
     text-decoration: none;
     transition: all 0.3s ease;
   }
 
-  .cta-button:hover {
-    background: var(--accent-hover, var(--accent));
-    transform: scale(1.02);
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
   }
 
-  .cta-button svg {
+  .card-image {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--bg-tertiary);
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     transition: transform 0.3s ease;
   }
 
-  .cta-button:hover svg {
-    transform: translateX(4px);
+  .card:hover .card-image img {
+    transform: scale(1.05);
+  }
+
+  .card-content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 8px;
+  }
+
+  .card-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 0 0 12px;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+    transition: color 0.2s ease;
+  }
+
+  .card:hover .card-link {
+    color: var(--accent-hover, var(--accent));
   }
 
   /* ----------------------------------------
@@ -622,8 +481,8 @@ const benefitIcons = [
     background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.5) 100%);
   }
 
-  :global(.dark) .benefit-card {
-    background: var(--bg-tertiary);
+  :global(.dark) .card {
+    background: var(--bg-secondary);
   }
 </style>
 

@@ -2,37 +2,28 @@
 /**
  * AboutPageTemplate.astro
  *
- * 關於我們頁面 Template（Apple-like 科技風）
- * 適用：about_us, esg
+ * 關於我們頁面 Template
  *
- * 設計特點：
- * - 全幅 Hero 大圖
- * - 企業價值展示
- * - 里程碑時間軸
- * - 認證展示
- * - 滾動淡入動畫
- *
- * 佈局結構（固定，不依賴 yml.layout.sections）：
- * 1. Hero Banner（全幅大圖）
- * 2. Company Intro（公司簡介）
- * 3. Core Values（核心價值）
- * 4. Timeline（里程碑，如有）
- * 5. Certifications（認證證書，如有）
- * 6. CTA（行動呼籲）
+ * 設計原則：
+ * - 佈局完全由 Template 決定
+ * - yml 只提供 seo 和 aio
+ * - 內容由 Template 硬編碼（從 content/about.ts 載入）
  */
 import Layout from '../Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getAssetById } from '../../utils/content';
 import type { PageContent, AioData } from '../../utils/content';
 import type { JsonLdItem } from '../../components/SEO.astro';
+import { ABOUT_CONTENT } from './content/about';
 
 export interface Props {
   page: PageContent;
 }
 
 const { page } = Astro.props;
-const { seo, layout, aio, content } = page;
+const { seo, aio } = page;
 
 // Breadcrumb
 const breadcrumbItems = aio?.webpage?.breadcrumb?.itemListElement?.map((item: { name: string; item?: string }) => ({
@@ -53,32 +44,25 @@ function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
 const jsonLdItems = buildJsonLd(aio);
 
 // ============================================================================
-// 內容資料提取（向後兼容）
+// Template 自主決定的圖片
 // ============================================================================
+const heroAsset = await getAssetById('banner1209');
+const heroMobileAsset = await getAssetById('bn_home_m');
 
-// Hero
-const heroData = content?.hero || layout?.hero;
-
-// Intro（公司簡介）- 從 text section 提取
-const introSection = content?.intro ||
-  layout?.sections?.find((s: any) => s.type === 'text');
-
-// Core Values（從 aio.organization_detail 提取）
-const coreValues = aio?.organization_detail?.core_values || [];
-
-// Certifications（從 aio.organization_detail 提取）
-const certifications = aio?.organization_detail?.certifications || [];
-
-// CTA
-const ctaData = content?.cta || layout?.sections?.find((s: any) => s.type === 'cta');
+// ============================================================================
+// 硬編碼內容
+// ============================================================================
+const introData = ABOUT_CONTENT.intro;
+const coreValues = ABOUT_CONTENT.core_values;
+const certifications = ABOUT_CONTENT.certifications;
 
 // ============================================================================
 // SEO / LCP / OG
 // ============================================================================
 
-const lcpImage = heroData?.image ? {
-  desktop: heroData.image.desktop,
-  mobile: heroData.image.mobile
+const lcpImage = heroAsset ? {
+  desktop: heroAsset.variants.desktop,
+  mobile: heroMobileAsset?.variants.mobile || heroAsset.variants.mobile
 } : undefined;
 
 const siteUrl = Astro.url.origin;
@@ -88,8 +72,8 @@ function getOgImageUrl(): string {
   if (seo.og_image) {
     return seo.og_image.startsWith('http') ? seo.og_image : `${siteUrl}${seo.og_image}`;
   }
-  if (heroData?.image?.desktop) {
-    return `${siteUrl}${heroData.image.desktop}`;
+  if (heroAsset?.variants.desktop) {
+    return `${siteUrl}${heroAsset.variants.desktop}`;
   }
   return `${siteUrl}${DEFAULT_OG_IMAGE}`;
 }
@@ -119,16 +103,18 @@ const valueIcons = [
     <Breadcrumb items={breadcrumbItems} />
 
     <!-- ================================================================== -->
-    <!-- 1. HERO SECTION - 全幅大圖 -->
+    <!-- 1. HERO SECTION -->
     <!-- ================================================================== -->
-    {heroData?.image && (
+    {heroAsset && (
       <section class="hero-section">
         <picture class="hero-picture">
-          <source media="(min-width: 768px)" srcset={heroData.image.desktop} />
-          <source media="(max-width: 767px)" srcset={heroData.image.mobile} />
+          <source media="(min-width: 768px)" srcset={heroAsset.variants.desktop} />
+          {heroMobileAsset && (
+            <source media="(max-width: 767px)" srcset={heroMobileAsset.variants.mobile} />
+          )}
           <img
-            src={heroData.image.desktop}
-            alt={heroData.image.alt || seo.title}
+            src={heroAsset.variants.desktop}
+            alt={heroAsset.alt}
             class="hero-image"
             loading="eager"
             decoding="async"
@@ -139,84 +125,72 @@ const valueIcons = [
     )}
 
     <!-- ================================================================== -->
-    <!-- 2. COMPANY INTRO - 公司簡介 -->
+    <!-- 2. COMPANY INTRO -->
     <!-- ================================================================== -->
-    {introSection && (
-      <section class="intro-section fade-in-section">
-        <div class="container">
-          {introSection.label && (
-            <span class="intro-label">{introSection.label}</span>
-          )}
-          <h1 class="intro-title">{introSection.title || '關於我們'}</h1>
-          <div class="intro-content" set:html={introSection.content} />
-        </div>
-      </section>
-    )}
+    <section class="intro-section fade-in-section">
+      <div class="container">
+        <span class="intro-label">{introData.label}</span>
+        <h1 class="intro-title">{introData.title}</h1>
+        <div class="intro-content" set:html={introData.description} />
+      </div>
+    </section>
 
     <!-- ================================================================== -->
-    <!-- 3. CORE VALUES - 核心價值 -->
+    <!-- 3. CORE VALUES -->
     <!-- ================================================================== -->
-    {coreValues.length > 0 && (
-      <section class="values-section fade-in-section">
-        <div class="container-wide">
-          <h2 class="section-title">核心價值</h2>
-          <div class="values-grid">
-            {coreValues.map((value: any, index: number) => (
-              <article class="value-card">
-                <div class="value-icon" set:html={valueIcons[index % valueIcons.length]} />
-                <h3 class="value-title">{value.name}</h3>
-                <p class="value-description">{value.description}</p>
-              </article>
-            ))}
-          </div>
+    <section class="values-section fade-in-section">
+      <div class="container-wide">
+        <h2 class="section-title">核心價值</h2>
+        <div class="values-grid">
+          {coreValues.map((value, index) => (
+            <article class="value-card">
+              <div class="value-icon" set:html={valueIcons[index % valueIcons.length]} />
+              <h3 class="value-title">{value.name}</h3>
+              <p class="value-description">{value.description}</p>
+            </article>
+          ))}
         </div>
-      </section>
-    )}
+      </div>
+    </section>
 
     <!-- ================================================================== -->
-    <!-- 4. CERTIFICATIONS - 認證證書 -->
+    <!-- 4. CERTIFICATIONS -->
     <!-- ================================================================== -->
-    {certifications.length > 0 && (
-      <section class="certifications-section fade-in-section">
-        <div class="container-wide">
-          <h2 class="section-title">專業認證</h2>
-          <div class="certifications-grid">
-            {certifications.map((cert: any) => (
-              <article class="certification-card">
-                <div class="cert-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
-                  </svg>
-                </div>
-                <h3 class="cert-name">{cert.name}</h3>
-                {cert.issuer && <p class="cert-issuer">{cert.issuer}</p>}
-                {cert.level && <span class="cert-level">{cert.level}</span>}
-              </article>
-            ))}
-          </div>
+    <section class="certifications-section fade-in-section">
+      <div class="container-wide">
+        <h2 class="section-title">專業認證</h2>
+        <div class="certifications-grid">
+          {certifications.map((cert) => (
+            <article class="certification-card">
+              <div class="cert-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                </svg>
+              </div>
+              <h3 class="cert-name">{cert.name}</h3>
+              <p class="cert-issuer">{cert.issuer}</p>
+              {cert.level && <span class="cert-level">{cert.level}</span>}
+            </article>
+          ))}
         </div>
-      </section>
-    )}
+      </div>
+    </section>
 
     <!-- ================================================================== -->
-    <!-- 5. CTA SECTION - 行動呼籲 -->
+    <!-- 5. CTA SECTION -->
     <!-- ================================================================== -->
-    {ctaData && (
-      <section class="cta-section fade-in-section">
-        <div class="container">
-          <h2 class="cta-title">{ctaData.title}</h2>
-          {ctaData.description && (
-            <p class="cta-description">{ctaData.description}</p>
-          )}
-          <a href={ctaData.button_link} class="cta-button">
-            {ctaData.button_text}
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-        </div>
-      </section>
-    )}
+    <section class="cta-section fade-in-section">
+      <div class="container">
+        <h2 class="cta-title">開始您的數位轉型之旅</h2>
+        <p class="cta-description">讓專業顧問協助您評估企業需求，規劃最適合的解決方案</p>
+        <a href="/contact/" class="cta-button">
+          聯繫我們
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </section>
   </main>
 
   <Footer />
@@ -411,7 +385,7 @@ const valueIcons = [
 
   @media (min-width: 1024px) {
     .certifications-grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 

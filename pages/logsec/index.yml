@@ -1,6 +1,3 @@
-# Template 類型（佈局分離重構）
-template: product
-
 seo:
   title: LOGSEC 資安預警平台 | 日誌管理、SIEM 與異常行為偵測 - 鎰威科技
   description: 鎰威科技自主研發 LOGSEC 資安預警平台，提供集中式日誌管理、異常行為偵測與視覺化分析。整合設備考勤與 VPN 日誌，即時通報潛在威脅，滿足資安法規合規要求，強化企業整體資安防護。
@@ -18,69 +15,38 @@ seo:
     - 合規日誌保存
     - SOC 解決方案
     - 鎰威科技
+
 url_mapping:
   current_url: /security-solutions/logsec/
   old_url: /logsec/
   redirect: true
-layout:
-  hero:
-    type: hero_banner
-    image:
-      id: logsec_banner
-      desktop: logsec_banner
-      mobile: logsec_banner
-      alt: LOGSEC 資安預警平台
-  sections:
-    # 產品介紹
-    - type: product_intro
-      label: 資安預警解決方案
-      title: LOGSEC 平台功能概覽
-      description: >-
-        LOGSEC 平台透過行為記錄整合與即時告警機制，協助企業建置完整的操作流程監控與資安事件應對能力。
-        涵蓋系統日誌集中管理、操作軌跡可視化、異常行為即時通報、模組化擴充部署與顧問支援服務，強化企業對內部操作與異常風險的掌握力。
-      align: center
 
-    # 功能展示 - 交錯圖文
-    - type: feature_showcase
-      layout: alternating
-      features:
-        - id: feature_1
-          image_id: logsec_1_fix
-          title: 整合日誌，安全更清晰
-          description: >-
-            客戶設備產生日誌繁多且分散，難以有效追蹤分析。LOGSEC 可將日誌統一整合並圖形化呈現，快速揭露威脅與異常。
-            原本需耗時數小時的檢視，如今僅需數分鐘即可完成，大幅提升資安效率。
-        - id: feature_2
-          image_id: logsec_2_fix2
-          title: 全方位登入活動與告警監控
-          description: 即時掌握登入嘗試、失敗與告警異常，提升帳號安全防護。
-        - id: feature_3
-          image_id: graylog_7_fix_20250822
-          title: LOGSEC 集中式日誌管理方法
-          description: >-
-            LOGSEC 解決方案將 IT 環境中各個部分的日誌數據集中到一個平台，便於組織、豐富和分析。
-            透過整合日誌，您可以真正發揮數據的潛力。
-        - id: feature_4
-          image_id: graylog_3
-          title: 快速查詢與視覺化日誌資料
-          description: 支援即時查詢，快速追蹤事件來源與詳情，提高排查效率。
-        - id: feature_5
-          image_id: graylog_4_fix_20250822
-          title: 智能異常行為偵測分析
-          description: 精準辨識可疑行為與異常使用者，強化安全監控能力。
-        - id: feature_6
-          image_id: graylog_6_fix_20250822
-          title: 封鎖 IP 統計與全球分布圖
-          description: 即時呈現來源國統計與全球封鎖 IP 分佈，強化防禦佈局。
-        - id: feature_7
-          image_id: graylog_5_fix_20250822
-          title: 簡化管理，強化防護，一次到位
-          description: 複雜日誌不再困擾，我們以集中化與即時告警，打造防護網，全面守護您的企業安全。
-
-    # 行動呼籲
-    - type: cta
-      title: 立即了解 LOGSEC 解決方案
-      description: 讓專業顧問協助您評估企業日誌管理與資安監控需求
-      button_text: 聯繫我們
-      button_link: /contact/
-      variant: primary
+# ============================================================================
+# AIO 結構化資料
+# ============================================================================
+aio:
+  webpage:
+    type: ProductPage
+    name: LOGSEC 資安預警平台
+    description: 鎰威科技自主研發的資安預警與日誌管理平台。
+    breadcrumb:
+      type: BreadcrumbList
+      itemListElement:
+        - type: ListItem
+          position: 1
+          name: 首頁
+          item: https://www.ewill.com.tw/
+        - type: ListItem
+          position: 2
+          name: 資訊安全解決方案
+          item: https://www.ewill.com.tw/solutions/
+        - type: ListItem
+          position: 3
+          name: LOGSEC
+          item: https://www.ewill.com.tw/security-solutions/logsec/
+  product:
+    type: Product
+    name: LOGSEC 資安預警平台
+    brand: 鎰威科技
+    category: 資安預警 / 日誌管理
+    description: 集中式日誌管理、異常行為偵測與視覺化分析平台。

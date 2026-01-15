@@ -1,0 +1,620 @@
+---
+/**
+ * SmartManufacturingTemplate.astro
+ *
+ * 智慧製造解決方案頁面 Template
+ *
+ * 設計原則：
+ * - 佈局完全由 Template 決定
+ * - yml 只提供 seo 和 aio
+ * - 內容由 Template 硬編碼（從 content/smart-manufacturing.ts 載入）
+ *
+ * 支援頁面：
+ * - smartmanufacturing_ai（總覽頁）
+ * - mes, wms, scm, aps, cms_568（個別解決方案頁）
+ */
+import Layout from '../Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getAssetById } from '../../utils/content';
+import type { PageContent, AioData } from '../../utils/content';
+import type { JsonLdItem } from '../../components/SEO.astro';
+import { getSmartManufacturingContent } from './content/smart-manufacturing';
+
+export interface Props {
+  page: PageContent;
+}
+
+const { page } = Astro.props;
+const { seo, aio } = page;
+
+// 根據 slug 載入對應內容
+const content = getSmartManufacturingContent(page.slug);
+
+// Breadcrumb
+const breadcrumbItems = aio?.webpage?.breadcrumb?.itemListElement?.map((item: { name: string; item?: string }) => ({
+  label: item.name,
+  href: item.item
+    ? (item.item.startsWith('http') ? new URL(item.item).pathname : item.item)
+    : ''
+})) || undefined;
+
+// JSON-LD
+function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
+  if (!aioData) return [];
+  const items: JsonLdItem[] = [];
+  if (aioData.webpage) items.push({ type: 'WebPage', data: aioData.webpage });
+  if (aioData.product) items.push({ type: 'Product', data: aioData.product });
+  if (aioData.service_list) items.push({ type: 'ItemList', data: aioData.service_list });
+  return items;
+}
+
+const jsonLdItems = buildJsonLd(aio);
+
+// ============================================================================
+// Template 自主決定的圖片
+// ============================================================================
+
+// Hero Banner - 根據內容決定
+const heroImageId = content?.images?.hero || 'ai_banner';
+const heroAsset = await getAssetById(heroImageId);
+
+// 預載入常用圖片
+const imageCache: Record<string, any> = {};
+
+// 取得圖片的輔助函數
+async function getImage(imageId: string | undefined) {
+  if (!imageId) return null;
+  if (imageCache[imageId]) return imageCache[imageId];
+  const asset = await getAssetById(imageId);
+  imageCache[imageId] = asset;
+  return asset;
+}
+
+// ============================================================================
+// SEO / LCP / OG
+// ============================================================================
+
+const lcpImage = heroAsset ? {
+  desktop: heroAsset.variants.desktop,
+  mobile: heroAsset.variants.mobile
+} : undefined;
+
+const siteUrl = Astro.url.origin;
+const DEFAULT_OG_IMAGE = '/assets/og-default.jpg';
+
+function getOgImageUrl(): string {
+  if (seo.og_image) {
+    return seo.og_image.startsWith('http') ? seo.og_image : `${siteUrl}${seo.og_image}`;
+  }
+  if (heroAsset?.variants.desktop) {
+    return `${siteUrl}${heroAsset.variants.desktop}`;
+  }
+  return `${siteUrl}${DEFAULT_OG_IMAGE}`;
+}
+
+const ogImage = getOgImageUrl();
+---
+
+<Layout
+  title={seo.title}
+  description={seo.description}
+  keywords={seo.keywords}
+  jsonLd={jsonLdItems}
+  lcpImage={lcpImage}
+  ogImage={ogImage}
+>
+  <Header />
+
+  <main class="smart-manufacturing-template">
+    <Breadcrumb items={breadcrumbItems} />
+
+    <!-- ================================================================== -->
+    <!-- 1. HERO SECTION -->
+    <!-- ================================================================== -->
+    {heroAsset && (
+      <section class="hero-section">
+        <picture class="hero-picture">
+          <source media="(min-width: 768px)" srcset={heroAsset.variants.desktop} />
+          <source media="(max-width: 767px)" srcset={heroAsset.variants.mobile} />
+          <img
+            src={heroAsset.variants.desktop}
+            alt={heroAsset.alt}
+            class="hero-image"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
+        <div class="hero-overlay"></div>
+      </section>
+    )}
+
+    <!-- ================================================================== -->
+    <!-- 2. INTRO SECTION -->
+    <!-- ================================================================== -->
+    {content?.intro && (
+      <section class="intro-section fade-in-section">
+        <div class="container">
+          {content.intro.label && (
+            <span class="intro-label">{content.intro.label}</span>
+          )}
+          <h1 class="intro-title">{content.intro.title}</h1>
+          <p class="intro-description">{content.intro.description}</p>
+        </div>
+      </section>
+    )}
+
+    <!-- ================================================================== -->
+    <!-- 3. DYNAMIC SECTIONS -->
+    <!-- ================================================================== -->
+    {content?.sections && content.sections.map(async (section: any) => {
+      // Feature Grid Section
+      if (section.type === 'feature_grid') {
+        return (
+          <section class="feature-grid-section fade-in-section" id={section.id}>
+            <div class="container-wide">
+              <h2 class="section-title">{section.title}</h2>
+              {section.description && (
+                <p class="section-description">{section.description}</p>
+              )}
+              <div class={`feature-grid cols-${section.columns || 3}`}>
+                {section.features?.map((feature: any) => (
+                  <div class={`feature-item ${section.variant || 'default'}`}>
+                    <h3 class="feature-title">{feature.title}</h3>
+                    <p class="feature-description">{feature.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      }
+
+      // Feature Showcase Section
+      if (section.type === 'feature_showcase') {
+        return (
+          <section class="feature-showcase-section fade-in-section" id={section.id}>
+            <div class="container-wide">
+              <h2 class="section-title">{section.title}</h2>
+              {section.description && (
+                <p class="section-description">{section.description}</p>
+              )}
+              <div class="showcase-list">
+                {section.features?.map(async (feature: any, index: number) => {
+                  const featureImage = feature.image_id ? await getAssetById(feature.image_id) : null;
+                  const isReversed = section.layout === 'alternating' && index % 2 === 1;
+                  return (
+                    <div class={`showcase-item ${isReversed ? 'reversed' : ''}`}>
+                      {featureImage && (
+                        <div class="showcase-image">
+                          <img
+                            src={featureImage.variants.desktop}
+                            alt={featureImage.alt}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </div>
+                      )}
+                      <div class="showcase-content">
+                        <h3 class="showcase-title">{feature.title}</h3>
+                        <p class="showcase-description">{feature.description}</p>
+                        {feature.link && (
+                          <a href={feature.link} class="showcase-link">了解更多 →</a>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        );
+      }
+
+      // Product Intro Section (sub-section title)
+      if (section.type === 'product_intro') {
+        return (
+          <section class="product-intro-section fade-in-section" id={section.id}>
+            <div class="container">
+              {section.label && (
+                <span class="intro-label">{section.label}</span>
+              )}
+              <h2 class="section-title">{section.title}</h2>
+              {section.description && (
+                <p class="section-description">{section.description}</p>
+              )}
+            </div>
+          </section>
+        );
+      }
+
+      return null;
+    })}
+
+    <!-- ================================================================== -->
+    <!-- 4. CTA SECTION -->
+    <!-- ================================================================== -->
+    {content?.cta && (
+      <section class="cta-section fade-in-section">
+        <div class="container">
+          <h2 class="cta-title">{content.cta.title}</h2>
+          {content.cta.description && (
+            <p class="cta-description">{content.cta.description}</p>
+          )}
+          <a href={content.cta.button_link} class="cta-button">
+            {content.cta.button_text}
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </section>
+    )}
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ========================================
+     智慧製造 Template 樣式
+     ======================================== */
+
+  .smart-manufacturing-template {
+    min-height: 100vh;
+    padding-top: 64px;
+  }
+
+  .container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+  }
+
+  .container-wide {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ----------------------------------------
+     Hero Section
+     ---------------------------------------- */
+  .hero-section {
+    position: relative;
+    width: 100%;
+    height: 50vw;
+    max-height: 500px;
+    min-height: 280px;
+    overflow: hidden;
+    background: var(--bg-tertiary);
+  }
+
+  .hero-picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.3) 100%);
+    pointer-events: none;
+  }
+
+  /* ----------------------------------------
+     Intro Section
+     ---------------------------------------- */
+  .intro-section {
+    padding: 80px 0 48px;
+  }
+
+  .intro-label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .intro-title {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin: 0 0 24px;
+  }
+
+  .intro-description {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin: 0 auto;
+    white-space: pre-line;
+  }
+
+  /* ----------------------------------------
+     Section Common
+     ---------------------------------------- */
+  .section-title {
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin: 0 0 16px;
+    text-align: center;
+  }
+
+  .section-description {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin: 0 auto 40px;
+    text-align: center;
+    white-space: pre-line;
+  }
+
+  /* ----------------------------------------
+     Feature Grid Section
+     ---------------------------------------- */
+  .feature-grid-section {
+    padding: 64px 0;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .feature-grid {
+    display: grid;
+    gap: 24px;
+  }
+
+  .feature-grid.cols-3 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .feature-grid.cols-4 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @media (min-width: 640px) {
+    .feature-grid.cols-3,
+    .feature-grid.cols-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .feature-grid.cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .feature-grid.cols-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .feature-item {
+    padding: 24px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    text-align: left;
+  }
+
+  .feature-item.icon {
+    text-align: center;
+  }
+
+  .feature-item.minimal {
+    background: transparent;
+    border: 1px solid var(--border-color);
+  }
+
+  .feature-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 8px;
+  }
+
+  .feature-description {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  /* ----------------------------------------
+     Feature Showcase Section
+     ---------------------------------------- */
+  .feature-showcase-section {
+    padding: 64px 0;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .showcase-list {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .showcase-item {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .showcase-item {
+      flex-direction: row;
+      gap: 48px;
+    }
+
+    .showcase-item.reversed {
+      flex-direction: row-reverse;
+    }
+  }
+
+  .showcase-image {
+    flex: 1;
+    max-width: 500px;
+  }
+
+  .showcase-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  .showcase-content {
+    flex: 1;
+    text-align: left;
+  }
+
+  .showcase-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 16px;
+  }
+
+  .showcase-description {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin: 0 0 16px;
+  }
+
+  .showcase-link {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .showcase-link:hover {
+    color: var(--accent-hover, var(--accent));
+  }
+
+  /* ----------------------------------------
+     Product Intro Section
+     ---------------------------------------- */
+  .product-intro-section {
+    padding: 80px 0 48px;
+    background: var(--bg-secondary);
+  }
+
+  /* ----------------------------------------
+     CTA Section
+     ---------------------------------------- */
+  .cta-section {
+    padding: 100px 0;
+    text-align: center;
+    background: var(--bg-tertiary);
+  }
+
+  .cta-title {
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin: 0 0 16px;
+  }
+
+  .cta-description {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 32px;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-size: 17px;
+    font-weight: 500;
+    color: white;
+    background: var(--accent);
+    border-radius: 980px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background: var(--accent-hover, var(--accent));
+    transform: scale(1.02);
+  }
+
+  .cta-button svg {
+    transition: transform 0.3s ease;
+  }
+
+  .cta-button:hover svg {
+    transform: translateX(4px);
+  }
+
+  /* ----------------------------------------
+     Fade-in Animation
+     ---------------------------------------- */
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ----------------------------------------
+     Dark Mode
+     ---------------------------------------- */
+  :global(.dark) .hero-overlay {
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.5) 100%);
+  }
+
+  :global(.dark) .feature-item {
+    background: var(--bg-tertiary);
+  }
+</style>
+
+<script>
+  // Intersection Observer for fade-in animation
+  document.addEventListener('DOMContentLoaded', () => {
+    const fadeElements = document.querySelectorAll('.fade-in-section');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    fadeElements.forEach((el) => observer.observe(el));
+  });
+</script>
