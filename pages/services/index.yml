@@ -1,3 +1,5 @@
+# Template 類型（佈局分離重構）
+template: service
 seo:
   title: 服務項目 | 軟體開發、資訊安全、系統規劃服務 - 鎰威科技
   description: 鎰威科技提供完整的服務項目：軟體開發服務採用 SSDLC 與 V-Model 流程確保系統安全；資訊安全服務涵蓋評估、檢測、防禦、強化四階段；系統規劃服務提供 Ubuntu、VMware、Proxmox VE 虛擬化方案。

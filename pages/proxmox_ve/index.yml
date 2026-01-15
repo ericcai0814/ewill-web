@@ -1,3 +1,5 @@
+# Template 類型（佈局分離重構）
+template: product
 seo:
   title: Proxmox VE 企業虛擬化平台 | KVM 虛擬機與 LXC 容器管理 - 鎰威科技
   description: >-
