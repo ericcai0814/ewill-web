@@ -245,11 +245,89 @@ export interface AnchorItem {
 }
 
 /**
+ * 新版 Template 內容資料結構
+ * 用於 ProductPage、EventPage 等固定佈局 Template
+ */
+export interface TemplateContent {
+  hero?: {
+    image_id?: string;
+    title?: string;
+    subtitle?: string;
+  };
+  intro?: {
+    label?: string;
+    title?: string;
+    subtitle?: string;
+    description?: string;
+    align?: 'center' | 'left';
+  };
+  features?: FeatureData[];
+  cta?: {
+    title?: string;
+    description?: string;
+    button_text?: string;
+    button_link?: string;
+    variant?: 'primary' | 'secondary' | 'dark';
+  };
+  about?: {
+    label?: string;
+    title?: string;
+    content?: string;
+  };
+  services?: {
+    label?: string;
+    title?: string;
+    description?: string;
+    columns?: number;
+    layout_variant?: string;
+    cards?: CardData[];
+  };
+  solutions?: {
+    label?: string;
+    title?: string;
+    description?: string;
+    columns?: number;
+    layout_variant?: string;
+    cards?: CardData[];
+  };
+  carousel?: {
+    id?: string;
+    label?: string;
+    title?: string;
+    description?: string;
+    items?: CarouselItem[];
+    autoplay?: number;
+    dots?: boolean;
+    arrows?: boolean;
+  };
+  texts?: {
+    id?: string;
+    label?: string;
+    title?: string;
+    content?: string;
+  }[];
+  anchors?: {
+    id?: string;
+    title?: string;
+    description?: string;
+    cards?: CardData[];
+  }[];
+  form?: {
+    label?: string;
+    title?: string;
+    fields?: ContactField[];
+    button_text?: string;
+  };
+}
+
+/**
  * 頁面內容型別（來自 content/pages/*.json）
  */
 export interface PageContent {
   slug: string;
   module: string;
+  /** Template 類型：product | event | general | contact | home */
+  template?: 'product' | 'event' | 'general' | 'contact' | 'home';
   seo: {
     title: string;
     description: string;
@@ -261,7 +339,12 @@ export interface PageContent {
     current_url: string;
     new_url?: string;
   };
+  /** 新版 Template 內容資料（取代 layout.sections） */
+  content?: TemplateContent;
+  /** 舊版 layout 結構（向後兼容） */
   layout?: {
+    /** Template 類型（舊位置，建議使用頂層 template） */
+    template?: string;
     hero?: {
       image?: ResolvedImage;
       /** 是否顯示暗色疊加層 @default false */
@@ -278,7 +361,6 @@ export interface PageContent {
     };
   };
   aio?: AioData;
-  content: string;
   generated_at: string;
 }
 

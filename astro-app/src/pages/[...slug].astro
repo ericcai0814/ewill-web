@@ -1,5 +1,5 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
+import TemplateRenderer from '../layouts/TemplateRenderer.astro';
 import { getAllPages, getPageContent } from '../utils/content';
 import type { GetStaticPaths } from 'astro';
 
@@ -27,4 +27,4 @@ if (!pageData) {
 }
 ---
 
-<PageLayout page={pageData} />
+<TemplateRenderer page={pageData} />

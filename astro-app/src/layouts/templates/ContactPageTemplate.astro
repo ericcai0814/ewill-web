@@ -1,0 +1,104 @@
+---
+/**
+ * ContactPageTemplate.astro
+ *
+ * 聯絡頁面固定佈局 Template
+ * 適用：contact
+ *
+ * 佈局結構：
+ * 1. Hero Banner
+ * 2. Contact Form
+ */
+import Layout from '../Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import ContactFormSection from '../../components/ContactFormSection.astro';
+import type { PageContent, AioData } from '../../utils/content';
+import type { JsonLdItem } from '../../components/SEO.astro';
+
+export interface Props {
+  page: PageContent;
+}
+
+const { page } = Astro.props;
+const { seo, layout, aio, content } = page;
+
+// Breadcrumb
+const breadcrumbItems = aio?.webpage?.breadcrumb?.itemListElement?.map((item: { name: string; item?: string }) => ({
+  label: item.name,
+  href: item.item
+    ? (item.item.startsWith('http') ? new URL(item.item).pathname : item.item)
+    : ''
+})) || undefined;
+
+// JSON-LD
+function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
+  if (!aioData) return [];
+  const items: JsonLdItem[] = [];
+  if (aioData.webpage) items.push({ type: 'WebPage', data: aioData.webpage });
+  return items;
+}
+
+const jsonLdItems = buildJsonLd(aio);
+
+// LCP & OG Image
+const lcpImage = layout?.hero?.image ? {
+  desktop: layout.hero.image.desktop,
+  mobile: layout.hero.image.mobile
+} : undefined;
+
+const siteUrl = Astro.url.origin;
+const DEFAULT_OG_IMAGE = '/assets/og-default.jpg';
+const ogImage = seo.og_image
+  ? (seo.og_image.startsWith('http') ? seo.og_image : `${siteUrl}${seo.og_image}`)
+  : (layout?.hero?.image?.desktop ? `${siteUrl}${layout.hero.image.desktop}` : `${siteUrl}${DEFAULT_OG_IMAGE}`);
+
+// 內容資料
+const heroData = content?.hero || layout?.hero;
+const formData = content?.form || layout?.sections?.find((s: any) => s.type === 'contact_form');
+---
+
+<Layout
+  title={seo.title}
+  description={seo.description}
+  keywords={seo.keywords}
+  jsonLd={jsonLdItems}
+  lcpImage={lcpImage}
+  ogImage={ogImage}
+>
+  <Header />
+
+  <main class="page-main">
+    <Breadcrumb items={breadcrumbItems} />
+
+    <!-- 1. Hero Banner -->
+    {heroData?.image && (
+      <HeroSection
+        image={heroData.image}
+        overlay={heroData.overlay}
+        height={heroData.height as 'full' | 'fixed' | 'auto'}
+      />
+    )}
+
+    <!-- 2. Contact Form -->
+    {formData && (
+      <ContactFormSection
+        label={formData.label}
+        title={formData.title || '聯絡我們'}
+        fields={formData.fields}
+        button_text={formData.button_text || '送出'}
+      />
+    )}
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .page-main {
+    min-height: 100vh;
+    padding-top: 64px;
+  }
+</style>

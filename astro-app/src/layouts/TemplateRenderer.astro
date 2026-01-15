@@ -1,0 +1,40 @@
+---
+/**
+ * TemplateRenderer.astro
+ *
+ * 根據頁面的 template 欄位選擇對應的 Template 渲染
+ * 如果沒有指定 template，fallback 到 PageLayout（向後兼容）
+ */
+import PageLayout from './PageLayout.astro';
+import ProductPageTemplate from './templates/ProductPageTemplate.astro';
+import EventPageTemplate from './templates/EventPageTemplate.astro';
+import GeneralPageTemplate from './templates/GeneralPageTemplate.astro';
+import ContactPageTemplate from './templates/ContactPageTemplate.astro';
+import HomePageTemplate from './templates/HomePageTemplate.astro';
+import type { PageContent } from '../utils/content';
+
+export interface Props {
+  page: PageContent;
+}
+
+const { page } = Astro.props;
+
+// 取得 template 設定（yml 中的 template 欄位）
+const template = page.template || page.layout?.template;
+
+// Template 映射表
+const TEMPLATE_MAP: Record<string, any> = {
+  'product': ProductPageTemplate,
+  'event': EventPageTemplate,
+  'general': GeneralPageTemplate,
+  'contact': ContactPageTemplate,
+  'home': HomePageTemplate,
+};
+
+// 選擇 Template（有指定則用指定的，否則 fallback）
+const SelectedTemplate = template && TEMPLATE_MAP[template]
+  ? TEMPLATE_MAP[template]
+  : PageLayout;
+---
+
+<SelectedTemplate page={page} />

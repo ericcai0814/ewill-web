@@ -1,0 +1,149 @@
+---
+/**
+ * HomePageTemplate.astro
+ *
+ * 首頁固定佈局 Template
+ * 適用：index
+ *
+ * 佈局結構：
+ * 1. Hero Banner
+ * 2. Text（關於我們）
+ * 3. CardList（服務項目）
+ * 4. CardList（產品解決方案）
+ * 5. Popup Modal
+ */
+import Layout from '../Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import TextSection from '../../components/TextSection.astro';
+import CardListSection from '../../components/CardListSection.astro';
+import PopupModal from '../../components/PopupModal.astro';
+import { getAssetById } from '../../utils/content';
+import type { PageContent, AioData } from '../../utils/content';
+import type { JsonLdItem } from '../../components/SEO.astro';
+
+export interface Props {
+  page: PageContent;
+}
+
+const { page } = Astro.props;
+const { seo, layout, aio, content } = page;
+
+// JSON-LD
+function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
+  if (!aioData) return [];
+  const items: JsonLdItem[] = [];
+  if (aioData.organization) items.push({ type: 'Organization', data: aioData.organization });
+  if (aioData.website) items.push({ type: 'WebSite', data: aioData.website });
+  if (aioData.webpage) items.push({ type: 'WebPage', data: aioData.webpage });
+  if (aioData.faq && aioData.faq.length > 0) items.push({ type: 'FAQPage', data: { items: aioData.faq } });
+  return items;
+}
+
+const jsonLdItems = buildJsonLd(aio);
+
+// LCP & OG Image
+const lcpImage = layout?.hero?.image ? {
+  desktop: layout.hero.image.desktop,
+  mobile: layout.hero.image.mobile
+} : undefined;
+
+const siteUrl = Astro.url.origin;
+const DEFAULT_OG_IMAGE = '/assets/og-default.jpg';
+const ogImage = seo.og_image
+  ? (seo.og_image.startsWith('http') ? seo.og_image : `${siteUrl}${seo.og_image}`)
+  : (layout?.hero?.image?.desktop ? `${siteUrl}${layout.hero.image.desktop}` : `${siteUrl}${DEFAULT_OG_IMAGE}`);
+
+// 內容資料
+const heroData = content?.hero || layout?.hero;
+const aboutData = content?.about || layout?.sections?.find((s: any) => s.type === 'text');
+const servicesData = content?.services || layout?.sections?.find((s: any) => s.type === 'card_list' && s.label === 'What We Offer');
+const solutionsData = content?.solutions || layout?.sections?.filter((s: any) => s.type === 'card_list')?.[1];
+
+// Popup
+let popupImage = null;
+if (layout?.popup?.image_id) {
+  const asset = await getAssetById(layout.popup.image_id);
+  if (asset) {
+    popupImage = {
+      desktop: asset.variants.desktop,
+      mobile: asset.variants.mobile,
+      alt: asset.alt
+    };
+  }
+}
+---
+
+<Layout
+  title={seo.title}
+  description={seo.description}
+  keywords={seo.keywords}
+  jsonLd={jsonLdItems}
+  lcpImage={lcpImage}
+  ogImage={ogImage}
+>
+  <Header />
+
+  <main class="page-main">
+    <!-- 1. Hero Banner -->
+    {heroData?.image && (
+      <HeroSection
+        image={heroData.image}
+        overlay={heroData.overlay}
+        height={heroData.height as 'full' | 'fixed' | 'auto'}
+      />
+    )}
+
+    <!-- 2. About Us -->
+    {aboutData && (
+      <TextSection
+        content={aboutData.content}
+        title={aboutData.title}
+        label={aboutData.label}
+      />
+    )}
+
+    <!-- 3. Services -->
+    {servicesData && (
+      <CardListSection
+        label={servicesData.label}
+        title={servicesData.title || ''}
+        description={servicesData.description}
+        columns={servicesData.columns}
+        layout_variant={servicesData.layout_variant}
+        cards={servicesData.cards}
+      />
+    )}
+
+    <!-- 4. Solutions -->
+    {solutionsData && (
+      <CardListSection
+        label={solutionsData.label}
+        title={solutionsData.title || ''}
+        description={solutionsData.description}
+        columns={solutionsData.columns}
+        layout_variant={solutionsData.layout_variant}
+        cards={solutionsData.cards}
+      />
+    )}
+  </main>
+
+  <Footer />
+
+  <!-- Popup Modal -->
+  {popupImage && layout?.popup && (
+    <PopupModal
+      image={popupImage}
+      link={layout.popup.link}
+      trigger={layout.popup.trigger as 'first_visit' | 'scroll' | 'time'}
+    />
+  )}
+</Layout>
+
+<style>
+  .page-main {
+    min-height: 100vh;
+    padding-top: 64px;
+  }
+</style>

@@ -1,3 +1,6 @@
+# Template 類型（佈局分離重構）
+template: product
+
 seo:
   title: LOGSEC 資安預警平台 | 日誌管理、SIEM 與異常行為偵測 - 鎰威科技
   description: 鎰威科技自主研發 LOGSEC 資安預警平台，提供集中式日誌管理、異常行為偵測與視覺化分析。整合設備考勤與 VPN 日誌，即時通報潛在威脅，滿足資安法規合規要求，強化企業整體資安防護。

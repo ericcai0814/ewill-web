@@ -1,0 +1,148 @@
+---
+/**
+ * GeneralPageTemplate.astro
+ *
+ * 一般頁面固定佈局 Template
+ * 適用：about_us, services, solutions, esg
+ *
+ * 佈局結構：
+ * 1. Hero Banner
+ * 2. Anchor Nav + Sections（錨點導航）
+ * 3. Text/Image Sections
+ * 4. CTA
+ */
+import Layout from '../Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import AnchorSection from '../../components/AnchorSection.astro';
+import TextSection from '../../components/TextSection.astro';
+import ImageSection from '../../components/ImageSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import type { PageContent, AioData, LayoutSection } from '../../utils/content';
+import type { JsonLdItem } from '../../components/SEO.astro';
+
+export interface Props {
+  page: PageContent;
+}
+
+const { page } = Astro.props;
+const { seo, layout, aio, content } = page;
+
+// Breadcrumb
+const breadcrumbItems = aio?.webpage?.breadcrumb?.itemListElement?.map((item: { name: string; item?: string }) => ({
+  label: item.name,
+  href: item.item
+    ? (item.item.startsWith('http') ? new URL(item.item).pathname : item.item)
+    : ''
+})) || undefined;
+
+// JSON-LD
+function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
+  if (!aioData) return [];
+  const items: JsonLdItem[] = [];
+  if (aioData.webpage) items.push({ type: 'WebPage', data: aioData.webpage });
+  return items;
+}
+
+const jsonLdItems = buildJsonLd(aio);
+
+// LCP & OG Image
+const lcpImage = layout?.hero?.image ? {
+  desktop: layout.hero.image.desktop,
+  mobile: layout.hero.image.mobile
+} : undefined;
+
+const siteUrl = Astro.url.origin;
+const DEFAULT_OG_IMAGE = '/assets/og-default.jpg';
+const ogImage = seo.og_image
+  ? (seo.og_image.startsWith('http') ? seo.og_image : `${siteUrl}${seo.og_image}`)
+  : (layout?.hero?.image?.desktop ? `${siteUrl}${layout.hero.image.desktop}` : `${siteUrl}${DEFAULT_OG_IMAGE}`);
+
+// 內容資料
+const heroData = content?.hero || layout?.hero;
+const anchorSections = content?.anchors || layout?.sections?.filter((s: any) => s.type === 'anchor') || [];
+const textSections = content?.texts || layout?.sections?.filter((s: any) => s.type === 'text') || [];
+const imageSections = content?.images || layout?.sections?.filter((s: any) => s.type === 'image') || [];
+const ctaData = content?.cta || layout?.sections?.find((s: any) => s.type === 'cta');
+
+// 合併 text 和 image sections 並保持原始順序
+const contentSections = layout?.sections?.filter((s: any) =>
+  s.type === 'text' || s.type === 'image'
+) || [];
+---
+
+<Layout
+  title={seo.title}
+  description={seo.description}
+  keywords={seo.keywords}
+  jsonLd={jsonLdItems}
+  lcpImage={lcpImage}
+  ogImage={ogImage}
+>
+  <Header />
+
+  <main class="page-main">
+    <Breadcrumb items={breadcrumbItems} />
+
+    <!-- 1. Hero Banner -->
+    {heroData?.image && (
+      <HeroSection
+        image={heroData.image}
+        overlay={heroData.overlay}
+        height={heroData.height as 'full' | 'fixed' | 'auto'}
+      />
+    )}
+
+    <!-- 2. Anchor Sections -->
+    {anchorSections.map((section: any) => (
+      <AnchorSection
+        id={section.id}
+        title={section.title || ''}
+        description={section.description}
+        cards={section.cards}
+      />
+    ))}
+
+    <!-- 3. Text/Image Sections（保持順序）-->
+    {contentSections.map((section: LayoutSection) => {
+      if (section.type === 'text' && section.content) {
+        return (
+          <TextSection
+            id={section.id}
+            content={section.content}
+            title={section.title}
+            label={section.label}
+          />
+        );
+      }
+      if (section.type === 'image' && section.image_id) {
+        return (
+          <ImageSection image_id={section.image_id} display={section.display} />
+        );
+      }
+      return null;
+    })}
+
+    <!-- 4. CTA -->
+    {ctaData && (
+      <CTASection
+        title={ctaData.title || ''}
+        description={ctaData.description}
+        button_text={ctaData.button_text}
+        button_link={ctaData.button_link}
+        variant={ctaData.variant as 'primary' | 'secondary' | 'dark'}
+      />
+    )}
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .page-main {
+    min-height: 100vh;
+    padding-top: 64px;
+  }
+</style>

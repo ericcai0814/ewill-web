@@ -277,8 +277,17 @@ function buildPage(moduleName: string, resolver: AssetResolver, config: BuildCon
       new_url: yml.url_mapping?.new_url || '',
     },
     layout: resolveLayout(yml.layout, resolver),
-    content,
     generated_at: new Date().toISOString(),
+  }
+
+  // Include template field if present (for Template-based rendering)
+  if ((yml as any).template) {
+    page.template = (yml as any).template
+  }
+
+  // Include content field if present (new Template content structure)
+  if ((yml as any).content) {
+    page.content = (yml as any).content
   }
 
   // Include aio (All-In-One SEO structured data) if present

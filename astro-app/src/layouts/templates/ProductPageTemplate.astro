@@ -1,0 +1,141 @@
+---
+/**
+ * ProductPageTemplate.astro
+ *
+ * 產品頁面固定佈局 Template
+ * 適用：logsec, acunetix, bitdefender, fortinet, ist, jennifer_apm 等
+ *
+ * 佈局結構：
+ * 1. Hero Banner
+ * 2. Product Intro（產品介紹）
+ * 3. Feature Showcase（功能展示，左右交錯）
+ * 4. CTA（行動呼籲）
+ */
+import Layout from '../Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import ProductIntroSection from '../../components/ProductIntroSection.astro';
+import FeatureShowcaseSection from '../../components/FeatureShowcaseSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import type { PageContent, AioData } from '../../utils/content';
+import type { JsonLdItem } from '../../components/SEO.astro';
+
+export interface Props {
+  page: PageContent;
+}
+
+const { page } = Astro.props;
+const { seo, layout, aio, content } = page;
+
+// Breadcrumb
+const breadcrumbItems = aio?.webpage?.breadcrumb?.itemListElement?.map((item: { name: string; item?: string }) => ({
+  label: item.name,
+  href: item.item
+    ? (item.item.startsWith('http') ? new URL(item.item).pathname : item.item)
+    : ''
+})) || undefined;
+
+// JSON-LD
+function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
+  if (!aioData) return [];
+  const items: JsonLdItem[] = [];
+  if (aioData.webpage) items.push({ type: 'WebPage', data: aioData.webpage });
+  if (aioData.product) items.push({ type: 'Product', data: aioData.product });
+  return items;
+}
+
+const jsonLdItems = buildJsonLd(aio);
+
+// LCP Image
+const lcpImage = layout?.hero?.image ? {
+  desktop: layout.hero.image.desktop,
+  mobile: layout.hero.image.mobile
+} : undefined;
+
+// OG Image
+const siteUrl = Astro.url.origin;
+const DEFAULT_OG_IMAGE = '/assets/og-default.jpg';
+
+function getOgImageUrl(): string {
+  if (seo.og_image) {
+    return seo.og_image.startsWith('http') ? seo.og_image : `${siteUrl}${seo.og_image}`;
+  }
+  if (layout?.hero?.image?.desktop) {
+    return `${siteUrl}${layout.hero.image.desktop}`;
+  }
+  return `${siteUrl}${DEFAULT_OG_IMAGE}`;
+}
+
+const ogImage = getOgImageUrl();
+
+// 內容資料（優先使用新的 content 結構，fallback 到舊的 layout.sections）
+const heroData = content?.hero || layout?.hero;
+const introData = content?.intro || layout?.sections?.find((s: any) => s.type === 'product_intro');
+const featuresData = content?.features || layout?.sections?.find((s: any) => s.type === 'feature_showcase')?.features;
+const ctaData = content?.cta || layout?.sections?.find((s: any) => s.type === 'cta');
+---
+
+<Layout
+  title={seo.title}
+  description={seo.description}
+  keywords={seo.keywords}
+  jsonLd={jsonLdItems}
+  lcpImage={lcpImage}
+  ogImage={ogImage}
+>
+  <Header />
+
+  <main class="page-main">
+    <Breadcrumb items={breadcrumbItems} />
+
+    <!-- 1. Hero Banner -->
+    {heroData?.image && (
+      <HeroSection
+        image={heroData.image}
+        overlay={heroData.overlay}
+        height={heroData.height as 'full' | 'fixed' | 'auto'}
+      />
+    )}
+
+    <!-- 2. Product Intro -->
+    {introData && (
+      <ProductIntroSection
+        label={introData.label}
+        title={introData.title || ''}
+        subtitle={introData.subtitle}
+        description={introData.description || ''}
+        align={introData.align}
+      />
+    )}
+
+    <!-- 3. Feature Showcase -->
+    {featuresData && featuresData.length > 0 && (
+      <FeatureShowcaseSection
+        layout="alternating"
+        features={featuresData}
+      />
+    )}
+
+    <!-- 4. CTA -->
+    {ctaData && (
+      <CTASection
+        title={ctaData.title || ''}
+        description={ctaData.description}
+        button_text={ctaData.button_text}
+        button_link={ctaData.button_link}
+        variant={ctaData.variant as 'primary' | 'secondary' | 'dark'}
+      />
+    )}
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .page-main {
+    min-height: 100vh;
+    padding-top: 64px;
+  }
+</style>
