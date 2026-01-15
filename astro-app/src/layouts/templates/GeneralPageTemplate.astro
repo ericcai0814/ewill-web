@@ -29,13 +29,8 @@ export interface Props {
 const { page } = Astro.props;
 const { seo, layout, aio, content } = page;
 
-// Breadcrumb
-const breadcrumbItems = aio?.webpage?.breadcrumb?.itemListElement?.map((item: { name: string; item?: string }) => ({
-  label: item.name,
-  href: item.item
-    ? (item.item.startsWith('http') ? new URL(item.item).pathname : item.item)
-    : ''
-})) || undefined;
+// Breadcrumb - 讓組件根據 URL 自動生成（符合佈局分離原則）
+const breadcrumbItems = undefined;
 
 // JSON-LD
 function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
