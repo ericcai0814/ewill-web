@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ewill.com.tw/schemas/contact-form.json",
+  "title": "ContactFormSubmission",
+  "description": "聯絡表單提交資料",
+  "type": "object",
+  "required": ["name", "email", "message"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "姓名"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "電子郵件"
+    },
+    "phone": {
+      "type": "string",
+      "pattern": "^[0-9+\\-\\s()]*$",
+      "maxLength": 20,
+      "description": "電話號碼"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "公司名稱"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "訊息內容"
+    },
+    "source_page": {
+      "type": "string",
+      "description": "來源頁面 URL"
+    }
+  },
+  "additionalProperties": false
+}

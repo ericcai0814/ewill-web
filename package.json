@@ -1,10 +1,11 @@
 {
   "name": "ewill-web",
   "version": "1.0.0",
+  "private": true,
   "description": "鎰威科技網站內容庫",
-  "main": "index.js",
   "scripts": {
     "build": "npx tsx .claude/skills/content-build/scripts/build.ts",
+    "build:content": "npx tsx .claude/skills/content-build/scripts/build.ts",
     "prepare": "husky"
   },
   "keywords": [],

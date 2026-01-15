@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ewill.com.tw/schemas/asset-entry.json",
+  "title": "AssetEntry",
+  "description": "圖片資源型別",
+  "type": "object",
+  "required": ["id", "original_path", "normalized_path", "variants", "alt"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "圖片唯一識別碼"
+    },
+    "original_path": {
+      "type": "string",
+      "description": "原始檔案路徑"
+    },
+    "normalized_path": {
+      "type": "string",
+      "description": "正規化後的路徑"
+    },
+    "variants": {
+      "type": "object",
+      "required": ["desktop", "mobile"],
+      "properties": {
+        "desktop": {
+          "type": "string",
+          "description": "桌面版圖片路徑"
+        },
+        "mobile": {
+          "type": "string",
+          "description": "行動版圖片路徑"
+        }
+      },
+      "additionalProperties": false
+    },
+    "alt": {
+      "type": "string",
+      "description": "圖片替代文字"
+    }
+  },
+  "additionalProperties": false
+}

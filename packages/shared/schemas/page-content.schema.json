@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ewill.com.tw/schemas/page-content.json",
+  "title": "PageContent",
+  "description": "頁面內容型別",
+  "type": "object",
+  "required": ["slug", "module", "seo", "url_mapping", "generated_at"],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "description": "頁面唯一識別碼"
+    },
+    "module": {
+      "type": "string",
+      "description": "模組名稱"
+    },
+    "template": {
+      "type": "string",
+      "enum": ["product", "event", "general", "contact", "home"],
+      "description": "Template 類型"
+    },
+    "seo": {
+      "type": "object",
+      "required": ["title", "description", "keywords"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "SEO 標題"
+        },
+        "description": {
+          "type": "string",
+          "description": "SEO 描述"
+        },
+        "keywords": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "SEO 關鍵字"
+        },
+        "og_image": {
+          "type": "string",
+          "description": "Open Graph 圖片 URL"
+        }
+      }
+    },
+    "url_mapping": {
+      "type": "object",
+      "required": ["current_url"],
+      "properties": {
+        "current_url": {
+          "type": "string",
+          "description": "目前 URL"
+        },
+        "new_url": {
+          "type": "string",
+          "description": "新 URL"
+        }
+      }
+    },
+    "content": {
+      "type": "object",
+      "description": "Template 內容資料"
+    },
+    "layout": {
+      "type": "object",
+      "description": "舊版 layout 結構"
+    },
+    "aio": {
+      "type": "object",
+      "description": "AIO JSON-LD 結構化資料"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "生成時間"
+    }
+  }
+}

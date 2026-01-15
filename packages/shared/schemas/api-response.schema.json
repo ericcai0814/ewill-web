@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ewill.com.tw/schemas/api-response.json",
+  "title": "ApiResponse",
+  "description": "標準 API 回應格式",
+  "type": "object",
+  "required": ["success", "data"],
+  "properties": {
+    "success": {
+      "type": "boolean",
+      "description": "請求是否成功"
+    },
+    "data": {
+      "description": "回傳資料或 null"
+    },
+    "error": {
+      "type": "object",
+      "description": "錯誤資訊（僅在失敗時）",
+      "required": ["code", "message"],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "錯誤碼",
+          "examples": ["NOT_FOUND", "VALIDATION_ERROR", "INTERNAL_ERROR"]
+        },
+        "message": {
+          "type": "string",
+          "description": "人類可讀訊息"
+        },
+        "details": {
+          "type": "object",
+          "description": "除錯資訊"
+        }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "description": "中繼資訊",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 時間戳"
+        },
+        "version": {
+          "type": "string",
+          "description": "API 版本",
+          "examples": ["1.0.0"]
+        },
+        "cached": {
+          "type": "boolean",
+          "description": "是否為快取"
+        }
+      }
+    }
+  }
+}
