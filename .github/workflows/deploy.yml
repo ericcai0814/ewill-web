@@ -32,9 +32,6 @@ jobs:
         working-directory: astro-app
         run: pnpm install
 
-      - name: Sync content
-        run: pnpm run sync-content
-
       - name: Build content (generate JSON)
         run: pnpm run build
 

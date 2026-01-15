@@ -1,24 +1,26 @@
 ---
+/**
+ * PageLayout.astro
+ *
+ * 基礎頁面佈局（已簡化）
+ *
+ * 職責：
+ * - 提供 HTML 骨架（Header, Main, Footer）
+ * - 處理 SEO 和 JSON-LD
+ * - 作為 TemplateRenderer 的 fallback
+ *
+ * 注意：
+ * - 動態 section 渲染已移至各 Template
+ * - 所有頁面應指定 template 欄位使用專屬 Template
+ */
 import Layout from './Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 import PopupModal from '../components/PopupModal.astro';
 import HeroSection from '../components/HeroSection.astro';
-import TextSection from '../components/TextSection.astro';
-import ImageSection from '../components/ImageSection.astro';
-import CardListSection from '../components/CardListSection.astro';
-import AnchorSection from '../components/AnchorSection.astro';
-import FeatureGridSection from '../components/FeatureGridSection.astro';
-import CTASection from '../components/CTASection.astro';
-import ProductIntroSection from '../components/ProductIntroSection.astro';
-import FeatureShowcaseSection from '../components/FeatureShowcaseSection.astro';
-import TimelineSection from '../components/TimelineSection.astro';
-import GallerySection from '../components/GallerySection.astro';
-import ContactFormSection from '../components/ContactFormSection.astro';
-import CarouselSection from '../components/CarouselSection.astro';
 import { getAssetById } from '../utils/content';
-import type { PageContent, LayoutSection, AioData } from '../utils/content';
+import type { PageContent, AioData } from '../utils/content';
 import type { JsonLdItem } from '../components/SEO.astro';
 
 export interface Props {
@@ -59,61 +61,13 @@ function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
 
   const items: JsonLdItem[] = [];
 
-  // Organization (僅首頁)
-  if (aioData.organization) {
-    items.push({
-      type: 'Organization',
-      data: aioData.organization
-    });
-  }
-
-  // WebSite (僅首頁)
-  if (aioData.website) {
-    items.push({
-      type: 'WebSite',
-      data: aioData.website
-    });
-  }
-
-  // WebPage (每頁)
-  if (aioData.webpage) {
-    items.push({
-      type: 'WebPage',
-      data: aioData.webpage
-    });
-  }
-
-  // FAQ
-  if (aioData.faq && aioData.faq.length > 0) {
-    items.push({
-      type: 'FAQPage',
-      data: { items: aioData.faq }
-    });
-  }
-
-  // Product (產品頁)
-  if (aioData.product) {
-    items.push({
-      type: 'Product',
-      data: aioData.product
-    });
-  }
-
-  // Service (服務頁)
-  if (aioData.service) {
-    items.push({
-      type: 'Service',
-      data: aioData.service
-    });
-  }
-
-  // Event (活動頁)
-  if (aioData.event) {
-    items.push({
-      type: 'Event',
-      data: aioData.event
-    });
-  }
+  if (aioData.organization) items.push({ type: 'Organization', data: aioData.organization });
+  if (aioData.website) items.push({ type: 'WebSite', data: aioData.website });
+  if (aioData.webpage) items.push({ type: 'WebPage', data: aioData.webpage });
+  if (aioData.faq && aioData.faq.length > 0) items.push({ type: 'FAQPage', data: { items: aioData.faq } });
+  if (aioData.product) items.push({ type: 'Product', data: aioData.product });
+  if (aioData.service) items.push({ type: 'Service', data: aioData.service });
+  if (aioData.event) items.push({ type: 'Event', data: aioData.event });
 
   return items;
 }
@@ -126,20 +80,17 @@ const lcpImage = layout?.hero?.image ? {
   mobile: layout.hero.image.mobile
 } : undefined;
 
-// OG Image 優先順序：seo.og_image > hero.image.desktop > 預設圖片
+// OG Image
 const DEFAULT_OG_IMAGE = '/assets/og-default.jpg';
 const siteUrl = Astro.url.origin;
 
 function getOgImageUrl(): string {
-  // 1. 優先使用 seo.og_image
   if (seo.og_image) {
     return seo.og_image.startsWith('http') ? seo.og_image : `${siteUrl}${seo.og_image}`;
   }
-  // 2. 使用 Hero banner desktop 版
   if (layout?.hero?.image?.desktop) {
     return `${siteUrl}${layout.hero.image.desktop}`;
   }
-  // 3. 使用預設圖片
   return `${siteUrl}${DEFAULT_OG_IMAGE}`;
 }
 
@@ -169,140 +120,14 @@ const ogImage = getOgImageUrl();
       />
     )}
 
-    <!-- Dynamic Sections -->
-    {layout?.sections && layout.sections.map((section: LayoutSection) => {
-      if (section.type === 'text' && section.content) {
-        return (
-          <TextSection
-            id={section.id}
-            content={section.content}
-            title={section.title}
-            label={section.label}
-          />
-        );
-      }
-      if (section.type === 'image' && section.image_id) {
-        return (
-          <ImageSection image_id={section.image_id} display={section.display} />
-        );
-      }
-      if (section.type === 'card_list' && section.cards) {
-        return (
-          <CardListSection
-            label={section.label}
-            title={section.title || ''}
-            description={section.description}
-            columns={section.columns}
-            layout_variant={section.layout_variant}
-            cards={section.cards}
-          />
-        );
-      }
-      if (section.type === 'anchor' && section.cards && section.id) {
-        return (
-          <AnchorSection
-            id={section.id}
-            title={section.title || ''}
-            description={section.description}
-            cards={section.cards}
-          />
-        );
-      }
-      if (section.type === 'feature_grid' && section.features) {
-        return (
-          <FeatureGridSection
-            label={section.label}
-            title={section.title}
-            columns={section.columns as 3 | 4}
-            variant={section.variant as 'default' | 'icon' | 'minimal'}
-            features={section.features}
-          />
-        );
-      }
-      if (section.type === 'cta' && section.button_text && section.button_link) {
-        return (
-          <CTASection
-            title={section.title || ''}
-            description={section.description}
-            button_text={section.button_text}
-            button_link={section.button_link}
-            variant={section.variant as 'primary' | 'secondary' | 'dark'}
-            align={section.align}
-          />
-        );
-      }
-      if (section.type === 'product_intro') {
-        return (
-          <ProductIntroSection
-            label={section.label}
-            title={section.title || ''}
-            subtitle={section.subtitle}
-            description={section.description || ''}
-            align={section.align}
-          />
-        );
-      }
-      if (section.type === 'feature_showcase' && section.features) {
-        return (
-          <FeatureShowcaseSection
-            label={section.label}
-            title={section.title}
-            layout={section.layout}
-            features={section.features}
-          />
-        );
-      }
-      if (section.type === 'timeline' && section.events) {
-        return (
-          <TimelineSection
-            label={section.label}
-            title={section.title || ''}
-            description={section.description}
-            events={section.events}
-            layout={section.layout as 'vertical' | 'horizontal'}
-          />
-        );
-      }
-      if (section.type === 'gallery' && section.images) {
-        return (
-          <GallerySection
-            label={section.label}
-            title={section.title}
-            description={section.description}
-            columns={section.columns as 2 | 3 | 4}
-            gap={section.gap}
-            images={section.images}
-            lightbox={section.lightbox}
-          />
-        );
-      }
-      if (section.type === 'contact_form' && section.fields) {
-        return (
-          <ContactFormSection
-            label={section.label}
-            title={section.title || ''}
-            fields={section.fields}
-            button_text={section.button_text || '送出'}
-          />
-        );
-      }
-      if (section.type === 'carousel' && section.items) {
-        return (
-          <CarouselSection
-            id={section.id}
-            label={section.label}
-            title={section.title}
-            description={section.description}
-            items={section.items}
-            autoplay={section.autoplay}
-            dots={section.dots}
-            arrows={section.arrows}
-            display={section.display}
-          />
-        );
-      }
-      return null;
-    })}
+    <!-- Fallback Notice -->
+    <section class="fallback-notice">
+      <div class="container">
+        <p class="notice-text">
+          ⚠️ 此頁面尚未指定 Template。請在 yml 中加入 <code>template:</code> 欄位。
+        </p>
+      </div>
+    </section>
 
     <!-- Slot for custom content -->
     <slot />
@@ -321,9 +146,36 @@ const ogImage = getOgImageUrl();
 </Layout>
 
 <style>
-  /* Vitesse Style: Consistent header height */
   .page-main {
     min-height: 100vh;
-    padding-top: 64px; /* Fixed header height (h-16) */
+    padding-top: 64px;
+  }
+
+  .fallback-notice {
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .notice-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    border: 1px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 16px 24px;
+    margin: 0;
+  }
+
+  .notice-text code {
+    background: var(--bg-tertiary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
   }
 </style>

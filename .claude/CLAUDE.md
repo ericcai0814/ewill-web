@@ -53,9 +53,8 @@ pages/*.yml  →  根目錄 pnpm run build  →  astro-app/public/content/*.json
 ### CI/CD 流程
 
 deploy.yml 需要包含以下步驟（順序重要）：
-1. `pnpm run sync-content` - 同步 md → yml（根目錄）
-2. `pnpm run build` - 生成 JSON 內容（**根目錄** ⚠️）
-3. `pnpm run build` (astro-app/) - 建置 Astro 網站
+1. `pnpm run build` - 生成 JSON 內容（**根目錄** ⚠️）
+2. `pnpm run build` (astro-app/) - 建置 Astro 網站
 
 ## Commit 流程
 

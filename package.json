@@ -4,8 +4,6 @@
   "description": "鎰威科技網站內容庫",
   "main": "index.js",
   "scripts": {
-    "sync-content": "npx tsx .claude/skills/content-build/scripts/sync-content.ts",
-    "sync-content:check": "npx tsx .claude/skills/content-build/scripts/sync-content.ts --check",
     "build": "npx tsx .claude/skills/content-build/scripts/build.ts",
     "prepare": "husky"
   },
