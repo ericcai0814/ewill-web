@@ -7,8 +7,10 @@
  */
 import PageLayout from './PageLayout.astro';
 import ProductPageTemplate from './templates/ProductPageTemplate.astro';
+import SolutionPageTemplate from './templates/SolutionPageTemplate.astro';
 import EventPageTemplate from './templates/EventPageTemplate.astro';
 import GeneralPageTemplate from './templates/GeneralPageTemplate.astro';
+import AboutPageTemplate from './templates/AboutPageTemplate.astro';
 import ContactPageTemplate from './templates/ContactPageTemplate.astro';
 import HomePageTemplate from './templates/HomePageTemplate.astro';
 import type { PageContent } from '../utils/content';
@@ -25,8 +27,11 @@ const template = page.template || page.layout?.template;
 // Template 映射表
 const TEMPLATE_MAP: Record<string, any> = {
   'product': ProductPageTemplate,
+  'solution': SolutionPageTemplate,
   'event': EventPageTemplate,
   'general': GeneralPageTemplate,
+  'about': AboutPageTemplate,
+  'service': GeneralPageTemplate,  // 暫用 GeneralPageTemplate
   'contact': ContactPageTemplate,
   'home': HomePageTemplate,
 };

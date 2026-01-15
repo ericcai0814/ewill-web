@@ -2,22 +2,26 @@
 /**
  * EventPageTemplate.astro
  *
- * 活動頁面固定佈局 Template
- * 適用：event_information, event_20251021, event_20251118 等
+ * 活動頁面 Template（Apple-like 科技風）
+ * 適用：event_information, event_20251021, event_20251118, event_20251119, event_20251124 等
  *
- * 佈局結構：
- * 1. Hero Banner
- * 2. Carousel（活動輪播）或 Text（活動說明）
- * 3. CTA（報名按鈕）
+ * 設計特點：
+ * - 全幅 Hero 大圖
+ * - 清晰的內容層次
+ * - 滾動淡入動畫
+ * - 適合閱讀的排版
+ *
+ * 佈局結構（固定，不依賴 yml.layout.sections）：
+ * 1. Hero Banner（全幅大圖）
+ * 2. Event Content（活動內容 - 文字區塊）
+ * 3. Gallery（相簿，如有）
+ * 4. CTA（行動呼籲）
  */
 import Layout from '../Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import HeroSection from '../../components/HeroSection.astro';
-import TextSection from '../../components/TextSection.astro';
-import CarouselSection from '../../components/CarouselSection.astro';
-import CTASection from '../../components/CTASection.astro';
+import { getAssetById } from '../../utils/content';
 import type { PageContent, AioData } from '../../utils/content';
 import type { JsonLdItem } from '../../components/SEO.astro';
 
@@ -47,23 +51,63 @@ function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
 
 const jsonLdItems = buildJsonLd(aio);
 
-// LCP & OG Image
-const lcpImage = layout?.hero?.image ? {
-  desktop: layout.hero.image.desktop,
-  mobile: layout.hero.image.mobile
+// ============================================================================
+// 內容資料提取（向後兼容：優先 content，fallback 到 layout.sections）
+// ============================================================================
+
+// Hero
+const heroData = content?.hero || layout?.hero;
+
+// Text Content（合併所有 text sections）
+const textSections = content?.sections ||
+  layout?.sections?.filter((s: any) => s.type === 'text') || [];
+
+// Gallery
+const galleryData = content?.gallery ||
+  layout?.sections?.find((s: any) => s.type === 'gallery' || s.type === 'carousel');
+
+// CTA
+const ctaData = content?.cta || layout?.sections?.find((s: any) => s.type === 'cta');
+
+// 解析 gallery 圖片
+let galleryImages: any[] = [];
+if (galleryData?.image_ids) {
+  galleryImages = await Promise.all(
+    galleryData.image_ids.map(async (imageId: string) => {
+      const asset = await getAssetById(imageId);
+      return asset ? {
+        desktop: asset.variants.desktop,
+        mobile: asset.variants.mobile,
+        alt: asset.alt
+      } : null;
+    })
+  );
+  galleryImages = galleryImages.filter(Boolean);
+}
+
+// ============================================================================
+// SEO / LCP / OG
+// ============================================================================
+
+const lcpImage = heroData?.image ? {
+  desktop: heroData.image.desktop,
+  mobile: heroData.image.mobile
 } : undefined;
 
 const siteUrl = Astro.url.origin;
 const DEFAULT_OG_IMAGE = '/assets/og-default.jpg';
-const ogImage = seo.og_image
-  ? (seo.og_image.startsWith('http') ? seo.og_image : `${siteUrl}${seo.og_image}`)
-  : (layout?.hero?.image?.desktop ? `${siteUrl}${layout.hero.image.desktop}` : `${siteUrl}${DEFAULT_OG_IMAGE}`);
 
-// 內容資料
-const heroData = content?.hero || layout?.hero;
-const carouselData = content?.carousel || layout?.sections?.find((s: any) => s.type === 'carousel');
-const textSections = content?.texts || layout?.sections?.filter((s: any) => s.type === 'text') || [];
-const ctaData = content?.cta || layout?.sections?.find((s: any) => s.type === 'cta');
+function getOgImageUrl(): string {
+  if (seo.og_image) {
+    return seo.og_image.startsWith('http') ? seo.og_image : `${siteUrl}${seo.og_image}`;
+  }
+  if (heroData?.image?.desktop) {
+    return `${siteUrl}${heroData.image.desktop}`;
+  }
+  return `${siteUrl}${DEFAULT_OG_IMAGE}`;
+}
+
+const ogImage = getOgImageUrl();
 ---
 
 <Layout
@@ -76,51 +120,97 @@ const ctaData = content?.cta || layout?.sections?.find((s: any) => s.type === 'c
 >
   <Header />
 
-  <main class="page-main">
+  <main class="event-template">
     <Breadcrumb items={breadcrumbItems} />
 
-    <!-- 1. Hero Banner -->
+    <!-- ================================================================== -->
+    <!-- 1. HERO SECTION - 全幅大圖 -->
+    <!-- ================================================================== -->
     {heroData?.image && (
-      <HeroSection
-        image={heroData.image}
-        overlay={heroData.overlay}
-        height={heroData.height as 'full' | 'fixed' | 'auto'}
-      />
+      <section class="hero-section">
+        <picture class="hero-picture">
+          <source media="(min-width: 768px)" srcset={heroData.image.desktop} />
+          <source media="(max-width: 767px)" srcset={heroData.image.mobile} />
+          <img
+            src={heroData.image.desktop}
+            alt={heroData.image.alt || seo.title}
+            class="hero-image"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
+        {heroData.overlay && <div class="hero-overlay"></div>}
+      </section>
     )}
 
-    <!-- 2. Carousel（如有）-->
-    {carouselData?.items && (
-      <CarouselSection
-        id={carouselData.id}
-        label={carouselData.label}
-        title={carouselData.title}
-        description={carouselData.description}
-        items={carouselData.items}
-        autoplay={carouselData.autoplay}
-        dots={carouselData.dots}
-        arrows={carouselData.arrows}
-      />
+    <!-- ================================================================== -->
+    <!-- 2. EVENT CONTENT - 活動內容 -->
+    <!-- ================================================================== -->
+    <article class="content-section fade-in-section">
+      <div class="container">
+        <header class="content-header">
+          <h1 class="content-title">{seo.title.split('|')[0].trim()}</h1>
+          {seo.description && (
+            <p class="content-lead">{seo.description}</p>
+          )}
+        </header>
+
+        {textSections.length > 0 && (
+          <div class="content-body">
+            {textSections.map((section: any) => (
+              <div class="text-block" set:html={section.content} />
+            ))}
+          </div>
+        )}
+      </div>
+    </article>
+
+    <!-- ================================================================== -->
+    <!-- 3. GALLERY - 相簿 -->
+    <!-- ================================================================== -->
+    {galleryImages.length > 0 && (
+      <section class="gallery-section fade-in-section">
+        <div class="container-wide">
+          <h2 class="gallery-title">{galleryData.title || '活動花絮'}</h2>
+          <div class="gallery-grid">
+            {galleryImages.map((image, index) => (
+              <div class="gallery-item">
+                <picture>
+                  <source media="(min-width: 768px)" srcset={image.desktop} />
+                  <source media="(max-width: 767px)" srcset={image.mobile} />
+                  <img
+                    src={image.desktop}
+                    alt={image.alt || `活動照片 ${index + 1}`}
+                    class="gallery-image"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     )}
 
-    <!-- 2b. Text Sections（如有）-->
-    {textSections.map((section: any) => (
-      <TextSection
-        id={section.id}
-        content={section.content}
-        title={section.title}
-        label={section.label}
-      />
-    ))}
-
-    <!-- 3. CTA -->
+    <!-- ================================================================== -->
+    <!-- 4. CTA SECTION - 行動呼籲 -->
+    <!-- ================================================================== -->
     {ctaData && (
-      <CTASection
-        title={ctaData.title || ''}
-        description={ctaData.description}
-        button_text={ctaData.button_text}
-        button_link={ctaData.button_link}
-        variant={ctaData.variant as 'primary' | 'secondary' | 'dark'}
-      />
+      <section class="cta-section fade-in-section">
+        <div class="container">
+          <h2 class="cta-title">{ctaData.title}</h2>
+          {ctaData.description && (
+            <p class="cta-description">{ctaData.description}</p>
+          )}
+          <a href={ctaData.button_link} class="cta-button">
+            {ctaData.button_text}
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </section>
     )}
   </main>
 
@@ -128,8 +218,306 @@ const ctaData = content?.cta || layout?.sections?.find((s: any) => s.type === 'c
 </Layout>
 
 <style>
-  .page-main {
+  /* ========================================
+     Apple-like 科技風樣式 - Event Template
+     ======================================== */
+
+  .event-template {
     min-height: 100vh;
     padding-top: 64px;
   }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .container-wide {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ----------------------------------------
+     Hero Section
+     ---------------------------------------- */
+  .hero-section {
+    position: relative;
+    width: 100%;
+    height: 56.25vw;
+    max-height: 500px;
+    min-height: 250px;
+    overflow: hidden;
+    background: var(--bg-tertiary);
+  }
+
+  .hero-picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.3) 100%);
+    pointer-events: none;
+  }
+
+  /* ----------------------------------------
+     Content Section
+     ---------------------------------------- */
+  .content-section {
+    padding: 64px 0;
+  }
+
+  .content-header {
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .content-title {
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin: 0 0 16px;
+  }
+
+  .content-lead {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .content-body {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text-primary);
+  }
+
+  .text-block {
+    margin-bottom: 32px;
+  }
+
+  .text-block:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Markdown Content Styling */
+  .content-body :global(h2) {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 48px 0 16px;
+  }
+
+  .content-body :global(h3) {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 32px 0 12px;
+  }
+
+  .content-body :global(p) {
+    margin: 0 0 16px;
+    color: var(--text-secondary);
+  }
+
+  .content-body :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .content-body :global(ul),
+  .content-body :global(ol) {
+    margin: 16px 0;
+    padding-left: 24px;
+    color: var(--text-secondary);
+  }
+
+  .content-body :global(li) {
+    margin-bottom: 8px;
+  }
+
+  .content-body :global(a) {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .content-body :global(a:hover) {
+    text-decoration: underline;
+  }
+
+  .content-body :global(strong) {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .content-body :global(blockquote) {
+    margin: 24px 0;
+    padding: 16px 24px;
+    border-left: 4px solid var(--accent);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  /* ----------------------------------------
+     Gallery Section
+     ---------------------------------------- */
+  .gallery-section {
+    padding: 64px 0;
+    background: var(--bg-secondary);
+  }
+
+  .gallery-title {
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--text-primary);
+    margin: 0 0 40px;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: 640px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: var(--bg-tertiary);
+  }
+
+  .gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .gallery-item:hover .gallery-image {
+    transform: scale(1.05);
+  }
+
+  /* ----------------------------------------
+     CTA Section
+     ---------------------------------------- */
+  .cta-section {
+    padding: 80px 0;
+    text-align: center;
+    background: var(--bg-tertiary);
+  }
+
+  .cta-title {
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin: 0 0 16px;
+  }
+
+  .cta-description {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 32px;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-size: 17px;
+    font-weight: 500;
+    color: white;
+    background: var(--accent);
+    border-radius: 980px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background: var(--accent-hover, var(--accent));
+    transform: scale(1.02);
+  }
+
+  .cta-button svg {
+    transition: transform 0.3s ease;
+  }
+
+  .cta-button:hover svg {
+    transform: translateX(4px);
+  }
+
+  /* ----------------------------------------
+     Fade-in Animation
+     ---------------------------------------- */
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ----------------------------------------
+     Dark Mode Support
+     ---------------------------------------- */
+  :global(.dark) .hero-overlay {
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.5) 100%);
+  }
 </style>
+
+<script>
+  // Intersection Observer for fade-in animation
+  document.addEventListener('DOMContentLoaded', () => {
+    const fadeElements = document.querySelectorAll('.fade-in-section');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    fadeElements.forEach((el) => observer.observe(el));
+  });
+</script>

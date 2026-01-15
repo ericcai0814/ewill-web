@@ -1,27 +1,29 @@
 ---
 /**
- * ProductPageTemplate.astro
+ * AboutPageTemplate.astro
  *
- * 產品頁面 Template（Apple-like 科技風）
- * 適用：logsec, acunetix, bitdefender, fortinet, ist, jennifer_apm 等
+ * 關於我們頁面 Template（Apple-like 科技風）
+ * 適用：about_us, esg
  *
  * 設計特點：
- * - 大面積留白
  * - 全幅 Hero 大圖
+ * - 企業價值展示
+ * - 里程碑時間軸
+ * - 認證展示
  * - 滾動淡入動畫
- * - 簡潔排版（一螢一訊息）
  *
  * 佈局結構（固定，不依賴 yml.layout.sections）：
  * 1. Hero Banner（全幅大圖）
- * 2. Product Intro（產品介紹）
- * 3. Feature Showcase（功能展示，左右交錯）
- * 4. CTA（行動呼籲）
+ * 2. Company Intro（公司簡介）
+ * 3. Core Values（核心價值）
+ * 4. Timeline（里程碑，如有）
+ * 5. Certifications（認證證書，如有）
+ * 6. CTA（行動呼籲）
  */
 import Layout from '../Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import { getAssetById } from '../../utils/content';
 import type { PageContent, AioData } from '../../utils/content';
 import type { JsonLdItem } from '../../components/SEO.astro';
 
@@ -45,42 +47,30 @@ function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
   if (!aioData) return [];
   const items: JsonLdItem[] = [];
   if (aioData.webpage) items.push({ type: 'WebPage', data: aioData.webpage });
-  if (aioData.product) items.push({ type: 'Product', data: aioData.product });
   return items;
 }
 
 const jsonLdItems = buildJsonLd(aio);
 
 // ============================================================================
-// 內容資料提取（向後兼容：優先 content，fallback 到 layout.sections）
+// 內容資料提取（向後兼容）
 // ============================================================================
 
 // Hero
 const heroData = content?.hero || layout?.hero;
 
-// Intro
-const introData = content?.intro || layout?.sections?.find((s: any) => s.type === 'product_intro');
+// Intro（公司簡介）- 從 text section 提取
+const introSection = content?.intro ||
+  layout?.sections?.find((s: any) => s.type === 'text');
 
-// Features
-const featuresRaw = content?.features || layout?.sections?.find((s: any) => s.type === 'feature_showcase')?.features || [];
+// Core Values（從 aio.organization_detail 提取）
+const coreValues = aio?.organization_detail?.core_values || [];
+
+// Certifications（從 aio.organization_detail 提取）
+const certifications = aio?.organization_detail?.certifications || [];
 
 // CTA
 const ctaData = content?.cta || layout?.sections?.find((s: any) => s.type === 'cta');
-
-// 解析 feature 圖片
-const featuresWithImages = await Promise.all(
-  featuresRaw.map(async (feature: any) => {
-    const asset = await getAssetById(feature.image_id);
-    return {
-      ...feature,
-      image: asset ? {
-        desktop: asset.variants.desktop,
-        mobile: asset.variants.mobile,
-        alt: asset.alt
-      } : null
-    };
-  })
-);
 
 // ============================================================================
 // SEO / LCP / OG
@@ -105,6 +95,14 @@ function getOgImageUrl(): string {
 }
 
 const ogImage = getOgImageUrl();
+
+// Icons for core values
+const valueIcons = [
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>`,
+];
 ---
 
 <Layout
@@ -117,7 +115,7 @@ const ogImage = getOgImageUrl();
 >
   <Header />
 
-  <main class="product-template">
+  <main class="about-template">
     <Breadcrumb items={breadcrumbItems} />
 
     <!-- ================================================================== -->
@@ -136,74 +134,72 @@ const ogImage = getOgImageUrl();
             decoding="async"
           />
         </picture>
-        {heroData.overlay && <div class="hero-overlay"></div>}
+        <div class="hero-overlay"></div>
       </section>
     )}
 
     <!-- ================================================================== -->
-    <!-- 2. PRODUCT INTRO - 產品介紹 -->
+    <!-- 2. COMPANY INTRO - 公司簡介 -->
     <!-- ================================================================== -->
-    {introData && (
+    {introSection && (
       <section class="intro-section fade-in-section">
         <div class="container">
-          {introData.label && (
-            <span class="intro-label">{introData.label}</span>
+          {introSection.label && (
+            <span class="intro-label">{introSection.label}</span>
           )}
-          <h1 class="intro-title">{introData.title}</h1>
-          {introData.subtitle && (
-            <p class="intro-subtitle">{introData.subtitle}</p>
-          )}
-          <div class="intro-description" set:html={introData.description} />
+          <h1 class="intro-title">{introSection.title || '關於我們'}</h1>
+          <div class="intro-content" set:html={introSection.content} />
         </div>
       </section>
     )}
 
     <!-- ================================================================== -->
-    <!-- 3. FEATURE SHOWCASE - 功能展示（左右交錯） -->
+    <!-- 3. CORE VALUES - 核心價值 -->
     <!-- ================================================================== -->
-    {featuresWithImages.length > 0 && (
-      <section class="features-section">
-        {featuresWithImages.map((feature, index) => (
-          <article
-            class:list={[
-              'feature-item fade-in-section',
-              index % 2 === 1 && 'feature-item--reversed'
-            ]}
-            data-feature-id={feature.id}
-          >
-            {feature.image && (
-              <div class="feature-image-wrapper">
-                <picture class="feature-picture">
-                  <source media="(min-width: 768px)" srcset={feature.image.desktop} />
-                  <source media="(max-width: 767px)" srcset={feature.image.mobile} />
-                  <img
-                    src={feature.image.desktop}
-                    alt={feature.image.alt}
-                    class="feature-image"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-              </div>
-            )}
-            <div class="feature-content">
-              <h2 class="feature-title">{feature.title}</h2>
-              <p class="feature-description">{feature.description}</p>
-              {feature.bullets && feature.bullets.length > 0 && (
-                <ul class="feature-bullets">
-                  {feature.bullets.map((bullet: string) => (
-                    <li class="feature-bullet">{bullet}</li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          </article>
-        ))}
+    {coreValues.length > 0 && (
+      <section class="values-section fade-in-section">
+        <div class="container-wide">
+          <h2 class="section-title">核心價值</h2>
+          <div class="values-grid">
+            {coreValues.map((value: any, index: number) => (
+              <article class="value-card">
+                <div class="value-icon" set:html={valueIcons[index % valueIcons.length]} />
+                <h3 class="value-title">{value.name}</h3>
+                <p class="value-description">{value.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
     )}
 
     <!-- ================================================================== -->
-    <!-- 4. CTA SECTION - 行動呼籲 -->
+    <!-- 4. CERTIFICATIONS - 認證證書 -->
+    <!-- ================================================================== -->
+    {certifications.length > 0 && (
+      <section class="certifications-section fade-in-section">
+        <div class="container-wide">
+          <h2 class="section-title">專業認證</h2>
+          <div class="certifications-grid">
+            {certifications.map((cert: any) => (
+              <article class="certification-card">
+                <div class="cert-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                  </svg>
+                </div>
+                <h3 class="cert-name">{cert.name}</h3>
+                {cert.issuer && <p class="cert-issuer">{cert.issuer}</p>}
+                {cert.level && <span class="cert-level">{cert.level}</span>}
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- ================================================================== -->
+    <!-- 5. CTA SECTION - 行動呼籲 -->
     <!-- ================================================================== -->
     {ctaData && (
       <section class="cta-section fade-in-section">
@@ -228,18 +224,32 @@ const ogImage = getOgImageUrl();
 
 <style>
   /* ========================================
-     Apple-like 科技風樣式
+     Apple-like 科技風樣式 - About Template
      ======================================== */
 
-  .product-template {
+  .about-template {
     min-height: 100vh;
-    padding-top: 64px; /* Header 高度 */
+    padding-top: 64px;
   }
 
   .container {
-    max-width: 980px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 0 24px;
+  }
+
+  .container-wide {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 600;
+    text-align: center;
+    color: var(--text-primary);
+    margin: 0 0 48px;
   }
 
   /* ----------------------------------------
@@ -248,9 +258,9 @@ const ogImage = getOgImageUrl();
   .hero-section {
     position: relative;
     width: 100%;
-    height: 56.25vw; /* 16:9 比例 */
-    max-height: 600px;
-    min-height: 300px;
+    height: 50vw;
+    max-height: 500px;
+    min-height: 280px;
     overflow: hidden;
     background: var(--bg-tertiary);
   }
@@ -271,7 +281,7 @@ const ogImage = getOgImageUrl();
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.3) 100%);
+    background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.4) 100%);
     pointer-events: none;
   }
 
@@ -287,145 +297,170 @@ const ogImage = getOgImageUrl();
     display: inline-block;
     font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 16px;
   }
 
   .intro-title {
-    font-size: clamp(28px, 5vw, 48px);
+    font-size: clamp(32px, 5vw, 52px);
     font-weight: 600;
     line-height: 1.1;
     color: var(--text-primary);
-    margin: 0 0 16px;
-  }
-
-  .intro-subtitle {
-    font-size: 21px;
-    font-weight: 500;
-    color: var(--accent);
     margin: 0 0 24px;
   }
 
-  .intro-description {
-    font-size: 17px;
-    line-height: 1.7;
+  .intro-content {
+    font-size: 18px;
+    line-height: 1.8;
     color: var(--text-secondary);
-    max-width: 680px;
+    max-width: 700px;
     margin: 0 auto;
-  }
-
-  .intro-description :global(p) {
-    margin: 0 0 16px;
-  }
-
-  .intro-description :global(p:last-child) {
-    margin-bottom: 0;
   }
 
   /* ----------------------------------------
-     Features Section
+     Values Section
      ---------------------------------------- */
-  .features-section {
-    padding: 40px 0;
+  .values-section {
+    padding: 80px 0;
+    background: var(--bg-secondary);
   }
 
-  .feature-item {
+  .values-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 60px 24px;
-    max-width: 1200px;
-    margin: 0 auto;
+    gap: 24px;
+  }
+
+  @media (min-width: 640px) {
+    .values-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .values-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .value-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .value-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+
+  .value-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 20px;
+    display: flex;
     align-items: center;
+    justify-content: center;
+    background: var(--accent);
+    border-radius: 14px;
+    color: white;
   }
 
-  @media (min-width: 768px) {
-    .feature-item {
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      padding: 100px 48px;
-    }
-
-    .feature-item--reversed {
-      direction: rtl;
-    }
-
-    .feature-item--reversed > * {
-      direction: ltr;
-    }
+  .value-icon :global(svg) {
+    width: 28px;
+    height: 28px;
   }
 
-  .feature-image-wrapper {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    background: var(--bg-tertiary);
-    aspect-ratio: 4 / 3;
-  }
-
-  .feature-picture {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  .feature-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-  }
-
-  .feature-item:hover .feature-image {
-    transform: scale(1.02);
-  }
-
-  .feature-content {
-    padding: 0;
-  }
-
-  .feature-title {
-    font-size: clamp(24px, 3vw, 32px);
+  .value-title {
+    font-size: 18px;
     font-weight: 600;
-    line-height: 1.2;
     color: var(--text-primary);
-    margin: 0 0 16px;
+    margin: 0 0 12px;
   }
 
-  .feature-description {
-    font-size: 17px;
-    line-height: 1.7;
+  .value-description {
+    font-size: 14px;
+    line-height: 1.6;
     color: var(--text-secondary);
     margin: 0;
   }
 
-  .feature-bullets {
-    list-style: none;
-    margin: 24px 0 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  /* ----------------------------------------
+     Certifications Section
+     ---------------------------------------- */
+  .certifications-section {
+    padding: 80px 0;
   }
 
-  .feature-bullet {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    font-size: 15px;
+  .certifications-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  @media (min-width: 640px) {
+    .certifications-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .certifications-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .certification-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .certification-card:hover {
+    border-color: var(--accent);
+  }
+
+  .cert-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 16px;
+    color: var(--accent);
+  }
+
+  .cert-icon :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  .cert-name {
+    font-size: 16px;
+    font-weight: 600;
     color: var(--text-primary);
+    margin: 0 0 8px;
   }
 
-  .feature-bullet::before {
-    content: '';
-    flex-shrink: 0;
-    width: 6px;
-    height: 6px;
-    margin-top: 8px;
-    background: var(--accent);
-    border-radius: 50%;
+  .cert-issuer {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0 0 8px;
+  }
+
+  .cert-level {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-light, rgba(var(--accent-rgb), 0.1));
+    padding: 4px 12px;
+    border-radius: 100px;
   }
 
   /* ----------------------------------------
@@ -434,7 +469,7 @@ const ogImage = getOgImageUrl();
   .cta-section {
     padding: 100px 0;
     text-align: center;
-    background: var(--bg-secondary);
+    background: var(--bg-tertiary);
   }
 
   .cta-title {
@@ -462,7 +497,7 @@ const ogImage = getOgImageUrl();
     font-weight: 500;
     color: white;
     background: var(--accent);
-    border-radius: 980px; /* Apple 風格大圓角 */
+    border-radius: 980px;
     text-decoration: none;
     transition: all 0.3s ease;
   }
@@ -498,10 +533,10 @@ const ogImage = getOgImageUrl();
      Dark Mode Support
      ---------------------------------------- */
   :global(.dark) .hero-overlay {
-    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.5) 100%);
+    background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.6) 100%);
   }
 
-  :global(.dark) .cta-section {
+  :global(.dark) .value-card {
     background: var(--bg-tertiary);
   }
 </style>
