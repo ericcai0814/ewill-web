@@ -1,6 +1,6 @@
 seo:
   title: 鎰威科技 × Dell Technologies 活動回顧 | 2025/10/21 - 鎰威科技
-  description: 鎰威科技與 Dell Technologies 聯合舉辦活動回顧。 分享企業 IT 基礎架構、虛擬化與資料保護最新趨勢， 協助企業建構現代化資料中心與混合雲環境。
+  description: 鎰威科技與 Dell Technologies 聯合舉辦活動回顧。分享企業 IT 基礎架構、虛擬化與資料保護最新趨勢，協助企業建構現代化資料中心與混合雲環境。
   keywords:
     - Dell Technologies
     - 鎰威科技活動
@@ -13,19 +13,37 @@ url_mapping:
   current_url: /event_20251021/
   old_url: /event_20251021/
   redirect: false
+aio:
+  webpage:
+    type: EventPage
+    name: 鎰威科技 × Dell Technologies 活動回顧
+    description: 鎰威科技與 Dell Technologies 聯合舉辦活動回顧。
+    breadcrumb:
+      type: BreadcrumbList
+      itemListElement:
+        - type: ListItem
+          position: 1
+          name: 首頁
+          item: /
+        - type: ListItem
+          position: 2
+          name: 活動資訊
+          item: /event_information/
+        - type: ListItem
+          position: 3
+          name: Dell Technologies 活動回顧
 layout:
+  hero:
+    type: hero_banner
+    image:
+      id: event_20251021_photo
+      desktop: event_20251021_photo
+      mobile: event_20251021_photo
+      alt: 鎰威科技 × Dell Technologies 活動現場照片
   sections:
     - type: text
-      content: |-
-        ---
-        crawled_at: '2026-01-13T11:55:14.154043+08:00'
-        source_url: https://www.ewill.com.tw/event_20251021/
-        ---
+      content: >-
+        ### 鎰威科技 × Dell Technologies 成功舉辦
 
-        # event_20251021 - 鎰威科技有限公司
-    - type: image
-      image_id: event_20251021_photo
-    - type: image
-      image_id: event_20251021_photo
-    - type: text
-      content: "### 鎰威科技 × Dell Technologies 成功舉辦"
+
+        鎰威科技與 Dell Technologies 聯合舉辦活動，分享企業 IT 基礎架構、虛擬化與資料保護最新趨勢，協助企業建構現代化資料中心與混合雲環境。

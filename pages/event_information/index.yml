@@ -11,7 +11,7 @@ seo:
     - 鎰威科技
 url_mapping:
   current_url: /event_information/
-  new_url: ""
+  new_url: ''
 layout:
   hero:
     image:
@@ -20,11 +20,6 @@ layout:
       mobile: bn_home_m
       alt: 活動訊息 - 專業·專注·專精
   sections:
-    - type: text
-      content: |-
-        # 活動訊息
-
-        鎰威科技最新活動訊息，包含資安與智慧製造研討會、線上 Webinar、產品發表會與產業合作新聞。
     - type: card_list
       label: Event Information
       title: 活動訊息

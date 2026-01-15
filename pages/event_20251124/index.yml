@@ -27,15 +27,14 @@ aio:
         - type: ListItem
           position: 1
           name: 首頁
-          item: https://www.ewill.com.tw/
+          item: /
         - type: ListItem
           position: 2
           name: 活動資訊
-          item: https://www.ewill.com.tw/events/
+          item: /event_information/
         - type: ListItem
           position: 3
           name: 免密碼身份防護
-          item: https://www.ewill.com.tw/events/passwordless-identity-protection/
   product:
     type: Product
     name: 免密碼零信任身份防護方案
@@ -74,15 +73,13 @@ content_summary:
     - 降低 IT 支援成本
 layout:
   hero:
+    type: hero_banner
     image:
       id: img
-  content_images:
-    - id: img
+      desktop: img
+      mobile: img
+      alt: GoTrust 動信與鎰威科技合作 - 免密碼零信任身份防護方案
   sections:
-    - type: image
-      image_id: img
-    - type: image
-      image_id: img
     - type: text
       content: >-
         ### 動信攜手鎰威科技　快速導入企業免密碼、零信任身份防護
