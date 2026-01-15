@@ -74,15 +74,13 @@ content_summary:
     - 降低 IT 支援成本
 layout:
   hero:
+    type: hero_banner
     image:
       id: img
-  content_images:
-    - id: img
+      desktop: img
+      mobile: img
+      alt: GoTrust 動信與鎰威科技合作 - 免密碼零信任身份防護方案
   sections:
-    - type: image
-      image_id: img
-    - type: image
-      image_id: img
     - type: text
       content: >-
         ### 動信攜手鎰威科技　快速導入企業免密碼、零信任身份防護
