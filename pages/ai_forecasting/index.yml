@@ -13,3 +13,42 @@ url_mapping:
   current_url: /ai_forecasting/
   old_url: /ai_forecasting/
   redirect: false
+aio:
+  webpage:
+    type: ProductPage
+    name: AI 數據分析預測
+    description: 鎰威科技 AI 數據分析預測解決方案，運用機器學習進行需求預測與銷售分析。
+    breadcrumb:
+      type: BreadcrumbList
+      itemListElement:
+        - type: ListItem
+          position: 1
+          name: 首頁
+          item: https://www.ewill.com.tw/
+        - type: ListItem
+          position: 2
+          name: 智慧製造
+          item: https://www.ewill.com.tw/smartmanufacturing_ai/
+        - type: ListItem
+          position: 3
+          name: AI 數據分析預測
+          item: https://www.ewill.com.tw/ai_forecasting/
+  product:
+    type: SoftwareApplication
+    name: AI 數據分析預測
+    applicationCategory: Predictive Analytics
+    operatingSystem: Cloud-based
+    description: 運用機器學習演算法進行需求預測、銷售趨勢分析與庫存優化。
+    features:
+      - 需求預測：運用時間序列分析預測產品需求趨勢
+      - 銷售分析：多維度分析銷售數據，發掘成長機會
+      - 庫存優化：智慧補貨建議，降低庫存成本
+      - 外部因素整合：結合天氣、節慶、市場趨勢等變數
+      - 視覺化儀表板：直覺式呈現預測結果與趨勢
+  faq:
+    - question: AI 預測分析的準確度如何？
+      answer: AI 預測準確度取決於歷史數據品質與數量。一般而言，經過適當訓練的模型可達到 85-95% 的預測準確率。系統會持續學習，隨著數據累積預測準確度會逐步提升。
+    - question: 需要多少歷史數據才能開始預測？
+      answer: 建議至少有 12-24 個月的歷史數據，以捕捉季節性變化。數據量越多、維度越豐富（如品項、通路、地區），預測模型的表現會越好。
+    - question: AI 預測可以整合哪些外部因素？
+      answer: 除了歷史銷售數據，AI 預測可整合天氣資料、節假日、促銷活動、市場指標、競爭對手動態等外部因素，提供更精準的預測結果。

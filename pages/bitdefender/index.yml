@@ -13,3 +13,42 @@ url_mapping:
   current_url: /bitdefender/
   old_url: /bitdefender/
   redirect: false
+aio:
+  webpage:
+    type: ProductPage
+    name: Bitdefender GravityZone 企業端點防護
+    description: Bitdefender GravityZone 企業端點防護平台，由鎰威科技提供代理與技術服務。
+    breadcrumb:
+      type: BreadcrumbList
+      itemListElement:
+        - type: ListItem
+          position: 1
+          name: 首頁
+          item: https://www.ewill.com.tw/
+        - type: ListItem
+          position: 2
+          name: 資訊安全解決方案
+          item: https://www.ewill.com.tw/solutions/
+        - type: ListItem
+          position: 3
+          name: Bitdefender
+          item: https://www.ewill.com.tw/bitdefender/
+  product:
+    type: SoftwareApplication
+    name: Bitdefender GravityZone
+    applicationCategory: Endpoint Detection and Response
+    operatingSystem: Windows, macOS, Linux
+    description: 新世代企業端點防護平台，整合預防、偵測、回應，全面防護端點、網路與雲端。
+    features:
+      - 分層式防護架構：整合機器學習、行為分析與沙箱技術
+      - EDR 端點偵測回應：即時偵測可疑活動並自動回應
+      - 勒索軟體防護：專利技術有效攔截加密行為
+      - 雲端管理主控台：單一介面管理所有端點安全
+      - 風險分析引擎：持續評估端點風險等級
+  faq:
+    - question: 什麼是 EDR 端點偵測回應？
+      answer: EDR（Endpoint Detection and Response）是一種端點安全技術，能持續監控端點活動、偵測可疑行為並提供自動化回應。Bitdefender GravityZone 的 EDR 功能可即時追蹤威脅來源，協助資安團隊快速調查與處置資安事件。
+    - question: Bitdefender 如何防護勒索軟體？
+      answer: Bitdefender 採用多層次防護機制，包含行為分析偵測加密行為、疫苗技術阻擋已知勒索家族，以及自動備份關鍵檔案。即使面對零日勒索攻擊，也能在加密開始前攔截威脅。
+    - question: GravityZone 支援哪些作業系統？
+      answer: Bitdefender GravityZone 支援 Windows、macOS、Linux 等主流作業系統，也支援虛擬化環境（VMware、Hyper-V、Citrix）與容器（Docker、Kubernetes），提供全面的端點防護覆蓋。

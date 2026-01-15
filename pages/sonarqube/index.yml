@@ -15,3 +15,42 @@ url_mapping:
   current_url: /sonarqube/
   old_url: /sonarqube/
   redirect: false
+aio:
+  webpage:
+    type: ProductPage
+    name: SonarQube 程式碼品質分析平台
+    description: SonarQube 程式碼品質與安全分析平台，由鎰威科技提供導入服務。
+    breadcrumb:
+      type: BreadcrumbList
+      itemListElement:
+        - type: ListItem
+          position: 1
+          name: 首頁
+          item: https://www.ewill.com.tw/
+        - type: ListItem
+          position: 2
+          name: 資訊安全解決方案
+          item: https://www.ewill.com.tw/solutions/
+        - type: ListItem
+          position: 3
+          name: SonarQube
+          item: https://www.ewill.com.tw/sonarqube/
+  product:
+    type: SoftwareApplication
+    name: SonarQube
+    applicationCategory: Code Quality and Security Analysis
+    operatingSystem: Cross-platform
+    description: 領先的程式碼品質與安全分析平台，支援 30+ 種程式語言的靜態分析。
+    features:
+      - 多語言支援：支援 Java、JavaScript、Python、C# 等 30+ 種語言
+      - 安全漏洞檢測：自動偵測 OWASP Top 10 安全漏洞
+      - 技術債務追蹤：量化程式碼技術債並提供修復建議
+      - CI/CD 整合：無縫整合 Jenkins、GitLab、GitHub Actions
+      - 品質閘門機制：確保只有符合標準的程式碼能進入生產環境
+  faq:
+    - question: 什麼是程式碼靜態分析？
+      answer: 程式碼靜態分析（SAST）是在不執行程式的情況下，分析原始碼以找出潛在問題。SonarQube 可自動檢測安全漏洞、程式碼異味、技術債務與潛在錯誤，幫助開發團隊提升程式碼品質。
+    - question: SonarQube 可以檢測哪些安全問題？
+      answer: SonarQube 可檢測 OWASP Top 10 安全漏洞，包含 SQL Injection、XSS 跨站腳本、敏感資料洩露、安全設定錯誤等。也支援 CWE、SANS Top 25 等安全標準的合規檢查。
+    - question: 如何將 SonarQube 整合到開發流程？
+      answer: SonarQube 提供完整的 CI/CD 整合支援，可透過 Jenkins、GitLab CI、GitHub Actions、Azure DevOps 等工具自動執行分析。開發人員提交程式碼後即可自動掃描，並透過品質閘門阻擋不合格的程式碼。

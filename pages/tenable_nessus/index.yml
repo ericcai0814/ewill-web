@@ -15,3 +15,42 @@ url_mapping:
   current_url: /tenable_nessus/
   old_url: /tenable_nessus/
   redirect: false
+aio:
+  webpage:
+    type: ProductPage
+    name: Tenable Nessus 弱點掃描器
+    description: Tenable Nessus 弱點掃描工具，由鎰威科技提供代理與技術服務。
+    breadcrumb:
+      type: BreadcrumbList
+      itemListElement:
+        - type: ListItem
+          position: 1
+          name: 首頁
+          item: https://www.ewill.com.tw/
+        - type: ListItem
+          position: 2
+          name: 資訊安全解決方案
+          item: https://www.ewill.com.tw/solutions/
+        - type: ListItem
+          position: 3
+          name: Tenable Nessus
+          item: https://www.ewill.com.tw/tenable_nessus/
+  product:
+    type: SoftwareApplication
+    name: Tenable Nessus
+    applicationCategory: Vulnerability Scanner
+    operatingSystem: Windows, Linux, macOS
+    description: 業界領先的弱點掃描工具，支援超過 75,000 種 CVE 漏洞檢測。
+    features:
+      - 廣泛漏洞覆蓋：支援 75,000+ 種 CVE 漏洞檢測
+      - 合規稽核：內建 PCI DSS、HIPAA、SOX 等合規範本
+      - 資產自動探索：自動發現網路中的 IT 資產
+      - 優先排序：依據風險等級排列修補優先順序
+      - 報表整合：視覺化儀表板與自訂報表匯出
+  faq:
+    - question: 什麼是弱點掃描？
+      answer: 弱點掃描是自動化檢測 IT 系統安全漏洞的過程。Tenable Nessus 可掃描網路設備、伺服器、作業系統、資料庫等，找出已知的 CVE 漏洞，並提供修補建議與風險評估。
+    - question: Nessus 可以掃描哪些類型的設備？
+      answer: Nessus 支援廣泛的掃描範圍，包含 Windows/Linux 伺服器、網路設備（路由器、交換器、防火牆）、虛擬化平台、雲端資源、資料庫、Web 應用程式，以及 SCADA/ICS 工控系統。
+    - question: 多久應該執行一次弱點掃描？
+      answer: 建議至少每月執行一次完整掃描，並在系統變更、新設備上線或發現重大漏洞時進行臨時掃描。對於關鍵系統，建議每週甚至每日執行掃描，以確保及時發現新漏洞。

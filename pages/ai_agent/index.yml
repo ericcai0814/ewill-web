@@ -13,3 +13,42 @@ url_mapping:
   current_url: /ai_agent/
   old_url: /ai_agent/
   redirect: false
+aio:
+  webpage:
+    type: ProductPage
+    name: AI Agent 智慧代理解決方案
+    description: 鎰威科技 AI Agent 智慧代理解決方案，運用生成式 AI 實現企業自動化。
+    breadcrumb:
+      type: BreadcrumbList
+      itemListElement:
+        - type: ListItem
+          position: 1
+          name: 首頁
+          item: https://www.ewill.com.tw/
+        - type: ListItem
+          position: 2
+          name: 智慧製造
+          item: https://www.ewill.com.tw/smartmanufacturing_ai/
+        - type: ListItem
+          position: 3
+          name: AI Agent
+          item: https://www.ewill.com.tw/ai_agent/
+  product:
+    type: SoftwareApplication
+    name: AI Agent
+    applicationCategory: Artificial Intelligence Solution
+    operatingSystem: Cloud-based
+    description: 運用生成式 AI 技術的智慧代理解決方案，自動化執行複雜業務流程。
+    features:
+      - 生成式 AI 引擎：整合 LLM 大型語言模型，理解自然語言指令
+      - 流程自動化：自動執行跨系統的複雜業務流程
+      - 知識庫整合：連結企業內部文件與資料庫
+      - 多輪對話：支援上下文理解的互動式對話
+      - API 整合：無縫串接現有企業系統
+  faq:
+    - question: 什麼是 AI Agent？
+      answer: AI Agent 是運用生成式 AI 技術的智慧代理系統，可以理解自然語言指令，自主規劃並執行複雜任務。不同於傳統 RPA，AI Agent 具備推理能力，能處理非結構化的業務流程。
+    - question: AI Agent 可以應用在哪些場景？
+      answer: AI Agent 可應用於智慧客服、文件分析、報表生成、資料查詢、流程審批等場景。例如自動回覆客戶問題、分析合約條款、彙整多系統數據產出報表等。
+    - question: 導入 AI Agent 需要什麼條件？
+      answer: 導入 AI Agent 需要明確的業務流程定義、相關系統的 API 串接權限，以及訓練用的企業知識庫。鎰威科技提供完整的導入顧問服務，協助企業評估與規劃 AI Agent 應用。

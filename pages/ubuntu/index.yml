@@ -15,3 +15,42 @@ url_mapping:
   current_url: /ubuntu/
   old_url: /ubuntu/
   redirect: false
+aio:
+  webpage:
+    type: ProductPage
+    name: Ubuntu 企業級 Linux
+    description: Ubuntu 企業級 Linux 解決方案，由鎰威科技提供 Canonical 官方支援服務。
+    breadcrumb:
+      type: BreadcrumbList
+      itemListElement:
+        - type: ListItem
+          position: 1
+          name: 首頁
+          item: https://www.ewill.com.tw/
+        - type: ListItem
+          position: 2
+          name: 系統服務
+          item: https://www.ewill.com.tw/services/
+        - type: ListItem
+          position: 3
+          name: Ubuntu
+          item: https://www.ewill.com.tw/ubuntu/
+  product:
+    type: SoftwareApplication
+    name: Ubuntu
+    applicationCategory: Operating System
+    operatingSystem: Linux
+    description: 全球市佔率最高的伺服器作業系統，由 Canonical 提供企業級支援。
+    features:
+      - 長期支援版本：LTS 版本提供 5 年安全更新，Pro 延長至 10 年
+      - 雲端原生：AWS、Azure、GCP 首選 Linux 發行版
+      - 容器支援：原生支援 Docker、Kubernetes、LXD
+      - 安全強化：AppArmor、Livepatch 即時安全修補
+      - 企業支援：Canonical 官方技術支援與諮詢服務
+  faq:
+    - question: 為什麼選擇 Ubuntu 作為企業伺服器？
+      answer: Ubuntu 是全球最受歡迎的 Linux 發行版，伺服器市佔率超過 45%。具備穩定性高、安全更新及時、社群資源豐富等優勢。Canonical 提供官方企業支援，確保關鍵系統獲得專業服務。
+    - question: Ubuntu LTS 與一般版本有何不同？
+      answer: Ubuntu LTS（Long Term Support）版本每兩年發布一次，提供 5 年免費安全更新。Ubuntu Pro 訂閱可延長支援至 10 年，適合企業關鍵系統使用。一般版本僅提供 9 個月支援。
+    - question: 什麼是 Ubuntu Pro？
+      answer: Ubuntu Pro 是 Canonical 提供的企業訂閱服務，包含 10 年安全更新、Livepatch 即時核心修補、FIPS 合規模組、CIS 安全基準，以及 24/7 技術支援。適合對安全與合規有高要求的企業。

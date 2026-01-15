@@ -15,3 +15,42 @@ url_mapping:
   current_url: /proxmox_ve/
   old_url: /proxmox_ve/
   redirect: false
+aio:
+  webpage:
+    type: ProductPage
+    name: Proxmox VE 企業虛擬化平台
+    description: Proxmox VE 企業虛擬化解決方案，由鎰威科技提供導入與技術服務。
+    breadcrumb:
+      type: BreadcrumbList
+      itemListElement:
+        - type: ListItem
+          position: 1
+          name: 首頁
+          item: https://www.ewill.com.tw/
+        - type: ListItem
+          position: 2
+          name: 系統服務
+          item: https://www.ewill.com.tw/services/
+        - type: ListItem
+          position: 3
+          name: Proxmox VE
+          item: https://www.ewill.com.tw/proxmox_ve/
+  product:
+    type: SoftwareApplication
+    name: Proxmox VE
+    applicationCategory: Server Virtualization Platform
+    operatingSystem: Linux (Debian-based)
+    description: 開源企業級虛擬化平台，整合 KVM 虛擬機與 LXC 容器管理。
+    features:
+      - KVM 虛擬化：完整硬體虛擬化，支援 Windows、Linux 等作業系統
+      - LXC 容器：輕量級容器技術，高效能應用部署
+      - ZFS 儲存：企業級軟體定義儲存，支援快照與複製
+      - 高可用叢集：自動故障轉移，確保服務不中斷
+      - Web 管理介面：直覺式網頁管理，無需額外客戶端
+  faq:
+    - question: Proxmox VE 是什麼？
+      answer: Proxmox VE（Virtual Environment）是開源的企業級虛擬化平台，整合 KVM 虛擬機與 LXC 容器技術。透過網頁介面即可管理虛擬機、儲存與網路，是 VMware 的優質替代方案。
+    - question: Proxmox VE 與 VMware 有何不同？
+      answer: Proxmox VE 是開源軟體，無需授權費用；採用 KVM 虛擬化技術，效能與穩定性俱佳；內建 ZFS 儲存與 Ceph 分散式儲存支援；網頁管理介面直覺易用，大幅降低企業虛擬化成本。
+    - question: Proxmox VE 支援哪些儲存類型？
+      answer: Proxmox VE 支援本機儲存（LVM、ZFS、目錄）、網路儲存（iSCSI、NFS、Ceph、GlusterFS）及雲端儲存整合。內建的 ZFS 提供資料完整性保護、快照與壓縮等進階功能。

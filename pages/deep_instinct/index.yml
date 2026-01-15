@@ -13,3 +13,42 @@ url_mapping:
   current_url: /deep_instinct/
   old_url: /deep_instinct/
   redirect: false
+aio:
+  webpage:
+    type: ProductPage
+    name: Deep Instinct 深度學習防護
+    description: Deep Instinct 深度學習資安防護平台，由鎰威科技提供代理與技術服務。
+    breadcrumb:
+      type: BreadcrumbList
+      itemListElement:
+        - type: ListItem
+          position: 1
+          name: 首頁
+          item: https://www.ewill.com.tw/
+        - type: ListItem
+          position: 2
+          name: 資訊安全解決方案
+          item: https://www.ewill.com.tw/solutions/
+        - type: ListItem
+          position: 3
+          name: Deep Instinct
+          item: https://www.ewill.com.tw/deep_instinct/
+  product:
+    type: SoftwareApplication
+    name: Deep Instinct
+    applicationCategory: Deep Learning Cybersecurity
+    operatingSystem: Windows, macOS, Linux, Android, iOS
+    description: 全球首個採用深度學習技術的資安防護平台，執行前預測並攔截惡意程式。
+    features:
+      - 深度學習引擎：運用神經網路演算法預測未知威脅
+      - 執行前攔截：在惡意程式執行前即可偵測並阻擋
+      - 超低誤報率：深度學習模型精準度高達 99% 以上
+      - 零日攻擊防護：無需特徵碼即可辨識新型威脅
+      - 輕量級代理：極低系統資源佔用，不影響效能
+  faq:
+    - question: 什麼是深度學習資安防護？
+      answer: 深度學習資安防護運用人工智慧神經網路技術，透過大量惡意程式樣本訓練模型，使其能夠預測並辨識從未見過的新型威脅。與傳統特徵碼比對不同，Deep Instinct 可在惡意程式執行前即偵測出威脅意圖。
+    - question: Deep Instinct 與傳統防毒軟體有何不同？
+      answer: 傳統防毒依賴特徵碼資料庫比對已知威脅，而 Deep Instinct 採用深度學習預測模型，可辨識零日攻擊與變種惡意程式。反應時間從數小時縮短至毫秒等級，且誤報率極低。
+    - question: Deep Instinct 能防護哪些威脅？
+      answer: Deep Instinct 可防護各類惡意程式，包含勒索軟體、木馬程式、蠕蟲、無檔案攻擊、腳本型攻擊、APT 進階持續威脅等，涵蓋 Windows、macOS、Linux 及行動裝置平台。

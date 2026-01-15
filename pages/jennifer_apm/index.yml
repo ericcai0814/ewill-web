@@ -13,3 +13,42 @@ url_mapping:
   current_url: /jennifer_apm/
   old_url: /jennifer_apm/
   redirect: false
+aio:
+  webpage:
+    type: ProductPage
+    name: Jennifer APM 應用效能監控
+    description: Jennifer APM 應用效能監控平台，由鎰威科技提供代理與技術服務。
+    breadcrumb:
+      type: BreadcrumbList
+      itemListElement:
+        - type: ListItem
+          position: 1
+          name: 首頁
+          item: https://www.ewill.com.tw/
+        - type: ListItem
+          position: 2
+          name: 智慧製造
+          item: https://www.ewill.com.tw/smartmanufacturing_ai/
+        - type: ListItem
+          position: 3
+          name: Jennifer APM
+          item: https://www.ewill.com.tw/jennifer_apm/
+  product:
+    type: SoftwareApplication
+    name: Jennifer APM
+    applicationCategory: Application Performance Monitoring
+    operatingSystem: Java, .NET, Node.js, PHP
+    description: 即時應用效能監控平台，追蹤交易效能並自動偵測異常事件。
+    features:
+      - 即時交易追蹤：端對端追蹤每筆交易的效能瓶頸
+      - 應用拓撲分析：視覺化呈現應用程式相依關係
+      - 異常偵測告警：自動偵測效能異常並發送警報
+      - 資料庫效能監控：SQL 執行效能分析與優化建議
+      - 程式碼級診斷：深入方法層級的效能問題定位
+  faq:
+    - question: 什麼是 APM 應用效能監控？
+      answer: APM（Application Performance Monitoring）是監控應用程式效能的技術，可即時追蹤交易回應時間、錯誤率、吞吐量等指標。Jennifer APM 協助 IT 團隊快速定位效能問題，確保系統穩定運行。
+    - question: Jennifer APM 支援哪些應用程式平台？
+      answer: Jennifer APM 支援 Java、.NET、Node.js、PHP 等主流開發平台，可監控 Web 應用、微服務架構與容器化環境。透過輕量級代理程式收集效能數據，對應用影響極小。
+    - question: APM 與 Log 監控有何不同？
+      answer: Log 監控著重於日誌分析與搜尋，適合故障排查；APM 聚焦於應用效能追蹤，提供交易層級的效能分析。兩者互補使用，APM 定位問題範圍，Log 提供詳細診斷資訊。

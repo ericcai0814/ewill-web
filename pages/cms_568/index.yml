@@ -13,3 +13,42 @@ url_mapping:
   current_url: /cms_568/
   old_url: /cms_568/
   redirect: false
+aio:
+  webpage:
+    type: ProductPage
+    name: 承攬商管理系統 CMS 568
+    description: 鎰威科技承攬商管理系統 CMS 568，符合勞動部職安法規要求。
+    breadcrumb:
+      type: BreadcrumbList
+      itemListElement:
+        - type: ListItem
+          position: 1
+          name: 首頁
+          item: https://www.ewill.com.tw/
+        - type: ListItem
+          position: 2
+          name: 智慧製造
+          item: https://www.ewill.com.tw/smartmanufacturing_ai/
+        - type: ListItem
+          position: 3
+          name: 承攬商管理系統
+          item: https://www.ewill.com.tw/cms_568/
+  product:
+    type: SoftwareApplication
+    name: CMS 568 承攬商管理系統
+    applicationCategory: Contractor Management System
+    operatingSystem: Cloud / On-premise
+    description: 符合勞動部職安法規的承攬商管理系統，數位化管理承攬商合規與進出場。
+    features:
+      - 承攬商資格審查：自動檢核證照、保險、訓練等資格文件
+      - 人員進出場管理：即時掌握廠區人員動態
+      - 安全教育訓練：線上訓練課程與測驗管理
+      - 工安稽核紀錄：數位化稽核表單與缺失追蹤
+      - 合規報表：自動產出符合法規要求的報表
+  faq:
+    - question: 什麼是職業安全衛生法的承攬商管理要求？
+      answer: 依據職安法規定，事業單位對承攬商負有告知義務、協調義務與巡視義務。CMS 568 系統協助企業落實法規要求，包含危害告知、安全教育、工作許可、進出場管控等管理機制。
+    - question: CMS 568 如何幫助降低職災風險？
+      answer: CMS 568 透過嚴格的資格審查確保承攬商具備專業能力，安全教育訓練提升人員風險意識，進出場管控掌握廠區人員動態，工安稽核及時發現並改善危害因素，多管齊下降低職災發生機率。
+    - question: 導入 CMS 568 需要多久時間？
+      answer: 基本功能約 1-2 個月可上線，完整功能含客製化需求約 3-6 個月。鎰威科技提供顧問輔導服務，協助企業梳理現有流程、建立系統架構並完成人員訓練。
