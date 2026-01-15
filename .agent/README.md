@@ -28,6 +28,7 @@
 | [refactor-event-information-page.md](./tasks/refactor-event-information-page.md) | ✅ 活動訊息頁面重構 |
 | [content-consistency-audit.md](./tasks/content-consistency-audit.md) | ✅ 內容一致性稽核任務 |
 | [content-consistency-audit-report.md](./tasks/content-consistency-audit-report.md) | 📊 內容一致性稽核報告 |
+| [layout-separation-plan.md](./tasks/layout-separation-plan.md) | 📋 佈局分離計畫（md/yml 職責釐清） |
 | [website-validation-react-src.md](./tasks/website-validation-react-src.md) | React 驗證網站實作記錄 |
 
 ### tasks/specs/ 子目錄

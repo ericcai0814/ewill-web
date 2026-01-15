@@ -4,11 +4,11 @@
 
 ## 狀態總覽
 
-- **最後更新時間**: 2026-01-14
-- **目前階段**: Astro 元件開發完成，支援 12 種 Section 類型動態渲染
+- **最後更新時間**: 2026-01-15
+- **目前階段**: Astro 元件開發完成，支援 12 種 Section 類型動態渲染，新增 Data Service 架構
 - **專案類型**: 網站內容庫 (Content Repository) + Astro SSG 靜態網站
 - **前端技術**: Astro 5.x + TypeScript + Tailwind CSS
-- **頁面數量**: 38 個頁面（content-build 輸出）
+- **頁面數量**: 38 個頁面目錄（content-build 輸出）
 - **圖片覆蓋率**: 231 張圖片，全部 100% 有 `.yml` 描述檔
 - **圖片結構**: 所有頁面圖片統一存放於 `pages/{page}/assets/`
 - **設計規範**: [DESIGN_GUIDELINE.md](./DESIGN_GUIDELINE.md) 定義品牌視覺規範
