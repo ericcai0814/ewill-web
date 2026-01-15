@@ -122,7 +122,7 @@ const valueIcons = [
     <!-- ================================================================== -->
     <!-- 2. COMPANY INTRO -->
     <!-- ================================================================== -->
-    <section class="intro-section fade-in-section">
+    <section id="about_us" class="intro-section fade-in-section scroll-target">
       <div class="container">
         <span class="intro-label">{introData.label}</span>
         <h1 class="intro-title">{introData.title}</h1>
@@ -131,9 +131,9 @@ const valueIcons = [
     </section>
 
     <!-- ================================================================== -->
-    <!-- 3. CORE VALUES -->
+    <!-- 3. CORE VALUES (Milestones) -->
     <!-- ================================================================== -->
-    <section class="values-section fade-in-section">
+    <section id="milestones" class="values-section fade-in-section scroll-target">
       <div class="container-wide">
         <h2 class="section-title">核心價值</h2>
         <div class="values-grid">
@@ -151,7 +151,7 @@ const valueIcons = [
     <!-- ================================================================== -->
     <!-- 4. CERTIFICATIONS -->
     <!-- ================================================================== -->
-    <section class="certifications-section fade-in-section">
+    <section id="certification" class="certifications-section fade-in-section scroll-target">
       <div class="container-wide">
         <h2 class="section-title">專業認證</h2>
         <div class="certifications-grid">
@@ -199,6 +199,11 @@ const valueIcons = [
   .about-template {
     min-height: 100vh;
     padding-top: 64px;
+  }
+
+  /* Scroll target offset for fixed header */
+  .scroll-target {
+    scroll-margin-top: 80px;
   }
 
   .container {
