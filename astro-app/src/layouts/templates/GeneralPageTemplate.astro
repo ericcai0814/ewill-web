@@ -2,14 +2,13 @@
 /**
  * GeneralPageTemplate.astro
  *
- * 一般頁面固定佈局 Template
+ * 一般頁面 Template
  * 適用：about_us, services, solutions, esg
  *
  * 佈局結構：
  * 1. Hero Banner
- * 2. Anchor Nav + Sections（錨點導航）
- * 3. Text/Image Sections
- * 4. CTA
+ * 2. Sections（按 yml 原始順序渲染 text/image/anchor）
+ * 3. CTA
  */
 import Layout from '../Layout.astro';
 import Header from '../../components/Header.astro';
@@ -62,15 +61,12 @@ const ogImage = seo.og_image
 
 // 內容資料
 const heroData = content?.hero || layout?.hero;
-const anchorSections = content?.anchors || layout?.sections?.filter((s: any) => s.type === 'anchor') || [];
-const textSections = content?.texts || layout?.sections?.filter((s: any) => s.type === 'text') || [];
-const imageSections = content?.images || layout?.sections?.filter((s: any) => s.type === 'image') || [];
-const ctaData = content?.cta || layout?.sections?.find((s: any) => s.type === 'cta');
 
-// 合併 text 和 image sections 並保持原始順序
-const contentSections = layout?.sections?.filter((s: any) =>
-  s.type === 'text' || s.type === 'image'
-) || [];
+// 保持原始順序：取得所有非 CTA 的 sections
+const allSections = layout?.sections?.filter((s: any) => s.type !== 'cta') || [];
+
+// CTA 單獨處理（放最後）
+const ctaData = content?.cta || layout?.sections?.find((s: any) => s.type === 'cta');
 ---
 
 <Layout
@@ -95,18 +91,8 @@ const contentSections = layout?.sections?.filter((s: any) =>
       />
     )}
 
-    <!-- 2. Anchor Sections -->
-    {anchorSections.map((section: any) => (
-      <AnchorSection
-        id={section.id}
-        title={section.title || ''}
-        description={section.description}
-        cards={section.cards}
-      />
-    ))}
-
-    <!-- 3. Text/Image Sections（保持順序）-->
-    {contentSections.map((section: LayoutSection) => {
+    <!-- 2. All Sections（保持 yml 原始順序）-->
+    {allSections.map((section: LayoutSection) => {
       if (section.type === 'text' && section.content) {
         return (
           <TextSection
@@ -122,10 +108,20 @@ const contentSections = layout?.sections?.filter((s: any) =>
           <ImageSection image_id={section.image_id} display={section.display} />
         );
       }
+      if (section.type === 'anchor') {
+        return (
+          <AnchorSection
+            id={section.id}
+            title={section.title || ''}
+            description={section.description}
+            cards={section.cards}
+          />
+        );
+      }
       return null;
     })}
 
-    <!-- 4. CTA -->
+    <!-- 3. CTA -->
     {ctaData && (
       <CTASection
         title={ctaData.title || ''}

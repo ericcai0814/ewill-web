@@ -21,6 +21,7 @@ import Layout from '../Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
+import CardListSection from '../../components/CardListSection.astro';
 import { getAssetById } from '../../utils/content';
 import type { PageContent, AioData } from '../../utils/content';
 import type { JsonLdItem } from '../../components/SEO.astro';
@@ -68,6 +69,10 @@ const galleryData = content?.gallery ||
 
 // CTA
 const ctaData = content?.cta || layout?.sections?.find((s: any) => s.type === 'cta');
+
+// Card List（活動列表頁）
+const cardListData = layout?.sections?.find((s: any) => s.type === 'card_list');
+const isEventListPage = !!cardListData;
 
 // 解析 gallery 圖片
 let galleryImages: any[] = [];
@@ -155,7 +160,7 @@ const ogImage = getOgImageUrl();
           )}
         </header>
 
-        {textSections.length > 0 && (
+        {!isEventListPage && textSections.length > 0 && (
           <div class="content-body">
             {textSections.map((section: any) => (
               <div class="text-block" set:html={section.content} />
@@ -164,6 +169,19 @@ const ogImage = getOgImageUrl();
         )}
       </div>
     </article>
+
+    <!-- ================================================================== -->
+    <!-- 2b. EVENT LIST - 活動卡片列表（活動列表頁專用）-->
+    <!-- ================================================================== -->
+    {isEventListPage && cardListData && (
+      <CardListSection
+        label={cardListData.label}
+        title={cardListData.title}
+        description={cardListData.description}
+        columns={cardListData.columns || 3}
+        cards={cardListData.cards}
+      />
+    )}
 
     <!-- ================================================================== -->
     <!-- 3. GALLERY - 相簿 -->
