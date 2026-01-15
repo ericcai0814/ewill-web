@@ -34,6 +34,64 @@
 - **AI Agent**：負責套版、排版、生成變體
 - **人類**：最後挑選、決策
 
+### Template 獨立性原則
+
+```
+❌ 舊做法：Template 讀取 yml.layout.sections，動態渲染
+   → Template 依賴 yml 結構，yml 變就壞
+
+✅ 新做法：Template 是獨立設計，只從 yml 取內容資料
+   → Template 和 yml 各司其職，互不干擾
+```
+
+**關鍵差異**：
+- Template 內部寫死要用哪些 Section Components
+- yml 只提供「資料」（文字、圖片 ID、連結）
+- Template 決定「如何排版」
+
+---
+
+## 〇.五、設計方向
+
+### 視覺風格：科技風、現代風
+
+**參考對象**：Apple Store 網站
+
+| 特徵 | 說明 |
+|------|------|
+| **大面積留白** | 內容聚焦，不擁擠 |
+| **高品質大圖** | Hero 區塊使用全幅圖片 |
+| **簡潔排版** | 一螢一訊息，垂直流暢 |
+| **微動效** | 滾動淡入、hover 回饋 |
+| **中性配色** | 黑白灰為主，accent 點綴 |
+
+### 排版模式
+
+```
+┌─────────────────────────────────────┐
+│           HERO（全幅大圖）           │
+│         標題 + 副標題 + CTA          │
+├─────────────────────────────────────┤
+│                                     │
+│     INTRO（產品/服務簡介區塊）        │
+│           置中或左對齊               │
+│                                     │
+├─────────────────────────────────────┤
+│                                     │
+│     FEATURES（左右交錯圖文）          │
+│                                     │
+│     [圖]  文字說明                   │
+│     文字說明  [圖]                   │
+│     [圖]  文字說明                   │
+│                                     │
+├─────────────────────────────────────┤
+│                                     │
+│     CTA（行動呼籲）                   │
+│     簡潔文案 + 按鈕                  │
+│                                     │
+└─────────────────────────────────────┘
+```
+
 ---
 
 ## 一、目標
@@ -61,13 +119,64 @@
 
 | Template | 適用頁面 | 佈局結構 |
 |----------|----------|----------|
-| **HomePage** | index | Hero + CardList + CTA |
-| **ProductPage** | 產品頁、智慧製造（25 頁） | Hero + ProductIntro + FeatureShowcase + CTA |
-| **EventPage** | 活動頁（5 頁） | Hero + Carousel/Text + CTA |
-| **GeneralPage** | about_us, services, solutions, esg | Hero + Anchor/Text + CTA |
-| **ContactPage** | contact | Hero + ContactForm |
+| **HomeTemplate** | index | Hero + CardList + CTA |
+| **ProductTemplate** | 資安產品（10 頁） | Hero + ProductIntro + FeatureShowcase + CTA |
+| **SolutionTemplate** | 智慧製造、解決方案（7 頁） | Hero + SolutionOverview + BenefitGrid + CTA |
+| **ServiceTemplate** | 服務頁（1 頁） | Hero + ServiceList + ProcessFlow + CTA |
+| **EventTemplate** | 活動頁（5 頁） | Hero + EventInfo + Gallery + CTA |
+| **AboutTemplate** | about_us, esg | Hero + Timeline/Mission + TeamGrid + CTA |
+| **ContactTemplate** | contact | Hero + ContactForm + LocationMap |
 
-**共 5 種 Template**
+**共 7 種 Template**
+
+### 2.3 頁面與 Template 對應
+
+| 頁面 | Template | 備註 |
+|------|----------|------|
+| **首頁** | | |
+| index | HomeTemplate | |
+| **資安產品** | | |
+| logsec | ProductTemplate | |
+| acunetix | ProductTemplate | |
+| bitdefender | ProductTemplate | |
+| fortinet | ProductTemplate | |
+| ist | ProductTemplate | |
+| jennifer_apm | ProductTemplate | |
+| palo_alto | ProductTemplate | |
+| security_scorecard | ProductTemplate | |
+| tenable_nessus | ProductTemplate | |
+| vicarius_vrx | ProductTemplate | |
+| **智慧製造** | | |
+| aps | SolutionTemplate | |
+| cms_568 | SolutionTemplate | |
+| mes | SolutionTemplate | |
+| scm | SolutionTemplate | |
+| wms | SolutionTemplate | |
+| smartmanufacturing_ai | SolutionTemplate | |
+| **其他解決方案** | | |
+| solutions | SolutionTemplate | |
+| proxmox_ve | ProductTemplate | 或 SolutionTemplate |
+| sonarqube | ProductTemplate | |
+| ubuntu | ProductTemplate | |
+| vmware | ProductTemplate | |
+| array | ProductTemplate | |
+| deep_instinct | ProductTemplate | |
+| ai_agent | ProductTemplate | |
+| ai_forecasting | ProductTemplate | |
+| data_middleware | ProductTemplate | |
+| **活動** | | |
+| event_information | EventTemplate | |
+| event_20251021 | EventTemplate | |
+| event_20251118 | EventTemplate | |
+| event_20251119 | EventTemplate | |
+| event_20251124 | EventTemplate | |
+| **關於/ESG** | | |
+| about_us | AboutTemplate | |
+| esg | AboutTemplate | |
+| **服務** | | |
+| services | ServiceTemplate | |
+| **聯絡** | | |
+| contact | ContactTemplate | |
 
 ---
 
@@ -212,34 +321,104 @@ const { content } = Astro.props
 
 ## 六、遷移計畫
 
-### Phase 1：建立 Template 架構
+### Phase 1：建立 Template 架構 ✅ 已完成
 
-1. 建立 5 個 Template 檔案
-2. 調整 Astro routing 支援 Template 選擇
-3. 不動現有 yml，先跑通流程
+1. ✅ 建立 5 個 Template 檔案（暫時版本）
+2. ✅ 建立 TemplateRenderer 路由分發
+3. ✅ 調整 Astro routing 支援 Template 選擇
+4. ✅ logsec 試點頁面加入 `template: product`
 
-### Phase 2：試點遷移（選 3 頁）
+**Commit**: `7d5cc91 feat(layout): 建立 Template 架構實現佈局分離 (Phase 1)`
 
-1. **logsec**（產品頁代表）
-2. **event_20251124**（活動頁代表）
-3. **about_us**（一般頁代表）
+### Phase 2：設計獨立 Template（科技風/Apple-like）
 
-調整這 3 頁的 yml 結構，驗證 Template 正確運作。
+**目標**：建立真正獨立於 yml.layout.sections 的 Template
+
+1. **ProductTemplate** - 資安產品頁
+   - Hero（全幅大圖 + 標題）
+   - ProductIntro（產品簡介）
+   - FeatureShowcase（左右交錯圖文）
+   - CTA（行動呼籲）
+
+2. **SolutionTemplate** - 智慧製造/解決方案
+   - Hero
+   - SolutionOverview
+   - BenefitGrid（優勢網格）
+   - CTA
+
+3. **EventTemplate** - 活動頁
+   - Hero
+   - EventInfo（活動資訊）
+   - Gallery（相簿）
+   - CTA
+
+4. **AboutTemplate** - 關於我們/ESG
+   - Hero
+   - Timeline/Mission
+   - TeamGrid
+   - CTA
+
+5. **ServiceTemplate** - 服務頁
+   - Hero
+   - ServiceList
+   - ProcessFlow
+   - CTA
+
+6. **ContactTemplate** - 聯絡頁
+   - Hero
+   - ContactForm
+   - LocationMap
+
+7. **HomeTemplate** - 首頁
+   - Hero
+   - CardList
+   - CTA
+
+**設計參考**：Apple Store 網站
+- 大面積留白
+- 高品質大圖
+- 簡潔排版（一螢一訊息）
+- 微動效（滾動淡入）
 
 ### Phase 3：批次遷移
 
+為所有頁面的 yml 加入 `template` 欄位：
+
+```yaml
+# 範例
+template: product  # 或 solution, event, about, service, contact, home
+```
+
 依分類逐步遷移：
-1. 產品頁（19 頁）
-2. 智慧製造（6 頁）
-3. 活動頁（5 頁）
-4. 一般頁（5 頁）
-5. 首頁（1 頁）
+1. 資安產品（10 頁）→ `template: product`
+2. 智慧製造（6 頁）→ `template: solution`
+3. 其他解決方案（9 頁）→ `template: product` 或 `solution`
+4. 活動頁（5 頁）→ `template: event`
+5. 關於/ESG（2 頁）→ `template: about`
+6. 服務（1 頁）→ `template: service`
+7. 聯絡（1 頁）→ `template: contact`
+8. 首頁（1 頁）→ `template: home`
 
-### Phase 4：清理
+### Phase 4：清理與移除舊機制
 
-1. 移除 `layout.sections` 相關邏輯
-2. 移除 `sync-content` 機制
-3. 更新文件
+1. **移除 PageLayout 動態渲染邏輯**
+   - 移除 `COMPONENT_MAP` section 動態選擇
+   - 移除 `renderSection` 函數
+   - PageLayout 只保留基礎 HTML 骨架
+
+2. **移除 sync-content 機制**
+   - 刪除 `sync-content.ts` 腳本
+   - 移除 `SYNCABLE_SECTION_TYPES` 邏輯
+   - 更新 CI/CD pipeline（移除 `pnpm run sync-content`）
+
+3. **yml 結構清理**
+   - 移除 `layout.sections` 區塊
+   - 只保留 `seo`、`url_mapping`、`content`、`template`
+
+4. **更新文件**
+   - 更新 CLAUDE.md Content Build 流程
+   - 更新 README.md
+   - 標記此決策於 decisions.md
 
 ---
 
