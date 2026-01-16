@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
 
 // 網站 URL（正式上線時改為 https://www.ewill.com.tw）
-const siteUrl = 'https://ewill-web.vercel.app';
+const siteUrl = 'https://ewill-web-astro-app.vercel.app';
 
 // https://astro.build/config
 export default defineConfig({

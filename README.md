@@ -421,7 +421,7 @@ cd astro-app && pnpm run build && pnpm run preview
 
 ### 部署網址
 
-- Vercel：https://ewill-web.vercel.app
+- Vercel：https://ewill-web-astro-app.vercel.app
 - 正式網站：https://www.ewill.com.tw（需設定自訂網域）
 
 ---
