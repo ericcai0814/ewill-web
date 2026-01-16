@@ -12,6 +12,12 @@ import type {
   AssetManifest,
   AssetEntry,
 } from '../../utils/content';
+import type {
+  EventDetail,
+  EventListResponse,
+  EventQueryParams,
+  FormConfigResponse,
+} from '@ewill/shared';
 
 export class JsonProvider implements DataProvider {
   private contentManifestCache: ContentManifest | null = null;
@@ -105,5 +111,30 @@ export class JsonProvider implements DataProvider {
     if (!manifest) return null;
 
     return manifest.assets.find((asset) => asset.id === imageId) || null;
+  }
+
+  // ========== Event Methods (Not supported in JsonProvider) ==========
+
+  async getEvents(_params?: EventQueryParams): Promise<EventListResponse> {
+    console.warn('JsonProvider: getEvents() 不支援，請使用 MockProvider 或 ApiProvider');
+    return {
+      items: [],
+      total: 0,
+      page: 1,
+      page_size: 10,
+      has_more: false,
+    };
+  }
+
+  async getEventById(_id: string): Promise<EventDetail | null> {
+    console.warn('JsonProvider: getEventById() 不支援，請使用 MockProvider 或 ApiProvider');
+    return null;
+  }
+
+  // ========== Form Config Methods (Not supported in JsonProvider) ==========
+
+  async getFormConfig(_formId: string): Promise<FormConfigResponse | null> {
+    console.warn('JsonProvider: getFormConfig() 不支援，請使用 MockProvider 或 ApiProvider');
+    return null;
   }
 }

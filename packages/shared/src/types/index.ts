@@ -460,3 +460,102 @@ export interface ContactSubmissionResponse {
   submitted: boolean;
   message: string;
 }
+
+// ============================================================
+// Event Types（活動資訊）
+// ============================================================
+
+/** 活動狀態 */
+export type EventStatus = 'draft' | 'published' | 'archived';
+
+/** 活動類別 */
+export type EventCategory = 'seminar' | 'webinar' | 'press_release' | 'exhibition' | 'other';
+
+/** 活動列表項目（用於卡片顯示） */
+export interface EventListItem {
+  id: string;
+  title: string;
+  summary: string;
+  category: EventCategory;
+  event_date: string;
+  cover_image_id: string;
+  page_slug: string;
+}
+
+/** 活動詳情 */
+export interface EventDetail extends EventListItem {
+  status: EventStatus;
+  end_date?: string;
+  content: string;
+  hero_image_id?: string;
+  gallery?: string[];
+  seo: {
+    title: string;
+    description: string;
+    keywords: string[];
+    og_image?: string;
+  };
+  aio?: AioData;
+  created_at: string;
+  updated_at: string;
+}
+
+/** 活動列表回應 */
+export interface EventListResponse {
+  items: EventListItem[];
+  total: number;
+  page: number;
+  page_size: number;
+  has_more: boolean;
+}
+
+/** 活動查詢參數 */
+export interface EventQueryParams {
+  /** 頁碼（從 1 開始） */
+  page?: number;
+  /** 每頁數量（預設 10，最大 50） */
+  page_size?: number;
+  /** 狀態篩選 */
+  status?: EventStatus;
+  /** 分類篩選 */
+  category?: EventCategory;
+  /** 排序欄位 */
+  sort_by?: 'event_date' | 'created_at';
+  /** 排序方向 */
+  sort_order?: 'asc' | 'desc';
+}
+
+// ============================================================
+// Form Field Configuration Types（表單欄位配置）
+// ============================================================
+
+/** 表單欄位驗證規則 */
+export interface FieldValidation {
+  min_length?: number;
+  max_length?: number;
+  pattern?: string;
+  pattern_message?: string;
+}
+
+/** 動態表單欄位配置 */
+export interface FormFieldConfig {
+  name: string;
+  label: string;
+  type: 'text' | 'email' | 'tel' | 'textarea' | 'select' | 'checkbox';
+  placeholder?: string;
+  required: boolean;
+  validation?: FieldValidation;
+  options?: { value: string; label: string }[];
+  default_value?: string;
+  order: number;
+}
+
+/** 表單配置回應 */
+export interface FormConfigResponse {
+  form_id: string;
+  title: string;
+  description?: string;
+  fields: FormFieldConfig[];
+  submit_button_text: string;
+  success_message: string;
+}

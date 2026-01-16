@@ -3,7 +3,7 @@
  * 統一的資料存取層，根據設定切換 Provider
  */
 import { getConfig, isDev } from './config';
-import { JsonProvider, ApiProvider } from './providers';
+import { JsonProvider, ApiProvider, MockProvider } from './providers';
 import type { DataProvider } from './types/provider';
 import type {
   PageContent,
@@ -17,6 +17,12 @@ import type {
   ContactSubmitResponse,
   ApiResponse,
 } from './types/api';
+import type {
+  EventDetail,
+  EventListResponse,
+  EventQueryParams,
+  FormConfigResponse,
+} from '@ewill/shared';
 
 // 頁面類型映射（從 content.ts 複製）
 const PAGE_TYPE_MAP: Record<string, PageType> = {
@@ -55,15 +61,20 @@ class DataService {
   private config = getConfig();
 
   constructor() {
-    // 根據環境變數選擇 Provider
-    this.provider = this.config.useApi
-      ? new ApiProvider()
-      : new JsonProvider();
+    // 根據 DATA_SOURCE 環境變數選擇 Provider
+    switch (this.config.dataSource) {
+      case 'mock':
+        this.provider = new MockProvider();
+        break;
+      case 'api':
+        this.provider = new ApiProvider();
+        break;
+      default:
+        this.provider = new JsonProvider();
+    }
 
     if (isDev()) {
-      console.log(
-        `DataService: 使用 ${this.config.useApi ? 'API' : 'JSON'} Provider`
-      );
+      console.log(`DataService: 使用 ${this.config.dataSource.toUpperCase()} Provider`);
     }
   }
 
@@ -126,13 +137,38 @@ class DataService {
     return PAGE_TYPE_MAP[slug] || 'general';
   }
 
+  // ========== Events ==========
+
+  /**
+   * 取得活動列表（支援分頁、篩選、排序）
+   */
+  async getEvents(params?: EventQueryParams): Promise<EventListResponse> {
+    return this.provider.getEvents(params);
+  }
+
+  /**
+   * 根據 ID 取得活動詳情
+   */
+  async getEventById(id: string): Promise<EventDetail | null> {
+    return this.provider.getEventById(id);
+  }
+
+  // ========== Form Config ==========
+
+  /**
+   * 取得表單欄位配置
+   */
+  async getFormConfig(formId: string): Promise<FormConfigResponse | null> {
+    return this.provider.getFormConfig(formId);
+  }
+
   // ========== Form Submission ==========
 
   async submitContactForm(
     data: ContactSubmitRequest
   ): Promise<ApiResponse<ContactSubmitResponse>> {
-    if (!this.config.useApi) {
-      // Mock response for development
+    // Mock/JSON 模式：返回模擬回應
+    if (this.config.dataSource !== 'api') {
       return {
         success: true,
         data: {
@@ -148,7 +184,7 @@ class DataService {
       };
     }
 
-    // Real API call
+    // API 模式：真實 API 呼叫
     try {
       const response = await fetch(`${this.config.apiBaseUrl}/contact/submit`, {
         method: 'POST',

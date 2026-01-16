@@ -8,6 +8,13 @@ import type {
   AssetManifest,
   AssetEntry,
 } from '../../utils/content';
+import type {
+  EventListItem,
+  EventDetail,
+  EventListResponse,
+  EventQueryParams,
+  FormConfigResponse,
+} from '@ewill/shared';
 
 export interface DataProvider {
   /** 取得單一頁面內容 */
@@ -24,4 +31,17 @@ export interface DataProvider {
 
   /** 根據 ID 取得圖片資源 */
   getAssetById(imageId: string): Promise<AssetEntry | null>;
+
+  // ========== Event Methods ==========
+
+  /** 取得活動列表（支援分頁、篩選、排序） */
+  getEvents(params?: EventQueryParams): Promise<EventListResponse>;
+
+  /** 根據 ID 取得活動詳情 */
+  getEventById(id: string): Promise<EventDetail | null>;
+
+  // ========== Form Config Methods ==========
+
+  /** 取得表單欄位配置 */
+  getFormConfig(formId: string): Promise<FormConfigResponse | null>;
 }

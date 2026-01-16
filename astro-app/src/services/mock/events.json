@@ -1,0 +1,81 @@
+{
+  "events": [
+    {
+      "id": "event_20251118",
+      "title": "智慧製造入門研討會",
+      "summary": "深入解析智慧製造入門關鍵解決方案。專家探討 MES 製造執行系統、WMS 倉儲管理、AI 應用導入策略，助企業掌握數位轉型先機。",
+      "category": "webinar",
+      "status": "published",
+      "event_date": "2025-11-18T14:00:00+08:00",
+      "end_date": "2025-11-18T16:00:00+08:00",
+      "cover_image_id": "images_event_20251118_cover",
+      "hero_image_id": "images_event_20251118_hero",
+      "page_slug": "event_20251118",
+      "content": "鎰威科技 2025 智慧製造線上研討會，深入解析智慧製造入門關鍵解決方案。專家探討 MES 製造執行系統、WMS 倉儲管理、AI 應用導入策略，助企業掌握數位轉型先機，提升生產力與競爭力。",
+      "seo": {
+        "title": "智慧製造入門研討會 | MES、WMS、AI 應用全解析 - 鎰威科技",
+        "description": "鎰威科技 2025 智慧製造線上研討會，深入解析智慧製造入門關鍵解決方案。專家探討 MES 製造執行系統、WMS 倉儲管理、AI 應用導入策略，助企業掌握數位轉型先機，提升生產力與競爭力。",
+        "keywords": ["智慧製造研討會", "線上研討會", "Webinar", "智慧製造", "數位轉型", "工業 4.0", "MES 導入", "WMS 導入", "鎰威科技"]
+      },
+      "created_at": "2025-10-01T10:00:00+08:00",
+      "updated_at": "2025-11-01T10:00:00+08:00"
+    },
+    {
+      "id": "event_20251124",
+      "title": "免密碼登入與零信任身份防護方案",
+      "summary": "動信攜手鎰威科技，推出企業免密碼、零信任身份防護解決方案。導入 FIDO2 無密碼認證、多因子驗證 MFA，強化企業身份安全。",
+      "category": "seminar",
+      "status": "published",
+      "event_date": "2025-11-24T14:00:00+08:00",
+      "cover_image_id": "images_event_20251124_cover",
+      "hero_image_id": "images_event_20251124_hero",
+      "page_slug": "event_20251124",
+      "content": "動信攜手鎰威科技，推出企業免密碼、零信任身份防護解決方案。導入 FIDO2 無密碼認證、多因子驗證 MFA，強化企業身份安全，降低帳密外洩風險，提升使用者體驗。",
+      "seo": {
+        "title": "免密碼登入與零信任身份防護方案 | 動信 x 鎰威科技",
+        "description": "動信攜手鎰威科技，推出企業免密碼、零信任身份防護解決方案。導入 FIDO2 無密碼認證、多因子驗證 MFA，強化企業身份安全，降低帳密外洩風險，提升使用者體驗。",
+        "keywords": ["免密碼登入", "Passwordless", "零信任", "Zero Trust", "身份驗證", "FIDO2", "MFA 多因子驗證", "身份防護", "動信", "鎰威科技"]
+      },
+      "created_at": "2025-10-15T10:00:00+08:00",
+      "updated_at": "2025-11-10T10:00:00+08:00"
+    },
+    {
+      "id": "event_20251119",
+      "title": "LOGSEC 資安預警解決方案發布",
+      "summary": "鎰威科技正式推出 LOGSEC 資安預警解決方案，主打高效搜尋、跨系統整合與事件視覺化。整合防火牆、端點防護、AD 等多來源日誌。",
+      "category": "press_release",
+      "status": "published",
+      "event_date": "2025-11-19T10:00:00+08:00",
+      "cover_image_id": "images_event_20251119_cover",
+      "hero_image_id": "images_event_20251119_hero",
+      "page_slug": "event_20251119",
+      "content": "鎰威科技正式推出 LOGSEC 資安預警解決方案，主打高效搜尋、跨系統整合與事件視覺化。整合防火牆、端點防護、AD 等多來源日誌，秒級搜尋體驗，協助企業加速事件調查、縮短 MTTR，強化資安可視化能力。",
+      "seo": {
+        "title": "LOGSEC 資安預警解決方案發布 | 企業日誌管理新選擇 - 鎰威科技",
+        "description": "鎰威科技正式推出 LOGSEC 資安預警解決方案，主打高效搜尋、跨系統整合與事件視覺化。整合防火牆、端點防護、AD 等多來源日誌，秒級搜尋體驗，協助企業加速事件調查、縮短 MTTR，強化資安可視化能力。",
+        "keywords": ["LOGSEC", "資安預警", "日誌管理", "SIEM", "事件調查", "資安可視化", "鎰威科技新聞"]
+      },
+      "created_at": "2025-11-01T10:00:00+08:00",
+      "updated_at": "2025-11-15T10:00:00+08:00"
+    },
+    {
+      "id": "event_20251021",
+      "title": "鎰威科技 × Dell Technologies 活動回顧",
+      "summary": "鎰威科技與 Dell Technologies 聯合舉辦活動回顧。分享企業 IT 基礎架構、虛擬化與資料保護最新趨勢，協助企業建構現代化資料中心。",
+      "category": "seminar",
+      "status": "archived",
+      "event_date": "2025-10-21T14:00:00+08:00",
+      "cover_image_id": "images_event_20251021_cover",
+      "hero_image_id": "images_event_20251021_hero",
+      "page_slug": "event_20251021",
+      "content": "鎰威科技與 Dell Technologies 聯合舉辦活動回顧。分享企業 IT 基礎架構、虛擬化與資料保護最新趨勢，協助企業建構現代化資料中心與混合雲環境。",
+      "seo": {
+        "title": "鎰威科技 × Dell Technologies 活動回顧 | 2025/10/21 - 鎰威科技",
+        "description": "鎰威科技與 Dell Technologies 聯合舉辦活動回顧。分享企業 IT 基礎架構、虛擬化與資料保護最新趨勢，協助企業建構現代化資料中心與混合雲環境。",
+        "keywords": ["Dell Technologies", "鎰威科技活動", "IT 基礎架構", "資料中心", "虛擬化", "企業活動", "2025 活動"]
+      },
+      "created_at": "2025-09-01T10:00:00+08:00",
+      "updated_at": "2025-10-25T10:00:00+08:00"
+    }
+  ]
+}

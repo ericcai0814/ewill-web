@@ -1,0 +1,215 @@
+{
+  "forms": {
+    "contact": {
+      "form_id": "contact",
+      "title": "聯絡我們",
+      "description": "如有任何產品或服務諮詢，歡迎填寫下方表單，我們將盡速與您聯繫。",
+      "fields": [
+        {
+          "name": "name",
+          "label": "姓名",
+          "type": "text",
+          "placeholder": "請輸入您的姓名",
+          "required": true,
+          "validation": {
+            "min_length": 2,
+            "max_length": 50
+          },
+          "order": 1
+        },
+        {
+          "name": "email",
+          "label": "電子郵件",
+          "type": "email",
+          "placeholder": "your.email@example.com",
+          "required": true,
+          "validation": {
+            "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+            "pattern_message": "請輸入有效的電子郵件地址"
+          },
+          "order": 2
+        },
+        {
+          "name": "phone",
+          "label": "聯絡電話",
+          "type": "tel",
+          "placeholder": "02-1234-5678 或 0912-345-678",
+          "required": false,
+          "validation": {
+            "pattern": "^[0-9\\-\\+\\(\\)\\s]{8,20}$",
+            "pattern_message": "請輸入有效的電話號碼"
+          },
+          "order": 3
+        },
+        {
+          "name": "company",
+          "label": "公司名稱",
+          "type": "text",
+          "placeholder": "請輸入公司名稱",
+          "required": false,
+          "validation": {
+            "max_length": 100
+          },
+          "order": 4
+        },
+        {
+          "name": "message",
+          "label": "諮詢內容",
+          "type": "textarea",
+          "placeholder": "請描述您的需求或問題...",
+          "required": true,
+          "validation": {
+            "min_length": 10,
+            "max_length": 2000
+          },
+          "order": 5
+        }
+      ],
+      "submit_button_text": "送出諮詢",
+      "success_message": "感謝您的諮詢！我們將於 1-2 個工作天內與您聯繫。"
+    },
+    "event_registration": {
+      "form_id": "event_registration",
+      "title": "活動報名",
+      "description": "請填寫以下資訊完成活動報名。",
+      "fields": [
+        {
+          "name": "name",
+          "label": "姓名",
+          "type": "text",
+          "placeholder": "請輸入您的姓名",
+          "required": true,
+          "validation": {
+            "min_length": 2,
+            "max_length": 50
+          },
+          "order": 1
+        },
+        {
+          "name": "email",
+          "label": "電子郵件",
+          "type": "email",
+          "placeholder": "your.email@example.com",
+          "required": true,
+          "validation": {
+            "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+            "pattern_message": "請輸入有效的電子郵件地址"
+          },
+          "order": 2
+        },
+        {
+          "name": "company",
+          "label": "公司名稱",
+          "type": "text",
+          "placeholder": "請輸入公司名稱",
+          "required": true,
+          "validation": {
+            "max_length": 100
+          },
+          "order": 3
+        },
+        {
+          "name": "job_title",
+          "label": "職稱",
+          "type": "text",
+          "placeholder": "例如：資訊主管、廠務經理",
+          "required": false,
+          "validation": {
+            "max_length": 50
+          },
+          "order": 4
+        },
+        {
+          "name": "attendance_type",
+          "label": "參與方式",
+          "type": "select",
+          "required": true,
+          "options": [
+            { "value": "online", "label": "線上參與" },
+            { "value": "onsite", "label": "現場參與" }
+          ],
+          "default_value": "online",
+          "order": 5
+        },
+        {
+          "name": "privacy_agree",
+          "label": "我同意鎰威科技的隱私權政策",
+          "type": "checkbox",
+          "required": true,
+          "order": 6
+        }
+      ],
+      "submit_button_text": "確認報名",
+      "success_message": "報名成功！活動詳情將寄送至您的電子郵件。"
+    },
+    "quote_request": {
+      "form_id": "quote_request",
+      "title": "索取報價",
+      "description": "請填寫以下資訊，我們將提供專屬報價。",
+      "fields": [
+        {
+          "name": "name",
+          "label": "聯絡人姓名",
+          "type": "text",
+          "placeholder": "請輸入您的姓名",
+          "required": true,
+          "validation": {
+            "min_length": 2,
+            "max_length": 50
+          },
+          "order": 1
+        },
+        {
+          "name": "email",
+          "label": "電子郵件",
+          "type": "email",
+          "placeholder": "your.email@example.com",
+          "required": true,
+          "order": 2
+        },
+        {
+          "name": "phone",
+          "label": "聯絡電話",
+          "type": "tel",
+          "placeholder": "02-1234-5678",
+          "required": true,
+          "order": 3
+        },
+        {
+          "name": "company",
+          "label": "公司名稱",
+          "type": "text",
+          "placeholder": "請輸入公司名稱",
+          "required": true,
+          "order": 4
+        },
+        {
+          "name": "product_interest",
+          "label": "感興趣的產品/服務",
+          "type": "select",
+          "required": true,
+          "options": [
+            { "value": "security", "label": "資安解決方案" },
+            { "value": "infrastructure", "label": "IT 基礎架構" },
+            { "value": "smart_manufacturing", "label": "智慧製造" },
+            { "value": "other", "label": "其他" }
+          ],
+          "order": 5
+        },
+        {
+          "name": "requirements",
+          "label": "需求描述",
+          "type": "textarea",
+          "placeholder": "請描述您的需求、預算規模或時程...",
+          "required": false,
+          "validation": {
+            "max_length": 2000
+          },
+          "order": 6
+        }
+      ],
+      "submit_button_text": "送出報價需求",
+      "success_message": "已收到您的報價需求！業務專員將於 1 個工作天內與您聯繫。"
+    }
+  }
+}

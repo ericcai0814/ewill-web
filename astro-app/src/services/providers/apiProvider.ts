@@ -11,6 +11,12 @@ import type {
   AssetEntry,
 } from '../../utils/content';
 import type { ApiResponse } from '../types/api';
+import type {
+  EventDetail,
+  EventListResponse,
+  EventQueryParams,
+  FormConfigResponse,
+} from '@ewill/shared';
 
 export class ApiProvider implements DataProvider {
   private baseUrl: string;
@@ -79,5 +85,39 @@ export class ApiProvider implements DataProvider {
 
   async getAssetById(imageId: string): Promise<AssetEntry | null> {
     return this.fetch<AssetEntry>(`/assets/${imageId}`);
+  }
+
+  // ========== Event Methods ==========
+
+  async getEvents(params?: EventQueryParams): Promise<EventListResponse> {
+    const searchParams = new URLSearchParams();
+    if (params?.page) searchParams.set('page', String(params.page));
+    if (params?.page_size) searchParams.set('page_size', String(params.page_size));
+    if (params?.status) searchParams.set('status', params.status);
+    if (params?.category) searchParams.set('category', params.category);
+    if (params?.sort_by) searchParams.set('sort_by', params.sort_by);
+    if (params?.sort_order) searchParams.set('sort_order', params.sort_order);
+
+    const queryString = searchParams.toString();
+    const endpoint = queryString ? `/events?${queryString}` : '/events';
+
+    const result = await this.fetch<EventListResponse>(endpoint);
+    return result || {
+      items: [],
+      total: 0,
+      page: 1,
+      page_size: 10,
+      has_more: false,
+    };
+  }
+
+  async getEventById(id: string): Promise<EventDetail | null> {
+    return this.fetch<EventDetail>(`/events/${id}`);
+  }
+
+  // ========== Form Config Methods ==========
+
+  async getFormConfig(formId: string): Promise<FormConfigResponse | null> {
+    return this.fetch<FormConfigResponse>(`/forms/${formId}`);
   }
 }

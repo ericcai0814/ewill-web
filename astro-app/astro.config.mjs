@@ -30,6 +30,7 @@ export default defineConfig({
         // 首頁最高優先級
         if (item.url === `${siteUrl}/`) {
           item.priority = 1.0;
+          // @ts-ignore - sitemap changefreq enum type mismatch
           item.changefreq = 'daily';
         }
         // 解決方案與服務頁面

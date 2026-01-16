@@ -7,6 +7,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { db } from '../../lib/db/client';
 import { pages } from '../../lib/db/schema';
 import { successResponse, errorResponse, ErrorCodes } from '../../lib/utils/response';
+import { notInArray } from 'drizzle-orm';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // 只允許 GET
@@ -21,9 +22,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const allPages = await db
       .select({ slug: pages.slug })
       .from(pages)
-      .where((fields, { notInArray }) =>
-        notInArray(fields.module, ['header', 'footer'])
-      );
+      .where(notInArray(pages.module, ['header', 'footer']));
 
     const slugs = allPages.map((p) => p.slug);
 
