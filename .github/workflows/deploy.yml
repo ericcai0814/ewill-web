@@ -6,7 +6,13 @@ on:
   workflow_dispatch:
 
 jobs:
+  # 先執行測試
+  test:
+    uses: ./.github/workflows/test.yml
+
+  # 測試通過後才部署
   deploy:
+    needs: test
     runs-on: ubuntu-latest
     permissions:
       contents: read
