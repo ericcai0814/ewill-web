@@ -6,6 +6,43 @@
 
 ---
 
+## [2026-01-16]
+
+### Vercel Monorepo 架構優化
+
+優化專案架構以符合 Vercel 部署標準。
+
+**變更內容**：
+1. **移除根目錄 vercel.json**：解決雙重設定衝突問題
+2. **更新 astro-app/vercel.json**：加入 content-build 步驟
+   - `installCommand`: `cd .. && pnpm install`
+   - `buildCommand`: `cd .. && pnpm run build && cd astro-app && pnpm run build`
+3. **統一 API 端點**：移除 `src/pages/api/` 重複端點，統一使用 `api/` 目錄
+4. **移除 nuxt-app**：刪除已淘汰的備用方案
+
+**修改檔案**：
+- 刪除：`/vercel.json`（根目錄）
+- 刪除：`/astro-app/src/pages/api/`（5 個重複端點）
+- 刪除：`/nuxt-app/`（整個目錄）
+- 更新：`/astro-app/vercel.json`
+- 更新：`/astro-app/.gitignore`
+
+**Vercel 設定**：
+- Root Directory: `astro-app`
+- Framework: Astro（自動偵測）
+
+---
+
+### 文件同步更新
+
+更新專案文件以反映架構變更。
+
+**修改檔案**：
+- `README.md`：移除 nuxt-app 參照、更新部署說明為 Vercel
+- `CONTEXT.md`：更新目錄結構、部署平台資訊
+
+---
+
 ## [2026-01-14]
 
 ### sync-content 保護機制重構

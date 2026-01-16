@@ -92,10 +92,8 @@ ewill-web/
 │   ├── public/                  # content-build 輸出（已 gitignore）
 │   └── dist/                    # Astro 建置輸出（已 gitignore）
 │
-├── # 其他建置輸出（已 gitignore）
-├── static-app/                  # 靜態輸出
-├── next-app/                    # Next.js 專案 public/
-└── nuxt-app/                    # Nuxt 專案 public/
+├── packages/                    # 📦 共用套件
+│   └── shared/                  # @ewill/shared（TypeScript 類型與 Schema）
 │
 ├── README.md                    # 本文件
 ├── GUIDELINES.md                # 開發維護指南
@@ -148,10 +146,7 @@ pages/{page_name}/
 # 自動偵測輸出目標
 npx tsx .claude/skills/content-build/scripts/build.ts
 
-# 明確指定目標
-npx tsx .claude/skills/content-build/scripts/build.ts --target=static  # → static-app/
-npx tsx .claude/skills/content-build/scripts/build.ts --target=next    # → next-app/public/
-npx tsx .claude/skills/content-build/scripts/build.ts --target=nuxt    # → nuxt-app/public/
+# 明確指定目標（目前僅使用 astro）
 npx tsx .claude/skills/content-build/scripts/build.ts --target=astro   # → astro-app/public/
 ```
 
@@ -330,53 +325,52 @@ ewill-web/
 
 ## 部署
 
-本專案使用 **Cloudflare Pages** 進行靜態網站托管，透過 **GitHub Actions** 自動部署。
+本專案使用 **Vercel** 進行靜態網站托管，透過 Git 自動部署。
 
 ### 自動部署
 
-當 `master` 分支有新的 commit 時，GitHub Actions 會自動：
+當 `master` 分支有新的 commit 時，Vercel 會自動：
 
-1. 執行 `pnpm run sync-content` 同步內容
-2. 執行 `cd astro-app && pnpm run build` 建置靜態網站
-3. 使用 Wrangler 部署到 Cloudflare Pages
+1. 執行根目錄 `pnpm run build`（content-build，生成 JSON）
+2. 執行 `astro-app/` 的 `pnpm run build`（建置靜態網站）
+3. 部署到 Vercel
 
-### 手動觸發部署
+### Vercel 專案設定
 
-前往 GitHub Repository > **Actions** > **Deploy to Cloudflare Pages** > **Run workflow**
+| 設定項目 | 值 |
+|----------|-----|
+| Root Directory | `astro-app` |
+| Framework Preset | Astro |
+| Build Command | 由 `vercel.json` 定義 |
+| Output Directory | `dist` |
 
 ### 環境變數
 
-部署需要以下 GitHub Secrets：
+在 Vercel Dashboard > Settings > Environment Variables 設定：
 
-| Secret | 說明 |
-|--------|------|
-| `CLOUDFLARE_API_TOKEN` | Cloudflare API Token（需 Pages Edit 權限）|
-| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare 帳戶 ID |
-
-### Cloudflare 設定步驟
-
-1. **建立 Pages 專案**：Workers & Pages > Create project > Direct Upload，專案名稱 `ewill-web`
-2. **建立 API Token**：My Profile > API Tokens > 使用「Edit Cloudflare Workers」模板
-3. **設定 GitHub Secrets**：Repository Settings > Secrets and variables > Actions
+| 變數 | 說明 |
+|------|------|
+| `DATABASE_URL` | Neon PostgreSQL 連線字串 |
+| `RESEND_API_KEY` | Resend Email API Key |
+| `CONTACT_EMAIL` | 聯絡表單收件地址 |
+| `FROM_EMAIL` | 發送者信箱 |
 
 ### 本機預覽
 
 ```bash
 # 安裝依賴
 pnpm install
-cd astro-app && pnpm install
 
-# 同步內容並建置
-cd .. && pnpm run sync-content
-cd astro-app && pnpm run build
+# 建置內容（根目錄）
+pnpm run build
 
-# 預覽建置結果
-pnpm run preview
+# 建置並預覽 Astro 網站
+cd astro-app && pnpm run build && pnpm run preview
 ```
 
 ### 部署網址
 
-- Cloudflare Pages：https://ewill-web.pages.dev
+- Vercel：https://ewill-web.vercel.app
 - 正式網站：https://www.ewill.com.tw（需設定自訂網域）
 
 ---

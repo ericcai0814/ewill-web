@@ -4,8 +4,9 @@
 
 ## 狀態總覽
 
-- **最後更新時間**: 2026-01-15
-- **目前階段**: Astro 元件開發完成，支援 12 種 Section 類型動態渲染，新增 Data Service 架構
+- **最後更新時間**: 2026-01-16
+- **目前階段**: Astro 元件開發完成，Vercel 部署架構優化完成
+- **部署平台**: Vercel（Root Directory: astro-app）
 - **專案類型**: 網站內容庫 (Content Repository) + Astro SSG 靜態網站
 - **前端技術**: Astro 5.x + TypeScript + Tailwind CSS
 - **頁面數量**: 38 個頁面目錄（content-build 輸出）
@@ -40,14 +41,13 @@ ewill-web/
 │   │   ├── pages/      # 頁面路由 (index.astro)
 │   │   ├── styles/     # Tailwind CSS
 │   │   └── utils/      # 內容讀取工具 (content.ts)
+│   ├── api/            # Vercel Functions API 端點
+│   ├── lib/db/         # Neon PostgreSQL + Drizzle ORM
 │   ├── dist/           # 建置輸出（已 gitignore）
-│   └── astro.config.mjs
+│   └── vercel.json     # Vercel 部署設定
 │
-├── nuxt-app/           # 🚀 Nuxt 3 應用程式（備用方案）
-│   ├── pages/          # 頁面元件
-│   ├── components/     # 共用元件
-│   ├── composables/    # Composables
-│   └── public/         # 靜態資源（content-build 輸出，已 gitignore）
+├── packages/           # 📦 共用套件
+│   └── shared/         # @ewill/shared（TypeScript 類型與 Schema）
 │
 └── *.md                # 專案文件
 ```
@@ -69,10 +69,8 @@ ewill-web/
 #### content-build 輸出目標
 
 ```bash
-npx tsx .claude/skills/content-build/scripts/build.ts --target=static  # → static-app/
-npx tsx .claude/skills/content-build/scripts/build.ts --target=next    # → next-app/public/
-npx tsx .claude/skills/content-build/scripts/build.ts --target=nuxt    # → nuxt-app/public/
-npx tsx .claude/skills/content-build/scripts/build.ts --target=astro   # → astro-app/public/
+# 自動偵測（目前使用 Astro）
+pnpm run build   # → astro-app/public/content/
 ```
 
 ### Commands（明確呼叫）
@@ -102,7 +100,9 @@ npx tsx .claude/skills/content-build/scripts/build.ts --target=astro   # → ast
 - **Metadata**: YAML (`.yml`) 格式
 - **內容與元資料分離**: `index.md`（內容）+ `index.yml`（SEO/AIO）
 - **建置工具**: TypeScript（`content-build` skill）
-- **輸出目標**: Static / Next.js / Nuxt（自動偵測或明確指定）
+- **輸出目標**: Astro（`astro-app/public/content/`）
+- **API 端點**: Vercel Functions（`astro-app/api/`）
+- **資料庫**: Neon PostgreSQL + Drizzle ORM
 
 ### sync-content 保護機制
 
