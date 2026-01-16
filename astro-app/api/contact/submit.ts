@@ -9,13 +9,7 @@ import { contactSubmissions } from '../../lib/db/schema';
 import { successResponse, errorResponse, ErrorCodes } from '../../lib/utils/response';
 import { validate, contactFormSchema, sanitizeInput } from '../../lib/utils/validate';
 import { sendContactNotification } from '../../lib/email/resend';
-
-// 直接定義類型，避免 workspace 套件在 Vercel Functions 中的問題
-interface ContactSubmissionResponse {
-  submission_id: string;
-  submitted: boolean;
-  message: string;
-}
+import type { ContactSubmissionResponse } from '@ewill/shared';
 
 /**
  * 產生唯一的 submission ID

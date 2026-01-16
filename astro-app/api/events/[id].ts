@@ -8,38 +8,7 @@ import { db } from '../../lib/db/client';
 import { events } from '../../lib/db/schema';
 import { successResponse, errorResponse, ErrorCodes } from '../../lib/utils/response';
 import { eq } from 'drizzle-orm';
-
-// 直接定義類型，避免 workspace 套件在 Vercel Functions 中的問題
-type EventStatus = 'draft' | 'published' | 'archived';
-type EventCategory = 'seminar' | 'webinar' | 'press_release' | 'exhibition' | 'other';
-
-interface AioData {
-  [key: string]: unknown;
-}
-
-interface EventDetail {
-  id: string;
-  title: string;
-  summary: string;
-  category: EventCategory;
-  status: EventStatus;
-  event_date: string;
-  end_date?: string;
-  cover_image_id: string;
-  hero_image_id?: string;
-  page_slug: string;
-  content: string;
-  gallery?: string[];
-  seo: {
-    title: string;
-    description: string;
-    keywords: string[];
-    og_image?: string;
-  };
-  aio?: AioData;
-  created_at: string;
-  updated_at: string;
-}
+import type { EventDetail, EventStatus, EventCategory, AioData } from '@ewill/shared';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // 只允許 GET
