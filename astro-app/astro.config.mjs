@@ -3,16 +3,18 @@ import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
+import vercel from '@astrojs/vercel';
 
 // 網站 URL（正式上線時改為 https://www.ewill.com.tw）
-const siteUrl = 'https://ewill-web.pages.dev';
+const siteUrl = 'https://ewill-web.vercel.app';
 
 // https://astro.build/config
 export default defineConfig({
   site: siteUrl,
 
-  // SSG 靜態生成模式
+  // SSG 靜態生成模式，API 由 Vercel Functions 處理
   output: 'static',
+  adapter: vercel(),
 
   // Vite 配置
   vite: {
