@@ -68,6 +68,9 @@
   <script is:inline src="https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui-bundle.js"></script>
   <script is:inline>
     window.onload = function() {
+      // 判斷當前環境決定預設 server
+      var isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
       window.ui = SwaggerUIBundle({
         url: '/api-docs/openapi.json',
         dom_id: '#swagger-ui',
@@ -76,7 +79,10 @@
           SwaggerUIBundle.presets.apis,
           SwaggerUIBundle.SwaggerUIStandalonePreset
         ],
-        layout: "BaseLayout",
+        plugins: [
+          SwaggerUIBundle.plugins.DownloadUrl
+        ],
+        layout: "StandaloneLayout",
         defaultModelsExpandDepth: 1,
         defaultModelExpandDepth: 2,
         docExpansion: 'list',
@@ -84,6 +90,8 @@
         showExtensions: true,
         showCommonExtensions: true,
         tryItOutEnabled: true,
+        // 開發環境使用 localhost (index 1)，生產環境使用 production (index 0)
+        "urls.primaryName": isDev ? "Development" : "Production"
       });
     };
   </script>
