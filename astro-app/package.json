@@ -10,9 +10,14 @@
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "db:seed": "tsx lib/db/seed.ts"
+    "db:seed": "tsx lib/db/seed.ts",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "generate:openapi": "tsx lib/openapi/generate.ts"
   },
   "dependencies": {
+    "@asteasolutions/zod-to-openapi": "^7.3.4",
     "@astrojs/sitemap": "^3.6.1",
     "@astrojs/vercel": "^8.1.4",
     "@ewill/shared": "workspace:*",
@@ -31,7 +36,9 @@
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
     "@vercel/node": "^5.0.0",
+    "@vitest/coverage-v8": "^4.0.17",
     "drizzle-kit": "^0.30.0",
-    "tsx": "^4.19.0"
+    "tsx": "^4.19.0",
+    "vitest": "^4.0.17"
   }
 }

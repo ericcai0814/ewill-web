@@ -1,0 +1,1281 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "ewill-web API",
+    "version": "1.0.0",
+    "description": "\n鎰威科技網站 API 文件\n\n## 概述\n\n此 API 提供以下功能：\n- **Pages**: 頁面內容管理\n- **Contact**: 聯絡表單提交\n- **Events**: 活動資訊查詢\n- **Assets**: 圖片資源管理\n- **Manifests**: 內容與資源清單\n\n## 回應格式\n\n所有 API 回應遵循統一格式：\n\n```json\n{\n  \"success\": true,\n  \"data\": { ... },\n  \"meta\": {\n    \"timestamp\": \"2026-01-16T12:00:00.000Z\",\n    \"version\": \"1.0.0\",\n    \"cached\": false\n  }\n}\n```\n\n## 錯誤處理\n\n錯誤回應包含錯誤碼和訊息：\n\n```json\n{\n  \"success\": false,\n  \"data\": null,\n  \"error\": {\n    \"code\": \"NOT_FOUND\",\n    \"message\": \"找不到指定的資源\"\n  }\n}\n```\n\n## 常見錯誤碼\n\n| 錯誤碼 | 說明 |\n|--------|------|\n| NOT_FOUND | 找不到資源 |\n| VALIDATION_ERROR | 輸入驗證失敗 |\n| INTERNAL_ERROR | 伺服器內部錯誤 |\n| METHOD_NOT_ALLOWED | HTTP 方法不被允許 |\n| RATE_LIMITED | 請求頻率過高 |\n      ",
+    "contact": {
+      "name": "鎰威科技",
+      "url": "https://www.ewill.com.tw",
+      "email": "info@ewill.com.tw"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://www.ewill.com.tw",
+      "description": "Production"
+    },
+    {
+      "url": "http://localhost:4321",
+      "description": "Development"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Pages",
+      "description": "頁面內容管理"
+    },
+    {
+      "name": "Contact",
+      "description": "聯絡表單"
+    },
+    {
+      "name": "Events",
+      "description": "活動資訊"
+    },
+    {
+      "name": "Assets",
+      "description": "圖片資源"
+    },
+    {
+      "name": "Manifests",
+      "description": "內容與資源清單"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "Meta": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "description": "ISO 8601 格式的時間戳",
+            "example": "2026-01-16T12:00:00.000Z"
+          },
+          "version": {
+            "type": "string",
+            "description": "API 版本",
+            "example": "1.0.0"
+          },
+          "cached": {
+            "type": "boolean",
+            "description": "是否為快取結果"
+          }
+        },
+        "required": [
+          "timestamp",
+          "version"
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "錯誤碼",
+            "example": "NOT_FOUND"
+          },
+          "message": {
+            "type": "string",
+            "description": "錯誤訊息",
+            "example": "找不到指定的資源"
+          },
+          "details": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            },
+            "description": "額外的錯誤詳情"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ]
+      },
+      "Seo": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "頁面標題",
+            "example": "Bitdefender GravityZone 企業端點防護 - 鎰威科技"
+          },
+          "description": {
+            "type": "string",
+            "description": "頁面描述",
+            "example": "鎰威科技代理 Bitdefender GravityZone 企業端點防護平台"
+          },
+          "keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "SEO 關鍵字",
+            "example": [
+              "Bitdefender",
+              "EDR",
+              "端點防護"
+            ]
+          },
+          "og_image": {
+            "type": "string",
+            "description": "Open Graph 圖片 URL"
+          }
+        },
+        "required": [
+          "title",
+          "description",
+          "keywords"
+        ]
+      },
+      "UrlMapping": {
+        "type": "object",
+        "properties": {
+          "current_url": {
+            "type": "string",
+            "description": "目前 URL",
+            "example": "/bitdefender/"
+          },
+          "new_url": {
+            "type": "string",
+            "description": "新 URL（重導向用）"
+          }
+        },
+        "required": [
+          "current_url"
+        ]
+      },
+      "PageContent": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "頁面 slug",
+            "example": "bitdefender"
+          },
+          "module": {
+            "type": "string",
+            "description": "模組名稱",
+            "example": "bitdefender"
+          },
+          "template": {
+            "type": "string",
+            "description": "頁面模板",
+            "example": "product"
+          },
+          "seo": {
+            "$ref": "#/components/schemas/Seo"
+          },
+          "url_mapping": {
+            "$ref": "#/components/schemas/UrlMapping"
+          },
+          "content": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            },
+            "description": "頁面內容（Template Content）"
+          },
+          "layout": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            },
+            "description": "佈局設定"
+          },
+          "aio": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            },
+            "description": "All-In-One JSON-LD 結構化資料"
+          },
+          "generated_at": {
+            "type": "string",
+            "description": "生成時間（ISO 8601）",
+            "example": "2026-01-16T12:00:00.000Z"
+          }
+        },
+        "required": [
+          "slug",
+          "module",
+          "seo",
+          "url_mapping",
+          "generated_at"
+        ]
+      },
+      "PageType": {
+        "type": "string",
+        "enum": [
+          "security",
+          "infrastructure",
+          "manufacturing",
+          "event",
+          "general"
+        ]
+      },
+      "ContactFormInput": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "description": "聯絡人姓名",
+            "example": "王小明"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "電子郵件",
+            "example": "contact@example.com"
+          },
+          "phone": {
+            "type": "string",
+            "maxLength": 20,
+            "pattern": "^[0-9+\\-\\s()]*$",
+            "description": "聯絡電話",
+            "example": "02-1234-5678"
+          },
+          "company": {
+            "type": "string",
+            "maxLength": 100,
+            "description": "公司名稱",
+            "example": "範例科技股份有限公司"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "description": "訊息內容",
+            "example": "我想了解更多關於貴公司的產品..."
+          },
+          "source_page": {
+            "type": "string",
+            "description": "來源頁面",
+            "example": "/contact/"
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "message"
+        ]
+      },
+      "ContactSubmissionResponse": {
+        "type": "object",
+        "properties": {
+          "submission_id": {
+            "type": "string",
+            "description": "提交 ID",
+            "example": "sub_abc123def456"
+          },
+          "submitted": {
+            "type": "boolean",
+            "description": "是否成功提交",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "回應訊息",
+            "example": "感謝您的來信，我們將盡快與您聯繫。"
+          }
+        },
+        "required": [
+          "submission_id",
+          "submitted",
+          "message"
+        ]
+      },
+      "EventCategory": {
+        "type": "string",
+        "enum": [
+          "seminar",
+          "webinar",
+          "press_release",
+          "exhibition",
+          "other"
+        ]
+      },
+      "EventListItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "活動 ID"
+          },
+          "title": {
+            "type": "string",
+            "description": "活動標題"
+          },
+          "summary": {
+            "type": "string",
+            "description": "活動摘要"
+          },
+          "category": {
+            "$ref": "#/components/schemas/EventCategory"
+          },
+          "event_date": {
+            "type": "string",
+            "description": "活動日期"
+          },
+          "cover_image_id": {
+            "type": "string",
+            "description": "封面圖片 ID"
+          },
+          "page_slug": {
+            "type": "string",
+            "description": "對應頁面 slug"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "summary",
+          "category",
+          "event_date",
+          "cover_image_id",
+          "page_slug"
+        ]
+      },
+      "EventListResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventListItem"
+            }
+          },
+          "total": {
+            "type": "number",
+            "description": "總數量"
+          },
+          "page": {
+            "type": "number",
+            "description": "目前頁碼"
+          },
+          "page_size": {
+            "type": "number",
+            "description": "每頁數量"
+          },
+          "has_more": {
+            "type": "boolean",
+            "description": "是否還有更多"
+          }
+        },
+        "required": [
+          "items",
+          "total",
+          "page",
+          "page_size",
+          "has_more"
+        ]
+      },
+      "EventStatus": {
+        "type": "string",
+        "enum": [
+          "draft",
+          "published",
+          "archived"
+        ]
+      },
+      "AssetVariants": {
+        "type": "object",
+        "properties": {
+          "desktop": {
+            "type": "string",
+            "description": "桌面版圖片路徑"
+          },
+          "mobile": {
+            "type": "string",
+            "description": "行動版圖片路徑"
+          }
+        },
+        "required": [
+          "desktop",
+          "mobile"
+        ]
+      },
+      "AssetEntry": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "資源 ID",
+            "example": "images_hero_banner"
+          },
+          "original_path": {
+            "type": "string",
+            "description": "原始檔案路徑"
+          },
+          "normalized_path": {
+            "type": "string",
+            "description": "正規化後的路徑"
+          },
+          "variants": {
+            "$ref": "#/components/schemas/AssetVariants"
+          },
+          "alt": {
+            "type": "string",
+            "description": "圖片替代文字"
+          }
+        },
+        "required": [
+          "id",
+          "original_path",
+          "normalized_path",
+          "variants",
+          "alt"
+        ]
+      },
+      "AssetManifest": {
+        "type": "object",
+        "properties": {
+          "generated_at": {
+            "type": "string",
+            "description": "生成時間"
+          },
+          "target": {
+            "type": "string",
+            "description": "目標環境"
+          },
+          "assets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssetEntry"
+            }
+          }
+        },
+        "required": [
+          "generated_at",
+          "target",
+          "assets"
+        ]
+      },
+      "ContentManifestPage": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string"
+          },
+          "module": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "slug",
+          "module",
+          "path"
+        ]
+      },
+      "ContentManifest": {
+        "type": "object",
+        "properties": {
+          "generated_at": {
+            "type": "string"
+          },
+          "pages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContentManifestPage"
+            }
+          }
+        },
+        "required": [
+          "generated_at",
+          "pages"
+        ]
+      }
+    },
+    "parameters": {}
+  },
+  "paths": {
+    "/api/pages": {
+      "get": {
+        "tags": [
+          "Pages"
+        ],
+        "summary": "取得所有頁面 slug 清單",
+        "description": "回傳所有可用頁面的 slug 清單（不含 header/footer）",
+        "responses": {
+          "200": {
+            "description": "成功回應",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "請求是否成功"
+                    },
+                    "data": {
+                      "type": "array",
+                      "nullable": true,
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "回應資料"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "伺服器錯誤",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "請求是否成功"
+                    },
+                    "data": {
+                      "nullable": true,
+                      "description": "回應資料"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/pages/{slug}": {
+      "get": {
+        "tags": [
+          "Pages"
+        ],
+        "summary": "取得單一頁面內容",
+        "description": "依據 slug 取得頁面的完整內容",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100,
+              "pattern": "^[a-z0-9_]+$",
+              "description": "頁面 slug（只能包含小寫字母、數字和底線）",
+              "example": "bitdefender"
+            },
+            "required": true,
+            "name": "slug",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功回應",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "請求是否成功"
+                    },
+                    "data": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PageContent"
+                        },
+                        {
+                          "nullable": true,
+                          "description": "回應資料"
+                        }
+                      ]
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "無效的 slug 格式",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "請求是否成功"
+                    },
+                    "data": {
+                      "nullable": true,
+                      "description": "回應資料"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "頁面不存在",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "請求是否成功"
+                    },
+                    "data": {
+                      "nullable": true,
+                      "description": "回應資料"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/pages/type/{type}": {
+      "get": {
+        "tags": [
+          "Pages"
+        ],
+        "summary": "取得特定類型的頁面清單",
+        "description": "依據頁面類型（security, infrastructure, manufacturing, event, general）取得頁面清單",
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/components/schemas/PageType"
+            },
+            "required": true,
+            "name": "type",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功回應",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "請求是否成功"
+                    },
+                    "data": {
+                      "type": "array",
+                      "nullable": true,
+                      "items": {
+                        "$ref": "#/components/schemas/PageContent"
+                      },
+                      "description": "回應資料"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "無效的頁面類型",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "請求是否成功"
+                    },
+                    "data": {
+                      "nullable": true,
+                      "description": "回應資料"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/contact/submit": {
+      "post": {
+        "tags": [
+          "Contact"
+        ],
+        "summary": "提交聯絡表單",
+        "description": "提交網站聯絡表單，資料將儲存至資料庫並發送 Email 通知",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContactFormInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "提交成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "請求是否成功"
+                    },
+                    "data": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ContactSubmissionResponse"
+                        },
+                        {
+                          "nullable": true,
+                          "description": "回應資料"
+                        }
+                      ]
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "驗證失敗",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "請求是否成功"
+                    },
+                    "data": {
+                      "nullable": true,
+                      "description": "回應資料"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "伺服器錯誤",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "請求是否成功"
+                    },
+                    "data": {
+                      "nullable": true,
+                      "description": "回應資料"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/events": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "取得活動列表",
+        "description": "取得活動列表，支援分頁和篩選",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "頁碼（從 1 開始）"
+            },
+            "required": false,
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "每頁數量（預設 10，最大 50）"
+            },
+            "required": false,
+            "name": "page_size",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "$ref": "#/components/schemas/EventStatus"
+            },
+            "required": false,
+            "name": "status",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "$ref": "#/components/schemas/EventCategory"
+            },
+            "required": false,
+            "name": "category",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "event_date",
+                "created_at"
+              ]
+            },
+            "required": false,
+            "name": "sort_by",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            },
+            "required": false,
+            "name": "sort_order",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功回應",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "請求是否成功"
+                    },
+                    "data": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/EventListResponse"
+                        },
+                        {
+                          "nullable": true,
+                          "description": "回應資料"
+                        }
+                      ]
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/events/{id}": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "取得單一活動詳情",
+        "description": "依據活動 ID 取得活動的完整資訊",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "活動 ID"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功回應",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "請求是否成功"
+                    },
+                    "data": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/EventListItem"
+                        },
+                        {
+                          "nullable": true,
+                          "description": "回應資料"
+                        }
+                      ]
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "活動不存在",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "請求是否成功"
+                    },
+                    "data": {
+                      "nullable": true,
+                      "description": "回應資料"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/assets/{imageId}": {
+      "get": {
+        "tags": [
+          "Assets"
+        ],
+        "summary": "取得圖片資源資訊",
+        "description": "依據圖片 ID 取得圖片資源的詳細資訊",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "圖片 ID（格式：images_*）"
+            },
+            "required": true,
+            "name": "imageId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功回應",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "請求是否成功"
+                    },
+                    "data": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/AssetEntry"
+                        },
+                        {
+                          "nullable": true,
+                          "description": "回應資料"
+                        }
+                      ]
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "資源不存在",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "請求是否成功"
+                    },
+                    "data": {
+                      "nullable": true,
+                      "description": "回應資料"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/manifests/assets": {
+      "get": {
+        "tags": [
+          "Manifests"
+        ],
+        "summary": "取得資源清單",
+        "description": "取得所有圖片資源的清單",
+        "responses": {
+          "200": {
+            "description": "成功回應",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "請求是否成功"
+                    },
+                    "data": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/AssetManifest"
+                        },
+                        {
+                          "nullable": true,
+                          "description": "回應資料"
+                        }
+                      ]
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/manifests/content": {
+      "get": {
+        "tags": [
+          "Manifests"
+        ],
+        "summary": "取得內容清單",
+        "description": "取得所有頁面內容的清單",
+        "responses": {
+          "200": {
+            "description": "成功回應",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "請求是否成功"
+                    },
+                    "data": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ContentManifest"
+                        },
+                        {
+                          "nullable": true,
+                          "description": "回應資料"
+                        }
+                      ]
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
