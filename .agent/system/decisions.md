@@ -4,6 +4,55 @@
 
 ---
 
+## [2026-01-16] 部署平台從 Cloudflare Pages 遷移到 Vercel
+
+### 背景
+
+專案原本使用 Cloudflare Pages 部署靜態網站。新增 API 功能（聯絡表單）後，需要 Serverless Functions 支援。Cloudflare Pages Functions 與 Vercel Functions 格式不同。
+
+### 問題
+
+- 專案已有 `api/*.ts` 使用 Vercel Functions 格式
+- Cloudflare Pages 不支援 Vercel Functions
+- 需要二選一：改寫 API 或遷移平台
+
+### 選項
+
+1. **改寫 API**：將 `api/*.ts` 改為 Cloudflare Pages Functions 格式
+2. **遷移平台**：將部署從 Cloudflare Pages 改為 Vercel
+
+### 決策
+
+選擇**選項 2**：遷移到 Vercel
+
+### 理由
+
+- **保留現有程式碼**：API 已使用 Vercel Functions 格式，無需改寫
+- **本地開發一致**：`vercel dev` 可完整模擬生產環境
+- **生態系整合**：`@astrojs/vercel` adapter、Neon PostgreSQL 皆原生支援
+- **CI/CD 控制**：透過 GitHub Actions 部署，保持 test → deploy 流程
+
+### 執行內容
+
+1. 修改 `astro.config.mjs`：加入 `@astrojs/vercel` adapter
+2. 修改 `.github/workflows/deploy.yml`：改用 Vercel CLI 部署
+3. 設定 GitHub Secrets：`VERCEL_TOKEN`、`VERCEL_ORG_ID`、`VERCEL_PROJECT_ID`
+4. 設定 Vercel 環境變數：`DATABASE_URL`
+5. 停用 Vercel GitHub 整合（Ignored Build Step: Don't build anything）
+
+### 架構
+
+```
+用戶 → Vercel CDN → Static Assets (Astro SSG)
+                  → Vercel Functions (API) → Neon PostgreSQL
+```
+
+### 狀態
+
+✅ 已執行
+
+---
+
 ## [2026-01-15] md/yml 職責釐清與佈局分離
 
 ### 背景
