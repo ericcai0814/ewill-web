@@ -1,7 +1,22 @@
 /**
  * API Response 工具函式
  */
-import type { ApiResponse } from '@ewill/shared';
+
+// 直接定義類型，避免 workspace 套件在 Vercel Functions 中的問題
+interface ApiResponse<T> {
+  success: boolean;
+  data: T | null;
+  error?: {
+    code: string;
+    message: string;
+    details?: Record<string, unknown>;
+  };
+  meta?: {
+    timestamp: string;
+    version: string;
+    cached?: boolean;
+  };
+}
 
 const API_VERSION = '1.0.0';
 

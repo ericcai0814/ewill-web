@@ -6,8 +6,17 @@
  * - CONTACT_EMAIL: 接收通知的 Email（預設 sales@ewill.com.tw）
  */
 import { Resend } from 'resend';
-import type { ContactFormSubmission } from '@ewill/shared';
 import { escapeHtml } from '../utils/validate';
+
+// 直接定義類型，避免 workspace 套件在 Vercel Functions 中的問題
+interface ContactFormSubmission {
+  name: string;
+  email: string;
+  phone?: string;
+  company?: string;
+  message: string;
+  source_page?: string;
+}
 
 // 初始化 Resend 客戶端
 const resend = new Resend(process.env.RESEND_API_KEY);

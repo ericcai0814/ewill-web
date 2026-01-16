@@ -16,7 +16,28 @@ import { db } from '../../lib/db/client';
 import { events } from '../../lib/db/schema';
 import { successResponse, errorResponse, ErrorCodes } from '../../lib/utils/response';
 import { eq, desc, asc, and, sql } from 'drizzle-orm';
-import type { EventListResponse, EventStatus, EventCategory } from '@ewill/shared';
+
+// 直接定義類型，避免 workspace 套件在 Vercel Functions 中的問題
+type EventStatus = 'draft' | 'published' | 'archived';
+type EventCategory = 'seminar' | 'webinar' | 'press_release' | 'exhibition' | 'other';
+
+interface EventListItem {
+  id: string;
+  title: string;
+  summary: string;
+  category: EventCategory;
+  event_date: string;
+  cover_image_id: string;
+  page_slug: string;
+}
+
+interface EventListResponse {
+  items: EventListItem[];
+  total: number;
+  page: number;
+  page_size: number;
+  has_more: boolean;
+}
 
 const VALID_STATUS: EventStatus[] = ['draft', 'published', 'archived'];
 const VALID_CATEGORY: EventCategory[] = ['seminar', 'webinar', 'press_release', 'exhibition', 'other'];
