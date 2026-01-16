@@ -13,6 +13,7 @@ import Layout from '../Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
+import ContactFormSection from '../../components/ContactFormSection.astro';
 import { getAssetById } from '../../utils/content';
 import type { PageContent, AioData } from '../../utils/content';
 import type { JsonLdItem } from '../../components/SEO.astro';
@@ -121,51 +122,16 @@ const ogImage = getOgImageUrl();
     </section>
 
     <!-- ================================================================== -->
-    <!-- 3. CONTACT FORM SECTION -->
+    <!-- 3. CONTACT FORM SECTION (AJAX) -->
     <!-- ================================================================== -->
-    <section class="form-section fade-in-section">
-      <div class="container">
-        <span class="form-label">{formData.label}</span>
-        <h2 class="form-title">{formData.title}</h2>
-
-        <form class="contact-form" action="/api/contact" method="POST">
-          {formData.fields.map((field) => (
-            <div class="form-group">
-              <label for={field.name} class="form-field-label">
-                {field.label}
-                {field.required && <span class="required">*</span>}
-              </label>
-              {field.type === 'textarea' ? (
-                <textarea
-                  id={field.name}
-                  name={field.name}
-                  placeholder={field.placeholder}
-                  required={field.required}
-                  class="form-textarea"
-                  rows="5"
-                ></textarea>
-              ) : (
-                <input
-                  type={field.type || 'text'}
-                  id={field.name}
-                  name={field.name}
-                  placeholder={field.placeholder}
-                  required={field.required}
-                  class="form-input"
-                />
-              )}
-            </div>
-          ))}
-
-          <button type="submit" class="form-button">
-            {formData.button_text}
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </button>
-        </form>
-      </div>
-    </section>
+    <div class="form-section-wrapper fade-in-section">
+      <ContactFormSection
+        label={formData.label}
+        title={formData.title}
+        fields={formData.fields}
+        button_text={formData.button_text}
+      />
+    </div>
   </main>
 
   <Footer />
@@ -244,113 +210,10 @@ const ogImage = getOgImageUrl();
   }
 
   /* ----------------------------------------
-     Form Section
+     Form Section Wrapper
      ---------------------------------------- */
-  .form-section {
-    padding: 0 0 80px;
-  }
-
-  .form-label {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 8px;
-  }
-
-  .form-title {
-    font-size: clamp(20px, 4vw, 28px);
-    font-weight: 600;
-    color: var(--text-primary);
-    margin: 0 0 32px;
-    text-align: center;
-  }
-
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .form-field-label {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-primary);
-  }
-
-  .required {
-    color: var(--accent);
-    margin-left: 4px;
-  }
-
-  .form-input,
-  .form-textarea {
-    width: 100%;
-    padding: 14px 16px;
-    font-size: 16px;
-    line-height: 1.5;
-    color: var(--text-primary);
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    transition: all 0.2s ease;
-    font-family: inherit;
-  }
-
-  .form-input:focus,
-  .form-textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(var(--accent-rgb, 0, 122, 255), 0.15);
-  }
-
-  .form-input::placeholder,
-  .form-textarea::placeholder {
-    color: var(--text-tertiary);
-  }
-
-  .form-textarea {
-    resize: vertical;
-    min-height: 120px;
-  }
-
-  .form-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 14px 28px;
-    font-size: 17px;
-    font-weight: 500;
-    color: white;
-    background: var(--accent);
-    border: none;
-    border-radius: 980px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 16px;
-    align-self: center;
-  }
-
-  .form-button:hover {
-    background: var(--accent-hover, var(--accent));
-    transform: scale(1.02);
-  }
-
-  .form-button svg {
-    transition: transform 0.3s ease;
-  }
-
-  .form-button:hover svg {
-    transform: translateX(4px);
+  .form-section-wrapper {
+    padding-bottom: 48px;
   }
 
   /* ----------------------------------------
@@ -372,11 +235,6 @@ const ogImage = getOgImageUrl();
      ---------------------------------------- */
   :global(.dark) .hero-overlay {
     background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.5) 100%);
-  }
-
-  :global(.dark) .form-input,
-  :global(.dark) .form-textarea {
-    background: var(--bg-tertiary);
   }
 </style>
 

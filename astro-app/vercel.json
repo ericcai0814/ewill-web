@@ -32,10 +32,6 @@
     {
       "source": "/api/contact/submit",
       "destination": "/api/contact/submit"
-    },
-    {
-      "source": "/api/contact",
-      "destination": "/api/contact/index"
     }
   ],
   "headers": [
