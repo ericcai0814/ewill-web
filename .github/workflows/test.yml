@@ -1,0 +1,45 @@
+name: Test
+
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install root dependencies
+        run: pnpm install
+
+      - name: Install astro-app dependencies
+        working-directory: astro-app
+        run: pnpm install
+
+      - name: Build content (generate JSON for tests)
+        run: pnpm run build
+
+      - name: Run tests
+        working-directory: astro-app
+        run: pnpm test:run
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: astro-app/coverage/
+          retention-days: 7

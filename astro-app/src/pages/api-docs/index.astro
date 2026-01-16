@@ -65,8 +65,8 @@
     </nav>
   </header>
   <div id="swagger-ui"></div>
-  <script src="https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui-bundle.js"></script>
-  <script>
+  <script is:inline src="https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui-bundle.js"></script>
+  <script is:inline>
     window.onload = function() {
       window.ui = SwaggerUIBundle({
         url: '/api-docs/openapi.json',
