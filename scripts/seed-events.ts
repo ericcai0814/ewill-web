@@ -6,7 +6,12 @@
  * 執行方式：
  * cd astro-app && npx tsx ../scripts/seed-events.ts
  */
-import 'dotenv/config';
+// 載入環境變數（如果在 astro-app 目錄下執行，會自動讀取 .env）
+import { config } from 'dotenv';
+import { resolve } from 'path';
+
+// 嘗試從 astro-app/.env 載入
+config({ path: resolve(process.cwd(), '.env') });
 import { drizzle } from 'drizzle-orm/neon-http';
 import { neon } from '@neondatabase/serverless';
 import { events, type NewEvent } from '../astro-app/lib/db/schema';
