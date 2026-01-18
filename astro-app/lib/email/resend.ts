@@ -4,17 +4,43 @@
  * 環境變數：
  * - RESEND_API_KEY: Resend API 金鑰
  * - CONTACT_EMAIL: 接收通知的 Email（預設 sales@ewill.com.tw）
+ *
+ * 注意：Astro 5 使用 import.meta.env 存取 .env 檔案的環境變數
  */
 import { Resend } from 'resend';
 import type { ContactFormSubmission } from '@ewill/shared';
 import { escapeHtml } from '../utils/validate';
 
-// 初始化 Resend 客戶端
-const resend = new Resend(process.env.RESEND_API_KEY);
+/**
+ * 取得環境變數（同時支援 Astro/Vite 和 Node.js 環境）
+ */
+function getEnvVar(key: string, defaultValue?: string): string | undefined {
+  return (
+    (import.meta as any).env?.[key] ||
+    process.env[key] ||
+    defaultValue
+  );
+}
+
+// 惰性初始化 Resend 客戶端
+let _resend: Resend | null = null;
+
+function getResend(): Resend {
+  if (!_resend) {
+    const apiKey = getEnvVar('RESEND_API_KEY');
+    _resend = new Resend(apiKey);
+  }
+  return _resend;
+}
 
 // 通知接收者
-const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'sales@ewill.com.tw';
-const FROM_EMAIL = process.env.FROM_EMAIL || 'noreply@ewill.com.tw';
+function getContactEmail(): string {
+  return getEnvVar('CONTACT_EMAIL', 'sales@ewill.com.tw') as string;
+}
+
+function getFromEmail(): string {
+  return getEnvVar('FROM_EMAIL', 'noreply@ewill.com.tw') as string;
+}
 
 /**
  * 發送聯絡表單通知信
@@ -23,15 +49,17 @@ export async function sendContactNotification(
   submission: ContactFormSubmission & { submission_id: string }
 ): Promise<{ success: boolean; error?: string }> {
   // 如果沒有設定 API Key，跳過發送
-  if (!process.env.RESEND_API_KEY) {
+  const apiKey = getEnvVar('RESEND_API_KEY');
+  if (!apiKey) {
     console.warn('RESEND_API_KEY 未設定，跳過 Email 發送');
     return { success: true };
   }
 
   try {
+    const resend = getResend();
     const { data, error } = await resend.emails.send({
-      from: `鎰威網站 <${FROM_EMAIL}>`,
-      to: [CONTACT_EMAIL],
+      from: `鎰威網站 <${getFromEmail()}>`,
+      to: [getContactEmail()],
       subject: `[網站表單] ${submission.name} 的來信`,
       html: generateEmailHtml(submission),
     });
