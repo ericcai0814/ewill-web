@@ -4,36 +4,6 @@
   "installCommand": "cd .. && pnpm install",
   "buildCommand": "cd .. && pnpm run build && cd astro-app && pnpm run build",
   "outputDirectory": "dist",
-  "rewrites": [
-    {
-      "source": "/api/pages",
-      "destination": "/api/pages/index"
-    },
-    {
-      "source": "/api/pages/type/:type",
-      "destination": "/api/pages/type/[type]"
-    },
-    {
-      "source": "/api/pages/:slug",
-      "destination": "/api/pages/[slug]"
-    },
-    {
-      "source": "/api/manifests/content",
-      "destination": "/api/manifests/content"
-    },
-    {
-      "source": "/api/manifests/assets",
-      "destination": "/api/manifests/assets"
-    },
-    {
-      "source": "/api/assets/:imageId",
-      "destination": "/api/assets/[imageId]"
-    },
-    {
-      "source": "/api/contact/submit",
-      "destination": "/api/contact/submit"
-    }
-  ],
   "headers": [
     {
       "source": "/api/(.*)",

@@ -11,10 +11,13 @@
  * - sort_by: 排序欄位（event_date | created_at，預設 event_date）
  * - sort_order: 排序方向（asc | desc，預設 desc）
  */
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { db } from '../../lib/db/client';
-import { events } from '../../lib/db/schema';
-import { successResponse, errorResponse, ErrorCodes } from '../../lib/utils/response';
+import type { APIRoute } from 'astro';
+
+// 標記為 server-side route（不預先渲染）
+export const prerender = false;
+import { db } from '../../../../lib/db/client';
+import { events } from '../../../../lib/db/schema';
+import { successResponse, errorResponse, ErrorCodes } from '../../../../lib/utils/response';
 import { eq, desc, asc, and, sql } from 'drizzle-orm';
 import type { EventListResponse, EventStatus, EventCategory } from '@ewill/shared';
 
@@ -23,28 +26,20 @@ const VALID_CATEGORY: EventCategory[] = ['seminar', 'webinar', 'press_release', 
 const VALID_SORT_BY = ['event_date', 'created_at'] as const;
 const VALID_SORT_ORDER = ['asc', 'desc'] as const;
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // 只允許 GET
-  if (req.method !== 'GET') {
-    return res.status(405).json(
-      errorResponse(ErrorCodes.METHOD_NOT_ALLOWED, '只允許 GET 請求')
-    );
-  }
-
+export const GET: APIRoute = async ({ request }) => {
   try {
-    // 解析查詢參數
-    const {
-      page: pageParam,
-      page_size: pageSizeParam,
-      status,
-      category,
-      sort_by: sortBy = 'event_date',
-      sort_order: sortOrder = 'desc',
-    } = req.query;
+    // 解析 URL 取得 query parameters
+    const url = new URL(request.url);
+    const pageParam = url.searchParams.get('page');
+    const pageSizeParam = url.searchParams.get('page_size');
+    const status = url.searchParams.get('status');
+    const category = url.searchParams.get('category');
+    const sortBy = url.searchParams.get('sort_by') || 'event_date';
+    const sortOrder = url.searchParams.get('sort_order') || 'desc';
 
     // 驗證並轉換分頁參數
-    const page = Math.max(1, parseInt(pageParam as string, 10) || 1);
-    const pageSize = Math.min(50, Math.max(1, parseInt(pageSizeParam as string, 10) || 10));
+    const page = Math.max(1, parseInt(pageParam || '1', 10) || 1);
+    const pageSize = Math.min(50, Math.max(1, parseInt(pageSizeParam || '10', 10) || 10));
     const offset = (page - 1) * pageSize;
 
     // 建立篩選條件
@@ -113,14 +108,26 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       has_more: offset + items.length < total,
     };
 
-    // 設定快取 header（5 分鐘）
-    res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=60');
-
-    return res.status(200).json(successResponse(response));
+    return new Response(JSON.stringify(successResponse(response)), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 's-maxage=300, stale-while-revalidate=60',
+      },
+    });
   } catch (error) {
     console.error('Events API error:', error);
-    return res.status(500).json(
-      errorResponse(ErrorCodes.INTERNAL_ERROR, '伺服器錯誤，請稍後再試')
+    return new Response(
+      JSON.stringify(errorResponse(ErrorCodes.INTERNAL_ERROR, '伺服器錯誤，請稍後再試')),
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
-}
+};
+
+// 只允許 GET
+export const ALL: APIRoute = async () => {
+  return new Response(
+    JSON.stringify(errorResponse(ErrorCodes.METHOD_NOT_ALLOWED, '只允許 GET 請求')),
+    { status: 405, headers: { 'Content-Type': 'application/json' } }
+  );
+};

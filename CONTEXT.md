@@ -109,8 +109,9 @@ pnpm run build   # → astro-app/public/content/
 `sync-content` 用於將 `index.md` 內容同步到 `index.yml` 的 `layout.sections`。
 
 **保護規則**：
+
 - 若頁面 yml 含手動 sections（如 `product_intro`, `cta`, `card_list`），**完全跳過同步**
-- 僅純 `text`/`image` 頁面才會被同步（如 event_* 活動頁）
+- 僅純 `text`/`image` 頁面才會被同步（如 event\_\* 活動頁）
 - 手動配置的頁面需直接編輯 yml，md 僅作為原始內容參考
 
 **頁面類型與編輯方式**：
@@ -119,7 +120,7 @@ pnpm run build   # → astro-app/public/content/
 | 產品頁 | acunetix, logsec | product_intro, feature_showcase, cta | 直接編輯 yml |
 | 列表頁 | index, event_information | card_list | 直接編輯 yml |
 | 服務頁 | services, solutions | anchor, text, cta | 直接編輯 yml |
-| 活動頁 | event_2025* | text, image | md → yml 同步 |
+| 活動頁 | event_2025\* | text, image | md → yml 同步 |
 | 靜態頁 | about_us, esg | text, image | md → yml 同步 |
 
 ### 頁面目錄與 URL 對應

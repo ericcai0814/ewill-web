@@ -12,7 +12,7 @@ const siteUrl = 'https://ewill-web-astro-app.vercel.app';
 export default defineConfig({
   site: siteUrl,
 
-  // SSG 靜態生成模式，API 由 Vercel Functions 處理
+  // 使用 Vercel adapter 處理 server routes (prerender: false)
   output: 'static',
   adapter: vercel(),
 
