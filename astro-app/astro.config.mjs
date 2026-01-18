@@ -12,7 +12,8 @@ const siteUrl = 'https://ewill-web-astro-app.vercel.app';
 export default defineConfig({
   site: siteUrl,
 
-  // 使用 Vercel adapter 處理 server routes (prerender: false)
+  // 使用 Vercel adapter 處理 SSR 頁面 (prerender: false)
+  // Astro 5: static 模式預設靜態生成，個別頁面可用 prerender: false 啟用 SSR
   output: 'static',
   adapter: vercel(),
 

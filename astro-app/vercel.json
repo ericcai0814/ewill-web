@@ -4,6 +4,28 @@
   "installCommand": "cd .. && pnpm install",
   "buildCommand": "cd .. && pnpm run build && cd astro-app && pnpm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/event_20251021/",
+      "destination": "/events/event_20251021/",
+      "permanent": true
+    },
+    {
+      "source": "/event_20251118/",
+      "destination": "/events/event_20251118/",
+      "permanent": true
+    },
+    {
+      "source": "/event_20251119/",
+      "destination": "/events/event_20251119/",
+      "permanent": true
+    },
+    {
+      "source": "/event_20251124/",
+      "destination": "/events/event_20251124/",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/api/(.*)",

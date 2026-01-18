@@ -1,0 +1,214 @@
+---
+/**
+ * /event_information/ - 活動列表頁（SSR）
+ *
+ * 動態載入活動列表，從 Neon DB 取得資料
+ */
+export const prerender = false;
+
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import EventListSection from '../../components/EventListSection.astro';
+import { getAssetById, getPageContent } from '../../utils/content';
+import type { ApiResponse, EventListResponse } from '@ewill/shared';
+import type { JsonLdItem } from '../../components/SEO.astro';
+
+// 從靜態 JSON 取得 SEO 資料（維持 SEO 一致性）
+const pageData = await getPageContent('event_information');
+const seo = pageData?.seo || {
+  title: '活動訊息 | 研討會、新聞發布與產業活動 - 鎰威科技',
+  description: '鎰威科技最新活動訊息，包含資安與智慧製造研討會、線上 Webinar、產品發表會與產業合作新聞。',
+  keywords: ['活動訊息', '研討會', 'Webinar', '新聞發布'],
+};
+const aio = pageData?.aio;
+
+// 從 API 取得活動列表
+let events: EventListResponse['items'] = [];
+let fetchError: string | null = null;
+
+try {
+  const apiUrl = `${Astro.url.origin}/api/events?status=published&sort_by=event_date&sort_order=desc`;
+  const response = await fetch(apiUrl);
+  const result: ApiResponse<EventListResponse> = await response.json();
+
+  if (result.success && result.data) {
+    events = result.data.items;
+  } else {
+    fetchError = result.error?.message || '無法取得活動列表';
+  }
+} catch (error) {
+  console.error('Failed to fetch events:', error);
+  fetchError = '載入活動列表時發生錯誤';
+}
+
+// Hero Banner
+const heroAsset = await getAssetById('banner1209');
+const heroMobileAsset = await getAssetById('bn_home_m');
+
+const heroImage = heroAsset
+  ? {
+      desktop: heroAsset.variants.desktop,
+      mobile: heroMobileAsset?.variants.mobile || heroAsset.variants.mobile,
+      alt: heroAsset.alt,
+    }
+  : null;
+
+// LCP Image for preload
+const lcpImage = heroImage
+  ? { desktop: heroImage.desktop, mobile: heroImage.mobile }
+  : undefined;
+
+// OG Image
+const siteUrl = Astro.url.origin;
+const DEFAULT_OG_IMAGE = '/assets/og-default.jpg';
+const ogImage = seo.og_image
+  ? (seo.og_image.startsWith('http') ? seo.og_image : `${siteUrl}${seo.og_image}`)
+  : heroImage
+    ? `${siteUrl}${heroImage.desktop}`
+    : `${siteUrl}${DEFAULT_OG_IMAGE}`;
+
+// JSON-LD
+function buildJsonLd(): JsonLdItem[] {
+  const items: JsonLdItem[] = [];
+  if (aio?.webpage) items.push({ type: 'WebPage', data: aio.webpage });
+  return items;
+}
+
+const jsonLdItems = buildJsonLd();
+
+// Breadcrumb
+const breadcrumbItems = [
+  { label: '首頁', href: '/' },
+  { label: '活動訊息' },
+];
+---
+
+<Layout
+  title={seo.title}
+  description={seo.description}
+  keywords={seo.keywords}
+  jsonLd={jsonLdItems}
+  lcpImage={lcpImage}
+  ogImage={ogImage}
+>
+  <Header />
+
+  <main class="event-list-page">
+    <Breadcrumb items={breadcrumbItems} />
+
+    {/* Hero Section */}
+    {heroImage && (
+      <HeroSection
+        image={heroImage}
+        overlay={false}
+        height="fixed"
+      />
+    )}
+
+    {/* Page Header */}
+    <section class="page-header">
+      <div class="container">
+        <h1 class="page-title">{seo.title.split('|')[0].trim()}</h1>
+        <p class="page-description">{seo.description}</p>
+      </div>
+    </section>
+
+    {/* Event List */}
+    {fetchError ? (
+      <section class="error-section">
+        <div class="container">
+          <div class="error-message">
+            <p>{fetchError}</p>
+            <button onclick="window.location.reload()" class="retry-button">
+              重新載入
+            </button>
+          </div>
+        </div>
+      </section>
+    ) : (
+      <EventListSection
+        label="Event Information"
+        title="最新活動"
+        events={events}
+        columns={3}
+        emptyMessage="目前暫無活動資訊，請稍後再回來查看"
+      />
+    )}
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .event-list-page {
+    min-height: 100vh;
+    padding-top: 64px;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+  }
+
+  .page-header {
+    padding: 48px 0 16px;
+  }
+
+  .page-title {
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin: 0 0 16px;
+  }
+
+  .page-description {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .error-section {
+    padding: 64px 0;
+  }
+
+  .error-message {
+    text-align: center;
+    padding: 48px 24px;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+  }
+
+  .error-message p {
+    font-size: 17px;
+    color: var(--text-secondary);
+    margin: 0 0 24px;
+  }
+
+  .retry-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+    background: var(--accent);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .retry-button:hover {
+    background: var(--accent-hover, var(--accent));
+    transform: translateY(-1px);
+  }
+</style>

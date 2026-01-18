@@ -301,6 +301,69 @@ export interface AnchorNavProps {
 }
 
 // ============================================
+// Event 元件類型（動態活動系統）
+// ============================================
+
+/** 活動分類 */
+export type EventCategory = 'seminar' | 'webinar' | 'press_release' | 'exhibition' | 'other';
+
+/** EventCard Props */
+export interface EventCardProps {
+  /** 活動 ID */
+  id: string;
+  /** 標題 */
+  title: string;
+  /** 摘要 */
+  summary: string;
+  /** 分類 */
+  category: EventCategory;
+  /** 活動日期（ISO 字串） */
+  event_date: string;
+  /** 頁面 slug */
+  page_slug: string;
+  /** 封面圖片（已解析） */
+  cover_image?: ImageAsset;
+}
+
+/** EventListSection Props */
+export interface EventListSectionProps extends SectionBaseProps {
+  /** 欄數 @default 3 */
+  columns?: 2 | 3 | 4;
+  /** 活動列表（從 API 取得） */
+  events: {
+    id: string;
+    title: string;
+    summary: string;
+    category: EventCategory;
+    event_date: string;
+    cover_image_id: string;
+    page_slug: string;
+  }[];
+  /** 顯示「暫無活動」訊息 */
+  emptyMessage?: string;
+}
+
+/** EventDetailSection Props */
+export interface EventDetailSectionProps {
+  /** 標題 */
+  title: string;
+  /** 摘要 */
+  summary?: string;
+  /** 分類 */
+  category: EventCategory;
+  /** 活動日期（ISO 字串） */
+  event_date: string;
+  /** 結束日期（ISO 字串） */
+  end_date?: string;
+  /** Markdown 內容 */
+  content: string;
+  /** Hero 圖片 ID */
+  hero_image_id?: string;
+  /** Gallery 圖片 IDs */
+  gallery?: string[];
+}
+
+// ============================================
 // Layout 元件類型
 // ============================================
 

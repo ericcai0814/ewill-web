@@ -1,0 +1,180 @@
+---
+/**
+ * EventListSection.astro
+ *
+ * 活動列表區塊組件
+ *
+ * 設計要點：
+ * - 從 props 接收活動列表資料
+ * - 使用 Promise.all() 並行解析圖片
+ * - 遵循現有 CardListSection 的佈局模式
+ */
+import EventCard from './EventCard.astro';
+import { getAssetById } from '../utils/content';
+import type { EventListItem } from '@ewill/shared';
+
+export interface Props {
+  /** 小標籤（通常為英文） */
+  label?: string;
+  /** 標題 */
+  title?: string;
+  /** 描述文字 */
+  description?: string;
+  /** 欄數 @default 3 */
+  columns?: 2 | 3 | 4;
+  /** 活動列表 */
+  events: EventListItem[];
+  /** 顯示「暫無活動」訊息 */
+  emptyMessage?: string;
+}
+
+const {
+  label,
+  title,
+  description,
+  columns = 3,
+  events,
+  emptyMessage = '目前暫無活動資訊',
+} = Astro.props;
+
+// 並行解析所有活動的封面圖片
+const eventsWithImages = await Promise.all(
+  events.map(async (event) => {
+    const asset = await getAssetById(event.cover_image_id);
+    return {
+      ...event,
+      cover_image: asset
+        ? {
+            desktop: asset.variants.desktop,
+            mobile: asset.variants.mobile,
+            alt: asset.alt,
+          }
+        : undefined,
+    };
+  })
+);
+
+// Grid columns class
+const gridCols = {
+  2: 'sm:grid-cols-2',
+  3: 'sm:grid-cols-2 lg:grid-cols-3',
+  4: 'sm:grid-cols-2 lg:grid-cols-4',
+}[columns];
+---
+
+<section class="event-list-section">
+  <div class="container-wide">
+    {/* Section Header */}
+    {(label || title || description) && (
+      <header class="section-header">
+        {label && (
+          <span class="section-label">{label}</span>
+        )}
+        {title && (
+          <h2 class="section-title">{title}</h2>
+        )}
+        {description && (
+          <p class="section-description">{description}</p>
+        )}
+      </header>
+    )}
+
+    {/* Events Grid */}
+    {eventsWithImages.length > 0 ? (
+      <div class:list={['event-grid', gridCols]}>
+        {eventsWithImages.map((event) => (
+          <EventCard
+            id={event.id}
+            title={event.title}
+            summary={event.summary}
+            category={event.category}
+            event_date={event.event_date}
+            page_slug={event.page_slug}
+            cover_image={event.cover_image}
+          />
+        ))}
+      </div>
+    ) : (
+      <div class="empty-state">
+        <p class="empty-message">{emptyMessage}</p>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .event-list-section {
+    padding: 48px 0 80px;
+  }
+
+  .container-wide {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 4vw, 36px);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin: 0 0 16px;
+  }
+
+  .section-description {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .event-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  @media (min-width: 640px) {
+    .event-grid.sm\:grid-cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .event-grid.lg\:grid-cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .event-grid.lg\:grid-cols-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 64px 24px;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+  }
+
+  .empty-message {
+    font-size: 17px;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+</style>

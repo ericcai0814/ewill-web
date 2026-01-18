@@ -7,7 +7,7 @@
  */
 import ProductPageTemplate from './templates/ProductPageTemplate.astro';
 import SolutionPageTemplate from './templates/SolutionPageTemplate.astro';
-import EventPageTemplate from './templates/EventPageTemplate.astro';
+// EventPageTemplate 已移除，活動頁面改為 SSR（見 /event_information/ 和 /events/[slug]/）
 import GeneralPageTemplate from './templates/GeneralPageTemplate.astro';
 import AboutPageTemplate from './templates/AboutPageTemplate.astro';
 import ContactPageTemplate from './templates/ContactPageTemplate.astro';
@@ -68,12 +68,12 @@ const SLUG_TEMPLATE_MAP: Record<string, string> = {
   'data_middleware': 'product',
   'jennifer_apm': 'product',
 
-  // 活動頁
-  'event_information': 'event',
-  'event_20251021': 'event',
-  'event_20251118': 'event',
-  'event_20251119': 'event',
-  'event_20251124': 'event',
+  // 活動頁（已移至 SSR，這裡僅作為 fallback 記錄）
+  // 'event_information': 'event',  // 由 /event_information/index.astro 處理
+  // 'event_20251021': 'event',     // 由 Vercel redirects 轉向到 /events/event_20251021/
+  // 'event_20251118': 'event',
+  // 'event_20251119': 'event',
+  // 'event_20251124': 'event',
 
   // 聯絡我們
   'contact': 'contact',
@@ -90,7 +90,7 @@ const TEMPLATE_MAP: Record<string, any> = {
   'product': ProductPageTemplate,
   'solution': SolutionPageTemplate,
   'smart-manufacturing': SmartManufacturingTemplate,
-  'event': EventPageTemplate,
+  // 'event': EventPageTemplate,  // 已移至 SSR
   'general': GeneralPageTemplate,
   'about': AboutPageTemplate,
   'service': ServicePageTemplate,

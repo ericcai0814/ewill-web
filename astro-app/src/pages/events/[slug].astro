@@ -1,0 +1,225 @@
+---
+/**
+ * /events/[slug]/ - 活動詳情頁（SSR）
+ *
+ * 動態載入單一活動詳情，從 Neon DB 取得資料
+ */
+export const prerender = false;
+
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import EventDetailSection from '../../components/EventDetailSection.astro';
+import { getAssetById } from '../../utils/content';
+import type { ApiResponse, EventDetail, AioData } from '@ewill/shared';
+import type { JsonLdItem } from '../../components/SEO.astro';
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect('/404');
+}
+
+// 從 API 取得活動詳情
+let event: EventDetail | null = null;
+let fetchError: string | null = null;
+
+try {
+  const apiUrl = `${Astro.url.origin}/api/events/${slug}`;
+  const response = await fetch(apiUrl);
+  const result: ApiResponse<EventDetail> = await response.json();
+
+  if (result.success && result.data) {
+    event = result.data;
+  } else if (response.status === 404) {
+    return Astro.redirect('/404');
+  } else {
+    fetchError = result.error?.message || '無法取得活動資料';
+  }
+} catch (error) {
+  console.error('Failed to fetch event:', error);
+  fetchError = '載入活動資料時發生錯誤';
+}
+
+// 如果沒有活動資料，顯示 404
+if (!event && !fetchError) {
+  return Astro.redirect('/404');
+}
+
+// SEO 資料
+const seo = event?.seo || {
+  title: '活動詳情 - 鎰威科技',
+  description: '',
+  keywords: [],
+};
+
+// Hero 圖片
+const heroAsset = event?.hero_image_id
+  ? await getAssetById(event.hero_image_id)
+  : await getAssetById(event?.cover_image_id || '');
+
+// LCP Image for preload
+const lcpImage = heroAsset
+  ? { desktop: heroAsset.variants.desktop, mobile: heroAsset.variants.mobile }
+  : undefined;
+
+// OG Image
+const siteUrl = Astro.url.origin;
+const DEFAULT_OG_IMAGE = '/assets/og-default.jpg';
+const ogImage = seo.og_image
+  ? (seo.og_image.startsWith('http') ? seo.og_image : `${siteUrl}${seo.og_image}`)
+  : heroAsset
+    ? `${siteUrl}${heroAsset.variants.desktop}`
+    : `${siteUrl}${DEFAULT_OG_IMAGE}`;
+
+// JSON-LD
+function buildJsonLd(aioData: AioData | undefined): JsonLdItem[] {
+  if (!aioData) return [];
+  const items: JsonLdItem[] = [];
+  if (aioData.webpage) items.push({ type: 'WebPage', data: aioData.webpage });
+  if (aioData.event) items.push({ type: 'Event', data: aioData.event });
+  if (aioData.faq && aioData.faq.length > 0) items.push({ type: 'FAQPage', data: { items: aioData.faq } });
+  return items;
+}
+
+const jsonLdItems = buildJsonLd(event?.aio);
+
+// Breadcrumb
+const breadcrumbItems = [
+  { label: '首頁', href: '/' },
+  { label: '活動訊息', href: '/event_information/' },
+  { label: event?.title || '活動詳情' },
+];
+---
+
+<Layout
+  title={seo.title}
+  description={seo.description}
+  keywords={seo.keywords}
+  jsonLd={jsonLdItems}
+  lcpImage={lcpImage}
+  ogImage={ogImage}
+>
+  <Header />
+
+  <main class="event-detail-page">
+    <Breadcrumb items={breadcrumbItems} />
+
+    {fetchError ? (
+      <section class="error-section">
+        <div class="container">
+          <div class="error-message">
+            <h1>無法載入活動</h1>
+            <p>{fetchError}</p>
+            <div class="error-actions">
+              <button onclick="window.location.reload()" class="retry-button">
+                重新載入
+              </button>
+              <a href="/event_information/" class="back-link">
+                返回活動列表
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    ) : event && (
+      <EventDetailSection
+        title={event.title}
+        summary={event.summary}
+        category={event.category}
+        event_date={event.event_date}
+        end_date={event.end_date}
+        content={event.content}
+        hero_image_id={event.hero_image_id || event.cover_image_id}
+        gallery={event.gallery}
+      />
+    )}
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .event-detail-page {
+    min-height: 100vh;
+    padding-top: 64px;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .error-section {
+    padding: 120px 0;
+  }
+
+  .error-message {
+    text-align: center;
+    padding: 64px 24px;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+  }
+
+  .error-message h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 16px;
+  }
+
+  .error-message p {
+    font-size: 17px;
+    color: var(--text-secondary);
+    margin: 0 0 32px;
+  }
+
+  .error-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .retry-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+    background: var(--accent);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .retry-button:hover {
+    background: var(--accent-hover, var(--accent));
+    transform: translateY(-1px);
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-primary);
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .back-link:hover {
+    background: var(--bg-primary);
+    transform: translateY(-1px);
+  }
+</style>

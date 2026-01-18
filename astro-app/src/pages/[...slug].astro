@@ -6,8 +6,15 @@ import type { GetStaticPaths } from 'astro';
 export const getStaticPaths: GetStaticPaths = async () => {
   const pages = await getAllPages();
 
-  // 過濾掉 index（首頁由 index.astro 處理）
-  const innerPages = pages.filter(slug => slug !== 'index');
+  // 過濾掉：
+  // - index（首頁由 index.astro 處理）
+  // - event_information（由 SSR 頁面處理）
+  // - event_* 活動頁面（由 Vercel redirects 轉向到 /events/[slug]/）
+  const innerPages = pages.filter(slug =>
+    slug !== 'index' &&
+    slug !== 'event_information' &&
+    !slug.startsWith('event_')
+  );
 
   return innerPages.map(slug => ({
     params: { slug },

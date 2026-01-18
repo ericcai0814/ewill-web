@@ -6,6 +6,7 @@
   "scripts": {
     "build": "npx tsx .claude/skills/content-build/scripts/build.ts",
     "build:content": "npx tsx .claude/skills/content-build/scripts/build.ts",
+    "seed:events": "cd astro-app && npx tsx ../scripts/seed-events.ts",
     "prepare": "husky"
   },
   "keywords": [],
