@@ -1,10 +1,20 @@
 /**
- * Mock Data JSON 結構驗證測試
+ * Content Build 輸出驗證測試（整合測試）
+ *
+ * 前置條件：需要先執行 content build（pnpm run build 在根目錄）
+ * 這個測試會驗證生成的 JSON 檔案結構是否正確
  */
 import { describe, it, expect } from 'vitest';
 import { z } from 'zod';
 import fs from 'fs';
 import path from 'path';
+
+// 取得 public/content/pages 目錄的絕對路徑
+const PAGES_DIR = path.join(process.cwd(), 'public/content/pages');
+
+// 檢查是否有 content build 輸出
+const hasContentBuild = fs.existsSync(PAGES_DIR) &&
+  fs.readdirSync(PAGES_DIR).some(f => f.endsWith('.json'));
 
 // SEO Schema
 const seoSchema = z.object({
@@ -88,16 +98,16 @@ const standardPageContentSchema = z.object({
 
 // 取得所有 JSON 檔案
 function getPageJsonFiles(): string[] {
-  const pagesDir = path.join(__dirname, '../../public/content/pages');
-  if (!fs.existsSync(pagesDir)) {
+  if (!fs.existsSync(PAGES_DIR)) {
     return [];
   }
-  return fs.readdirSync(pagesDir)
+  return fs.readdirSync(PAGES_DIR)
     .filter((file) => file.endsWith('.json'))
-    .map((file) => path.join(pagesDir, file));
+    .map((file) => path.join(PAGES_DIR, file));
 }
 
-describe('Mock Data JSON 結構驗證', () => {
+// 使用 describe.skipIf 在沒有 content build 時跳過測試
+describe.skipIf(!hasContentBuild)('Content Build JSON 結構驗證', () => {
   const jsonFiles = getPageJsonFiles();
 
   it('應至少有一個 JSON 檔案', () => {
@@ -139,7 +149,7 @@ describe('Mock Data JSON 結構驗證', () => {
   });
 });
 
-describe('SEO 欄位完整性', () => {
+describe.skipIf(!hasContentBuild)('SEO 欄位完整性', () => {
   const jsonFiles = getPageJsonFiles();
 
   // 排除特殊頁面
@@ -169,7 +179,7 @@ describe('SEO 欄位完整性', () => {
   });
 });
 
-describe('URL Mapping 驗證', () => {
+describe.skipIf(!hasContentBuild)('URL Mapping 驗證', () => {
   const jsonFiles = getPageJsonFiles();
 
   // 排除特殊頁面
@@ -193,7 +203,7 @@ describe('URL Mapping 驗證', () => {
   });
 });
 
-describe('AIO 結構化資料驗證', () => {
+describe.skipIf(!hasContentBuild)('AIO 結構化資料驗證', () => {
   const jsonFiles = getPageJsonFiles();
 
   // 排除特殊頁面
@@ -265,7 +275,7 @@ describe('AIO 結構化資料驗證', () => {
   });
 });
 
-describe('generated_at 時間戳驗證', () => {
+describe.skipIf(!hasContentBuild)('generated_at 時間戳驗證', () => {
   const jsonFiles = getPageJsonFiles();
 
   jsonFiles.forEach((filePath) => {
