@@ -9,6 +9,8 @@ jobs:
   # 先執行測試
   test:
     uses: ./.github/workflows/test.yml
+    secrets:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
   # 測試通過後才部署
   deploy:

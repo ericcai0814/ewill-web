@@ -17,6 +17,11 @@ on:
       - 'pages/**'
       - 'pnpm-lock.yaml'
       - '.github/workflows/test.yml'
+  # 允許被其他 workflow 調用（如 deploy.yml）
+  workflow_call:
+    secrets:
+      DATABASE_URL:
+        required: false
 
 env:
   # 避免 Playwright 在 CI 中下載瀏覽器時卡住
