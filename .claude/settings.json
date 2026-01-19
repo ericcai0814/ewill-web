@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "condition": "output.includes('[master') || output.includes('[DEV') || output.includes('[feature/')",
+        "command": "bash .claude/hooks/post-commit.sh",
+        "description": "Git commit 成功後提示更新 run-log"
+      }
+    ]
+  }
+}
