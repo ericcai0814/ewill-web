@@ -4,9 +4,18 @@
   "private": true,
   "description": "鎰威科技網站內容庫",
   "scripts": {
+    "dev": "pnpm run --parallel dev:api dev:web",
+    "dev:api": "pnpm --filter @ewill/api dev",
+    "dev:web": "pnpm --filter astro-app dev",
     "build": "npx tsx .claude/skills/content-build/scripts/build.ts",
     "build:content": "npx tsx .claude/skills/content-build/scripts/build.ts",
+    "build:api": "pnpm --filter @ewill/api build",
+    "build:astro": "pnpm --filter astro-app build",
+    "build:all": "pnpm run build && pnpm run build:api && pnpm run build:astro",
     "seed:events": "cd astro-app && npx tsx ../scripts/seed-events.ts",
+    "test": "pnpm --filter astro-app test && pnpm --filter @ewill/api test",
+    "test:api": "pnpm --filter @ewill/api test",
+    "test:web": "pnpm --filter astro-app test",
     "prepare": "husky"
   },
   "keywords": [],
