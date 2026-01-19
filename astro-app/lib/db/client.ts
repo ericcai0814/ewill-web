@@ -14,6 +14,17 @@ import * as schema from './schema';
 let _sql: NeonQueryFunction<false, false> | null = null;
 let _db: NeonHttpDatabase<typeof schema> | null = null;
 
+/**
+ * 檢查是否為 Mock 模式（沒有設定 DATABASE_URL）
+ */
+export function isMockMode(): boolean {
+  const connectionString =
+    (import.meta as any).env?.DATABASE_URL ||
+    process.env.DATABASE_URL ||
+    '';
+  return !connectionString;
+}
+
 function getConnectionString(): string {
   // 優先使用 import.meta.env（Astro/Vite 環境）
   // 次要使用 process.env（Node.js 環境，如 seed script）

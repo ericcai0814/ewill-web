@@ -15,7 +15,7 @@ import type { APIRoute } from 'astro';
 
 // 標記為 server-side route（不預先渲染）
 export const prerender = false;
-import { db } from '../../../../lib/db/client';
+import { db, isMockMode } from '../../../../lib/db/client';
 import { events } from '../../../../lib/db/schema';
 import { successResponse, errorResponse, ErrorCodes } from '../../../../lib/utils/response';
 import { eq, desc, asc, and, sql } from 'drizzle-orm';
@@ -25,6 +25,28 @@ const VALID_STATUS: EventStatus[] = ['draft', 'published', 'archived'];
 const VALID_CATEGORY: EventCategory[] = ['seminar', 'webinar', 'press_release', 'exhibition', 'other'];
 const VALID_SORT_BY = ['event_date', 'created_at'] as const;
 const VALID_SORT_ORDER = ['asc', 'desc'] as const;
+
+// Mock 資料：用於沒有 DATABASE_URL 的 CI 環境
+const MOCK_EVENTS: EventListResponse['items'] = [
+  {
+    id: 'mock-event-1',
+    title: '[Mock] 資安研討會 2026',
+    summary: '探討最新資安趨勢與解決方案',
+    category: 'seminar',
+    event_date: '2026-03-15T09:00:00.000Z',
+    cover_image_id: 'mock-cover-1',
+    page_slug: 'event_mock_1',
+  },
+  {
+    id: 'mock-event-2',
+    title: '[Mock] 線上技術分享',
+    summary: '雲端安全最佳實務',
+    category: 'webinar',
+    event_date: '2026-02-20T14:00:00.000Z',
+    cover_image_id: 'mock-cover-2',
+    page_slug: 'event_mock_2',
+  },
+];
 
 export const GET: APIRoute = async ({ request }) => {
   try {
@@ -41,6 +63,25 @@ export const GET: APIRoute = async ({ request }) => {
     const page = Math.max(1, parseInt(pageParam || '1', 10) || 1);
     const pageSize = Math.min(50, Math.max(1, parseInt(pageSizeParam || '10', 10) || 10));
     const offset = (page - 1) * pageSize;
+
+    // Mock 模式：回傳假資料
+    if (isMockMode()) {
+      const mockResponse: EventListResponse = {
+        items: MOCK_EVENTS.slice(offset, offset + pageSize),
+        total: MOCK_EVENTS.length,
+        page,
+        page_size: pageSize,
+        has_more: offset + pageSize < MOCK_EVENTS.length,
+      };
+
+      return new Response(JSON.stringify(successResponse(mockResponse)), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 's-maxage=300, stale-while-revalidate=60',
+        },
+      });
+    }
 
     // 建立篩選條件
     const conditions = [];

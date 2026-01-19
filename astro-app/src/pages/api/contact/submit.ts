@@ -7,7 +7,7 @@ import type { APIRoute } from 'astro';
 
 // 標記為 server-side route（不預先渲染）
 export const prerender = false;
-import { db } from '../../../../lib/db/client';
+import { db, isMockMode } from '../../../../lib/db/client';
 import { contactSubmissions } from '../../../../lib/db/schema';
 import { successResponse, errorResponse, ErrorCodes } from '../../../../lib/utils/response';
 import { validate, contactFormSchema, sanitizeInput } from '../../../../lib/utils/validate';
@@ -78,21 +78,26 @@ export const POST: APIRoute = async ({ request }) => {
   };
 
   try {
-    // 儲存到資料庫
-    await db.insert(contactSubmissions).values(sanitizedData);
+    // Mock 模式：跳過資料庫操作，直接回傳成功
+    if (!isMockMode()) {
+      // 儲存到資料庫
+      await db.insert(contactSubmissions).values(sanitizedData);
 
-    // 發送 Email 通知（不阻塞回應）
-    sendContactNotification({
-      ...data,
-      submission_id: submissionId,
-    }).catch((err) => {
-      console.error('Email 發送失敗（已記錄到 DB）:', err);
-    });
+      // 發送 Email 通知（不阻塞回應）
+      sendContactNotification({
+        ...data,
+        submission_id: submissionId,
+      }).catch((err) => {
+        console.error('Email 發送失敗（已記錄到 DB）:', err);
+      });
+    }
 
     const response: ContactSubmissionResponse = {
       submission_id: submissionId,
       submitted: true,
-      message: '感謝您的來信，我們將盡快與您聯繫。',
+      message: isMockMode()
+        ? '[Mock] 感謝您的來信，我們將盡快與您聯繫。'
+        : '感謝您的來信，我們將盡快與您聯繫。',
     };
 
     return new Response(JSON.stringify(successResponse(response)), {
