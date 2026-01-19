@@ -22,6 +22,8 @@ on:
     secrets:
       DATABASE_URL:
         required: false
+  # 允許手動觸發
+  workflow_dispatch:
 
 env:
   # 避免 Playwright 在 CI 中下載瀏覽器時卡住
