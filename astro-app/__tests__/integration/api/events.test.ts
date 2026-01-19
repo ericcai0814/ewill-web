@@ -110,6 +110,7 @@ vi.mock('drizzle-orm', () => ({
 
 vi.mock('../../../lib/db/client', () => ({
   db: mockDb,
+  isMockMode: () => false,
 }));
 
 // Mock schema

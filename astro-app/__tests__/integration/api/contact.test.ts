@@ -35,6 +35,7 @@ const { mockInsertValues, mockDb } = vi.hoisted(() => {
 
 vi.mock('../../../lib/db/client', () => ({
   db: mockDb,
+  isMockMode: () => false,
 }));
 
 // Mock Resend
