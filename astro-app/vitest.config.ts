@@ -26,6 +26,7 @@ export default defineConfig({
         'lib/db/seed.ts',
         'lib/db/client.ts', // 資料庫連線配置，依賴外部服務
         'lib/db/schema.ts', // Drizzle schema 定義，純類型
+        'lib/api/client.ts', // BFF API client，依賴外部 Core Backend 服務
         'lib/openapi/generate.ts',
         'lib/openapi/schemas.ts', // OpenAPI schema 定義，純類型
         '**/__tests__/**',
