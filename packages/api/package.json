@@ -8,9 +8,20 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
+      "import": "./src/index.ts",
       "types": "./dist/index.d.ts"
+    },
+    "./vercel": {
+      "import": "./src/vercel.ts"
+    },
+    "./services/*": {
+      "import": "./src/services/*.ts"
+    },
+    "./db": {
+      "import": "./src/db/index.ts"
+    },
+    "./utils/*": {
+      "import": "./src/utils/*.ts"
     }
   },
   "scripts": {

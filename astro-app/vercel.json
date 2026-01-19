@@ -4,6 +4,17 @@
   "installCommand": "cd .. && pnpm install",
   "buildCommand": "cd .. && pnpm run build && cd astro-app && pnpm run build",
   "outputDirectory": "dist",
+  "functions": {
+    "api/backend/**/*.ts": {
+      "runtime": "@vercel/node@3"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/backend/:path*",
+      "destination": "/api/backend"
+    }
+  ],
   "redirects": [
     {
       "source": "/event_20251021/",
