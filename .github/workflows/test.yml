@@ -1,41 +1,54 @@
 name: Test
 
 on:
+  push:
+    branches: [DEV, master]
+    paths:
+      - 'astro-app/**'
+      - 'packages/**'
+      - 'pages/**'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/test.yml'
   pull_request:
-    branches: [master]
-  workflow_call:  # 允許被其他 workflow 調用
-  workflow_dispatch:
+    branches: [DEV, master]
+    paths:
+      - 'astro-app/**'
+      - 'packages/**'
+      - 'pages/**'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/test.yml'
+
+env:
+  # 避免 Playwright 在 CI 中下載瀏覽器時卡住
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 0
 
 jobs:
-  test:
+  unit-tests:
+    name: Unit & Integration Tests
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'pnpm'
+          cache-dependency-path: 'pnpm-lock.yaml'
 
-      - name: Install root dependencies
-        run: pnpm install
+      - name: Install dependencies (root)
+        run: pnpm install --frozen-lockfile
 
-      - name: Install astro-app dependencies
+      - name: Run unit and integration tests
         working-directory: astro-app
-        run: pnpm install
-
-      - name: Build content (generate JSON for tests)
-        run: pnpm run build
-
-      - name: Run tests
-        working-directory: astro-app
-        run: pnpm test:run
+        run: pnpm run test:coverage
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
@@ -44,3 +57,96 @@ jobs:
           name: coverage-report
           path: astro-app/coverage/
           retention-days: 7
+
+  e2e-tests:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    needs: unit-tests
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+          cache-dependency-path: 'pnpm-lock.yaml'
+
+      - name: Install dependencies (root)
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        working-directory: astro-app
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Build content
+        run: pnpm run build
+
+      - name: Run E2E tests
+        working-directory: astro-app
+        run: pnpm run test:e2e --project=chromium
+        env:
+          CI: true
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: astro-app/playwright-report/
+          retention-days: 7
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: test-results
+          path: astro-app/test-results/
+          retention-days: 7
+
+  build:
+    name: Build Check
+    runs-on: ubuntu-latest
+    needs: [unit-tests, e2e-tests]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+          cache-dependency-path: 'pnpm-lock.yaml'
+
+      - name: Install dependencies (root)
+        run: pnpm install --frozen-lockfile
+
+      - name: Build content
+        run: pnpm run build
+
+      - name: Build Astro site
+        working-directory: astro-app
+        run: pnpm run build
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: astro-app/dist/
+          retention-days: 3
