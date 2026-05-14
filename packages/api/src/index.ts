@@ -90,7 +90,7 @@ app.onError((err, c) => {
 // Start server (for local development)
 const port = parseInt(process.env.PORT || '3001', 10);
 
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== 'test' && !process.env.VERCEL) {
   console.log(`Starting Core Backend API on port ${port}...`);
   serve({
     fetch: app.fetch,

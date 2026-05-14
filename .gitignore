@@ -82,3 +82,4 @@ directoryList.md
 # Claude Code 本地設定（不需版本控制）
 .claude/settings.local.json
 
+.vercel
